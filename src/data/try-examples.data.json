@@ -1,0 +1,17 @@
+[
+  {
+    "id": 1,
+    "name": "Titanic",
+    "value": "Based on the features of Titanic passengers (such as sex, age and socio-economic class), I want to build a model to determine which types of people were more likely to survive."
+  },
+  {
+    "id": 2,
+    "name": "House Prices",
+    "value": "Using features describing various aspects of residential homes, I need to build a model to predict the final price of each house. I have to consider factors as size and number of bedrooms."
+  },
+  {
+    "id": 3,
+    "name": "Digit Recognizer",
+    "value": "Using records recovered from the damaged computer system, I aim to help rescue crews retrieve the lost passengers by using data science skills. I have to predict which passengers were transported to an alternate dimension after the Spaceship Titanic collided with a spacetime anomaly."
+  }
+]

@@ -1,0 +1,428 @@
+{
+  "regression": [
+    {
+      "id": "R-001",
+      "alias": "linear-regression",
+      "name": "Linear Regression",
+      "type": "Regression",
+      "icon": 1,
+      "metrics": {
+        "trainingTime": "Short",
+        "predictionSpeed": "Fast",
+        "memoryUsage": "Light"
+      }
+    },
+    {
+      "id": "R-002",
+      "alias": "polynomial-regression",
+      "name": "Polynomial Regression",
+      "type": "Regression",
+      "icon": 2,
+      "metrics": {
+        "trainingTime": "Medium",
+        "predictionSpeed": "Medium",
+        "memoryUsage": "Medium"
+      }
+    },
+    {
+      "id": "R-003",
+      "alias": "elastic-net-regression",
+      "name": "Elastic Net Regression",
+      "type": "Regression",
+      "icon": 3,
+      "metrics": {
+        "trainingTime": "Medium",
+        "predictionSpeed": "Medium",
+        "memoryUsage": "Medium"
+      }
+    },
+    {
+      "id": "R-004",
+      "alias": "gradient-boosting-r",
+      "name": "Gradient Boosting (R)",
+      "type": "Regression",
+      "icon": 4,
+      "metrics": {
+        "trainingTime": "Medium",
+        "predictionSpeed": "Medium",
+        "memoryUsage": "Heavy"
+      }
+    },
+    {
+      "id": "R-005",
+      "alias": "neural-networks-r",
+      "name": "Neural Networks (R)",
+      "type": "Regression",
+      "icon": 5,
+      "metrics": {
+        "trainingTime": "Long",
+        "predictionSpeed": "Slow",
+        "memoryUsage": "Heavy"
+      }
+    },
+    {
+      "id": "R-006",
+      "alias": "svm-r",
+      "name": "Support Vector Machine (SVM) (R)",
+      "type": "Regression",
+      "icon": 6,
+      "metrics": {
+        "trainingTime": "Medium",
+        "predictionSpeed": "Medium",
+        "memoryUsage": "Medium"
+      }
+    },
+    {
+      "id": "R-007",
+      "alias": "decision-tree-r",
+      "name": "Decision Tree (R)",
+      "type": "Regression",
+      "icon": 7,
+      "metrics": {
+        "trainingTime": "Short",
+        "predictionSpeed": "Fast",
+        "memoryUsage": "Medium"
+      }
+    },
+    {
+      "id": "R-008",
+      "alias": "random-forest-r",
+      "name": "Random Forest (R)",
+      "type": "Regression",
+      "icon": 8,
+      "metrics": {
+        "trainingTime": "Medium",
+        "predictionSpeed": "Medium",
+        "memoryUsage": "Medium"
+      }
+    },
+    {
+      "id": "R-009",
+      "alias": "xgboost-r",
+      "name": "XGBoost (R)",
+      "type": "Regression",
+      "icon": 9,
+      "metrics": {
+        "trainingTime": "Medium",
+        "predictionSpeed": "Medium",
+        "memoryUsage": "Medium"
+      }
+    },
+    {
+      "id": "R-010",
+      "alias": "lightgbm-r",
+      "name": "LightGBM (R)",
+      "type": "Regression",
+      "icon": 4,
+      "metrics": {
+        "trainingTime": "Medium",
+        "predictionSpeed": "Medium",
+        "memoryUsage": "Medium"
+      }
+    },
+    {
+      "id": "R-011",
+      "alias": "catboost-r",
+      "name": "CatBoost (R)",
+      "type": "Regression",
+      "icon": 4,
+      "metrics": {
+        "trainingTime": "Medium",
+        "predictionSpeed": "Medium",
+        "memoryUsage": "Medium"
+      }
+    },
+    {
+      "id": "R-012",
+      "alias": "ensemble-methods-r",
+      "name": "Ensemble Methods (R)",
+      "type": "Regression",
+      "icon": 5,
+      "metrics": {
+        "trainingTime": "Medium",
+        "predictionSpeed": "Medium",
+        "memoryUsage": "Medium"
+      }
+    },
+    {
+      "id": "R-013",
+      "alias": "mlp-r",
+      "name": "Multilayer Perceptron (MLP) (R)",
+      "type": "Regression",
+      "icon": 5,
+      "metrics": {
+        "trainingTime": "Long",
+        "predictionSpeed": "Slow",
+        "memoryUsage": "Heavy"
+      }
+    },
+    {
+      "id": "R-014",
+      "alias": "elm-r",
+      "name": "Extreme Learning Machines (ELM) (R)",
+      "type": "Regression",
+      "icon": 5,
+      "metrics": {
+        "trainingTime": "Medium",
+        "predictionSpeed": "Medium",
+        "memoryUsage": "Medium"
+      }
+    }
+  ],
+  "classification": [
+    {
+      "id": "C-001",
+      "alias": "logistic-regression",
+      "name": "Logistic Regression",
+      "type": "classification",
+      "icon": 10,
+      "metrics": {
+        "trainingTime": "Short",
+        "predictionSpeed": "Fast",
+        "memoryUsage": "Light"
+      }
+    },
+    {
+      "id": "C-002",
+      "alias": "naive-bayes-classification",
+      "name": "Naive Bayes Classification",
+      "type": "classification",
+      "icon": 11,
+      "metrics": {
+        "trainingTime": "Short",
+        "predictionSpeed": "Fast",
+        "memoryUsage": "Light"
+      }
+    },
+    {
+      "id": "C-003",
+      "alias": "adaboost-classification",
+      "name": "AdaBoost Classification",
+      "type": "classification",
+      "icon": 12,
+      "metrics": {
+        "trainingTime": "Medium",
+        "predictionSpeed": "Medium",
+        "memoryUsage": "Medium"
+      }
+    },
+    {
+      "id": "C-004",
+      "alias": "gaussian-naive-bayes",
+      "name": "Gaussian Naive Bayes",
+      "type": "classification",
+      "icon": 11,
+      "metrics": {
+        "trainingTime": "Short",
+        "predictionSpeed": "Fast",
+        "memoryUsage": "Light"
+      }
+    },
+    {
+      "id": "C-005",
+      "alias": "qda",
+      "name": "Quadratic Discriminant Analysis",
+      "type": "classification",
+      "icon": 13,
+      "metrics": {
+        "trainingTime": "Medium",
+        "predictionSpeed": "Medium",
+        "memoryUsage": "Medium"
+      }
+    },
+    {
+      "id": "C-006",
+      "alias": "knn",
+      "name": "K-Nearest Neighbors",
+      "type": "classification",
+      "icon": 14,
+      "metrics": {
+        "trainingTime": "Medium",
+        "predictionSpeed": "Medium",
+        "memoryUsage": "Medium"
+      }
+    },
+    {
+      "id": "C-007",
+      "alias": "bayesian-networks",
+      "name": "Bayesian Networks",
+      "type": "classification",
+      "icon": 15,
+      "metrics": {
+        "trainingTime": "Medium",
+        "predictionSpeed": "Medium",
+        "memoryUsage": "Medium"
+      }
+    },
+    {
+      "id": "C-008",
+      "alias": "gradient-boosting-c",
+      "name": "Gradient Boosting (C)",
+      "type": "classification",
+      "icon": 4,
+      "metrics": {
+        "trainingTime": "Medium",
+        "predictionSpeed": "Medium",
+        "memoryUsage": "Heavy"
+      }
+    },
+    {
+      "id": "C-009",
+      "alias": "neural-networks-c",
+      "name": "Neural Networks (C)",
+      "type": "classification",
+      "icon": 5,
+      "metrics": {
+        "trainingTime": "Long",
+        "predictionSpeed": "Slow",
+        "memoryUsage": "Heavy"
+      }
+    },
+    {
+      "id": "C-010",
+      "alias": "svm-c",
+      "name": "Support Vector Machine (SVM) (C)",
+      "type": "classification",
+      "icon": 16,
+      "metrics": {
+        "trainingTime": "Medium",
+        "predictionSpeed": "Medium",
+        "memoryUsage": "Medium"
+      }
+    },
+    {
+      "id": "C-011",
+      "alias": "decision-tree-c",
+      "name": "Decision Tree (C)",
+      "type": "classification",
+      "icon": 17,
+      "metrics": {
+        "trainingTime": "Short",
+        "predictionSpeed": "Fast",
+        "memoryUsage": "Medium"
+      }
+    },
+    {
+      "id": "C-012",
+      "alias": "random-forest-c",
+      "name": "Random Forest (C)",
+      "type": "classification",
+      "icon": 18,
+      "metrics": {
+        "trainingTime": "Medium",
+        "predictionSpeed": "Medium",
+        "memoryUsage": "Heavy"
+      }
+    },
+    {
+      "id": "C-013",
+      "alias": "xgboost-c",
+      "name": "XGBoost (C)",
+      "type": "classification",
+      "icon": 9,
+      "metrics": {
+        "trainingTime": "Medium",
+        "predictionSpeed": "Medium",
+        "memoryUsage": "Medium"
+      }
+    },
+    {
+      "id": "C-014",
+      "alias": "lightgbm-c",
+      "name": "LightGBM (C)",
+      "type": "classification",
+      "icon": 4,
+      "metrics": {
+        "trainingTime": "Medium",
+        "predictionSpeed": "Medium",
+        "memoryUsage": "Medium"
+      }
+    },
+    {
+      "id": "C-015",
+      "alias": "catboost-c",
+      "name": "CatBoost (C)",
+      "type": "classification",
+      "icon": 4,
+      "metrics": {
+        "trainingTime": "Medium",
+        "predictionSpeed": "Medium",
+        "memoryUsage": "Medium"
+      }
+    },
+    {
+      "id": "C-016",
+      "alias": "ensemble-methods-c",
+      "name": "Ensemble Methods (C)",
+      "type": "classification",
+      "icon": 5,
+      "metrics": {
+        "trainingTime": "Medium",
+        "predictionSpeed": "Medium",
+        "memoryUsage": "Medium"
+      }
+    },
+    {
+      "id": "C-017",
+      "alias": "mlp-c",
+      "name": "Multilayer Perceptron (MLP) (C)",
+      "type": "classification",
+      "icon": 5,
+      "metrics": {
+        "trainingTime": "Long",
+        "predictionSpeed": "Medium",
+        "memoryUsage": "Heavy"
+      }
+    },
+    {
+      "id": "C-018",
+      "alias": "elm-c",
+      "name": "Extreme Learning Machines (ELM) (C)",
+      "type": "classification",
+      "icon": 5,
+      "metrics": {
+        "trainingTime": "Medium",
+        "predictionSpeed": "Medium",
+        "memoryUsage": "Medium"
+      }
+    }
+  ],
+  "others": [
+    {
+      "id": "O-001",
+      "alias": "pca",
+      "name": "Principal Component Analysis (PCA)",
+      "type": "Dimensionality Reduction",
+      "icon": 32,
+      "metrics": {
+        "trainingTime": "Medium",
+        "predictionSpeed": "Medium",
+        "memoryUsage": "Medium"
+      }
+    },
+    {
+      "id": "O-002",
+      "alias": "k-means-clustering",
+      "name": "K-Means Clustering",
+      "type": "Clustering",
+      "icon": 33,
+      "metrics": {
+        "trainingTime": "Medium",
+        "predictionSpeed": "Medium",
+        "memoryUsage": "Medium"
+      }
+    },
+    {
+      "id": "O-003",
+      "alias": "hierarchical-clustering",
+      "name": "Hierarchical Clustering",
+      "type": "Clustering",
+      "icon": 34,
+      "metrics": {
+        "trainingTime": "Medium",
+        "predictionSpeed": "Medium",
+        "memoryUsage": "Medium"
+      }
+    }
+  ]
+}
