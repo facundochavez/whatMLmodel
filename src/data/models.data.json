@@ -1,7 +1,7 @@
 {
   "regression": [
     {
-      "id": "R-001",
+      "id": "REG-001",
       "alias": "linear-regression",
       "name": "Linear Regression",
       "type": "Regression",
@@ -13,7 +13,7 @@
       }
     },
     {
-      "id": "R-002",
+      "id": "REG-002",
       "alias": "polynomial-regression",
       "name": "Polynomial Regression",
       "type": "Regression",
@@ -25,7 +25,7 @@
       }
     },
     {
-      "id": "R-003",
+      "id": "REG-003",
       "alias": "elastic-net-regression",
       "name": "Elastic Net Regression",
       "type": "Regression",
@@ -37,7 +37,7 @@
       }
     },
     {
-      "id": "R-004",
+      "id": "REG-004",
       "alias": "gradient-boosting-r",
       "name": "Gradient Boosting (R)",
       "type": "Regression",
@@ -49,7 +49,7 @@
       }
     },
     {
-      "id": "R-005",
+      "id": "REG-005",
       "alias": "neural-networks-r",
       "name": "Neural Networks (R)",
       "type": "Regression",
@@ -61,7 +61,7 @@
       }
     },
     {
-      "id": "R-006",
+      "id": "REG-006",
       "alias": "svm-r",
       "name": "Support Vector Machine (SVM) (R)",
       "type": "Regression",
@@ -73,7 +73,7 @@
       }
     },
     {
-      "id": "R-007",
+      "id": "REG-007",
       "alias": "decision-tree-r",
       "name": "Decision Tree (R)",
       "type": "Regression",
@@ -85,7 +85,7 @@
       }
     },
     {
-      "id": "R-008",
+      "id": "REG-008",
       "alias": "random-forest-r",
       "name": "Random Forest (R)",
       "type": "Regression",
@@ -97,7 +97,7 @@
       }
     },
     {
-      "id": "R-009",
+      "id": "REG-009",
       "alias": "xgboost-r",
       "name": "XGBoost (R)",
       "type": "Regression",
@@ -109,7 +109,7 @@
       }
     },
     {
-      "id": "R-010",
+      "id": "REG-010",
       "alias": "lightgbm-r",
       "name": "LightGBM (R)",
       "type": "Regression",
@@ -121,7 +121,7 @@
       }
     },
     {
-      "id": "R-011",
+      "id": "REG-011",
       "alias": "catboost-r",
       "name": "CatBoost (R)",
       "type": "Regression",
@@ -133,7 +133,7 @@
       }
     },
     {
-      "id": "R-012",
+      "id": "REG-012",
       "alias": "ensemble-methods-r",
       "name": "Ensemble Methods (R)",
       "type": "Regression",
@@ -145,7 +145,7 @@
       }
     },
     {
-      "id": "R-013",
+      "id": "REG-013",
       "alias": "mlp-r",
       "name": "Multilayer Perceptron (MLP) (R)",
       "type": "Regression",
@@ -157,7 +157,7 @@
       }
     },
     {
-      "id": "R-014",
+      "id": "REG-014",
       "alias": "elm-r",
       "name": "Extreme Learning Machines (ELM) (R)",
       "type": "Regression",
@@ -171,7 +171,7 @@
   ],
   "classification": [
     {
-      "id": "C-001",
+      "id": "CLA-001",
       "alias": "logistic-regression",
       "name": "Logistic Regression",
       "type": "classification",
@@ -183,7 +183,7 @@
       }
     },
     {
-      "id": "C-002",
+      "id": "CLA-002",
       "alias": "naive-bayes-classification",
       "name": "Naive Bayes Classification",
       "type": "classification",
@@ -195,7 +195,7 @@
       }
     },
     {
-      "id": "C-003",
+      "id": "CLA-003",
       "alias": "adaboost-classification",
       "name": "AdaBoost Classification",
       "type": "classification",
@@ -207,7 +207,7 @@
       }
     },
     {
-      "id": "C-004",
+      "id": "CLA-004",
       "alias": "gaussian-naive-bayes",
       "name": "Gaussian Naive Bayes",
       "type": "classification",
@@ -219,7 +219,7 @@
       }
     },
     {
-      "id": "C-005",
+      "id": "CLA-005",
       "alias": "qda",
       "name": "Quadratic Discriminant Analysis",
       "type": "classification",
@@ -231,7 +231,7 @@
       }
     },
     {
-      "id": "C-006",
+      "id": "CLA-006",
       "alias": "knn",
       "name": "K-Nearest Neighbors",
       "type": "classification",
@@ -243,7 +243,7 @@
       }
     },
     {
-      "id": "C-007",
+      "id": "CLA-007",
       "alias": "bayesian-networks",
       "name": "Bayesian Networks",
       "type": "classification",
@@ -255,7 +255,7 @@
       }
     },
     {
-      "id": "C-008",
+      "id": "CLA-008",
       "alias": "gradient-boosting-c",
       "name": "Gradient Boosting (C)",
       "type": "classification",
@@ -267,7 +267,7 @@
       }
     },
     {
-      "id": "C-009",
+      "id": "CLA-009",
       "alias": "neural-networks-c",
       "name": "Neural Networks (C)",
       "type": "classification",
@@ -279,7 +279,7 @@
       }
     },
     {
-      "id": "C-010",
+      "id": "CLA-010",
       "alias": "svm-c",
       "name": "Support Vector Machine (SVM) (C)",
       "type": "classification",
@@ -291,7 +291,7 @@
       }
     },
     {
-      "id": "C-011",
+      "id": "CLA-011",
       "alias": "decision-tree-c",
       "name": "Decision Tree (C)",
       "type": "classification",
@@ -303,7 +303,7 @@
       }
     },
     {
-      "id": "C-012",
+      "id": "CLA-012",
       "alias": "random-forest-c",
       "name": "Random Forest (C)",
       "type": "classification",
@@ -315,7 +315,7 @@
       }
     },
     {
-      "id": "C-013",
+      "id": "CLA-013",
       "alias": "xgboost-c",
       "name": "XGBoost (C)",
       "type": "classification",
@@ -327,7 +327,7 @@
       }
     },
     {
-      "id": "C-014",
+      "id": "CLA-014",
       "alias": "lightgbm-c",
       "name": "LightGBM (C)",
       "type": "classification",
@@ -339,7 +339,7 @@
       }
     },
     {
-      "id": "C-015",
+      "id": "CLA-015",
       "alias": "catboost-c",
       "name": "CatBoost (C)",
       "type": "classification",
@@ -351,7 +351,7 @@
       }
     },
     {
-      "id": "C-016",
+      "id": "CLA-016",
       "alias": "ensemble-methods-c",
       "name": "Ensemble Methods (C)",
       "type": "classification",
@@ -363,7 +363,7 @@
       }
     },
     {
-      "id": "C-017",
+      "id": "CLA-017",
       "alias": "mlp-c",
       "name": "Multilayer Perceptron (MLP) (C)",
       "type": "classification",
@@ -375,7 +375,7 @@
       }
     },
     {
-      "id": "C-018",
+      "id": "CLA-018",
       "alias": "elm-c",
       "name": "Extreme Learning Machines (ELM) (C)",
       "type": "classification",
@@ -387,25 +387,13 @@
       }
     }
   ],
-  "others": [
+  "clustering": [
     {
-      "id": "O-001",
-      "alias": "pca",
-      "name": "Principal Component Analysis (PCA)",
-      "type": "Dimensionality Reduction",
-      "icon": 32,
-      "metrics": {
-        "trainingTime": "Medium",
-        "predictionSpeed": "Medium",
-        "memoryUsage": "Medium"
-      }
-    },
-    {
-      "id": "O-002",
+      "id": "CLU-001",
       "alias": "k-means-clustering",
       "name": "K-Means Clustering",
       "type": "Clustering",
-      "icon": 33,
+      "icon": 19,
       "metrics": {
         "trainingTime": "Medium",
         "predictionSpeed": "Medium",
@@ -413,15 +401,77 @@
       }
     },
     {
-      "id": "O-003",
+      "id": "CLU-002",
       "alias": "hierarchical-clustering",
       "name": "Hierarchical Clustering",
       "type": "Clustering",
-      "icon": 34,
+      "icon": 20,
       "metrics": {
         "trainingTime": "Medium",
         "predictionSpeed": "Medium",
         "memoryUsage": "Medium"
+      }
+    }
+  ],
+  "dimensionality-reduction": [
+    {
+      "id": "DR-001",
+      "alias": "pca",
+      "name": "Principal Component Analysis (PCA)",
+      "type": "Dimensionality Reduction",
+      "icon": 21,
+      "metrics": {
+        "trainingTime": "Short",
+        "predictionSpeed": "Fast",
+        "memoryUsage": "Light"
+      }
+    },
+    {
+      "id": "DR-002",
+      "alias": "lda",
+      "name": "Linear Discriminant Analysis (LDA)",
+      "type": "Dimensionality Reduction",
+      "icon": 22,
+      "metrics": {
+        "trainingTime": "Medium",
+        "predictionSpeed": "Medium",
+        "memoryUsage": "Medium"
+      }
+    },
+    {
+      "id": "DR-003",
+      "alias": "tsne",
+      "name": "t-Distributed Stochastic Neighbor Embedding (t-SNE)",
+      "type": "Dimensionality Reduction",
+      "icon": 19,
+      "metrics": {
+        "trainingTime": "Long",
+        "predictionSpeed": "Slow",
+        "memoryUsage": "Heavy"
+      }
+    },
+    {
+      "id": "DR-004",
+      "alias": "isomap",
+      "name": "Isomap",
+      "type": "Dimensionality Reduction",
+      "icon": 8,
+      "metrics": {
+        "trainingTime": "Long",
+        "predictionSpeed": "Slow",
+        "memoryUsage": "Heavy"
+      }
+    },
+    {
+      "id": "DR-005",
+      "alias": "autoencoders",
+      "name": "Autoencoders",
+      "type": "Dimensionality Reduction",
+      "icon": 23,
+      "metrics": {
+        "trainingTime": "Long",
+        "predictionSpeed": "Slow",
+        "memoryUsage": "Heavy"
       }
     }
   ]

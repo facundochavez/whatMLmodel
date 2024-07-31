@@ -168,6 +168,8 @@
 }
 
 // "SIMILAR DATASETS"  FOR IA
+// 1ro revisar que esten bien clasificados los 3 ejemplos principales (titanic, hose prices y el otro)
+// 2do Alimentar con eso el similar-datasets.data
 
 {
   "regression": [

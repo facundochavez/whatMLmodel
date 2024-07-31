@@ -1,7 +1,128 @@
 {
+  "regression": [
+    {
+      "name": "House prices",
+      "alias": "house-prices",
+      "metrics": [
+        {
+          "modelAlias": "linear-regression",
+          "meanSquaredError": 2100000.0,
+          "meanAbsoluteError": 1100.0,
+          "rootMeanSquaredError": 1443.0,
+          "rSquared": 0.85,
+          "adjustedRSquared": 0.92
+        },
+        {
+          "modelAlias": "polynomial-regression",
+          "meanSquaredError": 1800000.0,
+          "meanAbsoluteError": 950.0,
+          "rootMeanSquaredError": 1340.0,
+          "rSquared": 0.88,
+          "adjustedRSquared": 0.94
+        },
+        {
+          "modelAlias": "elastic-net-regression",
+          "meanSquaredError": 2000000.0,
+          "meanAbsoluteError": 1050.0,
+          "rootMeanSquaredError": 1410.0,
+          "rSquared": 0.86,
+          "adjustedRSquared": 0.93
+        },
+        {
+          "modelAlias": "gradient-boosting-r",
+          "meanSquaredError": 1600000.0,
+          "meanAbsoluteError": 900.0,
+          "rootMeanSquaredError": 1265.0,
+          "rSquared": 0.9,
+          "adjustedRSquared": 0.8
+        },
+        {
+          "modelAlias": "neural-networks-r",
+          "meanSquaredError": 1900000.0,
+          "meanAbsoluteError": 980.0,
+          "rootMeanSquaredError": 1376.0,
+          "rSquared": 0.87,
+          "adjustedRSquared": 0.92
+        },
+        {
+          "modelAlias": "svm-r",
+          "meanSquaredError": 2200000.0,
+          "meanAbsoluteError": 1150.0,
+          "rootMeanSquaredError": 1483.0,
+          "rSquared": 0.84,
+          "adjustedRSquared": 0.91
+        },
+        {
+          "modelAlias": "decision-tree-r",
+          "meanSquaredError": 2300000.0,
+          "meanAbsoluteError": 1200.0,
+          "rootMeanSquaredError": 1517.0,
+          "rSquared": 0.83,
+          "adjustedRSquared": 0.9
+        },
+        {
+          "modelAlias": "random-forest-r",
+          "meanSquaredError": 1700000.0,
+          "meanAbsoluteError": 940.0,
+          "rootMeanSquaredError": 1304.0,
+          "rSquared": 0.89,
+          "adjustedRSquared": 0.92
+        },
+        {
+          "modelAlias": "xgboost-r",
+          "meanSquaredError": 1750000.0,
+          "meanAbsoluteError": 960.0,
+          "rootMeanSquaredError": 1323.0,
+          "rSquared": 0.88,
+          "adjustedRSquared": 0.92
+        },
+        {
+          "modelAlias": "lightgbm-r",
+          "meanSquaredError": 1650000.0,
+          "meanAbsoluteError": 910.0,
+          "rootMeanSquaredError": 1284.0,
+          "rSquared": 0.8,
+          "adjustedRSquared": 0.85
+        },
+        {
+          "modelAlias": "catboost-c",
+          "meanSquaredError": 1900000.0,
+          "meanAbsoluteError": 980.0,
+          "rootMeanSquaredError": 1376.0,
+          "rSquared": 0.87,
+          "adjustedRSquared": 0.92
+        },
+        {
+          "modelAlias": "ensemble-methods-r",
+          "meanSquaredError": 1900000.0,
+          "meanAbsoluteError": 980.0,
+          "rootMeanSquaredError": 1376.0,
+          "rSquared": 0.87,
+          "adjustedRSquared": 0.92
+        },
+        {
+          "modelAlias": "mlp-r",
+          "meanSquaredError": 1900000.0,
+          "meanAbsoluteError": 980.0,
+          "rootMeanSquaredError": 1376.0,
+          "rSquared": 0.87,
+          "adjustedRSquared": 0.92
+        },
+        {
+          "modelAlias": "elm-r",
+          "meanSquaredError": 1900000.0,
+          "meanAbsoluteError": 980.0,
+          "rootMeanSquaredError": 1376.0,
+          "rSquared": 0.87,
+          "adjustedRSquared": 0.92
+        }
+      ]
+    }
+  ],
   "classification": [
     {
       "name": "Titanic",
+      "alias": "titanic",
       "metrics": [
         {
           "modelAlias": "logistic-regression",
@@ -10,103 +131,166 @@
           "recall": 0.82,
           "f1Score": 0.79,
           "rocAuc": 0.83,
-          "confusionMatrix": "[124,30][27,95]",
           "crossEntropy": 0.45
         },
         {
-          "modelAlias": "random-forest-c",
+          "modelAlias": "naive-bayes-classification",
           "accuracy": 0.81,
           "precision": 0.79,
           "recall": 0.84,
           "f1Score": 0.81,
           "rocAuc": 0.85,
-          "confusionMatrix": "[127,27][21,101]",
           "crossEntropy": 0.4
         },
         {
-          "modelAlias": "gradient-boosting-c",
+          "modelAlias": "adaboost-classification",
           "accuracy": 0.82,
           "precision": 0.8,
           "recall": 0.85,
           "f1Score": 0.82,
           "rocAuc": 0.86,
-          "confusionMatrix": "[129,25][19,103]",
           "crossEntropy": 0.38
         },
         {
-          "modelAlias": "xgboost-c",
+          "modelAlias": "gaussian-naive-bayes",
           "accuracy": 0.83,
           "precision": 0.81,
           "recall": 0.86,
           "f1Score": 0.83,
           "rocAuc": 0.87,
-          "confusionMatrix": "[130,24][18,104]",
           "crossEntropy": 0.37
         },
         {
-          "modelAlias": "lightgbm-c",
+          "modelAlias": "qda",
           "accuracy": 0.8,
           "precision": 0.78,
           "recall": 0.83,
           "f1Score": 0.8,
           "rocAuc": 0.84,
-          "confusionMatrix": "[125,29][25,97]",
           "crossEntropy": 0.42
         },
         {
-          "modelAlias": "catboost-c",
+          "modelAlias": "knn",
           "accuracy": 0.81,
           "precision": 0.79,
           "recall": 0.84,
           "f1Score": 0.81,
           "rocAuc": 0.85,
-          "confusionMatrix": "[126,28][22,100]",
           "crossEntropy": 0.41
         },
         {
-          "modelAlias": "svm-c",
+          "modelAlias": "bayesian-networks",
           "accuracy": 0.77,
           "precision": 0.74,
           "recall": 0.79,
           "f1Score": 0.76,
           "rocAuc": 0.8,
-          "confusionMatrix": "[121,33][30,92]",
           "crossEntropy": 0.48
         },
         {
-          "modelAlias": "decision-tree-c",
+          "modelAlias": "gradient-boosting-c",
           "accuracy": 0.75,
           "precision": 0.71,
           "recall": 0.76,
           "f1Score": 0.73,
           "rocAuc": 0.77,
-          "confusionMatrix": "[115,39][35,87]",
           "crossEntropy": 0.52
         },
         {
-          "modelAlias": "knn",
+          "modelAlias": "neural-networks-c",
           "accuracy": 0.78,
           "precision": 0.76,
           "recall": 0.8,
           "f1Score": 0.78,
           "rocAuc": 0.81,
-          "confusionMatrix": "[122,32][28,94]",
           "crossEntropy": 0.46
         },
         {
-          "modelAlias": "naive-bayes-classification",
+          "modelAlias": "svm-c",
           "accuracy": 0.74,
           "precision": 0.7,
           "recall": 0.76,
           "f1Score": 0.73,
           "rocAuc": 0.76,
-          "confusionMatrix": "[118,36][32,90]",
           "crossEntropy": 0.54
+        },
+        {
+          "modelAlias": "decision-tree-c",
+          "accuracy": 0.77,
+          "precision": 0.74,
+          "recall": 0.79,
+          "f1Score": 0.76,
+          "rocAuc": 0.8,
+          "crossEntropy": 0.48
+        },
+        {
+          "modelAlias": "random-forest-c",
+          "accuracy": 0.77,
+          "precision": 0.74,
+          "recall": 0.79,
+          "f1Score": 0.76,
+          "rocAuc": 0.8,
+          "crossEntropy": 0.48
+        },
+        {
+          "modelAlias": "xgboost-c",
+          "accuracy": 0.77,
+          "precision": 0.74,
+          "recall": 0.79,
+          "f1Score": 0.76,
+          "rocAuc": 0.8,
+          "crossEntropy": 0.48
+        },
+        {
+          "modelAlias": "lightgbm-c",
+          "accuracy": 0.77,
+          "precision": 0.74,
+          "recall": 0.79,
+          "f1Score": 0.76,
+          "rocAuc": 0.8,
+          "crossEntropy": 0.48
+        },
+        {
+          "modelAlias": "catboost-c",
+          "accuracy": 0.77,
+          "precision": 0.74,
+          "recall": 0.79,
+          "f1Score": 0.76,
+          "rocAuc": 0.8,
+          "crossEntropy": 0.48
+        },
+        {
+          "modelAlias": "ensemble-methods-c",
+          "accuracy": 0.77,
+          "precision": 0.74,
+          "recall": 0.79,
+          "f1Score": 0.76,
+          "rocAuc": 0.8,
+          "crossEntropy": 0.48
+        },
+        {
+          "modelAlias": "mlp-c",
+          "accuracy": 0.77,
+          "precision": 0.74,
+          "recall": 0.79,
+          "f1Score": 0.76,
+          "rocAuc": 0.8,
+          "crossEntropy": 0.48
+        },
+        {
+          "modelAlias": "elm-c",
+          "accuracy": 0.77,
+          "precision": 0.74,
+          "recall": 0.79,
+          "f1Score": 0.76,
+          "rocAuc": 0.8,
+          "crossEntropy": 0.48
         }
       ]
     },
     {
       "name": "Digit Recognizer",
+      "alias": "digit-recognizer",
       "metrics": [
         {
           "modelAlias": "logistic-regression",
@@ -115,176 +299,160 @@
           "recall": 0.91,
           "f1Score": 0.9,
           "rocAuc": 0.92,
-          "confusionMatrix": "[950,25][30,945]",
           "crossEntropy": 0.3
         },
         {
-          "modelAlias": "decision-tree-c",
+          "modelAlias": "naive-bayes-classification",
           "accuracy": 0.85,
           "precision": 0.83,
           "recall": 0.87,
           "f1Score": 0.85,
           "rocAuc": 0.88,
-          "confusionMatrix": "[920,55][45,930]",
           "crossEntropy": 0.35
         },
         {
-          "modelAlias": "random-forest-c",
+          "modelAlias": "adaboost-classification",
           "accuracy": 0.92,
           "precision": 0.91,
           "recall": 0.93,
           "f1Score": 0.92,
           "rocAuc": 0.94,
-          "confusionMatrix": "[970,10][20,955]",
           "crossEntropy": 0.25
         },
         {
-          "modelAlias": "gradient-boosting-c",
+          "modelAlias": "gaussian-naive-bayes",
           "accuracy": 0.91,
           "precision": 0.9,
           "recall": 0.92,
           "f1Score": 0.91,
           "rocAuc": 0.93,
-          "confusionMatrix": "[960,20][25,950]",
           "crossEntropy": 0.28
         },
         {
-          "modelAlias": "xgboost-c",
+          "modelAlias": "qda",
           "accuracy": 0.93,
           "precision": 0.92,
           "recall": 0.94,
           "f1Score": 0.93,
           "rocAuc": 0.95,
-          "confusionMatrix": "[975,5][15,965]",
           "crossEntropy": 0.22
         },
         {
-          "modelAlias": "lightgbm-c",
+          "modelAlias": "knn",
           "accuracy": 0.89,
           "precision": 0.88,
           "recall": 0.9,
           "f1Score": 0.89,
           "rocAuc": 0.91,
-          "confusionMatrix": "[940,35][40,940]",
           "crossEntropy": 0.33
         },
         {
-          "modelAlias": "catboost-c",
+          "modelAlias": "bayesian-networks",
           "accuracy": 0.87,
           "precision": 0.85,
           "recall": 0.89,
           "f1Score": 0.87,
           "rocAuc": 0.88,
-          "confusionMatrix": "[930,50][45,925]",
           "crossEntropy": 0.37
         },
         {
-          "modelAlias": "svm-c",
+          "modelAlias": "gradient-boosting-c",
           "accuracy": 0.84,
           "precision": 0.82,
           "recall": 0.86,
           "f1Score": 0.84,
           "rocAuc": 0.85,
-          "confusionMatrix": "[910,70][50,920]",
           "crossEntropy": 0.4
         },
         {
-          "modelAlias": "ada-boost-c",
+          "modelAlias": "neural-networks-c",
           "accuracy": 0.88,
           "precision": 0.87,
           "recall": 0.89,
           "f1Score": 0.88,
           "rocAuc": 0.9,
-          "confusionMatrix": "[950,30][35,945]",
           "crossEntropy": 0.32
         },
         {
-          "modelAlias": "elm-c",
+          "modelAlias": "svm-c",
           "accuracy": 0.94,
           "precision": 0.93,
           "recall": 0.95,
           "f1Score": 0.94,
           "rocAuc": 0.96,
-          "confusionMatrix": "[980,2][10,968]",
           "crossEntropy": 0.2
-        }
-      ]
-    }
-  ],
-
-  "regression": [
-    {
-      "name": "House prices",
-      "metrics": [
-        {
-          "modelAlias": "linear-regression",
-          "meanSquaredError": 2100000.0,
-          "rootMeanSquaredError": 1443.0,
-          "meanAbsoluteError": 1100.0,
-          "rSquared": 0.85
         },
         {
-          "modelAlias": "polynomial-regression",
-          "meanSquaredError": 1800000.0,
-          "rootMeanSquaredError": 1340.0,
-          "meanAbsoluteError": 950.0,
-          "rSquared": 0.88
+          "modelAlias": "decision-tree-c",
+          "accuracy": 0.77,
+          "precision": 0.74,
+          "recall": 0.79,
+          "f1Score": 0.76,
+          "rocAuc": 0.8,
+          "crossEntropy": 0.48
         },
         {
-          "modelAlias": "elastic-net-regression",
-          "meanSquaredError": 2000000.0,
-          "rootMeanSquaredError": 1410.0,
-          "meanAbsoluteError": 1050.0,
-          "rSquared": 0.86
+          "modelAlias": "random-forest-c",
+          "accuracy": 0.77,
+          "precision": 0.74,
+          "recall": 0.79,
+          "f1Score": 0.76,
+          "rocAuc": 0.8,
+          "crossEntropy": 0.48
         },
         {
-          "modelAlias": "gradient-boosting-r",
-          "meanSquaredError": 1600000.0,
-          "rootMeanSquaredError": 1265.0,
-          "meanAbsoluteError": 900.0,
-          "rSquared": 0.9
+          "modelAlias": "xgboost-c",
+          "accuracy": 0.77,
+          "precision": 0.74,
+          "recall": 0.79,
+          "f1Score": 0.76,
+          "rocAuc": 0.8,
+          "crossEntropy": 0.48
         },
         {
-          "modelAlias": "neural-networks-r",
-          "meanSquaredError": 1900000.0,
-          "rootMeanSquaredError": 1376.0,
-          "meanAbsoluteError": 980.0,
-          "rSquared": 0.87
+          "modelAlias": "lightgbm-c",
+          "accuracy": 0.77,
+          "precision": 0.74,
+          "recall": 0.79,
+          "f1Score": 0.76,
+          "rocAuc": 0.8,
+          "crossEntropy": 0.48
         },
         {
-          "modelAlias": "svm-r",
-          "meanSquaredError": 2200000.0,
-          "rootMeanSquaredError": 1483.0,
-          "meanAbsoluteError": 1150.0,
-          "rSquared": 0.84
+          "modelAlias": "catboost-c",
+          "accuracy": 0.77,
+          "precision": 0.74,
+          "recall": 0.79,
+          "f1Score": 0.76,
+          "rocAuc": 0.8,
+          "crossEntropy": 0.48
         },
         {
-          "modelAlias": "decision-tree-r",
-          "meanSquaredError": 2300000.0,
-          "rootMeanSquaredError": 1517.0,
-          "meanAbsoluteError": 1200.0,
-          "rSquared": 0.83
+          "modelAlias": "ensemble-methods-c",
+          "accuracy": 0.77,
+          "precision": 0.74,
+          "recall": 0.79,
+          "f1Score": 0.76,
+          "rocAuc": 0.8,
+          "crossEntropy": 0.48
         },
         {
-          "modelAlias": "random-forest-r",
-          "meanSquaredError": 1700000.0,
-          "rootMeanSquaredError": 1304.0,
-          "meanAbsoluteError": 940.0,
-          "rSquared": 0.89
+          "modelAlias": "mlp-c",
+          "accuracy": 0.77,
+          "precision": 0.74,
+          "recall": 0.79,
+          "f1Score": 0.76,
+          "rocAuc": 0.8,
+          "crossEntropy": 0.48
         },
         {
-          "modelAlias": "xgboost-r",
-          "meanSquaredError": 1750000.0,
-          "rootMeanSquaredError": 1323.0,
-          "meanAbsoluteError": 960.0,
-          "rSquared": 0.88
-        },
-        {
-          "modelAlias": "lightgbm-r",
-          "meanSquaredError": 1650000.0,
-          "rootMeanSquaredError": 1284.0,
-          "meanAbsoluteError": 910.0,
-          "rSquared": 0.89
+          "modelAlias": "elm-c",
+          "accuracy": 0.77,
+          "precision": 0.74,
+          "recall": 0.79,
+          "f1Score": 0.76,
+          "rocAuc": 0.8,
+          "crossEntropy": 0.48
         }
       ]
     }

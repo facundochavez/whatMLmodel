@@ -1,98 +1,188 @@
 [
   {
     "input": "Based on the features of customer reviews (such as review text, rating, and length of review), I want to build a model to predict the satisfaction score of each review. The satisfaction score is a numerical value ranging from 1 to 10.",
-    "title": "Recommended models for your Customer Satisfaction Score problem",
-    "description": "You are addressing a problem where you predict a numerical satisfaction score based on features of customer reviews. This is a regression problem because your target variable is continuous and numerical. However, you could also consider it as a classification problem if you categorize the scores into discrete classes (e.g., 'low', 'medium', 'high'). For regression, models such as gradient boosting and neural networks are highly effective. If you choose to approach this as a classification problem, consider models that are typically used for classification tasks. Here’s a list of the best models you can apply and their metrics for datasets similar to yours.",
-    "tables": [
-      {
-        "type": "regression",
-        "models": [
-          "gradient-boosting-r",
-          "neural-networks-r",
-          "xgboost-r",
-          "random-forest-r",
-          "linear-regression"
-        ],
-        "similarDatasets": ["auto-mpg", "house-prices", "diamonds"]
-      },
-      {
-        "type": "classification",
-        "models": ["logistic-regression", "svm-c", "random-forest-c"],
-        "similarDatasets": ["digit-recognizer", "wine-quality", "iris"]
-      }
-    ]
+    "output": {
+      "title": "Recommended models for your Customer Satisfaction Score problem",
+      "description": "You are addressing a problem where you predict a numerical satisfaction score based on features of customer reviews. This is a regression problem because your target variable is continuous and numerical. However, you could also consider it as a classification problem if you categorize the scores into discrete classes (e.g., 'low', 'medium', 'high'). For regression, models such as gradient boosting and neural networks are highly effective. If you choose to approach this as a classification problem, consider models that are typically used for classification tasks. Here’s a list of the best models you can apply and their metrics for datasets similar to yours.",
+      "tables": [
+        {
+          "type": "regression",
+          "models": [
+            "gradient-boosting-r",
+            "neural-networks-r",
+            "xgboost-r",
+            "random-forest-r",
+            "linear-regression"
+          ],
+          "similarDatasets": ["auto-mpg", "house-prices", "diamonds"]
+        },
+        {
+          "type": "classification",
+          "models": ["logistic-regression", "svm-c", "random-forest-c"],
+          "similarDatasets": ["digit-recognizer", "wine-quality", "iris"]
+        }
+      ]
+    }
   },
   {
     "input": "You have a dataset with high-dimensional features extracted from medical images, such as MRI scans. The dataset includes a large number of features representing different aspects of the images. The goal is to build a model to classify these images into different categories, such as 'normal', 'abnormal', and 'critical'.",
-    "title": "Recommended models for your High-Dimensional Medical Imaging Classification problem",
-    "description": "You are addressing a classification problem with high-dimensional data extracted from medical images. To manage this high-dimensionality and improve model performance, applying dimensionality reduction techniques like PCA or t-SNE is advisable. These techniques will help in visualizing the data and enhancing the performance of classification models by reducing noise and computational complexity. Here’s a list of the best models you can apply and their metrics for datasets similar to yours.",
-    "tables": [
-      {
-        "type": "dimensionality-reduction",
-        "models": ["pca", "tsne", "lda", "autoencoder", "isomap"],
-        "similarDatasets": ["color-image-clustering", "pca", "autoencoder"]
-      },
-      {
-        "type": "classification",
-        "models": [
-          "neural-networks-c",
-          "random-forest-c",
-          "svm-c",
-          "xgboost-c",
-          "catboost-c"
-        ],
-        "similarDatasets": ["cifar-10", "digit-recognizer", "wine-quality"]
-      }
-    ]
+    "output": {
+      "title": "Recommended models for your High-Dimensional Medical Imaging Classification problem",
+      "description": "You are addressing a classification problem with high-dimensional data extracted from medical images. To manage this high-dimensionality and improve model performance, applying dimensionality reduction techniques like PCA or t-SNE is advisable. These techniques will help in visualizing the data and enhancing the performance of classification models by reducing noise and computational complexity. Here’s a list of the best models you can apply and their metrics for datasets similar to yours.",
+      "tables": [
+        {
+          "type": "dimensionality-reduction",
+          "models": ["pca", "tsne", "lda", "autoencoder", "isomap"],
+          "similarDatasets": ["color-image-clustering", "pca", "autoencoder"]
+        },
+        {
+          "type": "classification",
+          "models": [
+            "neural-networks-c",
+            "random-forest-c",
+            "svm-c",
+            "xgboost-c",
+            "catboost-c"
+          ],
+          "similarDatasets": ["cifar-10", "digit-recognizer", "wine-quality"]
+        }
+      ]
+    }
   },
   {
     "input": "You are working with a dataset that contains customer reviews on a scale from 1 to 10. The goal is to predict the rating a customer would give to a product based on various features such as review text, customer demographics, and product details. This problem could be approached as a classification problem (rating categories) or as a regression problem (continuous rating).",
-    "title": "Recommended models for your Customer Rating Prediction problem",
-    "description": "You are addressing a problem that can be approached as both classification and regression. If treating it as a regression problem, you aim to predict continuous rating values from 1 to 10. If approached as a classification problem, you can categorize ratings into discrete classes. Here’s a list of the best models you can apply and their metrics for datasets similar to yours.",
-    "tables": [
-      {
-        "type": "classification",
-        "models": [
-          "logistic-regression",
-          "random-forest-c",
-          "svm-c",
-          "neural-networks-c",
-          "xgboost-c"
-        ],
-        "similarDatasets": ["digit-recognizer", "wine-quality", "cifar-10"]
-      },
-      {
-        "type": "regression",
-        "models": [
-          "linear-regression",
-          "polynomial-regression",
-          "gradient-boosting-r",
-          "xgboost-r",
-          "neural-networks-r"
-        ],
-        "similarDatasets": ["house-prices", "auto-mpg", "diamonds"]
-      }
-    ]
+    "output": {
+      "title": "Recommended models for your Customer Rating Prediction problem",
+      "description": "You are addressing a problem that can be approached as both classification and regression. If treating it as a regression problem, you aim to predict continuous rating values from 1 to 10. If approached as a classification problem, you can categorize ratings into discrete classes. Here’s a list of the best models you can apply and their metrics for datasets similar to yours.",
+      "tables": [
+        {
+          "type": "classification",
+          "models": [
+            "logistic-regression",
+            "random-forest-c",
+            "svm-c",
+            "neural-networks-c",
+            "xgboost-c"
+          ],
+          "similarDatasets": ["digit-recognizer", "wine-quality", "cifar-10"]
+        },
+        {
+          "type": "regression",
+          "models": [
+            "linear-regression",
+            "polynomial-regression",
+            "gradient-boosting-r",
+            "xgboost-r",
+            "neural-networks-r"
+          ],
+          "similarDatasets": ["house-prices", "auto-mpg", "diamonds"]
+        }
+      ]
+    }
   },
   {
     "input": "You are working on a dataset of customer transactions with features like purchase frequency, average transaction amount, and customer demographics. The goal is to segment customers into distinct groups based on their purchasing behavior. However, you also want to use these segments to predict which group a new customer belongs to, essentially classifying new customers into existing segments.",
-    "title": "Recommended models for your Customer Segmentation problem",
-    "description": "You are addressing a clustering problem where the goal is to segment customers into distinct groups based on their purchasing behavior. This problem can also be interpreted as a classification problem when you use the identified clusters to classify new customers into these groups. Here’s a list of the best models you can apply and their metrics for datasets similar to yours.",
-    "tables": [
-      {
-        "type": "clustering",
-        "models": ["k-means-clustering", "hierarchical-clustering"],
-        "similarDatasets": [
-          "customer-segmentation",
-          "mall-customers",
-          "wine-data"
-        ]
-      },
-      {
-        "type": "classification",
-        "models": ["logistic-regression", "random-forest-c", "svm-c"],
-        "similarDatasets": ["digit-recognizer", "wine-quality", "iris"]
-      }
-    ]
+    "output": {
+      "title": "Recommended models for your Customer Segmentation problem",
+      "description": "You are addressing a clustering problem where the goal is to segment customers into distinct groups based on their purchasing behavior. This problem can also be interpreted as a classification problem when you use the identified clusters to classify new customers into these groups. Here’s a list of the best models you can apply and their metrics for datasets similar to yours.",
+      "tables": [
+        {
+          "type": "clustering",
+          "models": ["k-means-clustering", "hierarchical-clustering"],
+          "similarDatasets": [
+            "customer-segmentation",
+            "mall-customers",
+            "wine-data"
+          ]
+        },
+        {
+          "type": "classification",
+          "models": ["logistic-regression", "random-forest-c", "svm-c"],
+          "similarDatasets": ["digit-recognizer", "wine-quality", "iris"]
+        }
+      ]
+    }
+  },
+  {
+    "input": "You have a dataset of residential properties with features such as location, size, and type of property. Your goal is to predict the price of the properties. First, you want to cluster the properties into different segments based on their features, and then apply regression models within each segment to predict the property prices.",
+    "output": {
+      "title": "Recommended models for your Property Price Prediction problem",
+      "description": "You are addressing a clustering problem to segment properties into different groups based on features like location, size, and type. This clustering can help in improving regression models by accounting for different patterns in each segment. After clustering, regression models can be applied within each cluster to predict property prices. Here’s a list of the best models you can apply and their metrics for datasets similar to yours.",
+      "tables": [
+        {
+          "type": "clustering",
+          "models": ["k-means-clustering", "hierarchical-clustering"],
+          "similarDatasets": [
+            "customer-segmentation",
+            "mall-customers",
+            "wine-data"
+          ]
+        },
+        {
+          "type": "regression",
+          "models": ["linear-regression", "random-forest-r", "xgboost-r"],
+          "similarDatasets": ["house-prices", "boston-housing", "auto-mpg"]
+        }
+      ]
+    }
+  },
+  {
+    "input": "We have a dataset containing customer reviews for various products. The dataset includes text reviews with numerous features extracted from the text, such as TF-IDF vectors and word embeddings. Our goal is to build a model to classify these reviews into categories such as 'positive', 'negative', and 'neutral'.",
+    "output": {
+      "title": "Recommended models for your Customer Review Classification problem",
+      "description": "You are addressing a high-dimensional classification problem with text data. Dimensionality reduction techniques are essential to manage the large feature space before applying classification models. After reducing the dimensionality, you can apply classification models to categorize the reviews. Additionally, clustering can be considered to explore natural groupings in the data, though it is secondary to the classification task. Here’s a list of the best models you can apply and their metrics for datasets similar to yours.",
+      "tables": [
+        {
+          "type": "dimensionality-reduction",
+          "models": ["pca", "lda", "tsne", "svd", "autoencoder"],
+          "similarDatasets": ["sms-spam", "amazon-reviews", "sentiment140"]
+        },
+        {
+          "type": "classification",
+          "models": [
+            "logistic-regression",
+            "naive-bayes",
+            "svm-c",
+            "random-forest-c",
+            "neural-networks-c"
+          ],
+          "similarDatasets": ["sms-spam", "amazon-reviews", "sentiment140"]
+        },
+        {
+          "type": "clustering",
+          "models": ["k-means-clustering", "hierarchical-clustering", "dbscan"],
+          "similarDatasets": [
+            "customer-segmentation",
+            "news-articles",
+            "user-behavior"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "input": "High resolution images of tumor tissues are available in a cancer study. The goal is to classify the images into categories such as benign, malignant, or uncertain, but the data set is very large and has high dimensionality due to the resolution of the images.",
+    "output": {
+      "title": "Recommended models for your Tumor Classification problem",
+      "description": "You are addressing a high-dimensional classification problem where dimensionality reduction techniques are essential to manage the large feature space. After reducing the dimensionality, you can apply classification models to categorize the images effectively. Here’s a list of the best models you can apply and their metrics for datasets similar to yours.",
+      "tables": [
+        {
+          "type": "dimensionality-reduction",
+          "models": ["pca", "tsne", "lda", "autoencoder", "isomap"],
+          "similarDatasets": ["color-image-clustering", "mnist", "celeba"]
+        },
+        {
+          "type": "classification",
+          "models": [
+            "neural-networks-c",
+            "xgboost-c",
+            "svm-c",
+            "random-forest-c",
+            "catboost-c"
+          ],
+          "similarDatasets": ["cifar-10", "digit-recognizer", "wine-quality"]
+        }
+      ]
+    }
   }
 ]
