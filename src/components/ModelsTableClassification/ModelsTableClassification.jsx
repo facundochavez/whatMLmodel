@@ -22,17 +22,14 @@ const ModelsTableClassification = ({ columns, data }) => {
   });
 
   return (
-    <div className='rounded-md border bg-background '>
+    <div className='rounded-md border bg-background'>
       <Table>
         <TableHeader>
           {table.getHeaderGroups().map((headerGroup) => (
             <TableRow key={headerGroup.id} className='h-16'>
               {headerGroup.headers.map((header) => {
                 return (
-                  <TableHead
-                    key={header.id}
-                    className='text-center'
-                  >
+                  <TableHead key={header.id} className='text-center'>
                     {header.isPlaceholder
                       ? null
                       : flexRender(
@@ -53,7 +50,7 @@ const ModelsTableClassification = ({ columns, data }) => {
                 data-state={row.getIsSelected() && 'selected'}
               >
                 {row.getVisibleCells().map((cell) => (
-                  <TableCell key={cell.id} className='text-center py-3 border'>
+                  <TableCell key={cell.id} className='text-center py-3'>
                     {flexRender(cell.column.columnDef.cell, cell.getContext())}
                   </TableCell>
                 ))}

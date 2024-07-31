@@ -28,7 +28,7 @@ export const columnsClassification = [
     header: null,
     cell: null
   },
-  {
+  /* {
     accessorKey: 'trainingTime',
     header: 'Training Time',
   },
@@ -39,7 +39,7 @@ export const columnsClassification = [
   {
     accessorKey: 'memoryUsage',
     header: 'Memory Usage',
-  },
+  }, */
   {
     accessorKey: 'accuracy',
     header: 'Accuracy',
@@ -60,10 +60,11 @@ export const columnsClassification = [
     accessorKey: 'rocAuc',
     header: 'ROC AUC',
   },
-  {
+/*   {
     accessorKey: 'confusionMatrix',
     header: 'Confusion Matrix',
-  },
+    cell: '',
+  }, */
   {
     accessorKey: 'crossEntropy',
     header: 'Cross-Entropy',
