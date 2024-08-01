@@ -104,6 +104,10 @@
     {
       "name": "Coherence Score",
       "key": "coherenceScore"
+    },
+    {
+      "name": "Isolation Forest Anomaly Detection",
+      "key": "isolationForestAnomalyDetection"
     }
   ]
 }

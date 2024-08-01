@@ -390,14 +390,14 @@
   "clustering": [
     {
       "id": "CLU-001",
-      "alias": "k-means-clustering",
+      "alias": "k-means",
       "name": "K-Means Clustering",
       "type": "Clustering",
       "icon": 19,
       "metrics": {
-        "trainingTime": "Medium",
-        "predictionSpeed": "Medium",
-        "memoryUsage": "Medium"
+        "trainingTime": "Short",
+        "predictionSpeed": "Fast",
+        "memoryUsage": "Light"
       }
     },
     {
@@ -411,6 +411,54 @@
         "predictionSpeed": "Medium",
         "memoryUsage": "Medium"
       }
+    },
+    {
+      "id": "CLU-003",
+      "alias": "dbscan",
+      "name": "DBSCAN",
+      "type": "Clustering",
+      "icon": 21,
+      "metrics": {
+        "trainingTime": "Medium",
+        "predictionSpeed": "Medium",
+        "memoryUsage": "Medium"
+      }
+    },
+    {
+      "id": "CLU-004",
+      "alias": "mean-shift",
+      "name": "Mean Shift",
+      "type": "Clustering",
+      "icon": 19,
+      "metrics": {
+        "trainingTime": "Medium",
+        "predictionSpeed": "Medium",
+        "memoryUsage": "Medium"
+      }
+    },
+    {
+      "id": "CLU-005",
+      "alias": "gmm",
+      "name": "Gaussian Mixture Models (GMM)",
+      "type": "Clustering",
+      "icon": 22,
+      "metrics": {
+        "trainingTime": "Medium",
+        "predictionSpeed": "Medium",
+        "memoryUsage": "Medium"
+      }
+    },
+    {
+      "id": "CLU-006",
+      "alias": "spectral-clustering",
+      "name": "Spectral Clustering",
+      "type": "Clustering",
+      "icon": 21,
+      "metrics": {
+        "trainingTime": "Medium",
+        "predictionSpeed": "Medium",
+        "memoryUsage": "Medium"
+      }
     }
   ],
   "dimensionality-reduction": [
@@ -419,7 +467,7 @@
       "alias": "pca",
       "name": "Principal Component Analysis (PCA)",
       "type": "Dimensionality Reduction",
-      "icon": 21,
+      "icon": 23,
       "metrics": {
         "trainingTime": "Short",
         "predictionSpeed": "Fast",
@@ -431,7 +479,7 @@
       "alias": "lda",
       "name": "Linear Discriminant Analysis (LDA)",
       "type": "Dimensionality Reduction",
-      "icon": 22,
+      "icon": 24,
       "metrics": {
         "trainingTime": "Medium",
         "predictionSpeed": "Medium",
@@ -455,7 +503,7 @@
       "alias": "isomap",
       "name": "Isomap",
       "type": "Dimensionality Reduction",
-      "icon": 8,
+      "icon": 25,
       "metrics": {
         "trainingTime": "Long",
         "predictionSpeed": "Slow",
@@ -464,10 +512,46 @@
     },
     {
       "id": "DR-005",
-      "alias": "autoencoders",
-      "name": "Autoencoders",
+      "alias": "autoencoder",
+      "name": "Autoencoder",
       "type": "Dimensionality Reduction",
-      "icon": 23,
+      "icon": 26,
+      "metrics": {
+        "trainingTime": "Long",
+        "predictionSpeed": "Slow",
+        "memoryUsage": "Heavy"
+      }
+    },
+    {
+      "id": "DR-006",
+      "alias": "umap",
+      "name": "Uniform Manifold Approximation and Projection (UMAP)",
+      "type": "Dimensionality Reduction",
+      "icon": 8,
+      "metrics": {
+        "trainingTime": "Long",
+        "predictionSpeed": "Slow",
+        "memoryUsage": "Heavy"
+      }
+    },
+    {
+      "id": "DR-007",
+      "alias": "ica",
+      "name": "Independent Component Analysis (ICA)",
+      "type": "Dimensionality Reduction",
+      "icon": 27,
+      "metrics": {
+        "trainingTime": "Long",
+        "predictionSpeed": "Slow",
+        "memoryUsage": "Heavy"
+      }
+    },
+    {
+      "id": "DR-008",
+      "alias": "lle",
+      "name": "Locally Linear Embedding (LLE)",
+      "type": "Dimensionality Reduction",
+      "icon": 25,
       "metrics": {
         "trainingTime": "Long",
         "predictionSpeed": "Slow",
