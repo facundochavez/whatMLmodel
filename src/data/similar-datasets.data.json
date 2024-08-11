@@ -1,0 +1,2017 @@
+{
+  "regression": [
+    {
+      "name": "House prices",
+      "alias": "house-prices",
+      "features": "Various aspects of residential homes: size, number of bedrooms, building class, etc.",
+      "targetVariable": "The final price of a house",
+      "metrics": [
+        {
+          "modelAlias": "linear-regression",
+          "meanSquaredError": 2100000.0,
+          "meanAbsoluteError": 1100.0,
+          "rootMeanSquaredError": 1443.0,
+          "rSquared": 0.85,
+          "adjustedRSquared": 0.92
+        },
+        {
+          "modelAlias": "polynomial-regression",
+          "meanSquaredError": 1800000.0,
+          "meanAbsoluteError": 950.0,
+          "rootMeanSquaredError": 1340.0,
+          "rSquared": 0.88,
+          "adjustedRSquared": 0.94
+        },
+        {
+          "modelAlias": "elastic-net-regression",
+          "meanSquaredError": 2000000.0,
+          "meanAbsoluteError": 1050.0,
+          "rootMeanSquaredError": 1410.0,
+          "rSquared": 0.86,
+          "adjustedRSquared": 0.93
+        },
+        {
+          "modelAlias": "gradient-boosting-r",
+          "meanSquaredError": 1600000.0,
+          "meanAbsoluteError": 900.0,
+          "rootMeanSquaredError": 1265.0,
+          "rSquared": 0.9,
+          "adjustedRSquared": 0.8
+        },
+        {
+          "modelAlias": "neural-networks-r",
+          "meanSquaredError": 1900000.0,
+          "meanAbsoluteError": 980.0,
+          "rootMeanSquaredError": 1376.0,
+          "rSquared": 0.87,
+          "adjustedRSquared": 0.92
+        },
+        {
+          "modelAlias": "svm-r",
+          "meanSquaredError": 2200000.0,
+          "meanAbsoluteError": 1150.0,
+          "rootMeanSquaredError": 1483.0,
+          "rSquared": 0.84,
+          "adjustedRSquared": 0.91
+        },
+        {
+          "modelAlias": "decision-tree-r",
+          "meanSquaredError": 2300000.0,
+          "meanAbsoluteError": 1200.0,
+          "rootMeanSquaredError": 1517.0,
+          "rSquared": 0.83,
+          "adjustedRSquared": 0.9
+        },
+        {
+          "modelAlias": "random-forest-r",
+          "meanSquaredError": 1700000.0,
+          "meanAbsoluteError": 940.0,
+          "rootMeanSquaredError": 1304.0,
+          "rSquared": 0.89,
+          "adjustedRSquared": 0.92
+        },
+        {
+          "modelAlias": "xgboost-r",
+          "meanSquaredError": 1750000.0,
+          "meanAbsoluteError": 960.0,
+          "rootMeanSquaredError": 1323.0,
+          "rSquared": 0.88,
+          "adjustedRSquared": 0.92
+        },
+        {
+          "modelAlias": "lightgbm-r",
+          "meanSquaredError": 1650000.0,
+          "meanAbsoluteError": 910.0,
+          "rootMeanSquaredError": 1284.0,
+          "rSquared": 0.8,
+          "adjustedRSquared": 0.85
+        },
+        {
+          "modelAlias": "catboost-c",
+          "meanSquaredError": 1900000.0,
+          "meanAbsoluteError": 980.0,
+          "rootMeanSquaredError": 1376.0,
+          "rSquared": 0.87,
+          "adjustedRSquared": 0.92
+        },
+        {
+          "modelAlias": "ensemble-methods-r",
+          "meanSquaredError": 1900000.0,
+          "meanAbsoluteError": 980.0,
+          "rootMeanSquaredError": 1376.0,
+          "rSquared": 0.87,
+          "adjustedRSquared": 0.92
+        },
+        {
+          "modelAlias": "mlp-r",
+          "meanSquaredError": 1900000.0,
+          "meanAbsoluteError": 980.0,
+          "rootMeanSquaredError": 1376.0,
+          "rSquared": 0.87,
+          "adjustedRSquared": 0.92
+        },
+        {
+          "modelAlias": "elm-r",
+          "meanSquaredError": 1900000.0,
+          "meanAbsoluteError": 980.0,
+          "rootMeanSquaredError": 1376.0,
+          "rSquared": 0.87,
+          "adjustedRSquared": 0.92
+        }
+      ]
+    },
+    {
+      "name": "Boston Housing",
+      "alias": "boston-housing",
+      "features": "Attributes of housing in Boston: crime rate, average number of rooms, age of houses, etc.",
+      "targetVariable": "Median value of owner-occupied homes",
+      "metrics": [
+        {
+          "modelAlias": "linear-regression",
+          "meanAbsoluteError": 3.5,
+          "meanSquaredError": 18.0,
+          "rootMeanSquaredError": 4.24,
+          "rSquared": 0.74,
+          "adjustedRSquared": 0.72
+        },
+        {
+          "modelAlias": "polynomial-regression",
+          "meanAbsoluteError": 3.2,
+          "meanSquaredError": 15.0,
+          "rootMeanSquaredError": 3.87,
+          "rSquared": 0.78,
+          "adjustedRSquared": 0.76
+        },
+        {
+          "modelAlias": "elastic-net-regression",
+          "meanAbsoluteError": 3.4,
+          "meanSquaredError": 17.0,
+          "rootMeanSquaredError": 4.12,
+          "rSquared": 0.75,
+          "adjustedRSquared": 0.73
+        },
+        {
+          "modelAlias": "gradient-boosting-r",
+          "meanAbsoluteError": 2.9,
+          "meanSquaredError": 12.0,
+          "rootMeanSquaredError": 3.46,
+          "rSquared": 0.83,
+          "adjustedRSquared": 0.81
+        },
+        {
+          "modelAlias": "neural-networks-r",
+          "meanAbsoluteError": 3.0,
+          "meanSquaredError": 13.0,
+          "rootMeanSquaredError": 3.61,
+          "rSquared": 0.8,
+          "adjustedRSquared": 0.78
+        },
+        {
+          "modelAlias": "svm-r",
+          "meanAbsoluteError": 3.3,
+          "meanSquaredError": 16.0,
+          "rootMeanSquaredError": 4.0,
+          "rSquared": 0.76,
+          "adjustedRSquared": 0.74
+        },
+        {
+          "modelAlias": "decision-tree-r",
+          "meanAbsoluteError": 3.7,
+          "meanSquaredError": 19.0,
+          "rootMeanSquaredError": 4.36,
+          "rSquared": 0.72,
+          "adjustedRSquared": 0.7
+        },
+        {
+          "modelAlias": "random-forest-r",
+          "meanAbsoluteError": 2.8,
+          "meanSquaredError": 11.0,
+          "rootMeanSquaredError": 3.32,
+          "rSquared": 0.85,
+          "adjustedRSquared": 0.83
+        },
+        {
+          "modelAlias": "xgboost-r",
+          "meanAbsoluteError": 2.9,
+          "meanSquaredError": 12.0,
+          "rootMeanSquaredError": 3.46,
+          "rSquared": 0.84,
+          "adjustedRSquared": 0.82
+        },
+        {
+          "modelAlias": "lightgbm-r",
+          "meanAbsoluteError": 2.85,
+          "meanSquaredError": 11.5,
+          "rootMeanSquaredError": 3.39,
+          "rSquared": 0.84,
+          "adjustedRSquared": 0.82
+        },
+        {
+          "modelAlias": "catboost-r",
+          "meanAbsoluteError": 2.95,
+          "meanSquaredError": 12.5,
+          "rootMeanSquaredError": 3.54,
+          "rSquared": 0.83,
+          "adjustedRSquared": 0.81
+        },
+        {
+          "modelAlias": "ensemble-methods-r",
+          "meanAbsoluteError": 2.8,
+          "meanSquaredError": 11.0,
+          "rootMeanSquaredError": 3.32,
+          "rSquared": 0.85,
+          "adjustedRSquared": 0.83
+        },
+        {
+          "modelAlias": "mlp-r",
+          "meanAbsoluteError": 3.0,
+          "meanSquaredError": 13.0,
+          "rootMeanSquaredError": 3.61,
+          "rSquared": 0.8,
+          "adjustedRSquared": 0.78
+        },
+        {
+          "modelAlias": "elm-r",
+          "meanAbsoluteError": 3.1,
+          "meanSquaredError": 13.5,
+          "rootMeanSquaredError": 3.67,
+          "rSquared": 0.79,
+          "adjustedRSquared": 0.77
+        }
+      ]
+    },
+    {
+      "name": "Auto MPG",
+      "alias": "auto-mpg",
+      "features": "Various aspects of automobile features: weight, horsepower, number of cylinders, etc.",
+      "targetVariable": "Miles per gallon (MPG)",
+      "metrics": [
+        {
+          "modelAlias": "linear-regression",
+          "meanAbsoluteError": 3.7,
+          "meanSquaredError": 17.0,
+          "rootMeanSquaredError": 4.12,
+          "rSquared": 0.73,
+          "adjustedRSquared": 0.71
+        },
+        {
+          "modelAlias": "polynomial-regression",
+          "meanAbsoluteError": 3.5,
+          "meanSquaredError": 16.0,
+          "rootMeanSquaredError": 4.0,
+          "rSquared": 0.75,
+          "adjustedRSquared": 0.73
+        },
+        {
+          "modelAlias": "elastic-net-regression",
+          "meanAbsoluteError": 3.6,
+          "meanSquaredError": 16.5,
+          "rootMeanSquaredError": 4.06,
+          "rSquared": 0.74,
+          "adjustedRSquared": 0.72
+        },
+        {
+          "modelAlias": "gradient-boosting-r",
+          "meanAbsoluteError": 2.9,
+          "meanSquaredError": 11.0,
+          "rootMeanSquaredError": 3.32,
+          "rSquared": 0.83,
+          "adjustedRSquared": 0.81
+        },
+        {
+          "modelAlias": "neural-networks-r",
+          "meanAbsoluteError": 3.0,
+          "meanSquaredError": 12.0,
+          "rootMeanSquaredError": 3.46,
+          "rSquared": 0.8,
+          "adjustedRSquared": 0.78
+        },
+        {
+          "modelAlias": "svm-r",
+          "meanAbsoluteError": 3.4,
+          "meanSquaredError": 14.0,
+          "rootMeanSquaredError": 3.74,
+          "rSquared": 0.77,
+          "adjustedRSquared": 0.75
+        },
+        {
+          "modelAlias": "decision-tree-r",
+          "meanAbsoluteError": 3.8,
+          "meanSquaredError": 18.0,
+          "rootMeanSquaredError": 4.24,
+          "rSquared": 0.71,
+          "adjustedRSquared": 0.69
+        },
+        {
+          "modelAlias": "random-forest-r",
+          "meanAbsoluteError": 2.8,
+          "meanSquaredError": 10.5,
+          "rootMeanSquaredError": 3.24,
+          "rSquared": 0.85,
+          "adjustedRSquared": 0.83
+        },
+        {
+          "modelAlias": "xgboost-r",
+          "meanAbsoluteError": 2.9,
+          "meanSquaredError": 11.5,
+          "rootMeanSquaredError": 3.39,
+          "rSquared": 0.84,
+          "adjustedRSquared": 0.82
+        },
+        {
+          "modelAlias": "lightgbm-r",
+          "meanAbsoluteError": 2.85,
+          "meanSquaredError": 11.0,
+          "rootMeanSquaredError": 3.32,
+          "rSquared": 0.85,
+          "adjustedRSquared": 0.83
+        },
+        {
+          "modelAlias": "catboost-r",
+          "meanAbsoluteError": 2.95,
+          "meanSquaredError": 12.0,
+          "rootMeanSquaredError": 3.46,
+          "rSquared": 0.83,
+          "adjustedRSquared": 0.81
+        },
+        {
+          "modelAlias": "ensemble-methods-r",
+          "meanAbsoluteError": 2.8,
+          "meanSquaredError": 10.5,
+          "rootMeanSquaredError": 3.24,
+          "rSquared": 0.85,
+          "adjustedRSquared": 0.83
+        },
+        {
+          "modelAlias": "mlp-r",
+          "meanAbsoluteError": 3.0,
+          "meanSquaredError": 12.0,
+          "rootMeanSquaredError": 3.46,
+          "rSquared": 0.8,
+          "adjustedRSquared": 0.78
+        },
+        {
+          "modelAlias": "elm-r",
+          "meanAbsoluteError": 3.1,
+          "meanSquaredError": 12.5,
+          "rootMeanSquaredError": 3.67,
+          "rSquared": 0.79,
+          "adjustedRSquared": 0.77
+        }
+      ]
+    },
+    {
+      "name": "Diamonds",
+      "alias": "diamonds",
+      "features": "Characteristics of diamonds: carat, cut, color, clarity, depth, table, price",
+      "targetVariable": "Price of the diamond",
+      "metrics": [
+        {
+          "modelAlias": "linear-regression",
+          "meanAbsoluteError": 240.0,
+          "meanSquaredError": 70000.0,
+          "rootMeanSquaredError": 264.5,
+          "rSquared": 0.9,
+          "adjustedRSquared": 0.89
+        },
+        {
+          "modelAlias": "polynomial-regression",
+          "meanAbsoluteError": 220.0,
+          "meanSquaredError": 65000.0,
+          "rootMeanSquaredError": 255.0,
+          "rSquared": 0.91,
+          "adjustedRSquared": 0.9
+        },
+        {
+          "modelAlias": "elastic-net-regression",
+          "meanAbsoluteError": 230.0,
+          "meanSquaredError": 68000.0,
+          "rootMeanSquaredError": 260.0,
+          "rSquared": 0.9,
+          "adjustedRSquared": 0.89
+        },
+        {
+          "modelAlias": "gradient-boosting-r",
+          "meanAbsoluteError": 200.0,
+          "meanSquaredError": 55000.0,
+          "rootMeanSquaredError": 234.0,
+          "rSquared": 0.93,
+          "adjustedRSquared": 0.92
+        },
+        {
+          "modelAlias": "neural-networks-r",
+          "meanAbsoluteError": 210.0,
+          "meanSquaredError": 58000.0,
+          "rootMeanSquaredError": 241.0,
+          "rSquared": 0.92,
+          "adjustedRSquared": 0.91
+        },
+        {
+          "modelAlias": "svm-r",
+          "meanAbsoluteError": 220.0,
+          "meanSquaredError": 60000.0,
+          "rootMeanSquaredError": 245.0,
+          "rSquared": 0.91,
+          "adjustedRSquared": 0.9
+        },
+        {
+          "modelAlias": "decision-tree-r",
+          "meanAbsoluteError": 250.0,
+          "meanSquaredError": 72000.0,
+          "rootMeanSquaredError": 268.0,
+          "rSquared": 0.88,
+          "adjustedRSquared": 0.87
+        },
+        {
+          "modelAlias": "random-forest-r",
+          "meanAbsoluteError": 190.0,
+          "meanSquaredError": 53000.0,
+          "rootMeanSquaredError": 230.0,
+          "rSquared": 0.94,
+          "adjustedRSquared": 0.93
+        },
+        {
+          "modelAlias": "xgboost-r",
+          "meanAbsoluteError": 195.0,
+          "meanSquaredError": 54000.0,
+          "rootMeanSquaredError": 232.0,
+          "rSquared": 0.94,
+          "adjustedRSquared": 0.93
+        },
+        {
+          "modelAlias": "lightgbm-r",
+          "meanAbsoluteError": 190.0,
+          "meanSquaredError": 52000.0,
+          "rootMeanSquaredError": 228.0,
+          "rSquared": 0.94,
+          "adjustedRSquared": 0.93
+        },
+        {
+          "modelAlias": "catboost-r",
+          "meanAbsoluteError": 200.0,
+          "meanSquaredError": 55000.0,
+          "rootMeanSquaredError": 234.0,
+          "rSquared": 0.93,
+          "adjustedRSquared": 0.92
+        },
+        {
+          "modelAlias": "ensemble-methods-r",
+          "meanAbsoluteError": 190.0,
+          "meanSquaredError": 51000.0,
+          "rootMeanSquaredError": 225.0,
+          "rSquared": 0.95,
+          "adjustedRSquared": 0.94
+        },
+        {
+          "modelAlias": "mlp-r",
+          "meanAbsoluteError": 210.0,
+          "meanSquaredError": 57000.0,
+          "rootMeanSquaredError": 238.0,
+          "rSquared": 0.92,
+          "adjustedRSquared": 0.91
+        },
+        {
+          "modelAlias": "elm-r",
+          "meanAbsoluteError": 220.0,
+          "meanSquaredError": 60000.0,
+          "rootMeanSquaredError": 245.0,
+          "rSquared": 0.91,
+          "adjustedRSquared": 0.9
+        }
+      ]
+    },
+    {
+      "name": "California Housing",
+      "alias": "california-housing",
+      "features": "Attributes of California housing: location, population, median income, etc.",
+      "targetVariable": "Median house value",
+      "metrics": [
+        {
+          "modelAlias": "linear-regression",
+          "meanAbsoluteError": 50000.0,
+          "meanSquaredError": 3000000000.0,
+          "rootMeanSquaredError": 54700.0,
+          "rSquared": 0.75,
+          "adjustedRSquared": 0.74
+        },
+        {
+          "modelAlias": "polynomial-regression",
+          "meanAbsoluteError": 48000.0,
+          "meanSquaredError": 2900000000.0,
+          "rootMeanSquaredError": 53800.0,
+          "rSquared": 0.77,
+          "adjustedRSquared": 0.76
+        },
+        {
+          "modelAlias": "elastic-net-regression",
+          "meanAbsoluteError": 49000.0,
+          "meanSquaredError": 2950000000.0,
+          "rootMeanSquaredError": 54200.0,
+          "rSquared": 0.76,
+          "adjustedRSquared": 0.75
+        },
+        {
+          "modelAlias": "gradient-boosting-r",
+          "meanAbsoluteError": 45000.0,
+          "meanSquaredError": 2700000000.0,
+          "rootMeanSquaredError": 51900.0,
+          "rSquared": 0.8,
+          "adjustedRSquared": 0.79
+        },
+        {
+          "modelAlias": "neural-networks-r",
+          "meanAbsoluteError": 46000.0,
+          "meanSquaredError": 2750000000.0,
+          "rootMeanSquaredError": 52500.0,
+          "rSquared": 0.79,
+          "adjustedRSquared": 0.78
+        },
+        {
+          "modelAlias": "svm-r",
+          "meanAbsoluteError": 47000.0,
+          "meanSquaredError": 2800000000.0,
+          "rootMeanSquaredError": 52900.0,
+          "rSquared": 0.78,
+          "adjustedRSquared": 0.77
+        },
+        {
+          "modelAlias": "decision-tree-r",
+          "meanAbsoluteError": 52000.0,
+          "meanSquaredError": 3200000000.0,
+          "rootMeanSquaredError": 56500.0,
+          "rSquared": 0.72,
+          "adjustedRSquared": 0.71
+        },
+        {
+          "modelAlias": "random-forest-r",
+          "meanAbsoluteError": 44000.0,
+          "meanSquaredError": 2600000000.0,
+          "rootMeanSquaredError": 51000.0,
+          "rSquared": 0.81,
+          "adjustedRSquared": 0.8
+        },
+        {
+          "modelAlias": "xgboost-r",
+          "meanAbsoluteError": 44500.0,
+          "meanSquaredError": 2650000000.0,
+          "rootMeanSquaredError": 51500.0,
+          "rSquared": 0.8,
+          "adjustedRSquared": 0.79
+        },
+        {
+          "modelAlias": "lightgbm-r",
+          "meanAbsoluteError": 44000.0,
+          "meanSquaredError": 2580000000.0,
+          "rootMeanSquaredError": 50800.0,
+          "rSquared": 0.81,
+          "adjustedRSquared": 0.8
+        },
+        {
+          "modelAlias": "catboost-r",
+          "meanAbsoluteError": 45500.0,
+          "meanSquaredError": 2700000000.0,
+          "rootMeanSquaredError": 51900.0,
+          "rSquared": 0.79,
+          "adjustedRSquared": 0.78
+        },
+        {
+          "modelAlias": "ensemble-methods-r",
+          "meanAbsoluteError": 43500.0,
+          "meanSquaredError": 2550000000.0,
+          "rootMeanSquaredError": 50500.0,
+          "rSquared": 0.82,
+          "adjustedRSquared": 0.81
+        },
+        {
+          "modelAlias": "mlp-r",
+          "meanAbsoluteError": 46000.0,
+          "meanSquaredError": 2750000000.0,
+          "rootMeanSquaredError": 52500.0,
+          "rSquared": 0.79,
+          "adjustedRSquared": 0.78
+        },
+        {
+          "modelAlias": "elm-r",
+          "meanAbsoluteError": 47000.0,
+          "meanSquaredError": 2800000000.0,
+          "rootMeanSquaredError": 52900.0,
+          "rSquared": 0.78,
+          "adjustedRSquared": 0.77
+        }
+      ]
+    }
+  ],
+  "classification": [
+    {
+      "name": "Titanic",
+      "alias": "titanic",
+      "features": "The features of Titanic passengers: sex, age, p-class, etc.",
+      "targetVariable": "Probability of survival",
+      "metrics": [
+        {
+          "modelAlias": "logistic-regression",
+          "accuracy": 0.79,
+          "precision": 0.76,
+          "recall": 0.82,
+          "f1Score": 0.79,
+          "rocAuc": 0.83,
+          "crossEntropy": 0.45
+        },
+        {
+          "modelAlias": "naive-bayes-classification",
+          "accuracy": 0.81,
+          "precision": 0.79,
+          "recall": 0.84,
+          "f1Score": 0.81,
+          "rocAuc": 0.85,
+          "crossEntropy": 0.4
+        },
+        {
+          "modelAlias": "adaboost-classification",
+          "accuracy": 0.82,
+          "precision": 0.8,
+          "recall": 0.85,
+          "f1Score": 0.82,
+          "rocAuc": 0.86,
+          "crossEntropy": 0.38
+        },
+        {
+          "modelAlias": "gaussian-naive-bayes",
+          "accuracy": 0.83,
+          "precision": 0.81,
+          "recall": 0.86,
+          "f1Score": 0.83,
+          "rocAuc": 0.87,
+          "crossEntropy": 0.37
+        },
+        {
+          "modelAlias": "qda",
+          "accuracy": 0.8,
+          "precision": 0.78,
+          "recall": 0.83,
+          "f1Score": 0.8,
+          "rocAuc": 0.84,
+          "crossEntropy": 0.42
+        },
+        {
+          "modelAlias": "knn",
+          "accuracy": 0.81,
+          "precision": 0.79,
+          "recall": 0.84,
+          "f1Score": 0.81,
+          "rocAuc": 0.85,
+          "crossEntropy": 0.41
+        },
+        {
+          "modelAlias": "bayesian-networks",
+          "accuracy": 0.77,
+          "precision": 0.74,
+          "recall": 0.79,
+          "f1Score": 0.76,
+          "rocAuc": 0.8,
+          "crossEntropy": 0.48
+        },
+        {
+          "modelAlias": "gradient-boosting-c",
+          "accuracy": 0.75,
+          "precision": 0.71,
+          "recall": 0.76,
+          "f1Score": 0.73,
+          "rocAuc": 0.77,
+          "crossEntropy": 0.52
+        },
+        {
+          "modelAlias": "neural-networks-c",
+          "accuracy": 0.78,
+          "precision": 0.76,
+          "recall": 0.8,
+          "f1Score": 0.78,
+          "rocAuc": 0.81,
+          "crossEntropy": 0.46
+        },
+        {
+          "modelAlias": "svm-c",
+          "accuracy": 0.74,
+          "precision": 0.7,
+          "recall": 0.76,
+          "f1Score": 0.73,
+          "rocAuc": 0.76,
+          "crossEntropy": 0.54
+        },
+        {
+          "modelAlias": "decision-tree-c",
+          "accuracy": 0.77,
+          "precision": 0.74,
+          "recall": 0.79,
+          "f1Score": 0.76,
+          "rocAuc": 0.8,
+          "crossEntropy": 0.48
+        },
+        {
+          "modelAlias": "random-forest-c",
+          "accuracy": 0.77,
+          "precision": 0.74,
+          "recall": 0.79,
+          "f1Score": 0.76,
+          "rocAuc": 0.8,
+          "crossEntropy": 0.48
+        },
+        {
+          "modelAlias": "xgboost-c",
+          "accuracy": 0.77,
+          "precision": 0.74,
+          "recall": 0.79,
+          "f1Score": 0.76,
+          "rocAuc": 0.8,
+          "crossEntropy": 0.48
+        },
+        {
+          "modelAlias": "lightgbm-c",
+          "accuracy": 0.77,
+          "precision": 0.74,
+          "recall": 0.79,
+          "f1Score": 0.76,
+          "rocAuc": 0.8,
+          "crossEntropy": 0.48
+        },
+        {
+          "modelAlias": "catboost-c",
+          "accuracy": 0.77,
+          "precision": 0.74,
+          "recall": 0.79,
+          "f1Score": 0.76,
+          "rocAuc": 0.8,
+          "crossEntropy": 0.48
+        },
+        {
+          "modelAlias": "ensemble-methods-c",
+          "accuracy": 0.77,
+          "precision": 0.74,
+          "recall": 0.79,
+          "f1Score": 0.76,
+          "rocAuc": 0.8,
+          "crossEntropy": 0.48
+        },
+        {
+          "modelAlias": "mlp-c",
+          "accuracy": 0.77,
+          "precision": 0.74,
+          "recall": 0.79,
+          "f1Score": 0.76,
+          "rocAuc": 0.8,
+          "crossEntropy": 0.48
+        },
+        {
+          "modelAlias": "elm-c",
+          "accuracy": 0.77,
+          "precision": 0.74,
+          "recall": 0.79,
+          "f1Score": 0.76,
+          "rocAuc": 0.8,
+          "crossEntropy": 0.48
+        }
+      ]
+    },
+    {
+      "name": "Digit Recognizer",
+      "alias": "digit-recognizer",
+      "features": "The features are grayscale images of handwritten digits.",
+      "targetVariable": "Predicted digit",
+      "metrics": [
+        {
+          "modelAlias": "logistic-regression",
+          "accuracy": 0.9,
+          "precision": 0.89,
+          "recall": 0.91,
+          "f1Score": 0.9,
+          "rocAuc": 0.92,
+          "crossEntropy": 0.3
+        },
+        {
+          "modelAlias": "naive-bayes-classification",
+          "accuracy": 0.85,
+          "precision": 0.83,
+          "recall": 0.87,
+          "f1Score": 0.85,
+          "rocAuc": 0.88,
+          "crossEntropy": 0.35
+        },
+        {
+          "modelAlias": "adaboost-classification",
+          "accuracy": 0.92,
+          "precision": 0.91,
+          "recall": 0.93,
+          "f1Score": 0.92,
+          "rocAuc": 0.94,
+          "crossEntropy": 0.25
+        },
+        {
+          "modelAlias": "gaussian-naive-bayes",
+          "accuracy": 0.91,
+          "precision": 0.9,
+          "recall": 0.92,
+          "f1Score": 0.91,
+          "rocAuc": 0.93,
+          "crossEntropy": 0.28
+        },
+        {
+          "modelAlias": "qda",
+          "accuracy": 0.93,
+          "precision": 0.92,
+          "recall": 0.94,
+          "f1Score": 0.93,
+          "rocAuc": 0.95,
+          "crossEntropy": 0.22
+        },
+        {
+          "modelAlias": "knn",
+          "accuracy": 0.89,
+          "precision": 0.88,
+          "recall": 0.9,
+          "f1Score": 0.89,
+          "rocAuc": 0.91,
+          "crossEntropy": 0.33
+        },
+        {
+          "modelAlias": "bayesian-networks",
+          "accuracy": 0.87,
+          "precision": 0.85,
+          "recall": 0.89,
+          "f1Score": 0.87,
+          "rocAuc": 0.88,
+          "crossEntropy": 0.37
+        },
+        {
+          "modelAlias": "gradient-boosting-c",
+          "accuracy": 0.84,
+          "precision": 0.82,
+          "recall": 0.86,
+          "f1Score": 0.84,
+          "rocAuc": 0.85,
+          "crossEntropy": 0.4
+        },
+        {
+          "modelAlias": "neural-networks-c",
+          "accuracy": 0.88,
+          "precision": 0.87,
+          "recall": 0.89,
+          "f1Score": 0.88,
+          "rocAuc": 0.9,
+          "crossEntropy": 0.32
+        },
+        {
+          "modelAlias": "svm-c",
+          "accuracy": 0.94,
+          "precision": 0.93,
+          "recall": 0.95,
+          "f1Score": 0.94,
+          "rocAuc": 0.96,
+          "crossEntropy": 0.2
+        },
+        {
+          "modelAlias": "decision-tree-c",
+          "accuracy": 0.77,
+          "precision": 0.74,
+          "recall": 0.79,
+          "f1Score": 0.76,
+          "rocAuc": 0.8,
+          "crossEntropy": 0.48
+        },
+        {
+          "modelAlias": "random-forest-c",
+          "accuracy": 0.77,
+          "precision": 0.74,
+          "recall": 0.79,
+          "f1Score": 0.76,
+          "rocAuc": 0.8,
+          "crossEntropy": 0.48
+        },
+        {
+          "modelAlias": "xgboost-c",
+          "accuracy": 0.77,
+          "precision": 0.74,
+          "recall": 0.79,
+          "f1Score": 0.76,
+          "rocAuc": 0.8,
+          "crossEntropy": 0.48
+        },
+        {
+          "modelAlias": "lightgbm-c",
+          "accuracy": 0.77,
+          "precision": 0.74,
+          "recall": 0.79,
+          "f1Score": 0.76,
+          "rocAuc": 0.8,
+          "crossEntropy": 0.48
+        },
+        {
+          "modelAlias": "catboost-c",
+          "accuracy": 0.77,
+          "precision": 0.74,
+          "recall": 0.79,
+          "f1Score": 0.76,
+          "rocAuc": 0.8,
+          "crossEntropy": 0.48
+        },
+        {
+          "modelAlias": "ensemble-methods-c",
+          "accuracy": 0.77,
+          "precision": 0.74,
+          "recall": 0.79,
+          "f1Score": 0.76,
+          "rocAuc": 0.8,
+          "crossEntropy": 0.48
+        },
+        {
+          "modelAlias": "mlp-c",
+          "accuracy": 0.77,
+          "precision": 0.74,
+          "recall": 0.79,
+          "f1Score": 0.76,
+          "rocAuc": 0.8,
+          "crossEntropy": 0.48
+        },
+        {
+          "modelAlias": "elm-c",
+          "accuracy": 0.77,
+          "precision": 0.74,
+          "recall": 0.79,
+          "f1Score": 0.76,
+          "rocAuc": 0.8,
+          "crossEntropy": 0.48
+        }
+      ]
+    },
+    {
+      "name": "Iris Classification",
+      "alias": "iris-classification",
+      "features": "The features of Iris flowers: sepal length, sepal width, petal length, petal width",
+      "targetVariable": "Species of Iris flower",
+      "metrics": [
+        {
+          "modelAlias": "logistic-regression",
+          "accuracy": 0.97,
+          "precision": 0.97,
+          "recall": 0.97,
+          "f1Score": 0.97,
+          "rocAuc": 0.99
+        },
+        {
+          "modelAlias": "decision-tree",
+          "accuracy": 0.96,
+          "precision": 0.96,
+          "recall": 0.96,
+          "f1Score": 0.96,
+          "rocAuc": 0.98
+        },
+        {
+          "modelAlias": "random-forest",
+          "accuracy": 0.97,
+          "precision": 0.97,
+          "recall": 0.97,
+          "f1Score": 0.97,
+          "rocAuc": 0.99
+        },
+        {
+          "modelAlias": "support-vector-machine",
+          "accuracy": 0.96,
+          "precision": 0.96,
+          "recall": 0.96,
+          "f1Score": 0.96,
+          "rocAuc": 0.98
+        },
+        {
+          "modelAlias": "naive-bayes",
+          "accuracy": 0.97,
+          "precision": 0.97,
+          "recall": 0.97,
+          "f1Score": 0.97,
+          "rocAuc": 0.99
+        },
+        {
+          "modelAlias": "k-nearest-neighbors",
+          "accuracy": 0.96,
+          "precision": 0.96,
+          "recall": 0.96,
+          "f1Score": 0.96,
+          "rocAuc": 0.98
+        },
+        {
+          "modelAlias": "gradient-boosting",
+          "accuracy": 0.97,
+          "precision": 0.97,
+          "recall": 0.97,
+          "f1Score": 0.97,
+          "rocAuc": 0.99
+        },
+        {
+          "modelAlias": "neural-networks",
+          "accuracy": 0.97,
+          "precision": 0.97,
+          "recall": 0.97,
+          "f1Score": 0.97,
+          "rocAuc": 0.99
+        },
+        {
+          "modelAlias": "xgboost",
+          "accuracy": 0.97,
+          "precision": 0.97,
+          "recall": 0.97,
+          "f1Score": 0.97,
+          "rocAuc": 0.99
+        },
+        {
+          "modelAlias": "lightgbm",
+          "accuracy": 0.97,
+          "precision": 0.97,
+          "recall": 0.97,
+          "f1Score": 0.97,
+          "rocAuc": 0.99
+        },
+        {
+          "modelAlias": "catboost",
+          "accuracy": 0.97,
+          "precision": 0.97,
+          "recall": 0.97,
+          "f1Score": 0.97,
+          "rocAuc": 0.99
+        },
+        {
+          "modelAlias": "ensemble-methods",
+          "accuracy": 0.97,
+          "precision": 0.97,
+          "recall": 0.97,
+          "f1Score": 0.97,
+          "rocAuc": 0.99
+        },
+        {
+          "modelAlias": "mlp-c",
+          "accuracy": 0.77,
+          "precision": 0.74,
+          "recall": 0.79,
+          "f1Score": 0.76,
+          "rocAuc": 0.8,
+          "crossEntropy": 0.48
+        },
+        {
+          "modelAlias": "elm-c",
+          "accuracy": 0.77,
+          "precision": 0.74,
+          "recall": 0.79,
+          "f1Score": 0.76,
+          "rocAuc": 0.8,
+          "crossEntropy": 0.48
+        }
+      ]
+    },
+    {
+      "name": "Wine Quality",
+      "alias": "wine-quality",
+      "features": "The features of wine quality: fixed acidity, volatile acidity, citric acid, residual sugar, chlorides, free sulfur dioxide, total sulfur dioxide, density, pH, sulphates, alcohol",
+      "targetVariable": "Quality of wine",
+      "metrics": [
+        {
+          "modelAlias": "logistic-regression",
+          "accuracy": 0.66,
+          "precision": 0.66,
+          "recall": 0.66,
+          "f1Score": 0.66,
+          "rocAuc": 0.75
+        },
+        {
+          "modelAlias": "decision-tree",
+          "accuracy": 0.68,
+          "precision": 0.68,
+          "recall": 0.68,
+          "f1Score": 0.68,
+          "rocAuc": 0.77
+        },
+        {
+          "modelAlias": "random-forest",
+          "accuracy": 0.73,
+          "precision": 0.73,
+          "recall": 0.73,
+          "f1Score": 0.73,
+          "rocAuc": 0.8
+        },
+        {
+          "modelAlias": "support-vector-machine",
+          "accuracy": 0.72,
+          "precision": 0.72,
+          "recall": 0.72,
+          "f1Score": 0.72,
+          "rocAuc": 0.79
+        },
+        {
+          "modelAlias": "naive-bayes",
+          "accuracy": 0.65,
+          "precision": 0.65,
+          "recall": 0.65,
+          "f1Score": 0.65,
+          "rocAuc": 0.73
+        },
+        {
+          "modelAlias": "k-nearest-neighbors",
+          "accuracy": 0.71,
+          "precision": 0.71,
+          "recall": 0.71,
+          "f1Score": 0.71,
+          "rocAuc": 0.78
+        },
+        {
+          "modelAlias": "gradient-boosting",
+          "accuracy": 0.74,
+          "precision": 0.74,
+          "recall": 0.74,
+          "f1Score": 0.74,
+          "rocAuc": 0.81
+        },
+        {
+          "modelAlias": "neural-networks",
+          "accuracy": 0.71,
+          "precision": 0.71,
+          "recall": 0.71,
+          "f1Score": 0.71,
+          "rocAuc": 0.78
+        },
+        {
+          "modelAlias": "xgboost",
+          "accuracy": 0.73,
+          "precision": 0.73,
+          "recall": 0.73,
+          "f1Score": 0.73,
+          "rocAuc": 0.8
+        },
+        {
+          "modelAlias": "lightgbm",
+          "accuracy": 0.74,
+          "precision": 0.74,
+          "recall": 0.74,
+          "f1Score": 0.74,
+          "rocAuc": 0.81
+        },
+        {
+          "modelAlias": "catboost",
+          "accuracy": 0.73,
+          "precision": 0.73,
+          "recall": 0.73,
+          "f1Score": 0.73,
+          "rocAuc": 0.8
+        },
+        {
+          "modelAlias": "ensemble-methods",
+          "accuracy": 0.75,
+          "precision": 0.75,
+          "recall": 0.75,
+          "f1Score": 0.75,
+          "rocAuc": 0.82
+        },
+        {
+          "modelAlias": "mlp-c",
+          "accuracy": 0.77,
+          "precision": 0.74,
+          "recall": 0.79,
+          "f1Score": 0.76,
+          "rocAuc": 0.8,
+          "crossEntropy": 0.48
+        },
+        {
+          "modelAlias": "elm-c",
+          "accuracy": 0.77,
+          "precision": 0.74,
+          "recall": 0.79,
+          "f1Score": 0.76,
+          "rocAuc": 0.8,
+          "crossEntropy": 0.48
+        }
+      ]
+    },
+    {
+      "name": "CIFAR-10",
+      "alias": "cifar-10",
+      "features": "Pixel values of images from 10 different classes",
+      "targetVariable": "Class of image",
+      "metrics": [
+        {
+          "modelAlias": "logistic-regression",
+          "accuracy": 0.4,
+          "precision": 0.39,
+          "recall": 0.4,
+          "f1Score": 0.39,
+          "rocAuc": 0.5
+        },
+        {
+          "modelAlias": "decision-tree",
+          "accuracy": 0.45,
+          "precision": 0.44,
+          "recall": 0.45,
+          "f1Score": 0.44,
+          "rocAuc": 0.55
+        },
+        {
+          "modelAlias": "random-forest",
+          "accuracy": 0.72,
+          "precision": 0.72,
+          "recall": 0.72,
+          "f1Score": 0.72,
+          "rocAuc": 0.8
+        },
+        {
+          "modelAlias": "support-vector-machine",
+          "accuracy": 0.67,
+          "precision": 0.66,
+          "recall": 0.67,
+          "f1Score": 0.66,
+          "rocAuc": 0.75
+        },
+        {
+          "modelAlias": "naive-bayes",
+          "accuracy": 0.42,
+          "precision": 0.41,
+          "recall": 0.42,
+          "f1Score": 0.41,
+          "rocAuc": 0.52
+        },
+        {
+          "modelAlias": "k-nearest-neighbors",
+          "accuracy": 0.63,
+          "precision": 0.62,
+          "recall": 0.63,
+          "f1Score": 0.62,
+          "rocAuc": 0.68
+        },
+        {
+          "modelAlias": "gradient-boosting",
+          "accuracy": 0.71,
+          "precision": 0.71,
+          "recall": 0.71,
+          "f1Score": 0.71,
+          "rocAuc": 0.79
+        },
+        {
+          "modelAlias": "neural-networks",
+          "accuracy": 0.75,
+          "precision": 0.75,
+          "recall": 0.75,
+          "f1Score": 0.75,
+          "rocAuc": 0.82
+        },
+        {
+          "modelAlias": "xgboost",
+          "accuracy": 0.73,
+          "precision": 0.73,
+          "recall": 0.73,
+          "f1Score": 0.73,
+          "rocAuc": 0.8
+        },
+        {
+          "modelAlias": "lightgbm",
+          "accuracy": 0.71,
+          "precision": 0.71,
+          "recall": 0.71,
+          "f1Score": 0.71,
+          "rocAuc": 0.78
+        },
+        {
+          "modelAlias": "catboost",
+          "accuracy": 0.72,
+          "precision": 0.72,
+          "recall": 0.72,
+          "f1Score": 0.72,
+          "rocAuc": 0.79
+        },
+        {
+          "modelAlias": "ensemble-methods",
+          "accuracy": 0.76,
+          "precision": 0.76,
+          "recall": 0.76,
+          "f1Score": 0.76,
+          "rocAuc": 0.83
+        },
+        {
+          "modelAlias": "mlp-c",
+          "accuracy": 0.77,
+          "precision": 0.74,
+          "recall": 0.79,
+          "f1Score": 0.76,
+          "rocAuc": 0.8,
+          "crossEntropy": 0.48
+        },
+        {
+          "modelAlias": "elm-c",
+          "accuracy": 0.77,
+          "precision": 0.74,
+          "recall": 0.79,
+          "f1Score": 0.76,
+          "rocAuc": 0.8,
+          "crossEntropy": 0.48
+        }
+      ]
+    }
+  ],
+  "clustering": [
+    {
+      "name": "Iris Clustering",
+      "alias": "iris-clustering",
+      "features": "The features of Iris flowers: sepal length, sepal width, petal length, petal width",
+      "targetVariable": "Species of Iris flower (for reference)",
+      "metrics": [
+        {
+          "modelAlias": "k-means",
+          "silhouetteScore": 0.55,
+          "daviesBouldinIndex": 0.7,
+          "adjustedRandIndex": 0.97,
+          "normalizedMutualInformation": 0.96,
+          "homogeneity": 0.97,
+          "completeness": 0.97,
+          "vMeasure": 0.97
+        },
+        {
+          "modelAlias": "hierarchical-clustering",
+          "silhouetteScore": 0.52,
+          "daviesBouldinIndex": 0.72,
+          "adjustedRandIndex": 0.96,
+          "normalizedMutualInformation": 0.95,
+          "homogeneity": 0.96,
+          "completeness": 0.96,
+          "vMeasure": 0.96
+        },
+        {
+          "modelAlias": "dbscan",
+          "silhouetteScore": 0.48,
+          "daviesBouldinIndex": 1.1,
+          "adjustedRandIndex": 0.52,
+          "normalizedMutualInformation": 0.5,
+          "homogeneity": 0.53,
+          "completeness": 0.55,
+          "vMeasure": 0.54
+        },
+        {
+          "modelAlias": "mean-shift",
+          "silhouetteScore": 0.54,
+          "daviesBouldinIndex": 0.68,
+          "adjustedRandIndex": 0.95,
+          "normalizedMutualInformation": 0.94,
+          "homogeneity": 0.95,
+          "completeness": 0.95,
+          "vMeasure": 0.95
+        },
+        {
+          "modelAlias": "gaussian-mixture-models",
+          "silhouetteScore": 0.58,
+          "daviesBouldinIndex": 0.66,
+          "adjustedRandIndex": 0.98,
+          "normalizedMutualInformation": 0.97,
+          "homogeneity": 0.98,
+          "completeness": 0.98,
+          "vMeasure": 0.98
+        },
+        {
+          "modelAlias": "spectral-clustering",
+          "silhouetteScore": 0.57,
+          "daviesBouldinIndex": 0.69,
+          "adjustedRandIndex": 0.97,
+          "normalizedMutualInformation": 0.96,
+          "homogeneity": 0.97,
+          "completeness": 0.97,
+          "vMeasure": 0.97
+        }
+      ]
+    },
+    {
+      "name": "Mall Customers",
+      "alias": "mall-customers",
+      "features": "Features of customers: annual income, spending score, etc.",
+      "targetVariable": "Customer segments (for interpretation)",
+      "metrics": [
+        {
+          "modelAlias": "k-means",
+          "silhouetteScore": 0.5,
+          "daviesBouldinIndex": 0.75,
+          "adjustedRandIndex": 0.8,
+          "normalizedMutualInformation": 0.78,
+          "homogeneity": 0.79,
+          "completeness": 0.77,
+          "vMeasure": 0.78
+        },
+        {
+          "modelAlias": "hierarchical-clustering",
+          "silhouetteScore": 0.45,
+          "daviesBouldinIndex": 0.85,
+          "adjustedRandIndex": 0.76,
+          "normalizedMutualInformation": 0.74,
+          "homogeneity": 0.75,
+          "completeness": 0.73,
+          "vMeasure": 0.74
+        },
+        {
+          "modelAlias": "dbscan",
+          "silhouetteScore": 0.4,
+          "daviesBouldinIndex": 1.05,
+          "adjustedRandIndex": 0.5,
+          "normalizedMutualInformation": 0.48,
+          "homogeneity": 0.49,
+          "completeness": 0.47,
+          "vMeasure": 0.48
+        },
+        {
+          "modelAlias": "mean-shift",
+          "silhouetteScore": 0.43,
+          "daviesBouldinIndex": 0.8,
+          "adjustedRandIndex": 0.78,
+          "normalizedMutualInformation": 0.76,
+          "homogeneity": 0.77,
+          "completeness": 0.75,
+          "vMeasure": 0.76
+        },
+        {
+          "modelAlias": "gaussian-mixture-models",
+          "silhouetteScore": 0.46,
+          "daviesBouldinIndex": 0.82,
+          "adjustedRandIndex": 0.77,
+          "normalizedMutualInformation": 0.75,
+          "homogeneity": 0.76,
+          "completeness": 0.74,
+          "vMeasure": 0.75
+        },
+        {
+          "modelAlias": "spectral-clustering",
+          "silhouetteScore": 0.48,
+          "daviesBouldinIndex": 0.78,
+          "adjustedRandIndex": 0.79,
+          "normalizedMutualInformation": 0.77,
+          "homogeneity": 0.78,
+          "completeness": 0.76,
+          "vMeasure": 0.77
+        }
+      ]
+    },
+    {
+      "name": "Color Image Clustering",
+      "alias": "color-image-clustering",
+      "features": "Color image features: red, green, blue, etc.",
+      "targetVariable": "Image clusters (for interpretation)",
+      "metrics": [
+        {
+          "modelAlias": "k-means",
+          "silhouetteScore": 0.35,
+          "daviesBouldinIndex": 1.2,
+          "adjustedRandIndex": 0.6,
+          "normalizedMutualInformation": 0.58,
+          "homogeneity": 0.59,
+          "completeness": 0.57,
+          "vMeasure": 0.58
+        },
+        {
+          "modelAlias": "hierarchical-clustering",
+          "silhouetteScore": 0.3,
+          "daviesBouldinIndex": 1.3,
+          "adjustedRandIndex": 0.55,
+          "normalizedMutualInformation": 0.53,
+          "homogeneity": 0.54,
+          "completeness": 0.52,
+          "vMeasure": 0.53
+        },
+        {
+          "modelAlias": "dbscan",
+          "silhouetteScore": 0.25,
+          "daviesBouldinIndex": 1.5,
+          "adjustedRandIndex": 0.4,
+          "normalizedMutualInformation": 0.38,
+          "homogeneity": 0.39,
+          "completeness": 0.37,
+          "vMeasure": 0.38
+        },
+        {
+          "modelAlias": "mean-shift",
+          "silhouetteScore": 0.28,
+          "daviesBouldinIndex": 1.4,
+          "adjustedRandIndex": 0.5,
+          "normalizedMutualInformation": 0.48,
+          "homogeneity": 0.49,
+          "completeness": 0.47,
+          "vMeasure": 0.48
+        },
+        {
+          "modelAlias": "gaussian-mixture-models",
+          "silhouetteScore": 0.32,
+          "daviesBouldinIndex": 1.35,
+          "adjustedRandIndex": 0.53,
+          "normalizedMutualInformation": 0.51,
+          "homogeneity": 0.52,
+          "completeness": 0.5,
+          "vMeasure": 0.51
+        },
+        {
+          "modelAlias": "spectral-clustering",
+          "silhouetteScore": 0.34,
+          "daviesBouldinIndex": 1.25,
+          "adjustedRandIndex": 0.58,
+          "normalizedMutualInformation": 0.56,
+          "homogeneity": 0.57,
+          "completeness": 0.55,
+          "vMeasure": 0.56
+        }
+      ]
+    },
+    {
+      "name": "Crime Scene Clustering",
+      "alias": "crime-scene-clustering",
+      "features": "Crime scene features: time, location, etc.",
+      "targetVariable": "Crime scene clusters (for interpretation)",
+      "metrics": [
+        {
+          "modelAlias": "k-means",
+          "silhouetteScore": 0.45,
+          "daviesBouldinIndex": 1.1,
+          "adjustedRandIndex": 0.62,
+          "normalizedMutualInformation": 0.6,
+          "homogeneity": 0.61,
+          "completeness": 0.59,
+          "vMeasure": 0.6
+        },
+        {
+          "modelAlias": "hierarchical-clustering",
+          "silhouetteScore": 0.4,
+          "daviesBouldinIndex": 1.2,
+          "adjustedRandIndex": 0.57,
+          "normalizedMutualInformation": 0.55,
+          "homogeneity": 0.56,
+          "completeness": 0.54,
+          "vMeasure": 0.55
+        },
+        {
+          "modelAlias": "dbscan",
+          "silhouetteScore": 0.35,
+          "daviesBouldinIndex": 1.3,
+          "adjustedRandIndex": 0.5,
+          "normalizedMutualInformation": 0.48,
+          "homogeneity": 0.49,
+          "completeness": 0.47,
+          "vMeasure": 0.48
+        },
+        {
+          "modelAlias": "mean-shift",
+          "silhouetteScore": 0.38,
+          "daviesBouldinIndex": 1.25,
+          "adjustedRandIndex": 0.52,
+          "normalizedMutualInformation": 0.5,
+          "homogeneity": 0.51,
+          "completeness": 0.49,
+          "vMeasure": 0.5
+        },
+        {
+          "modelAlias": "gaussian-mixture-models",
+          "silhouetteScore": 0.42,
+          "daviesBouldinIndex": 1.15,
+          "adjustedRandIndex": 0.55,
+          "normalizedMutualInformation": 0.53,
+          "homogeneity": 0.54,
+          "completeness": 0.52,
+          "vMeasure": 0.53
+        },
+        {
+          "modelAlias": "spectral-clustering",
+          "silhouetteScore": 0.43,
+          "daviesBouldinIndex": 1.18,
+          "adjustedRandIndex": 0.58,
+          "normalizedMutualInformation": 0.56,
+          "homogeneity": 0.57,
+          "completeness": 0.55,
+          "vMeasure": 0.56
+        }
+      ]
+    },
+    {
+      "name": "Wine Data Clustering",
+      "alias": "wine-data-clustering",
+      "features": "Wine data features: fixed acidity, volatile acidity, citric acid, residual sugar, chlorides, free sulfur dioxide, total sulfur dioxide, density, pH, sulphates, alcohol",
+      "targetVariable": "Wine clusters (for interpretation)",
+      "metrics": [
+        {
+          "modelAlias": "k-means",
+          "silhouetteScore": 0.45,
+          "daviesBouldinIndex": 1.1,
+          "adjustedRandIndex": 0.62,
+          "normalizedMutualInformation": 0.6,
+          "homogeneity": 0.61,
+          "completeness": 0.59,
+          "vMeasure": 0.6
+        },
+        {
+          "modelAlias": "hierarchical-clustering",
+          "silhouetteScore": 0.4,
+          "daviesBouldinIndex": 1.2,
+          "adjustedRandIndex": 0.57,
+          "normalizedMutualInformation": 0.55,
+          "homogeneity": 0.56,
+          "completeness": 0.54,
+          "vMeasure": 0.55
+        },
+        {
+          "modelAlias": "dbscan",
+          "silhouetteScore": 0.35,
+          "daviesBouldinIndex": 1.3,
+          "adjustedRandIndex": 0.5,
+          "normalizedMutualInformation": 0.48,
+          "homogeneity": 0.49,
+          "completeness": 0.47,
+          "vMeasure": 0.48
+        },
+        {
+          "modelAlias": "mean-shift",
+          "silhouetteScore": 0.38,
+          "daviesBouldinIndex": 1.25,
+          "adjustedRandIndex": 0.52,
+          "normalizedMutualInformation": 0.5,
+          "homogeneity": 0.51,
+          "completeness": 0.49,
+          "vMeasure": 0.5
+        },
+        {
+          "modelAlias": "gaussian-mixture-models",
+          "silhouetteScore": 0.42,
+          "daviesBouldinIndex": 1.15,
+          "adjustedRandIndex": 0.55,
+          "normalizedMutualInformation": 0.53,
+          "homogeneity": 0.54,
+          "completeness": 0.52,
+          "vMeasure": 0.53
+        },
+        {
+          "modelAlias": "spectral-clustering",
+          "silhouetteScore": 0.43,
+          "daviesBouldinIndex": 1.18,
+          "adjustedRandIndex": 0.58,
+          "normalizedMutualInformation": 0.56,
+          "homogeneity": 0.57,
+          "completeness": 0.55,
+          "vMeasure": 0.56
+        }
+      ]
+    }
+    
+  ],
+  "dimensionality-reduction": [
+    {
+      "name": "CIFAR-10 Dimensionality Reduction",
+      "alias": "cifar-10-dr",
+      "features": "High dimensional data from CIFAR-10",
+      "targetVariable": "Class of image",
+      "metrics": [
+        {
+          "modelAlias": "pca",
+          "explainedVarianceRatio": 0.8,
+          "reconstructionError": 0.05,
+          "perplexity": null,
+          "coherenceScore": null,
+          "isolationForestAnomalyDetection": 0.1
+        },
+        {
+          "modelAlias": "lda",
+          "explainedVarianceRatio": 0.75,
+          "reconstructionError": 0.07,
+          "perplexity": null,
+          "coherenceScore": 0.8,
+          "isolationForestAnomalyDetection": 0.12
+        },
+        {
+          "modelAlias": "tsne",
+          "explainedVarianceRatio": null,
+          "reconstructionError": null,
+          "perplexity": 30,
+          "coherenceScore": null,
+          "isolationForestAnomalyDetection": 0.15
+        },
+        {
+          "modelAlias": "isomap",
+          "explainedVarianceRatio": 0.85,
+          "reconstructionError": 0.04,
+          "perplexity": null,
+          "coherenceScore": null,
+          "isolationForestAnomalyDetection": 0.09
+        },
+        {
+          "modelAlias": "autoencoder",
+          "explainedVarianceRatio": null,
+          "reconstructionError": 0.03,
+          "perplexity": null,
+          "coherenceScore": null,
+          "isolationForestAnomalyDetection": 0.13
+        },
+        {
+          "modelAlias": "umap",
+          "explainedVarianceRatio": null,
+          "reconstructionError": 0.03,
+          "perplexity": null,
+          "coherenceScore": null,
+          "isolationForestAnomalyDetection": 0.13
+        },
+        {
+          "modelAlias": "ica",
+          "explainedVarianceRatio": null,
+          "reconstructionError": null,
+          "perplexity": 30,
+          "coherenceScore": null,
+          "isolationForestAnomalyDetection": 0.15
+        },
+        {
+          "modelAlias": "lle",
+          "explainedVarianceRatio": null,
+          "reconstructionError": null,
+          "perplexity": 30,
+          "coherenceScore": null,
+          "isolationForestAnomalyDetection": 0.15
+        }
+      ]
+    },
+    {
+      "name": "Iris Dimensionality Reduction",
+      "alias": "iris-dr",
+      "features": "High dimensional data from Iris",
+      "targetVariable": "Species",
+      "metrics": [
+        {
+          "modelAlias": "pca",
+          "explainedVarianceRatio": 0.92,
+          "reconstructionError": null,
+          "perplexity": null,
+          "coherenceScore": null,
+          "isolationForestAnomalyDetection": null
+        },
+        {
+          "modelAlias": "lda",
+          "explainedVarianceRatio": 0.92,
+          "reconstructionError": null,
+          "perplexity": null,
+          "coherenceScore": null,
+          "isolationForestAnomalyDetection": null
+        },
+        {
+          "modelAlias": "tsne",
+          "explainedVarianceRatio": null,
+          "reconstructionError": null,
+          "perplexity": 30,
+          "coherenceScore": null,
+          "isolationForestAnomalyDetection": null
+        },
+        {
+          "modelAlias": "isomap",
+          "explainedVarianceRatio": 0.92,
+          "reconstructionError": null,
+          "perplexity": null,
+          "coherenceScore": null,
+          "isolationForestAnomalyDetection": null
+        },
+        {
+          "modelAlias": "autoencoder",
+          "explainedVarianceRatio": null,
+          "reconstructionError": null,
+          "perplexity": null,
+          "coherenceScore": null,
+          "isolationForestAnomalyDetection": null
+        },
+        {
+          "modelAlias": "umap",
+          "explainedVarianceRatio": null,
+          "reconstructionError": null,
+          "perplexity": null,
+          "coherenceScore": null,
+          "isolationForestAnomalyDetection": null
+        },
+        {
+          "modelAlias": "ica",
+          "explainedVarianceRatio": null,
+          "reconstructionError": null,
+          "perplexity": 30,
+          "coherenceScore": null,
+          "isolationForestAnomalyDetection": null
+        },
+        {
+          "modelAlias": "lle",
+          "explainedVarianceRatio": null,
+          "reconstructionError": null,
+          "perplexity": 30,
+          "coherenceScore": null,
+          "isolationForestAnomalyDetection": null
+        }
+      ]
+    },
+    {
+      "name": "Customer Segmentation Dimensionality Reduction",
+      "alias": "customer-seg-dr",
+      "features": "High dimensional data from Customer Segmentation",
+      "targetVariable": "Customer segments (for interpretation)",
+      "metrics": [
+        {
+          "modelAlias": "pca",
+          "explainedVarianceRatio": 0.8,
+          "reconstructionError": 0.05,
+          "perplexity": null,
+          "coherenceScore": null,
+          "isolationForestAnomalyDetection": 0.1
+        },
+        {
+          "modelAlias": "lda",
+          "explainedVarianceRatio": 0.75,
+          "reconstructionError": 0.07,
+          "perplexity": null,
+          "coherenceScore": 0.8,
+          "isolationForestAnomalyDetection": 0.12
+        },
+        {
+          "modelAlias": "tsne",
+          "explainedVarianceRatio": null,
+          "reconstructionError": null,
+          "perplexity": 30,
+          "coherenceScore": null,
+          "isolationForestAnomalyDetection": 0.15
+        },
+        {
+          "modelAlias": "isomap",
+          "explainedVarianceRatio": 0.85,
+          "reconstructionError": 0.04,
+          "perplexity": null,
+          "coherenceScore": null,
+          "isolationForestAnomalyDetection": 0.09
+        },
+        {
+          "modelAlias": "autoencoder",
+          "explainedVarianceRatio": null,
+          "reconstructionError": 0.03,
+          "perplexity": null,
+          "coherenceScore": null,
+          "isolationForestAnomalyDetection": 0.13
+        },
+        {
+          "modelAlias": "umap",
+          "explainedVarianceRatio": null,
+          "reconstructionError": 0.03,
+          "perplexity": null,
+          "coherenceScore": null,
+          "isolationForestAnomalyDetection": 0.13
+        },
+        {
+          "modelAlias": "ica",
+          "explainedVarianceRatio": null,
+          "reconstructionError": null,
+          "perplexity": 30,
+          "coherenceScore": null,
+          "isolationForestAnomalyDetection": 0.15
+        },
+        {
+          "modelAlias": "lle",
+          "explainedVarianceRatio": null,
+          "reconstructionError": null,
+          "perplexity": 30,
+          "coherenceScore": null,
+          "isolationForestAnomalyDetection": 0.15
+        }
+      ]
+    },
+    {
+      "name": "Wine Quality Dimensionality Reduction",
+      "alias": "wine-quality-dr",
+      "features": "High dimensional data from Wine Quality",
+      "targetVariable": "Quality of wine",
+      "metrics": [
+        {
+          "modelAlias": "pca",
+          "explainedVarianceRatio": 0.92,
+          "reconstructionError": null,
+          "perplexity": null,
+          "coherenceScore": null,
+          "isolationForestAnomalyDetection": null
+        },
+        {
+          "modelAlias": "lda",
+          "explainedVarianceRatio": 0.92,
+          "reconstructionError": null,
+          "perplexity": null,
+          "coherenceScore": null,
+          "isolationForestAnomalyDetection": null
+        },
+        {
+          "modelAlias": "tsne",
+          "explainedVarianceRatio": null,
+          "reconstructionError": null,
+          "perplexity": 30,
+          "coherenceScore": null,
+          "isolationForestAnomalyDetection": null
+        },
+        {
+          "modelAlias": "isomap",
+          "explainedVarianceRatio": 0.92,
+          "reconstructionError": null,
+          "perplexity": null,
+          "coherenceScore": null,
+          "isolationForestAnomalyDetection": null
+        },
+        {
+          "modelAlias": "autoencoder",
+          "explainedVarianceRatio": null,
+          "reconstructionError": null,
+          "perplexity": null,
+          "coherenceScore": null,
+          "isolationForestAnomalyDetection": null
+        },
+        {
+          "modelAlias": "umap",
+          "explainedVarianceRatio": null,
+          "reconstructionError": null,
+          "perplexity": null,
+          "coherenceScore": null,
+          "isolationForestAnomalyDetection": null
+        },
+        {
+          "modelAlias": "ica",
+          "explainedVarianceRatio": null,
+          "reconstructionError": null,
+          "perplexity": 30,
+          "coherenceScore": null,
+          "isolationForestAnomalyDetection": null
+        },
+        {
+          "modelAlias": "lle",
+          "explainedVarianceRatio": null,
+          "reconstructionError": null,
+          "perplexity": 30,
+          "coherenceScore": null,
+          "isolationForestAnomalyDetection": null
+        }
+      ]
+    },
+    {
+      "name": "Color Image Dimensionality Reduction",
+      "alias": "color-image-dr",
+      "features": "High dimensional data from Color Image",
+      "targetVariable": "Image clusters (for interpretation)",
+      "metrics": [
+        {
+          "modelAlias": "pca",
+          "explainedVarianceRatio": 0.92,
+          "reconstructionError": null,
+          "perplexity": null,
+          "coherenceScore": null,
+          "isolationForestAnomalyDetection": null
+        },
+        {
+          "modelAlias": "lda",
+          "explainedVarianceRatio": 0.92,
+          "reconstructionError": null,
+          "perplexity": null,
+          "coherenceScore": null,
+          "isolationForestAnomalyDetection": null
+        },
+        {
+          "modelAlias": "tsne",
+          "explainedVarianceRatio": null,
+          "reconstructionError": null,
+          "perplexity": 30,
+          "coherenceScore": null,
+          "isolationForestAnomalyDetection": null
+        },
+        {
+          "modelAlias": "isomap",
+          "explainedVarianceRatio": 0.92,
+          "reconstructionError": null,
+          "perplexity": null,
+          "coherenceScore": null,
+          "isolationForestAnomalyDetection": null
+        },
+        {
+          "modelAlias": "autoencoder",
+          "explainedVarianceRatio": null,
+          "reconstructionError": null,
+          "perplexity": null,
+          "coherenceScore": null,
+          "isolationForestAnomalyDetection": null
+        },
+        {
+          "modelAlias": "umap",
+          "explainedVarianceRatio": null,
+          "reconstructionError": null,
+          "perplexity": null,
+          "coherenceScore": null,
+          "isolationForestAnomalyDetection": null
+        },
+        {
+          "modelAlias": "ica",
+          "explainedVarianceRatio": null,
+          "reconstructionError": null,
+          "perplexity": 30,
+          "coherenceScore": null,
+          "isolationForestAnomalyDetection": null
+        },
+        {
+          "modelAlias": "lle",
+          "explainedVarianceRatio": null,
+          "reconstructionError": null,
+          "perplexity": 30,
+          "coherenceScore": null,
+          "isolationForestAnomalyDetection": null
+        }
+      ]
+    }
+  ]
+}

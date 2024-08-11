@@ -1,0 +1,344 @@
+[
+  {
+    "alias": "titanic",
+    "title": "Recommended Models for Titanic Survival Prediction",
+    "tables": [
+      {
+        "type": "classification",
+        "paragraph": "For predicting the survival of Titanic passengers based on features, classification models are most suitable. Given the moderate dataset size and the categorical nature of some features, models such as Logistic Regression and Decision Trees can provide robust results. Additionally, ensemble methods like Random Forest and Gradient Boosting are effective in capturing complex patterns and interactions between features. Support Vector Machines (SVM) can also be considered for their strong performance in classification tasks.",
+        "models": [
+          "logistic-regression",
+          "decision-tree-c",
+          "random-forest-c",
+          "gradient-boosting-c",
+          "svm-c"
+        ],
+        "similarDatasets": [
+          "heart-disease",
+          "diabetes-prediction",
+          "customer-churn"
+        ]
+      },
+      {
+        "type": "regression",
+        "paragraph": "Although the primary task is classification, you may also consider a regression approach to predict the survival probability as a continuous value. For example, you can get a survival probability of '70,5%' for a passenger. Models like Linear Regression or Gradient Boosting (R) can predict this probability based on the features you have. Neural Networks (R) can provide even more nuanced probabilities. This approach helps in understanding the likelihood of survival more precisely.",
+        "models": [
+          "linear-regression",
+          "gradient-boosting-r",
+          "neural-networks-r"
+        ],
+        "similarDatasets": ["house-prices", "auto-mpg", "diamonds"]
+      }
+    ]
+  },
+  {
+    "alias": "house-prices",
+    "title": "Recommended Models for House Price Prediction",
+    "tables": [
+      {
+        "type": "regression",
+        "paragraph": "To predict the sale price of residential properties based on features like quality, size, and location, regression models are the best choice. Models such as Linear Regression, Polynomial Regression, and Gradient Boosting (R) can effectively capture the relationship between property attributes and the sale price. Random Forest (R) and XGBoost (R) are also robust options that handle non-linearity and interactions between features well. For more complex patterns, Neural Networks (R) can offer additional insights.",
+        "models": [
+          "linear-regression",
+          "polynomial-regression",
+          "gradient-boosting-r",
+          "random-forest-r",
+          "xgboost-r",
+          "neural-networks-r"
+        ],
+        "similarDatasets": [
+          "real-estate-prices",
+          "property-valuation",
+          "housing-market-analysis"
+        ]
+      },
+      {
+        "type": "classification",
+        "paragraph": "If the goal is to categorize properties into price ranges (e.g., low, medium, high), classification models can be employed. Decision Tree (C), Random Forest (C), and Gradient Boosting (C) are effective for understanding how different features influence the classification into price bands. These models can provide insights into the main factors that drive property prices.",
+        "models": ["decision-tree-c", "random-forest-c", "gradient-boosting-c"],
+        "similarDatasets": [
+          "house-price-categorization",
+          "market-segmentation",
+          "property-price-banding"
+        ]
+      }
+    ]
+  },
+  {
+    "alias": "digit-recognizer",
+    "title": "Recommended models for Digit Classification from Grayscale Images",
+    "tables": [
+      {
+        "type": "classification",
+        "paragraph": "Classifying grayscale images of handwritten digits into one of ten categories (0-9) involves dealing with high-dimensional image data and identifying distinct patterns that correspond to each digit. Convolutional Neural Networks (CNNs) are highly recommended for this task as they excel at learning hierarchical patterns from image data, making them well-suited for recognizing digit shapes. Gradient Boosting (C) and Random Forest (C) are also effective due to their robust performance on various classification tasks and their ability to handle complex interactions between features derived from images. XGBoost (C) and LightGBM (C) are strong contenders as they offer high performance and efficiency, especially for large datasets. Additionally, combining these models using ensemble methods like Voting Classifier can enhance overall accuracy by leveraging the strengths of multiple algorithms.",
+        "models": [
+          "convolutional-neural-networks-c",
+          "gradient-boosting-c",
+          "random-forest-c",
+          "xgboost-c",
+          "lightgbm-c"
+        ],
+        "similarDatasets": [
+          "handwritten-digit-dataset",
+          "mnist-digits",
+          "cifar-10"
+        ]
+      }
+    ]
+  },
+  {
+    "alias": "tumor-tissue-classification",
+    "title": "Recommended models for Tumor Tissue Classification with High-Dimensional Image Data",
+    "tables": [
+      {
+        "type": "dimensionality-reduction",
+        "paragraph": "Given the high dimensionality of the tumor tissue images, dimensionality reduction can be essential to simplify the data and improve model performance. Techniques like t-SNE, UMAP, and Autoencoders can be used to reduce the complexity of the dataset before applying classification models. These methods help in retaining the most important features while reducing noise and computational load.",
+        "models": ["tsne", "umap", "autoencoder"],
+        "similarDatasets": [
+          "high-resolution-medical-images",
+          "tumor-detection",
+          "image-classification"
+        ]
+      },
+      {
+        "type": "classification",
+        "paragraph": "For classifying the images into categories such as benign, malignant, or uncertain, Convolutional Neural Networks (CNN) are highly recommended due to their ability to handle high-dimensional image data and learn complex patterns. Additionally, models like Gradient Boosting (C) and Random Forest (C) can provide strong performance when used on features derived from dimensionality reduction techniques.",
+        "models": [
+          "convolutional-neural-networks-c",
+          "gradient-boosting-c",
+          "random-forest-c"
+        ],
+        "similarDatasets": [
+          "cancer-diagnosis",
+          "tumor-classification",
+          "medical-image-analysis"
+        ]
+      }
+    ]
+  },
+  {
+    "alias": "medical-image-classification",
+    "title": "Recommended models for Medical Image Classification",
+    "tables": [
+      {
+        "type": "dimensionality-reduction",
+        "paragraph": "Given that your dataset involves high-dimensional features extracted from medical images, dimensionality reduction techniques are essential to handle the complexity of the data. Techniques such as Principal Component Analysis (PCA) and t-Distributed Stochastic Neighbor Embedding (t-SNE) are recommended to simplify the dataset before applying classification models.",
+        "models": ["pca", "t-sne", "lda"]
+      },
+      {
+        "type": "classification",
+        "paragraph": "For the classification task, where you need to categorize the images into 'normal', 'abnormal', and 'critical', models like Support Vector Machines (SVMs) and Random Forests are suitable due to their effectiveness in managing high-dimensional data. Additionally, Logistic Regression and Gradient Boosting can be useful for this type of classification problem.",
+        "models": [
+          "svm-c",
+          "random-forest-c",
+          "logistic-regression",
+          "gradient-boosting-c",
+          "xgboost-c"
+        ]
+      },
+      {
+        "type": "clustering",
+        "paragraph": "Clustering could also be applied as an exploratory step to identify patterns or segments within the data, which may refine your classification models. Models such as K-Means and Hierarchical Clustering could be considered for this purpose.",
+        "models": ["k-means-clustering", "hierarchical-clustering", "dbscan"]
+      }
+    ]
+  },
+  {
+    "alias": "house-price-prediction-categorization",
+    "title": "Recommended models for House Price Prediction and Categorization",
+    "tables": [
+      {
+        "type": "regression",
+        "paragraph": "For predicting house prices based on features like the number of bedrooms, square footage, and location, several regression models are suitable. Linear Regression, Polynomial Regression, and Gradient Boosting (R) offer effective approaches for capturing the relationships between features and target values. Random Forest (R) and XGBoost (R) are robust options that handle feature interactions and non-linearity well.",
+        "models": [
+          "linear-regression",
+          "polynomial-regression",
+          "gradient-boosting-r",
+          "random-forest-r",
+          "xgboost-r"
+        ],
+        "similarDatasets": [
+          "real-estate-prices",
+          "housing-market-analysis",
+          "property-valuation"
+        ]
+      },
+      {
+        "type": "classification",
+        "paragraph": "If you are interested in categorizing houses into different price ranges (low, medium, high), Classification models like Decision Tree (C), Random Forest (C), and Gradient Boosting (C) can be useful. These models can help in understanding how different features influence the categorization of house prices into defined classes.",
+        "models": ["decision-tree-c", "random-forest-c", "gradient-boosting-c"],
+        "similarDatasets": [
+          "house-price-categorization",
+          "market-segmentation",
+          "property-price-banding"
+        ]
+      }
+    ]
+  },
+  {
+    "alias": "customer-review-satisfaction",
+    "title": "Recommended models for Customer Satisfaction Score",
+    "description": "The satisfaction score you want to predict is a continuous numerical value, so you are addressing a regression problem. Given the nature of the data, models such as Gradient Boosting and Neural Networks are particularly suitable as they can capture complex patterns and interactions within numerical data effectively.\n\nHowever, you could also consider treating the problem as a classification issue by categorizing the scores into discrete classes, such as 'low', 'medium', and 'high'. In this case, models like Logistic Regression and Support Vector Machines are effective, as they are designed to handle categorical outputs and can help in distinguishing between different classes based on the features provided.\n\nHere’s a list of the best models you can apply and their metrics for datasets similar to yours.",
+    "tables": [
+      {
+        "type": "dimensionality-reduction",
+        "paragraph": "",
+        "models": ["pca", "t-sne", "ica"],
+        "similarDatasets": [
+          "text-classification-dataset",
+          "review-sentiment-dataset",
+          "movie-reviews"
+        ]
+      },
+      {
+        "type": "regression",
+        "models": [
+          "gradient-boosting-r",
+          "neural-networks-r",
+          "xgboost-r",
+          "random-forest-r",
+          "linear-regression"
+        ],
+        "similarDatasets": ["auto-mpg", "house-prices", "diamonds"]
+      },
+      {
+        "type": "classification",
+        "models": ["logistic-regression", "svm-c", "random-forest-c"],
+        "similarDatasets": ["digit-recognizer", "wine-quality", "iris"]
+      }
+    ]
+  },
+  {
+    "alias": "customer-segmentation-classification",
+    "title": "Recommended models for Customer Segmentation and Classification",
+    "description": "To segment customers based on features like purchase frequency and average transaction amount, you should first use clustering techniques. K-Means Clustering is effective for creating distinct customer groups based on similarities in their behaviors. DBSCAN is another option that can identify clusters of varying shapes and densities, which might be useful depending on the distribution of your data. Hierarchical Clustering can also provide valuable insights into customer segmentation by creating a tree-like structure of clusters.\n\nOnce you have segmented the customers, you can apply classification models to predict which segment a new customer belongs to. Gradient Boosting (C) and Random Forest (C) are excellent choices for this task due to their ability to handle complex interactions between features and provide robust predictions. XGBoost (C) and LightGBM (C) are also strong contenders for their high performance and efficiency, while Neural Networks (C) offer flexibility for capturing intricate patterns in the data.\n\nHere’s a list of the best models you can apply and their metrics for datasets similar to yours.",
+    "tables": [
+      {
+        "type": "clustering",
+        "paragraph": "To segment customers based on features like purchase frequency and average transaction amount, you should first use clustering techniques. K-Means Clustering is effective for creating distinct customer groups based on similarities in their behaviors. DBSCAN is another option that can identify clusters of varying shapes and densities, which might be useful depending on the distribution of your data. Hierarchical Clustering can also provide valuable insights into customer segmentation by creating a tree-like structure of clusters.",
+        "models": ["k-means-clustering", "dbscan", "hierarchical-clustering"],
+        "similarDatasets": [
+          "customer-segmentation",
+          "mall-customers",
+          "market-basket-analysis"
+        ]
+      },
+      {
+        "type": "classification",
+        "paragraph": "Once you have segmented the customers, you can apply classification models to predict which segment a new customer belongs to. Gradient Boosting (C) and Random Forest (C) are excellent choices for this task due to their ability to handle complex interactions between features and provide robust predictions. XGBoost (C) and LightGBM (C) are also strong contenders for their high performance and efficiency, while Neural Networks (C) offer flexibility for capturing intricate patterns in the data.",
+        "models": [
+          "gradient-boosting-c",
+          "random-forest-c",
+          "xgboost-c",
+          "lightgbm-c",
+          "neural-networks-c"
+        ],
+        "similarDatasets": [
+          "churn-prediction",
+          "credit-card-fraud",
+          "employee-attrition"
+        ]
+      }
+    ]
+  },
+  {
+    "alias": "residential-property-pricing",
+    "title": "Recommended models for Predicting Residential Property Prices",
+    "tables": [
+      {
+        "type": "clustering",
+        "paragraph": "Clustering residential properties into different segments based on their features such as location, size, and type can help identify distinct groups with similar characteristics. K-Means Clustering is effective for partitioning the dataset into well-defined clusters. Hierarchical Clustering provides a detailed hierarchical view of clusters, useful for understanding relationships between different property segments. DBSCAN is suitable for detecting outliers and finding clusters of varying shapes and sizes. Mean Shift can adapt to the number of clusters dynamically, and Affinity Propagation is beneficial for finding clusters based on similarity measures.",
+        "models": [
+          "k-means-clustering",
+          "hierarchical-clustering",
+          "dbscan",
+          "mean-shift",
+          "affinity-propagation",
+          "spectral-clustering"
+        ],
+        "similarDatasets": [
+          "customer-segmentation",
+          "market-basket-analysis",
+          "user-behavior-clustering"
+        ]
+      },
+      {
+        "type": "regression",
+        "paragraph": "Applying regression models within each cluster helps predict property prices accurately by focusing on specific property segments. Linear Regression and Polynomial Regression are effective for capturing linear and non-linear relationships between property features and prices. Elastic Net Regression is suitable for datasets with correlated features, combining the benefits of Lasso and Ridge regression. Gradient Boosting (R) and Random Forest (R) handle complex interactions and provide high predictive accuracy. XGBoost (R) is an efficient and high-performance model, especially for large datasets with intricate relationships.",
+        "models": [
+          "linear-regression",
+          "polynomial-regression",
+          "elastic-net-regression",
+          "gradient-boosting-r",
+          "random-forest-r",
+          "xgboost-r"
+        ],
+        "similarDatasets": [
+          "house-prices",
+          "real-estate-prices",
+          "commercial-property-pricing"
+        ]
+      }
+    ]
+  },
+  {
+    "alias": "customer-review-classification",
+    "title": "Recommended models for Classifying Customer Reviews",
+    "tables": [
+      {
+        "type": "dimensionality-reduction",
+        "paragraph": "Handling text data often involves high-dimensional feature spaces, such as TF-IDF vectors and word embeddings. Dimensionality reduction techniques can help simplify these features, making them more manageable for classification models. Principal Component Analysis (PCA) reduces dimensionality by projecting data onto principal components, capturing the most variance. t-SNE is useful for visualizing high-dimensional data in a lower-dimensional space, helping to understand the structure of the data. Autoencoders can learn compact representations of the input features, effectively compressing and reconstructing them.",
+        "models": [
+          "pca",
+          "tsne",
+          "autoencoder"
+        ],
+        "similarDatasets": [
+          "text-classification",
+          "sentiment-analysis",
+          "spam-detection"
+        ]
+      },
+      {
+        "type": "classification",
+        "paragraph": "Classifying customer reviews into categories like 'positive', 'negative', and 'neutral' involves understanding and categorizing text data based on its sentiment. Logistic Regression is effective for binary and multi-class classification tasks with text features. Naive Bayes Classification performs well with text data due to its probabilistic nature. Gradient Boosting (C) and XGBoost (C) offer robust performance with complex interactions in the data. Support Vector Machine (SVM) (C) is useful for finding optimal boundaries between classes in high-dimensional spaces. Neural Networks (C) can capture intricate patterns in text data.",
+        "models": [
+          "logistic-regression",
+          "naive-bayes-classification",
+          "gradient-boosting-c",
+          "xgboost-c",
+          "svm-c",
+          "neural-networks-c"
+        ],
+        "similarDatasets": [
+          "sentiment-analysis",
+          "product-review-classification",
+          "movie-review-classification"
+        ]
+      }
+    ]
+  },
+  {
+    "alias": "air-quality-index-prediction",
+    "title": "Recommended models for Estimating Air Quality Index (AQI)",
+    "tables": [
+      {
+        "type": "regression",
+        "paragraph": "Estimating the Air Quality Index (AQI) involves predicting a continuous value based on factors such as temperature, humidity, wind speed, and historical pollution levels. Linear Regression provides a straightforward approach to model the relationship between features and AQI. Gradient Boosting (R) and XGBoost (R) offer more advanced methods that can capture complex patterns and interactions in the data. Random Forest (R) provides robust predictions by aggregating results from multiple decision trees. Neural Networks (R) can learn intricate relationships and non-linear patterns in the features.",
+        "models": [
+          "linear-regression",
+          "gradient-boosting-r",
+          "xgboost-r",
+          "random-forest-r",
+          "neural-networks-r",
+          "elastic-net-regression"
+        ],
+        "similarDatasets": [
+          "house-prices",
+          "energy-consumption",
+          "weather-forecasting"
+        ]
+      }
+    ]
+  }
+]

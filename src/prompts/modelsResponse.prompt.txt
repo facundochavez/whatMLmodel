@@ -1,0 +1,70 @@
+Basándote en la información de un dataset que tiene la siguiente estructura:
+
+{
+  "name": [String],
+  "alias": [String]
+  "datasetDescription": [String],
+  "language": [String: (ISO 639-1)]
+  "details":{
+    "problemDescription": [String],
+    "mainFeatures": [String],
+    "targetVariable": [String],
+    "numberOfFeatures": [Number]
+    "datasetSize": [Number],
+    "hasComplexData": [Boolean]
+  }
+}
+
+Necesito armar una serie de párrafos y tablas que que den recomendaciones de modelos de machine leraning para ese dataset. Así que devuélveme un JSON con la siguiente estructura:
+
+{
+  "alias": [String: mismo alias del input],
+  "title": [String: Título general que dirá "Recommended models for..." y el resto será basado en el problemDescription],
+  "tables": [
+    {
+      // LITERAL DE DIMENSIONALITY REDUCTION: Existirá únicamente si hasComplexData es true, de lo contrario saltéate este literal.
+      "type": "dimensionality-reduction",
+      "paragraph": [String: Un análisis de los datos complejos que se pueden estar manejando y cuáles serían los 3 mejores modelos de "dimensionality-reduction"
+      del MODELS LIST que podrían aplicarse, dando una justificación profunda y adaptada al problema en cuestión del por qué se recomiendan esos modelos y no otros].
+      "models": [Array de Strings: alias de 3 modelos recomendados],
+      "similarDatasets": [Array de Strings: alias de los 3 datasets más similares que figuran en el SIMILAR DATASETS LIST que correspondan a dimensionality-reduction],
+    },
+    {
+      // LITERAL DE TIPO PRIMARIO: Existirá siempre.
+      "type": [String: alias que describe el tipo principal al cual corresponde el problema, puede ser "regression", "classification" o "clustering"],
+      "paragraph": [String: si el LITERAL DE DIMENSIONALITY REDUCTION no existe, este será el párrafo que abrirá la narración, sino, será el segundo y una continuación del 
+      paragraph de dimensionality-reduction. Explicará qué tipo de problema se está abordando y por qué de forma muy personalidaza según el problemDescription. Luego, recomendará
+      los mejores modelos que pueden aplicarse de ese tipo, dando una justificación profunda y adaptada al problema del por qué se recomiendan estos modelos y no otros],
+      "models": [Array de Strings: alias de 6 modelos recomendados de este tipo],
+      "similarDatasets": [Array de Strings: alias de los 3 datasets más similares que figuran en el SIMILAR DATASETS LIST que correspondan al tipo primario]
+    },
+    {
+      //LITERAL DE TIPO SECUNDARIO: Existirá sólamente si es posible convertir el problema en uno de otro tipo. Si esto no es recomendable, saltéate este literal.
+      "type": [String: alias que describe el tipo secundario al que se puede adaptar problema, puede ser "regression", "classification" o "clustering" y diferente al tipo primario],
+      "paragraph": [String: Este párrafo analizará por qué puede llevarse el problema a uno de otro tipo y de qué manera (por ejemplo, transformando alguna feature). Luego, dará
+      recomendaciones de los mejores modelos que pueden aplicarse y por qué dentro de ese tipo, dando una justificación profunda y adaptada al problema del por qué se recomiendan
+      estos modelos y no otros],
+      "models": [Array de Strings: alias de 4 modelos recomendados de este tipo],
+      "similarDatasets": [Array de Strings: alias de los 3 datasets más similares que figuran en el SIMILAR DATASETS LIST que correspondan al tipo secundario]
+    }
+}
+
+MODELS LIST:
+{
+  "regression": [{"alias":"linear-regression","name":"Linear Regression"},{"alias":"polynomial-regression","name":"Polynomial Regression"},{"alias":"elastic-net-regression","name":"Elastic Net Regression"},{"alias":"gradient-boosting-r","name":"Gradient Boosting (R)"},{"alias":"neural-networks-r","name":"Neural Networks (R)"},{"alias":"svm-r","name":"Support Vector Machine (SVM) (R)"},{"alias":"decision-tree-r","name":"Decision Tree (R)"},{"alias":"random-forest-r","name":"Random Forest (R)"},{"alias":"xgboost-r","name":"XGBoost (R)"},{"alias":"lightgbm-r","name":"LightGBM (R)"},{"alias":"catboost-r","name":"CatBoost (R)"},{"alias":"ensemble-methods-r","name":"Ensemble Methods (R)"},{"alias":"mlp-r","name":"Multilayer Perceptron (MLP) (R)"},{"alias":"elm-r","name":"Extreme Learning Machines (ELM) (R)"},{"alias":"convolutional-neural-networks-r","name":"Convolutional Neural Networks (CNN) (R)"}],
+  "classification": [{"alias":"logistic-regression","name":"Logistic Regression"},{"alias":"naive-bayes-classification","name":"Naive Bayes Classification"},{"alias":"adaboost-classification","name":"AdaBoost Classification"},{"alias":"gaussian-naive-bayes","name":"Gaussian Naive Bayes"},{"alias":"qda","name":"Quadratic Discriminant Analysis"},{"alias":"knn","name":"K-Nearest Neighbors"},{"alias":"bayesian-networks","name":"Bayesian Networks"},{"alias":"gradient-boosting-c","name":"Gradient Boosting (C)"},{"alias":"neural-networks-c","name":"Neural Networks (C)"},{"alias":"svm-c","name":"Support Vector Machine (SVM) (C)"},{"alias":"decision-tree-c","name":"Decision Tree (C)"},{"alias":"random-forest-c","name":"Random Forest (C)"},{"alias":"xgboost-c","name":"XGBoost (C)"},{"alias":"lightgbm-c","name":"LightGBM (C)"},{"alias":"catboost-c","name":"CatBoost (C)"},{"alias":"ensemble-methods-c","name":"Ensemble Methods (C)"},{"alias":"mlp-c","name":"Multilayer Perceptron (MLP) (C)"},{"alias":"elm-c","name":"Extreme Learning Machines (ELM) (C)"},{"alias":"convolutional-neural-networks-c","name":"Convolutional Neural Networks (CNN) (C)"}],
+  "clustering": [{"alias":"k-means-clustering","name":"K-Means Clustering"},{"alias":"hierarchical-clustering","name":"Hierarchical Clustering"},{"alias":"dbscan","name":"DBSCAN"},{"alias":"mean-shift","name":"Mean Shift"},{"alias":"affinity-propagation","name":"Affinity Propagation"},{"alias":"spectral-clustering","name":"Spectral Clustering"},{"alias":"gaussian-mixture","name":"Gaussian Mixture Models (GMM)"}],
+  "dimensionality-reduction": [{"alias":"pca","name":"Principal Component Analysis (PCA)"},{"alias":"lda","name":"Linear Discriminant Analysis (LDA)"},{"alias":"tsne","name":"t-SNE"},{"alias":"isomap","name":"Isomap"},{"alias":"autoencoder","name":"Autoencoder"},{"alias":"umap","name":"Uniform Manifold Approximation and Projection (UMAP)"},{"alias":"ica","name":"Independent Component Analysis (ICA)"},{"alias":"lle","name":"Locally Linear Embedding (LLE)"}]
+}
+
+SIMILAR DATASETS LIST:
+{
+  "regression":[{"name":"House prices","alias":"house-prices","features":"Various aspects of residential homes: size, number of bedrooms, building class, etc.","targetVariable":"The final price of a house"},{"name":"Boston Housing","alias":"boston-housing","features":"Attributes of housing in Boston: crime rate, average number of rooms, age of houses, etc.","targetVariable":"Median value of owner-occupied homes"},{"name":"Auto MPG","alias":"auto-mpg","features":"Various aspects of automobile features: weight, horsepower, number of cylinders, etc.","targetVariable":"Miles per gallon (MPG)"},{"name":"Diamonds","alias":"diamonds","features":"Characteristics of diamonds: carat, cut, color, clarity, depth, table, price","targetVariable":"Price of the diamond"},{"name":"California Housing","alias":"california-housing","features":"Attributes of California housing: location, population, median income, etc.","targetVariable":"Median house value"}],
+  "classification":[{"name":"Titanic","alias":"titanic","features":"The features of Titanic passengers: sex, age, p-class, etc.","targetVariable":"Survival status"},{"name":"Digit Recognizer","alias":"digit-recognizer","features":"Grayscale images of handwritten digits from 0 to 9","targetVariable":"Predicted digit"},{"name":"Iris Classification","alias":"iris-classification","features":"The features of Iris flowers: sepal length, sepal width, petal length, petal width","targetVariable":"Species of Iris flower"},{"name":"Wine Quality","alias":"wine-quality","features":"The features of wine quality: fixed acidity, volatile acidity, citric acid, residual sugar, chlorides, free sulfur dioxide, total sulfur dioxide, density, pH, sulphates, alcohol","targetVariable":"Quality of wine"},{"name":"CIFAR-10","alias":"cifar-10","features":"Pixel values of images from 10 different classes","targetVariable":"Class of image"}],
+  "clustering":[{"name":"Iris Clustering","alias":"iris-clustering","features":"The features of Iris flowers: sepal length, sepal width, petal length, petal width","targetVariable":"Species of Iris flower (for reference)"},{"name":"Mall Customers","alias":"mall-customers","features":"Features of customers: annual income, spending score, etc.","targetVariable":"Customer segments (for interpretation)"},{"name":"Color Image Clustering","alias":"color-image-clustering","features":"Color image features: red, green, blue, etc.","targetVariable":"Image clusters (for interpretation)"},{"name":"Crime Scene Clustering","alias":"crime-scene-clustering","features":"Crime scene features: time, location, etc.","targetVariable":"Crime scene clusters (for interpretation)"},{"name":"Wine Data Clustering","alias":"wine-data-clustering","features":"Wine data features: fixed acidity, volatile acidity, citric acid, residual sugar, chlorides, free sulfur dioxide, total sulfur dioxide, density, pH, sulphates, alcohol","targetVariable":"Wine clusters (for interpretation)"}],
+  "dimensionality-reduction":[{"name":"CIFAR-10 Dimensionality Reduction","alias":"cifar-10-dr","features":"High dimensional data from CIFAR-10","targetVariable":"Class of image"},{"name":"Iris Dimensionality Reduction","alias":"iris-dr","features":"High dimensional data from Iris","targetVariable":"Species"},{"name":"Customer Segmentation Dimensionality Reduction","alias":"customer-seg-dr","features":"High dimensional data from Customer Segmentation","targetVariable":"Customer segments (for interpretation)"},{"name":"Wine Quality Dimensionality Reduction","alias":"wine-quality-dr","features":"High dimensional data from Wine Quality","targetVariable":"Quality of wine"},{"name":"Color Image Dimensionality Reduction","alias":"color-image-dr","features":"High dimensional data from Color Image","targetVariable":"Image clusters (for interpretation)"}]
+}
+
+EJEMPLOS:
+
+modelsResponses.data.json

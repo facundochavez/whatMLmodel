@@ -1,0 +1,206 @@
+{
+  "regression": [
+    {
+      "alias": "linear-regression",
+      "name": "Linear Regression"
+    },
+    {
+      "alias": "polynomial-regression",
+      "name": "Polynomial Regression"
+    },
+    {
+      "alias": "elastic-net-regression",
+      "name": "Elastic Net Regression"
+    },
+    {
+      "alias": "gradient-boosting-r",
+      "name": "Gradient Boosting (R)"
+    },
+    {
+      "alias": "neural-networks-r",
+      "name": "Neural Networks (R)"
+    },
+    {
+      "alias": "svm-r",
+      "name": "Support Vector Machine (SVM) (R)"
+    },
+    {
+      "alias": "decision-tree-r",
+      "name": "Decision Tree (R)"
+    },
+    {
+      "alias": "random-forest-r",
+      "name": "Random Forest (R)"
+    },
+    {
+      "alias": "xgboost-r",
+      "name": "XGBoost (R)"
+    },
+    {
+      "alias": "lightgbm-r",
+      "name": "LightGBM (R)"
+    },
+    {
+      "alias": "catboost-r",
+      "name": "CatBoost (R)"
+    },
+    {
+      "alias": "ensemble-methods-r",
+      "name": "Ensemble Methods (R)"
+    },
+    {
+      "alias": "mlp-r",
+      "name": "Multilayer Perceptron (MLP) (R)"
+    },
+    {
+      "alias": "elm-r",
+      "name": "Extreme Learning Machines (ELM) (R)"
+    },
+    {
+      "alias": "convolutional-neural-networks-r",
+      "name": "Convolutional Neural Networks (CNN) (R)"
+    }
+  ],
+  "classification": [
+    {
+      "alias": "logistic-regression",
+      "name": "Logistic Regression"
+    },
+    {
+      "alias": "naive-bayes-classification",
+      "name": "Naive Bayes Classification"
+    },
+    {
+      "alias": "adaboost-classification",
+      "name": "AdaBoost Classification"
+    },
+    {
+      "alias": "gaussian-naive-bayes",
+      "name": "Gaussian Naive Bayes"
+    },
+    {
+      "alias": "qda",
+      "name": "Quadratic Discriminant Analysis"
+    },
+    {
+      "alias": "knn",
+      "name": "K-Nearest Neighbors"
+    },
+    {
+      "alias": "bayesian-networks",
+      "name": "Bayesian Networks"
+    },
+    {
+      "alias": "gradient-boosting-c",
+      "name": "Gradient Boosting (C)"
+    },
+    {
+      "alias": "neural-networks-c",
+      "name": "Neural Networks (C)"
+    },
+    {
+      "alias": "svm-c",
+      "name": "Support Vector Machine (SVM) (C)"
+    },
+    {
+      "alias": "decision-tree-c",
+      "name": "Decision Tree (C)"
+    },
+    {
+      "alias": "random-forest-c",
+      "name": "Random Forest (C)"
+    },
+    {
+      "alias": "xgboost-c",
+      "name": "XGBoost (C)"
+    },
+    {
+      "alias": "lightgbm-c",
+      "name": "LightGBM (C)"
+    },
+    {
+      "alias": "catboost-c",
+      "name": "CatBoost (C)"
+    },
+    {
+      "alias": "ensemble-methods-c",
+      "name": "Ensemble Methods (C)"
+    },
+    {
+      "alias": "mlp-c",
+      "name": "Multilayer Perceptron (MLP) (C)"
+    },
+    {
+      "alias": "elm-c",
+      "name": "Extreme Learning Machines (ELM) (C)"
+    },
+    {
+      "alias": "convolutional-neural-networks-c",
+      "name": "Convolutional Neural Networks (CNN) (C)"
+    }
+  ],
+  "clustering": [
+    {
+      "alias": "k-means-clustering",
+      "name": "K-Means Clustering"
+    },
+    {
+      "alias": "hierarchical-clustering",
+      "name": "Hierarchical Clustering"
+    },
+    {
+      "alias": "dbscan",
+      "name": "DBSCAN"
+    },
+    {
+      "alias": "mean-shift",
+      "name": "Mean Shift"
+    },
+    {
+      "alias": "affinity-propagation",
+      "name": "Affinity Propagation"
+    },
+    {
+      "alias": "spectral-clustering",
+      "name": "Spectral Clustering"
+    },
+    {
+      "alias": "gaussian-mixture",
+      "name": "Gaussian Mixture Models (GMM)"
+    }
+  ],
+  "dimensionality-reduction": [
+    {
+      "alias": "pca",
+      "name": "Principal Component Analysis (PCA)"
+    },
+    {
+      "alias": "lda",
+      "name": "Linear Discriminant Analysis (LDA)"
+    },
+    {
+      "alias": "tsne",
+      "name": "t-SNE"
+    },
+    {
+      "alias": "isomap",
+      "name": "Isomap"
+    },
+    {
+      "alias": "autoencoder",
+      "name": "Autoencoder"
+    },
+    {
+      "alias": "umap",
+      "name": "Uniform Manifold Approximation and Projection (UMAP)"
+    },
+    {
+      "alias": "ica",
+      "name": "Independent Component Analysis (ICA)"
+    },
+    {
+      "alias": "lle",
+      "name": "Locally Linear Embedding (LLE)"
+    }
+  ]
+}
