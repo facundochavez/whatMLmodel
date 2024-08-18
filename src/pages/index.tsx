@@ -1,6 +1,7 @@
 import Head from "next/head";
-import Header from "@/layouts/Header/Header";
+import Header from "@/layouts/Header/Header.layout";
 import { Inter } from "next/font/google";
+import Hero from "@/layouts/Hero/Hero.layout";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -25,7 +26,7 @@ export default function Home() {
       </Head>
       <Header />
       <main className='w-full flex flex-col items-center px-[5%]'>
-        
+        <Hero />
       </main>
       <footer></footer>
     </div>
