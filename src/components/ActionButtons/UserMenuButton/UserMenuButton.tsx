@@ -38,7 +38,7 @@ import AuthDropdown from './Dropdowns/AuthDropdown';
 import UserDropdown from './Dropdowns/UserDropdown';
 
 const UserMenuButton: React.FC = () => {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(true);
 
   const trigger = (
       <Button variant='outline' size='icon'>

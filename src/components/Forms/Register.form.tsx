@@ -70,7 +70,7 @@ const RegisterForm: React.FC = () => {
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className='space-y-2'>
+      <form onSubmit={form.handleSubmit(onSubmit)} className='flex flex-col gap-2'>
         <FormField
           control={form.control}
           name='email'
@@ -96,6 +96,7 @@ const RegisterForm: React.FC = () => {
                   <Input
                     type={showPassword ? 'text' : 'password'}
                     placeholder='•••••'
+                    className='pr-10'
                     {...field}
                   />
                   <Button
@@ -126,6 +127,7 @@ const RegisterForm: React.FC = () => {
                   <Input
                     type={showConfirmPassword ? 'text' : 'password'}
                     placeholder='•••••'
+                    className='pr-10'
                     {...field}
                   />
                   <Button

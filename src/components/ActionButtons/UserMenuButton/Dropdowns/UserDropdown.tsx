@@ -24,6 +24,7 @@ import { Dialog, DialogTrigger } from '@/components/ui/dialog';
 import ConfirmDeleteDialogContent from '@/components/DialogsContent/ConfirmDeleteDialogContent';
 import ConfirmLogoutDialogContent from '@/components/DialogsContent/ConfirmLogoutDialogContent';
 import { useState } from 'react';
+import { Button } from '@/components/ui/button';
 
 interface UserDropdownProps {
   children?: React.ReactNode;
@@ -37,7 +38,7 @@ const UserDropdown: React.FC<UserDropdownProps> = ({ children }) => {
       <DropdownMenu>
         <DropdownMenuTrigger asChild>{children}</DropdownMenuTrigger>
 
-        <DropdownMenuContent align='end' className='min-w-36'>
+        <DropdownMenuContent align='end' className='min-w-36' loop>
           <DropdownMenuItem>
             <CirclePlus className='mr-2 h-4 w-4' />
             <span>New analysis</span>
@@ -55,12 +56,17 @@ const UserDropdown: React.FC<UserDropdownProps> = ({ children }) => {
             onClick={() => setAction('delete-analysis')}
           >
             {infoResponsesData.slice(0, 3).map((item: recentResponses) => (
-              <DropdownMenuItem key={item.output.alias}>
-                <span className='line-clamp-1 pr-4 w-full'>
-                  {item.output.name}
-                </span>
+              <div
+                className='w-full flex jkustify-between'
+                key={item.output.alias}
+              >
+                <DropdownMenuItem className='w-full'>
+                  <span className='line-clamp-1 pr-4 w-full'>
+                    {item.output.name}
+                  </span>
+                </DropdownMenuItem>
                 <ActionsForRecentMenu isFavorite setAction={setAction} />
-              </DropdownMenuItem>
+              </div>
             ))}
           </DropdownMenuGroup>
 
@@ -73,12 +79,17 @@ const UserDropdown: React.FC<UserDropdownProps> = ({ children }) => {
 
           <DropdownMenuGroup className='overflow-auto max-h-40 max-w-52'>
             {infoResponsesData.slice(3, 7).map((item: recentResponses) => (
-              <DropdownMenuItem key={item.output.alias}>
-                <span className='line-clamp-1 pr-4 w-full'>
-                  {item.output.name}
-                </span>
+              <div
+                className='w-full flex jkustify-between'
+                key={item.output.alias}
+              >
+                <DropdownMenuItem className='w-full'>
+                  <span className='line-clamp-1 pr-4 w-full'>
+                    {item.output.name}
+                  </span>
+                </DropdownMenuItem>
                 <ActionsForRecentMenu setAction={setAction} />
-              </DropdownMenuItem>
+              </div>
             ))}
           </DropdownMenuGroup>
 
@@ -117,39 +128,54 @@ const ActionsForRecentMenu: React.FC<ActionsForRecentMenuProps> = ({
   isFavorite = false,
   setAction = () => {},
 }) => {
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+
   return (
-    <DropdownMenu>
-      <DropdownMenuTrigger>
-        <Ellipsis className='h-6 w-6 p-1 opacity-50 hover:opacity-100' />
-      </DropdownMenuTrigger>
+    <DropdownMenuItem
+      onClick={(e) => {
+        e.preventDefault();
+        setIsDropdownOpen(!isDropdownOpen);
+      }}
+      className='p-0'
+    >
+      <DropdownMenu open={isDropdownOpen} onOpenChange={setIsDropdownOpen}>
+        <DropdownMenuTrigger>
+          <Button
+            variant='ghost'
+            className='h-full w-6 p-1 flex opacity-50 hover:opacity-100'
+          >
+            <Ellipsis />
+          </Button>
+        </DropdownMenuTrigger>
 
-      <DropdownMenuContent onClick={(e) => e.stopPropagation()}>
-        {!isFavorite ? (
-          <DropdownMenuItem>
-            <Star className='mr-2 h-4 w-4' />
-            <span>Favorite</span>
-          </DropdownMenuItem>
-        ) : (
-          <DropdownMenuItem>
-            <StarOff className='mr-2 h-4 w-4' />
-            <span>Remove</span>
-          </DropdownMenuItem>
-        )}
+        <DropdownMenuContent onClick={(e) => e.stopPropagation()} loop>
+          {!isFavorite ? (
+            <DropdownMenuItem>
+              <Star className='mr-2 h-4 w-4' />
+              <span>Favorite</span>
+            </DropdownMenuItem>
+          ) : (
+            <DropdownMenuItem>
+              <StarOff className='mr-2 h-4 w-4' />
+              <span>Remove</span>
+            </DropdownMenuItem>
+          )}
 
-        <DialogTrigger
-          asChild
-          onClick={(e) => {
-            e.stopPropagation();
-            setAction('delete-analysis');
-          }}
-        >
-          <DropdownMenuItem>
-            <Trash className='mr-2 h-4 w-4' />
-            <span>Delete</span>
-          </DropdownMenuItem>
-        </DialogTrigger>
-      </DropdownMenuContent>
-    </DropdownMenu>
+          <DialogTrigger
+            asChild
+            onClick={(e) => {
+              e.stopPropagation();
+              setAction('delete-analysis');
+            }}
+          >
+            <DropdownMenuItem>
+              <Trash className='mr-2 h-4 w-4' />
+              <span>Delete</span>
+            </DropdownMenuItem>
+          </DialogTrigger>
+        </DropdownMenuContent>
+      </DropdownMenu>
+    </DropdownMenuItem>
   );
 };
 

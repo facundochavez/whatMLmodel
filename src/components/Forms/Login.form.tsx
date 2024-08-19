@@ -48,7 +48,7 @@ const LoginForm: React.FC = () => {
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className='space-y-2'>
+      <form onSubmit={form.handleSubmit(onSubmit)} className='flex flex-col gap-2'>
         <FormField
           control={form.control}
           name='email'
@@ -74,6 +74,7 @@ const LoginForm: React.FC = () => {
                   <Input
                     type={showPassword ? 'text' : 'password'}
                     placeholder='••••••••'
+                    className='pr-10'
                     {...field}
                   />
                   <Button
@@ -95,6 +96,10 @@ const LoginForm: React.FC = () => {
             </FormItem>
           )}
         />
+
+        <Button type='button' variant='link' size='sm' className='self-end px-1'>
+          Forgot password?
+        </Button>
 
         <DialogFooter className='pt-2'>
           <DialogClose asChild>
