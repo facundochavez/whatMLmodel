@@ -1,7 +1,7 @@
 Basándote en un input que describe un dataset y su variable objetivo, genera el output siguiente en formato JSON:
 {
-  "name": [String: Nombre del problema],
-  "alias": [String: el nombre escrito en kebab-case]
+  "name": [String: nombre genérico sin mencionar el tipo de problema (no decir si es clasifiación, regresión u otro)],
+  "alias": [String: mismo nombre en kebab-case]
   "datasetDescription": [String: descripción sencilla del dataset, nombrando algunos features, y la variable objetivo. Es una idea clara del input, adecuándolo si es necesario],
   "language": [String: idioma que reconoces del input. Debe ser su código de idioma estándar (ISO 639-1): "en", "es", "fr", etc.]
   "details":{

@@ -15,13 +15,25 @@ import {
   FormMessage,
 } from '@/components/ui/form';
 
-import { RefreshCcw, Sparkles } from 'lucide-react';
+import { CircleHelp, RefreshCcw, Sparkles } from 'lucide-react';
 import { DialogFooter } from '@/components/ui/dialog';
 import { Input } from '@/components/ui/input';
-import { Checkbox } from '@/components/ui/checkbox';
 import { Textarea } from '@/components/ui/textarea';
-import { Label } from '@/components/ui/label';
-import { Switch } from '@/components/ui/switch';
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select';
+
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from '@/components/ui/tooltip';
+import { useState } from 'react';
 
 // Esquema de validación con zod
 const stepTwoSchema = z.object({
@@ -34,6 +46,8 @@ const stepTwoSchema = z.object({
 });
 
 const StepTwo: React.FC = () => {
+  const [showTooltip, setShowTooltip] = useState(false);
+
   // 1. Define tu formulario.
   const form = useForm<z.infer<typeof stepTwoSchema>>({
     resolver: zodResolver(stepTwoSchema),
@@ -56,124 +70,157 @@ const StepTwo: React.FC = () => {
 
   return (
     <Form {...form}>
-      <form
-        onSubmit={form.handleSubmit(onSubmit)}
-        className='w-full flex flex-col gap-4'
-      >
-        <FormLabel className='block text-lg text-center'>
-          {' '}
-          Check that the information is correct:
-        </FormLabel>
-        <FormField
-          control={form.control}
-          name='problemDescription'
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel className='text-md'>Problem description:</FormLabel>
-              <FormControl>
-                <Textarea
-                  className='text-md resize-none h-32'
-                  placeholder='Your dataset description here...'
-                  {...field}
-                />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
+      <form onSubmit={form.handleSubmit(onSubmit)}>
+        <div className='w-full flex flex-col gap-4 border rounded-md px-[5%] py-8 bg-muted/30'>
+          <FormLabel className='block text-lg text-center self-center mb-4'>
+            {' '}
+            Check the information and correct it before moving forward:
+          </FormLabel>
+          <FormField
+            control={form.control}
+            name='problemDescription'
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Problem description:</FormLabel>
+                <FormControl>
+                  <Textarea
+                    className='resize-none h-24'
+                    placeholder='Your dataset description here...'
+                    {...field}
+                  />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
 
-        <FormField
-          control={form.control}
-          name='mainFeatures'
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel className='text-md'>Main features:</FormLabel>
-              <FormControl>
-                <Input
-                  className='text-md'
-                  placeholder='Your features here...'
-                  {...field}
-                />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
+          <FormField
+            control={form.control}
+            name='mainFeatures'
+            render={({ field }) => (
+              <FormItem className='grow'>
+                <FormLabel>Main features:</FormLabel>
+                <FormControl>
+                  <Input placeholder='Your features here...' {...field} />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
 
-        <FormField
-          control={form.control}
-          name='targetVariable'
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel className='text-md'>Target variable:</FormLabel>
-              <FormControl>
-                <Input
-                  className='text-md'
-                  placeholder='Your target variable here...'
-                  {...field}
-                />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
+          <FormField
+            control={form.control}
+            name='targetVariable'
+            render={({ field }) => (
+              <FormItem className='w-full '>
+                <FormLabel>Target variable:</FormLabel>
+                <FormControl>
+                  <Input
+                    placeholder='Your target variable here...'
+                    {...field}
+                  />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
 
-        <FormField
-          control={form.control}
-          name='numberOfFeatures'
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel className='text-md'>Number of features:</FormLabel>
-              <FormControl>
-                <Input className='text-md' placeholder='' {...field} />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
+          <div className='flex flex-col gap-4 sm:flex-row'>
+            <FormField
+              control={form.control}
+              name='hasComplexData'
+              render={({ field }) => (
+                <FormItem className='w-full'>
+                  <FormLabel className='flex items-center'>
+                    Complex data:{' '}
+                    <TooltipProvider delayDuration={0}>
+                      <Tooltip open={showTooltip}>
+                        <TooltipTrigger
+                          asChild
+                          className='text-muted-foreground'
+                          onMouseEnter={() => setShowTooltip(true)}
+                          onMouseLeave={() => setShowTooltip(false)}
+                        >
+                          <CircleHelp className='inline w-4 h-4 ml-1 mt-0.5' />
+                        </TooltipTrigger>
+                        <TooltipContent
+                          className='text-muted-foreground max-w-[min(370px,80vw)]'
+                          onMouseEnter={() => setShowTooltip(true)}
+                          onMouseLeave={() => setShowTooltip(false)}
+                        >
+                          <p>
+                            Some features handle complex data as large texts,
+                            images, videos, high-dimensional data, etc.
+                          </p>
+                        </TooltipContent>
+                      </Tooltip>
+                    </TooltipProvider>{' '}
+                  </FormLabel>
 
-        <FormField
-          control={form.control}
-          name='datasetSize'
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel className='text-md'>Dataset size:</FormLabel>
-              <FormControl>
-                <Input className='text-md' placeholder='' {...field} />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
+                  <Select
+                    onValueChange={field.onChange}
+                    defaultValue={field.value ? 'Yes' : 'No'}
+                  >
+                    <FormControl>
+                      <SelectTrigger>
+                        <SelectValue placeholder='Select an option' />
+                      </SelectTrigger>
+                    </FormControl>
+                    <SelectContent>
+                      <SelectItem value='No'>No</SelectItem>
+                      <SelectItem value='Yes'>Yes</SelectItem>
+                    </SelectContent>
 
-        <FormField
-          control={form.control}
-          name='hasComplexData'
-          render={({ field }) => (
-            <FormItem className='flex items-center space-y-0 gap-2'>
-              <FormControl>
-                <Switch
-                  checked={field.value}
-                  onCheckedChange={field.onChange}
-                />
-              </FormControl>
-              <FormLabel className='text-base font-light' >
-                Some features handle complex data (text, images, audio,
-                high-dimensinal data, etc.).
-              </FormLabel>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
+                    <FormMessage />
+                  </Select>
+                </FormItem>
+              )}
+            />
 
-        <DialogFooter>
+            <FormField
+              control={form.control}
+              name='numberOfFeatures'
+              render={({ field }) => (
+                <FormItem className='w-full relative'>
+                  <FormLabel>Number of features:</FormLabel>
+                  <FormControl>
+                    <Input className=' pr-20' type='number' {...field} />
+                  </FormControl>
+                  <FormDescription className='absolute top-8 right-4'>
+                    columns
+                  </FormDescription>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+
+            <FormField
+              control={form.control}
+              name='datasetSize'
+              render={({ field }) => (
+                <FormItem className='w-full relative'>
+                  <FormLabel className='relative'>Dataset size:</FormLabel>
+                  <FormControl className='relative'>
+                    <Input className='pr-14' type='number' {...field} />
+                  </FormControl>
+                  <FormDescription className='absolute top-8 right-4'>
+                    rows
+                  </FormDescription>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+          </div>
+        </div>
+
+        <DialogFooter className='mt-4'>
           <Button type='button' variant='outline'>
             <RefreshCcw className='w-4 h-4 mr-2' />
             Cancel and retry
           </Button>
           <Button type='submit'>
             <Sparkles className='w-4 h-4 mr-2' />
-            Search models
+            Get models
           </Button>
         </DialogFooter>
       </form>

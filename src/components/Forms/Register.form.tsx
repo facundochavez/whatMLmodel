@@ -16,8 +16,9 @@ import {
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 import { useState } from 'react';
-import { DialogClose, DialogFooter } from '../ui/dialog';
+import { DialogClose, DialogFooter } from '@/components/ui/dialog';
 import { Eye, EyeOff } from 'lucide-react';
+import { Checkbox } from '@/components/ui/checkbox';
 
 // Esquema de validación con zod
 const registerSchema = z
@@ -70,7 +71,10 @@ const RegisterForm: React.FC = () => {
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className='flex flex-col gap-2'>
+      <form
+        onSubmit={form.handleSubmit(onSubmit)}
+        className='flex flex-col gap-2'
+      >
         <FormField
           control={form.control}
           name='email'
@@ -106,7 +110,11 @@ const RegisterForm: React.FC = () => {
                     type='button'
                     onClick={() => setShowPassword(!showPassword)}
                   >
-                    {showPassword ? <EyeOff className='h-5 w-5' /> : <Eye className='h-5 w-5' />}
+                    {showPassword ? (
+                      <EyeOff className='h-5 w-5' />
+                    ) : (
+                      <Eye className='h-5 w-5' />
+                    )}
                   </Button>
                 </>
               </FormControl>
@@ -137,7 +145,11 @@ const RegisterForm: React.FC = () => {
                     type='button'
                     onClick={() => setShowConfirmPassword(!showConfirmPassword)}
                   >
-                    {showConfirmPassword ? <EyeOff className='h-5 w-5' /> : <Eye className='h-5 w-5' />}
+                    {showConfirmPassword ? (
+                      <EyeOff className='h-5 w-5' />
+                    ) : (
+                      <Eye className='h-5 w-5' />
+                    )}
                   </Button>
                 </>
               </FormControl>
@@ -145,6 +157,25 @@ const RegisterForm: React.FC = () => {
                 Must be at least 8 characters and include a mix of uppercase,
                 lowercase, numbers, and special characters.
               </FormDescription>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+
+        <FormField
+          control={form.control}
+          name='confirmPassword'
+          render={({ field }) => (
+            <FormItem className='flex items-center space-y-0 gap-2'>
+              <FormControl>
+                <Checkbox></Checkbox>
+              </FormControl>
+              <FormLabel className='text-base text-muted-foreground'>
+                I agree to the{' '}
+                <a href='#' className='underline hover:text-foreground'>
+                  Terms and Conditions.
+                </a>
+              </FormLabel>
               <FormMessage />
             </FormItem>
           )}
@@ -160,7 +191,7 @@ const RegisterForm: React.FC = () => {
             <Button type='submit'>Register</Button>
           </DialogClose>
 
-         {/*  <Button variant='outline' type='button'>
+          {/*  <Button variant='outline' type='button'>
             Cancel
           </Button>
 

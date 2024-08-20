@@ -48,13 +48,14 @@ const StepOne: React.FC = () => {
           name='datasetDescription'
           render={({ field }) => (
             <FormItem>
-              <FormLabel className='text-md'>
+              <FormLabel>
                 Make a simple description of your dataset and target variable:
               </FormLabel>
               <FormControl>
                 <Textarea
-                  className='text-md resize-none h-52'
+                  className='resize-none h-52'
                   placeholder='Your dataset description here...'
+                  spellCheck={false}
                   {...field}
                 />
               </FormControl>
@@ -63,7 +64,7 @@ const StepOne: React.FC = () => {
           )}
         />
 
-        <DialogFooter className='pt-2'>
+        <DialogFooter className='mt-4'>
           <Button type='submit'>
             <Sparkles className='w-4 h-4 mr-2' />
             Let's go

@@ -53,8 +53,8 @@
   {
     "input": "High resolution images of tumor tissues are available in a cancer study. The goal is to classify the images into categories such as benign, malignant, or uncertain, but the data set is very large and has high dimensionality due to the resolution of the images.",
     "output": {
-      "name": "Tumor Tissue Classification",
-      "alias": "tumor-tissue-classification",
+      "name": "Tumor Tissues",
+      "alias": "tumor-tissues",
       "datasetDescription": "High resolution images of tumor tissues are available in a cancer study. The dataset is very large and has high dimensionality due to the resolution of the images. The goal is to classify the images into categories such as benign, malignant, or uncertain.",
       "language": "en",
       "details": {
@@ -70,8 +70,8 @@
   {
     "input": "You have a dataset with high-dimensional features extracted from medical images, such as MRI scans. The dataset includes a large number of features representing different aspects of the images. The goal is to build a model to classify these images into different categories, such as 'normal', 'abnormal', and 'critical'.",
     "output": {
-      "name": "Medical Image Classification",
-      "alias": "medical-image-classification",
+      "name": "Medical Images",
+      "alias": "medical-images",
       "datasetDescription": "You have a dataset with high-dimensional features extracted from medical images, such as MRI scans. The dataset includes a large number of features representing different aspects of the images. The goal is to build a model to classify these images into different categories, such as 'normal', 'abnormal', and 'critical'.",
       "language": "en",
       "details": {
@@ -87,8 +87,8 @@
   {
     "input": "You have a dataset containing historical house prices along with features such as the number of bedrooms, square footage, and location. The goal is to predict the house prices based on these features. Additionally, you want to categorize houses into different price ranges (e.g., low, medium, high) for market analysis purposes.",
     "output": {
-      "name": "House Price Prediction and Categorization",
-      "alias": "house-price-prediction-categorization",
+      "name": "House Price",
+      "alias": "house-price",
       "datasetDescription": "You have a dataset containing historical house prices along with features such as the number of bedrooms, square footage, and location. The goal is to predict house prices based on these features. Additionally, you want to categorize houses into different price ranges (e.g., low, medium, high) for market analysis purposes.",
       "language": "en",
       "details": {
@@ -121,8 +121,8 @@
   {
     "input": "You are working on a dataset of customer transactions with features like purchase frequency, average transaction amount, and customer demographics. The goal is to segment customers into distinct groups based on their purchasing behavior. However, you also want to use these segments to predict which group a new customer belongs to, essentially classifying new customers into existing segments.",
     "output": {
-      "name": "Customer Segmentation and Classification",
-      "alias": "customer-segmentation-classification",
+      "name": "Customer Transactions",
+      "alias": "customer-transactions",
       "datasetDescription": "You are working on a dataset of customer transactions with features like purchase frequency, average transaction amount, and customer demographics. The goal is to segment customers into distinct groups based on their purchasing behavior and classify new customers into these segments.",
       "language": "en",
       "details": {
@@ -155,8 +155,8 @@
   {
     "input": "We have a dataset containing customer reviews for various products. The dataset includes text reviews with numerous features extracted from the text, such as TF-IDF vectors and word embeddings. Our goal is to build a model to classify these reviews into categories such as 'positive', 'negative', and 'neutral'.",
     "output": {
-      "name": "Customer Review Classification",
-      "alias": "customer-review-classification",
+      "name": "Customer Products Review",
+      "alias": "customer-products-review",
       "datasetDescription": "We have a dataset containing customer reviews for various products. The dataset includes text reviews with features extracted from the text, such as TF-IDF vectors and word embeddings. The goal is to build a model to classify these reviews into categories such as 'positive', 'negative', and 'neutral'.",
       "language": "en",
       "details": {
@@ -172,8 +172,8 @@
   {
     "input": "Estimate the air quality index (AQI) for a specific location based on factors like temperature, humidity, wind speed, and historical pollution levels.",
     "output": {
-      "name": "Air Quality Index Prediction",
-      "alias": "air-quality-index-prediction",
+      "name": "Air Quality Index",
+      "alias": "air-quality-index",
       "datasetDescription": "Estimate the air quality index (AQI) for a specific location based on factors like temperature, humidity, wind speed, and historical pollution levels.",
       "language": "en",
       "details": {

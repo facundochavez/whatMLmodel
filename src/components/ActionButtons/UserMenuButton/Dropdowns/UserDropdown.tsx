@@ -14,17 +14,15 @@ import {
   History,
   Ellipsis,
   StarOff,
-  Plus,
   CirclePlus,
 } from 'lucide-react';
 import infoResponsesData from '@/prompts/infoResponses.data.json';
 import { recentResponses } from '@/types';
-import { Dialog, DialogTrigger } from '@/components/ui/dialog';
-
 import ConfirmDeleteDialogContent from '@/components/DialogsContent/ConfirmDeleteDialogContent';
 import ConfirmLogoutDialogContent from '@/components/DialogsContent/ConfirmLogoutDialogContent';
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
+import { AlertDialog, AlertDialogTrigger } from '@/components/ui/alert-dialog';
 
 interface UserDropdownProps {
   children?: React.ReactNode;
@@ -34,7 +32,7 @@ const UserDropdown: React.FC<UserDropdownProps> = ({ children }) => {
   const [action, setAction] = useState('log-out');
 
   return (
-    <Dialog>
+    <AlertDialog>
       <DropdownMenu>
         <DropdownMenuTrigger asChild>{children}</DropdownMenuTrigger>
 
@@ -95,7 +93,7 @@ const UserDropdown: React.FC<UserDropdownProps> = ({ children }) => {
 
           <DropdownMenuSeparator />
 
-          <DialogTrigger
+          <AlertDialogTrigger
             asChild
             onClick={(e) => {
               e.stopPropagation();
@@ -106,7 +104,7 @@ const UserDropdown: React.FC<UserDropdownProps> = ({ children }) => {
               <LogOut className='mr-2 h-4 w-4' />
               <span>Log out</span>
             </DropdownMenuItem>
-          </DialogTrigger>
+          </AlertDialogTrigger>
         </DropdownMenuContent>
       </DropdownMenu>
 
@@ -115,7 +113,7 @@ const UserDropdown: React.FC<UserDropdownProps> = ({ children }) => {
       ) : (
         <ConfirmLogoutDialogContent />
       )}
-    </Dialog>
+    </AlertDialog>
   );
 };
 
@@ -161,7 +159,7 @@ const ActionsForRecentMenu: React.FC<ActionsForRecentMenuProps> = ({
             </DropdownMenuItem>
           )}
 
-          <DialogTrigger
+          <AlertDialogTrigger
             asChild
             onClick={(e) => {
               e.stopPropagation();
@@ -172,7 +170,7 @@ const ActionsForRecentMenu: React.FC<ActionsForRecentMenuProps> = ({
               <Trash className='mr-2 h-4 w-4' />
               <span>Delete</span>
             </DropdownMenuItem>
-          </DialogTrigger>
+          </AlertDialogTrigger>
         </DropdownMenuContent>
       </DropdownMenu>
     </DropdownMenuItem>

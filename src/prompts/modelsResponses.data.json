@@ -33,7 +33,7 @@
   },
   {
     "alias": "house-prices",
-    "title": "Recommended Models for House Price Prediction",
+    "title": "Recommended Models for House Prices Prediction",
     "tables": [
       {
         "type": "regression",
@@ -87,7 +87,7 @@
     ]
   },
   {
-    "alias": "tumor-tissue-classification",
+    "alias": "tumor-tissues",
     "title": "Recommended models for Tumor Tissue Classification with High-Dimensional Image Data",
     "tables": [
       {
@@ -117,7 +117,7 @@
     ]
   },
   {
-    "alias": "medical-image-classification",
+    "alias": "medical-images",
     "title": "Recommended models for Medical Image Classification",
     "tables": [
       {
@@ -144,7 +144,7 @@
     ]
   },
   {
-    "alias": "house-price-prediction-categorization",
+    "alias": "house-price",
     "title": "Recommended models for House Price Prediction and Categorization",
     "tables": [
       {
@@ -178,69 +178,82 @@
   {
     "alias": "customer-review-satisfaction",
     "title": "Recommended models for Customer Satisfaction Score",
-    "description": "The satisfaction score you want to predict is a continuous numerical value, so you are addressing a regression problem. Given the nature of the data, models such as Gradient Boosting and Neural Networks are particularly suitable as they can capture complex patterns and interactions within numerical data effectively.\n\nHowever, you could also consider treating the problem as a classification issue by categorizing the scores into discrete classes, such as 'low', 'medium', and 'high'. In this case, models like Logistic Regression and Support Vector Machines are effective, as they are designed to handle categorical outputs and can help in distinguishing between different classes based on the features provided.\n\nHere’s a list of the best models you can apply and their metrics for datasets similar to yours.",
     "tables": [
       {
         "type": "dimensionality-reduction",
-        "paragraph": "",
-        "models": ["pca", "t-sne", "ica"],
+        "paragraph": "Predicting the satisfaction score of customer reviews involves handling complex data, such as textual content and potentially high-dimensional features like word embeddings or TF-IDF vectors. Dimensionality reduction techniques like Principal Component Analysis (PCA) and t-SNE can help to simplify the feature space, making it easier for regression models to find patterns. Autoencoders are another powerful option, especially for capturing non-linear relationships in the data.",
+        "models": ["principal-component-analysis", "t-sne", "autoencoder"],
         "similarDatasets": [
-          "text-classification-dataset",
-          "review-sentiment-dataset",
-          "movie-reviews"
+          "customer-review-classification",
+          "text-sentiment-analysis",
+          "product-recommendations"
         ]
       },
       {
         "type": "regression",
+        "paragraph": "Predicting the satisfaction score, a continuous numerical value ranging from 1 to 10, requires robust regression models that can handle the nuances of textual and numerical data. Neural Networks (R) are well-suited for capturing complex patterns in the data, especially when dealing with text. Support Vector Machines (SVM) (R) can offer precise boundary definitions, while Elastic Net Regression provides a balance between L1 and L2 regularization. Gradient Boosting (R) and Random Forest (R) offer powerful ensemble methods that aggregate multiple models' predictions for more accurate results.",
         "models": [
-          "gradient-boosting-r",
           "neural-networks-r",
-          "xgboost-r",
+          "support-vector-machine-r",
+          "elastic-net-regression",
+          "gradient-boosting-r",
           "random-forest-r",
-          "linear-regression"
+          "xgboost-r"
         ],
-        "similarDatasets": ["auto-mpg", "house-prices", "diamonds"]
+        "similarDatasets": [
+          "house-prices",
+          "sentiment-analysis",
+          "customer-feedback"
+        ]
       },
       {
         "type": "classification",
+        "paragraph": "However, you could also consider treating the problem as a classification issue by categorizing the scores into discrete classes, such as 'low', 'medium', and 'high'. In this case, models like Logistic Regression and Support Vector Machines are effective, as they are designed to handle categorical outputs and can help in distinguishing between different classes based on the features provided.",
         "models": ["logistic-regression", "svm-c", "random-forest-c"],
         "similarDatasets": ["digit-recognizer", "wine-quality", "iris"]
       }
     ]
   },
   {
-    "alias": "customer-segmentation-classification",
-    "title": "Recommended models for Customer Segmentation and Classification",
-    "description": "To segment customers based on features like purchase frequency and average transaction amount, you should first use clustering techniques. K-Means Clustering is effective for creating distinct customer groups based on similarities in their behaviors. DBSCAN is another option that can identify clusters of varying shapes and densities, which might be useful depending on the distribution of your data. Hierarchical Clustering can also provide valuable insights into customer segmentation by creating a tree-like structure of clusters.\n\nOnce you have segmented the customers, you can apply classification models to predict which segment a new customer belongs to. Gradient Boosting (C) and Random Forest (C) are excellent choices for this task due to their ability to handle complex interactions between features and provide robust predictions. XGBoost (C) and LightGBM (C) are also strong contenders for their high performance and efficiency, while Neural Networks (C) offer flexibility for capturing intricate patterns in the data.\n\nHere’s a list of the best models you can apply and their metrics for datasets similar to yours.",
+    "alias": "customer-transactions",
+    "title": "Recommended models for Segmenting and Classifying Customer Transactions",
     "tables": [
       {
         "type": "clustering",
-        "paragraph": "To segment customers based on features like purchase frequency and average transaction amount, you should first use clustering techniques. K-Means Clustering is effective for creating distinct customer groups based on similarities in their behaviors. DBSCAN is another option that can identify clusters of varying shapes and densities, which might be useful depending on the distribution of your data. Hierarchical Clustering can also provide valuable insights into customer segmentation by creating a tree-like structure of clusters.",
-        "models": ["k-means-clustering", "dbscan", "hierarchical-clustering"],
+        "paragraph": "Segmenting customers based on purchasing behavior involves clustering, where the goal is to group customers with similar characteristics together. K-Means Clustering is a simple yet powerful method for this task, allowing clear segmentation based on distance metrics. Hierarchical Clustering provides insights into the natural hierarchy within the data, while DBSCAN is effective for identifying outliers and non-linear groupings. Gaussian Mixture Models (GMM) add flexibility by assuming that the data is generated from a mixture of several Gaussian distributions. Spectral Clustering can also be used to identify clusters that are not necessarily convex in shape.",
+        "models": [
+          "k-means-clustering",
+          "hierarchical-clustering",
+          "dbscan",
+          "gaussian-mixture-models",
+          "spectral-clustering",
+          "mean-shift"
+        ],
         "similarDatasets": [
+          "market-segmentation",
           "customer-segmentation",
-          "mall-customers",
-          "market-basket-analysis"
+          "retail-customer-behavior"
         ]
       },
       {
         "type": "classification",
-        "paragraph": "Once you have segmented the customers, you can apply classification models to predict which segment a new customer belongs to. Gradient Boosting (C) and Random Forest (C) are excellent choices for this task due to their ability to handle complex interactions between features and provide robust predictions. XGBoost (C) and LightGBM (C) are also strong contenders for their high performance and efficiency, while Neural Networks (C) offer flexibility for capturing intricate patterns in the data.",
+        "paragraph": "Once the customer segments are defined, classifying new customers into these segments is a classification problem. Support Vector Machine (SVM) (C) provides strong performance with a clear margin of separation between classes. Random Forest (C) is a versatile ensemble method that excels in handling various types of data. Neural Networks (C) can capture complex patterns, making them suitable for more intricate relationships within the features. Gradient Boosting (C) and Logistic Regression offer reliable, interpretable models that work well with this type of problem, while K-Nearest Neighbors is intuitive and effective in cases where similar customers are likely to belong to the same segment.",
         "models": [
-          "gradient-boosting-c",
+          "support-vector-machine-c",
           "random-forest-c",
-          "xgboost-c",
-          "lightgbm-c",
-          "neural-networks-c"
+          "neural-networks-c",
+          "gradient-boosting-c",
+          "logistic-regression",
+          "k-nearest-neighbors"
         ],
         "similarDatasets": [
-          "churn-prediction",
-          "credit-card-fraud",
-          "employee-attrition"
+          "customer-segmentation",
+          "purchase-prediction",
+          "marketing-campaign"
         ]
       }
     ]
-  },
+  },  
   {
     "alias": "residential-property-pricing",
     "title": "Recommended models for Predicting Residential Property Prices",
@@ -282,17 +295,13 @@
     ]
   },
   {
-    "alias": "customer-review-classification",
+    "alias": "customer-products-review",
     "title": "Recommended models for Classifying Customer Reviews",
     "tables": [
       {
         "type": "dimensionality-reduction",
         "paragraph": "Handling text data often involves high-dimensional feature spaces, such as TF-IDF vectors and word embeddings. Dimensionality reduction techniques can help simplify these features, making them more manageable for classification models. Principal Component Analysis (PCA) reduces dimensionality by projecting data onto principal components, capturing the most variance. t-SNE is useful for visualizing high-dimensional data in a lower-dimensional space, helping to understand the structure of the data. Autoencoders can learn compact representations of the input features, effectively compressing and reconstructing them.",
-        "models": [
-          "pca",
-          "tsne",
-          "autoencoder"
-        ],
+        "models": ["pca", "tsne", "autoencoder"],
         "similarDatasets": [
           "text-classification",
           "sentiment-analysis",
@@ -319,7 +328,7 @@
     ]
   },
   {
-    "alias": "air-quality-index-prediction",
+    "alias": "air-quality-index",
     "title": "Recommended models for Estimating Air Quality Index (AQI)",
     "tables": [
       {

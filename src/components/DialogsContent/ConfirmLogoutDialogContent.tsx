@@ -8,6 +8,15 @@ import {
   DialogHeader,
   DialogTitle,
 } from '@/components/ui/dialog';
+import {
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+} from '../ui/alert-dialog';
 
 interface ConfirmDeleteDialogProps {
   children?: React.ReactNode;
@@ -17,25 +26,19 @@ const ConfirmLogoutDialogContent: React.FC<ConfirmDeleteDialogProps> = ({
   children,
 }) => {
   return (
-    <DialogContent>
-      <DialogHeader>
-        <DialogTitle>Are you sure you want to log out?</DialogTitle>
-        <DialogDescription>
+    <AlertDialogContent>
+      <AlertDialogHeader>
+        <AlertDialogTitle>Are you sure you want to log out?</AlertDialogTitle>
+        <AlertDialogDescription>
           You will be signed out of your account. Any unsaved changes may be
           lost. Please confirm if you want to proceed with logging out.
-        </DialogDescription>
-      </DialogHeader>
-      <DialogFooter>
-        <DialogClose asChild>
-          <Button variant='outline' type='button'>
-            Cancel
-          </Button>
-        </DialogClose>
-        <DialogClose asChild>
-          <Button type='submit'> Log out</Button>
-        </DialogClose>
-      </DialogFooter>
-    </DialogContent>
+        </AlertDialogDescription>
+      </AlertDialogHeader>
+      <AlertDialogFooter>
+        <AlertDialogCancel>Cancel</AlertDialogCancel>
+        <AlertDialogAction>Log out</AlertDialogAction>
+      </AlertDialogFooter>
+    </AlertDialogContent>
   );
 };
 
