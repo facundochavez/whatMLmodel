@@ -1,8 +1,8 @@
 import { Button } from '@/components/ui/button';
 import { UserRound } from 'lucide-react';
 import { useState } from 'react';
-import AuthDropdown from './Dropdowns/AuthDropdown';
-import UserDropdown from './Dropdowns/UserDropdown';
+import AuthDropdown from './Dropdowns/Auth.dropdown';
+import UserDropdown from './Dropdowns/User.dropdown';
 
 const UserMenuButton: React.FC = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(true);

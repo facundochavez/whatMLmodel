@@ -1,10 +1,10 @@
-import StepOne from './Steps/StepOne';
-import StepThree from './Steps/StepThree';
-import StepTwo from './Steps/StepTwo';
+import StepOne from './Steps/StepOne.layout';
+import StepThree from './Steps/StepThree.layout';
+import StepTwo from './Steps/StepTwo.layout';
 
 const Analysis = () => {
   return (
-    <section className='w-full max-w-[700px] py-5 flex flex-col  gap-8'>
+    <section className='w-full py-5 flex flex-col items-center gap-8'>
       <StepOne />
       <StepTwo />
       <StepThree />

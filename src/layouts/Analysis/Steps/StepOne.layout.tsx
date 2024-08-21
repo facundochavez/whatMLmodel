@@ -41,8 +41,8 @@ const StepOne: React.FC = () => {
   }
 
   return (
-    <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)}>
+    <Form {...form} >
+      <form onSubmit={form.handleSubmit(onSubmit)} className='w-full max-w-[700px]'>
         <FormField
           control={form.control}
           name='datasetDescription'

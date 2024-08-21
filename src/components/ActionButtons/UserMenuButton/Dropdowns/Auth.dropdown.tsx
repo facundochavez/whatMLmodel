@@ -7,7 +7,7 @@ import {
 } from '@/components/ui/dropdown-menu';
 import { LogIn, UserRoundPlus } from 'lucide-react';
 import { Dialog, DialogTrigger } from '@/components/ui/dialog';
-import AuthDialogContent from '@/components/DialogsContent/AuthDialogContent';
+import AuthDialogContent from '@/components/DialogsContents/Auth.dialogContent';
 
 interface AuthDropdownProps {
   children?: React.ReactNode;

@@ -18,8 +18,8 @@ import {
 } from 'lucide-react';
 import infoResponsesData from '@/prompts/infoResponses.data.json';
 import { recentResponses } from '@/types';
-import ConfirmDeleteDialogContent from '@/components/DialogsContent/ConfirmDeleteDialogContent';
-import ConfirmLogoutDialogContent from '@/components/DialogsContent/ConfirmLogoutDialogContent';
+import ConfirmDeleteDialogContent from '@/components/DialogsContents/ConfirmDelete.dialogContent';
+import ConfirmLogoutDialogContent from '@/components/DialogsContents/ConfirmLogout.dialogContent';
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { AlertDialog, AlertDialogTrigger } from '@/components/ui/alert-dialog';

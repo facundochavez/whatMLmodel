@@ -70,7 +70,7 @@ const StepTwo: React.FC = () => {
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)}>
+      <form onSubmit={form.handleSubmit(onSubmit)} className='w-full max-w-[700px]'>
         <div className='w-full flex flex-col gap-4 border rounded-md px-[5%] py-8 bg-muted/30'>
           <FormLabel className='block text-lg text-center self-center mb-4'>
             {' '}
