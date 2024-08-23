@@ -86,7 +86,7 @@
       "key": "vMeasure"
     }
   ],
-  "dimensionality-reduction": [
+  "dimensionalityReduction": [
     {
       "name": "Explained Variance Ratio",
       "shortName": "EVR",

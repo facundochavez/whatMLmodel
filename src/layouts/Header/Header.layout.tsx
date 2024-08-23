@@ -4,7 +4,7 @@ import ActionButtons from '@/components/ActionButtons/ActionButtons';
 const Header = () => {
   return (
     <header className='w-full px-[5%] py-6 flex flex-col items-center sm:py-8'>
-      <nav className='w-full max-w-[1100px] flex flex-col gap-3 items-center justify-between sm:flex-row'>
+      <nav className='w-full max-w-[1050px] flex flex-col gap-3 items-center justify-between sm:flex-row'>
         <Image
           src='/wMLm-logo-light.svg'
           alt='logo'

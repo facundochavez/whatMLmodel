@@ -169,7 +169,7 @@
       "name": "Gaussian Mixture Models (GMM)"
     }
   ],
-  "dimensionality-reduction": [
+  "dimensionalityReduction": [
     {
       "alias": "pca",
       "name": "Principal Component Analysis (PCA)"

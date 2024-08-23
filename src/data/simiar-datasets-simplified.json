@@ -95,7 +95,7 @@
       "targetVariable": "Wine clusters (for interpretation)"
     }
   ],
-  "dimensionality-reduction": [
+  "dimensionalityReduction": [
     {
       "name": "CIFAR-10 Dimensionality Reduction",
       "alias": "cifar-10-dr",

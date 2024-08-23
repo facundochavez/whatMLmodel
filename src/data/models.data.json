@@ -414,7 +414,7 @@
   "clustering": [
     {
       "id": "CLU-001",
-      "alias": "k-means",
+      "alias": "k-means-clustering",
       "name": "K-Means Clustering",
       "type": "Clustering",
       "icon": 19,
@@ -485,7 +485,7 @@
       }
     }
   ],
-  "dimensionality-reduction": [
+  "dimensionalityReduction": [
     {
       "id": "DR-001",
       "alias": "pca",
@@ -512,7 +512,7 @@
     },
     {
       "id": "DR-003",
-      "alias": "tsne",
+      "alias": "t-sne",
       "name": "t-Distributed Stochastic Neighbor Embedding (t-SNE)",
       "type": "Dimensionality Reduction",
       "icon": 19,
