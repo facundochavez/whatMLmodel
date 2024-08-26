@@ -1,11 +1,12 @@
-{
-  "regression": [
-    {
-      "name": "House prices",
-      "alias": "house-prices",
-      "features": "Various aspects of residential homes: size, number of bedrooms, building class, etc.",
-      "targetVariable": "The final price of a house",
-      "metrics": [
+[
+  {
+    "name": "House prices",
+    "alias": "house-prices",
+    "description": "This is the dataset description",
+    "features": ["Feature 1", "Feature 2", "Feature 3"],
+    "targetVariable": "Target variable",
+    "performance": {
+      "regression": [
         {
           "modelAlias": "linear-regression",
           "meanSquaredError": 2100000.0,
@@ -119,13 +120,16 @@
           "adjustedRSquared": 0.92
         }
       ]
-    },
-    {
-      "name": "Boston Housing",
-      "alias": "boston-housing",
-      "features": "Attributes of housing in Boston: crime rate, average number of rooms, age of houses, etc.",
-      "targetVariable": "Median value of owner-occupied homes",
-      "metrics": [
+    }
+  },
+  {
+    "name": "Boston Housing",
+    "alias": "boston-housing",
+    "description": "This is the dataset description",
+    "features": ["Feature 1", "Feature 2", "Feature 3"],
+    "targetVariable": "Target variable",
+    "performance": {
+      "regression": [
         {
           "modelAlias": "linear-regression",
           "meanAbsoluteError": 3.5,
@@ -239,13 +243,16 @@
           "adjustedRSquared": 0.77
         }
       ]
-    },
-    {
-      "name": "Auto MPG",
-      "alias": "auto-mpg",
-      "features": "Various aspects of automobile features: weight, horsepower, number of cylinders, etc.",
-      "targetVariable": "Miles per gallon (MPG)",
-      "metrics": [
+    }
+  },
+  {
+    "name": "Auto MPG",
+    "alias": "auto-mpg",
+    "description": "This is the dataset description",
+    "features": ["Feature 1", "Feature 2", "Feature 3"],
+    "targetVariable": "Target variable",
+    "performance": {
+      "regression": [
         {
           "modelAlias": "linear-regression",
           "meanAbsoluteError": 3.7,
@@ -359,13 +366,16 @@
           "adjustedRSquared": 0.77
         }
       ]
-    },
-    {
-      "name": "Diamonds",
-      "alias": "diamonds",
-      "features": "Characteristics of diamonds: carat, cut, color, clarity, depth, table, price",
-      "targetVariable": "Price of the diamond",
-      "metrics": [
+    }
+  },
+  {
+    "name": "Diamonds",
+    "alias": "diamonds",
+    "description": "This is the dataset description",
+    "features": ["Feature 1", "Feature 2", "Feature 3"],
+    "targetVariable": "Target variable",
+    "performance": {
+      "regression": [
         {
           "modelAlias": "linear-regression",
           "meanAbsoluteError": 240.0,
@@ -479,13 +489,16 @@
           "adjustedRSquared": 0.9
         }
       ]
-    },
-    {
-      "name": "California Housing",
-      "alias": "california-housing",
-      "features": "Attributes of California housing: location, population, median income, etc.",
-      "targetVariable": "Median house value",
-      "metrics": [
+    }
+  },
+  {
+    "name": "California Housing",
+    "alias": "california-housing",
+    "description": "This is the dataset description",
+    "features": ["Feature 1", "Feature 2", "Feature 3"],
+    "targetVariable": "Target variable",
+    "performance": {
+      "regression": [
         {
           "modelAlias": "linear-regression",
           "meanAbsoluteError": 50000.0,
@@ -600,14 +613,15 @@
         }
       ]
     }
-  ],
-  "classification": [
-    {
-      "name": "Titanic",
-      "alias": "titanic",
-      "features": "The features of Titanic passengers: sex, age, p-class, etc.",
-      "targetVariable": "Probability of survival",
-      "metrics": [
+  },
+  {
+    "name": "Titanic",
+    "alias": "titanic",
+    "description": "This is the dataset description",
+    "features": ["Feature 1", "Feature 2", "Feature 3"],
+    "targetVariable": "Target variable",
+    "performance": {
+      "classification": [
         {
           "modelAlias": "logistic-regression",
           "accuracy": 0.79,
@@ -771,13 +785,16 @@
           "crossEntropy": 0.48
         }
       ]
-    },
-    {
-      "name": "Digit Recognizer",
-      "alias": "digit-recognizer",
-      "features": "The features are grayscale images of handwritten digits.",
-      "targetVariable": "Predicted digit",
-      "metrics": [
+    }
+  },
+  {
+    "name": "Digit Recognizer",
+    "alias": "digit-recognizer",
+    "description": "This is the dataset description",
+    "features": ["Feature 1", "Feature 2", "Feature 3"],
+    "targetVariable": "Target variable",
+    "performance": {
+      "classification": [
         {
           "modelAlias": "logistic-regression",
           "accuracy": 0.9,
@@ -941,13 +958,16 @@
           "crossEntropy": 0.48
         }
       ]
-    },
-    {
-      "name": "Iris Classification",
-      "alias": "iris-classification",
-      "features": "The features of Iris flowers: sepal length, sepal width, petal length, petal width",
-      "targetVariable": "Species of Iris flower",
-      "metrics": [
+    }
+  },
+  {
+    "name": "Iris Classification",
+    "alias": "iris-classification",
+    "description": "This is the dataset description",
+    "features": ["Feature 1", "Feature 2", "Feature 3"],
+    "targetVariable": "Target variable",
+    "performance": {
+      "classification": [
         {
           "modelAlias": "logistic-regression",
           "accuracy": 0.97,
@@ -1063,13 +1083,16 @@
           "crossEntropy": 0.48
         }
       ]
-    },
-    {
-      "name": "Wine Quality",
-      "alias": "wine-quality",
-      "features": "The features of wine quality: fixed acidity, volatile acidity, citric acid, residual sugar, chlorides, free sulfur dioxide, total sulfur dioxide, density, pH, sulphates, alcohol",
-      "targetVariable": "Quality of wine",
-      "metrics": [
+    }
+  },
+  {
+    "name": "Wine Quality",
+    "alias": "wine-quality",
+    "description": "This is the dataset description",
+    "features": ["Feature 1", "Feature 2", "Feature 3"],
+    "targetVariable": "Target variable",
+    "performance": {
+      "classification": [
         {
           "modelAlias": "logistic-regression",
           "accuracy": 0.66,
@@ -1185,13 +1208,16 @@
           "crossEntropy": 0.48
         }
       ]
-    },
-    {
-      "name": "CIFAR-10",
-      "alias": "cifar-10",
-      "features": "Pixel values of images from 10 different classes",
-      "targetVariable": "Class of image",
-      "metrics": [
+    }
+  },
+  {
+    "name": "CIFAR-10",
+    "alias": "cifar-10",
+    "description": "This is the dataset description",
+    "features": ["Feature 1", "Feature 2", "Feature 3"],
+    "targetVariable": "Target variable",
+    "performance": {
+      "classification": [
         {
           "modelAlias": "logistic-regression",
           "accuracy": 0.4,
@@ -1308,14 +1334,15 @@
         }
       ]
     }
-  ],
-  "clustering": [
-    {
-      "name": "Iris Clustering",
-      "alias": "iris-clustering",
-      "features": "The features of Iris flowers: sepal length, sepal width, petal length, petal width",
-      "targetVariable": "Species of Iris flower (for reference)",
-      "metrics": [
+  },
+  {
+    "name": "Iris Clustering",
+    "alias": "iris-clustering",
+    "description": "This is the dataset description",
+    "features": ["Feature 1", "Feature 2", "Feature 3"],
+    "targetVariable": "Target variable",
+    "performance": {
+      "clustering": [
         {
           "modelAlias": "k-means",
           "silhouetteScore": 0.55,
@@ -1377,13 +1404,16 @@
           "vMeasure": 0.97
         }
       ]
-    },
-    {
-      "name": "Mall Customers",
-      "alias": "mall-customers",
-      "features": "Features of customers: annual income, spending score, etc.",
-      "targetVariable": "Customer segments (for interpretation)",
-      "metrics": [
+    }
+  },
+  {
+    "name": "Mall Customers",
+    "alias": "mall-customers",
+    "description": "This is the dataset description",
+    "features": ["Feature 1", "Feature 2", "Feature 3"],
+    "targetVariable": "Target variable",
+    "performance": {
+      "clustering": [
         {
           "modelAlias": "k-means",
           "silhouetteScore": 0.5,
@@ -1445,13 +1475,16 @@
           "vMeasure": 0.77
         }
       ]
-    },
-    {
-      "name": "Color Image Clustering",
-      "alias": "color-image-clustering",
-      "features": "Color image features: red, green, blue, etc.",
-      "targetVariable": "Image clusters (for interpretation)",
-      "metrics": [
+    }
+  },
+  {
+    "name": "Color Image Clustering",
+    "alias": "color-image-clustering",
+    "description": "This is the dataset description",
+    "features": ["Feature 1", "Feature 2", "Feature 3"],
+    "targetVariable": "Target variable",
+    "performance": {
+      "clustering": [
         {
           "modelAlias": "k-means",
           "silhouetteScore": 0.35,
@@ -1513,81 +1546,16 @@
           "vMeasure": 0.56
         }
       ]
-    },
-    {
-      "name": "Crime Scene Clustering",
-      "alias": "crime-scene-clustering",
-      "features": "Crime scene features: time, location, etc.",
-      "targetVariable": "Crime scene clusters (for interpretation)",
-      "metrics": [
-        {
-          "modelAlias": "k-means",
-          "silhouetteScore": 0.45,
-          "daviesBouldinIndex": 1.1,
-          "adjustedRandIndex": 0.62,
-          "normalizedMutualInformation": 0.6,
-          "homogeneity": 0.61,
-          "completeness": 0.59,
-          "vMeasure": 0.6
-        },
-        {
-          "modelAlias": "hierarchical-clustering",
-          "silhouetteScore": 0.4,
-          "daviesBouldinIndex": 1.2,
-          "adjustedRandIndex": 0.57,
-          "normalizedMutualInformation": 0.55,
-          "homogeneity": 0.56,
-          "completeness": 0.54,
-          "vMeasure": 0.55
-        },
-        {
-          "modelAlias": "dbscan",
-          "silhouetteScore": 0.35,
-          "daviesBouldinIndex": 1.3,
-          "adjustedRandIndex": 0.5,
-          "normalizedMutualInformation": 0.48,
-          "homogeneity": 0.49,
-          "completeness": 0.47,
-          "vMeasure": 0.48
-        },
-        {
-          "modelAlias": "mean-shift",
-          "silhouetteScore": 0.38,
-          "daviesBouldinIndex": 1.25,
-          "adjustedRandIndex": 0.52,
-          "normalizedMutualInformation": 0.5,
-          "homogeneity": 0.51,
-          "completeness": 0.49,
-          "vMeasure": 0.5
-        },
-        {
-          "modelAlias": "gaussian-mixture-models",
-          "silhouetteScore": 0.42,
-          "daviesBouldinIndex": 1.15,
-          "adjustedRandIndex": 0.55,
-          "normalizedMutualInformation": 0.53,
-          "homogeneity": 0.54,
-          "completeness": 0.52,
-          "vMeasure": 0.53
-        },
-        {
-          "modelAlias": "spectral-clustering",
-          "silhouetteScore": 0.43,
-          "daviesBouldinIndex": 1.18,
-          "adjustedRandIndex": 0.58,
-          "normalizedMutualInformation": 0.56,
-          "homogeneity": 0.57,
-          "completeness": 0.55,
-          "vMeasure": 0.56
-        }
-      ]
-    },
-    {
-      "name": "Wine Data Clustering",
-      "alias": "wine-data-clustering",
-      "features": "Wine data features: fixed acidity, volatile acidity, citric acid, residual sugar, chlorides, free sulfur dioxide, total sulfur dioxide, density, pH, sulphates, alcohol",
-      "targetVariable": "Wine clusters (for interpretation)",
-      "metrics": [
+    }
+  },
+  {
+    "name": "Crime Scene Clustering",
+    "alias": "crime-scene-clustering",
+    "description": "This is the dataset description",
+    "features": ["Feature 1", "Feature 2", "Feature 3"],
+    "targetVariable": "Target variable",
+    "performance": {
+      "clustering": [
         {
           "modelAlias": "k-means",
           "silhouetteScore": 0.45,
@@ -1650,15 +1618,86 @@
         }
       ]
     }
-    
-  ],
-  "dimensionalityReduction": [
-    {
-      "name": "CIFAR-10 Dimensionality Reduction",
-      "alias": "cifar-10-dr",
-      "features": "High dimensional data from CIFAR-10",
-      "targetVariable": "Class of image",
-      "metrics": [
+  },
+  {
+    "name": "Wine Data Clustering",
+    "alias": "wine-data-clustering",
+    "description": "This is the dataset description",
+    "features": ["Feature 1", "Feature 2", "Feature 3"],
+    "targetVariable": "Target variable",
+    "performance": {
+      "clustering": [
+        {
+          "modelAlias": "k-means",
+          "silhouetteScore": 0.45,
+          "daviesBouldinIndex": 1.1,
+          "adjustedRandIndex": 0.62,
+          "normalizedMutualInformation": 0.6,
+          "homogeneity": 0.61,
+          "completeness": 0.59,
+          "vMeasure": 0.6
+        },
+        {
+          "modelAlias": "hierarchical-clustering",
+          "silhouetteScore": 0.4,
+          "daviesBouldinIndex": 1.2,
+          "adjustedRandIndex": 0.57,
+          "normalizedMutualInformation": 0.55,
+          "homogeneity": 0.56,
+          "completeness": 0.54,
+          "vMeasure": 0.55
+        },
+        {
+          "modelAlias": "dbscan",
+          "silhouetteScore": 0.35,
+          "daviesBouldinIndex": 1.3,
+          "adjustedRandIndex": 0.5,
+          "normalizedMutualInformation": 0.48,
+          "homogeneity": 0.49,
+          "completeness": 0.47,
+          "vMeasure": 0.48
+        },
+        {
+          "modelAlias": "mean-shift",
+          "silhouetteScore": 0.38,
+          "daviesBouldinIndex": 1.25,
+          "adjustedRandIndex": 0.52,
+          "normalizedMutualInformation": 0.5,
+          "homogeneity": 0.51,
+          "completeness": 0.49,
+          "vMeasure": 0.5
+        },
+        {
+          "modelAlias": "gaussian-mixture-models",
+          "silhouetteScore": 0.42,
+          "daviesBouldinIndex": 1.15,
+          "adjustedRandIndex": 0.55,
+          "normalizedMutualInformation": 0.53,
+          "homogeneity": 0.54,
+          "completeness": 0.52,
+          "vMeasure": 0.53
+        },
+        {
+          "modelAlias": "spectral-clustering",
+          "silhouetteScore": 0.43,
+          "daviesBouldinIndex": 1.18,
+          "adjustedRandIndex": 0.58,
+          "normalizedMutualInformation": 0.56,
+          "homogeneity": 0.57,
+          "completeness": 0.55,
+          "vMeasure": 0.56
+        }
+      ]
+    }
+  },
+  {
+    "name": "CIFAR-10 Dimensionality Reduction",
+    "alias": "cifar-10-dr",
+    "description": "This is the dataset description",
+    "features": ["Feature 1", "Feature 2", "Feature 3"],
+    "targetVariable": "Target variable",
+    "performance": {
+      "dimensionalityReduction": [
         {
           "modelAlias": "pca",
           "explainedVarianceRatio": 0.8,
@@ -1724,229 +1763,16 @@
           "isolationForestAnomalyDetection": 0.15
         }
       ]
-    },
-    {
-      "name": "Iris Dimensionality Reduction",
-      "alias": "iris-dr",
-      "features": "High dimensional data from Iris",
-      "targetVariable": "Species",
-      "metrics": [
-        {
-          "modelAlias": "pca",
-          "explainedVarianceRatio": 0.92,
-          "reconstructionError": null,
-          "perplexity": null,
-          "coherenceScore": null,
-          "isolationForestAnomalyDetection": null
-        },
-        {
-          "modelAlias": "lda",
-          "explainedVarianceRatio": 0.92,
-          "reconstructionError": null,
-          "perplexity": null,
-          "coherenceScore": null,
-          "isolationForestAnomalyDetection": null
-        },
-        {
-          "modelAlias": "tsne",
-          "explainedVarianceRatio": null,
-          "reconstructionError": null,
-          "perplexity": 30,
-          "coherenceScore": null,
-          "isolationForestAnomalyDetection": null
-        },
-        {
-          "modelAlias": "isomap",
-          "explainedVarianceRatio": 0.92,
-          "reconstructionError": null,
-          "perplexity": null,
-          "coherenceScore": null,
-          "isolationForestAnomalyDetection": null
-        },
-        {
-          "modelAlias": "autoencoder",
-          "explainedVarianceRatio": null,
-          "reconstructionError": null,
-          "perplexity": null,
-          "coherenceScore": null,
-          "isolationForestAnomalyDetection": null
-        },
-        {
-          "modelAlias": "umap",
-          "explainedVarianceRatio": null,
-          "reconstructionError": null,
-          "perplexity": null,
-          "coherenceScore": null,
-          "isolationForestAnomalyDetection": null
-        },
-        {
-          "modelAlias": "ica",
-          "explainedVarianceRatio": null,
-          "reconstructionError": null,
-          "perplexity": 30,
-          "coherenceScore": null,
-          "isolationForestAnomalyDetection": null
-        },
-        {
-          "modelAlias": "lle",
-          "explainedVarianceRatio": null,
-          "reconstructionError": null,
-          "perplexity": 30,
-          "coherenceScore": null,
-          "isolationForestAnomalyDetection": null
-        }
-      ]
-    },
-    {
-      "name": "Customer Segmentation Dimensionality Reduction",
-      "alias": "customer-seg-dr",
-      "features": "High dimensional data from Customer Segmentation",
-      "targetVariable": "Customer segments (for interpretation)",
-      "metrics": [
-        {
-          "modelAlias": "pca",
-          "explainedVarianceRatio": 0.8,
-          "reconstructionError": 0.05,
-          "perplexity": null,
-          "coherenceScore": null,
-          "isolationForestAnomalyDetection": 0.1
-        },
-        {
-          "modelAlias": "lda",
-          "explainedVarianceRatio": 0.75,
-          "reconstructionError": 0.07,
-          "perplexity": null,
-          "coherenceScore": 0.8,
-          "isolationForestAnomalyDetection": 0.12
-        },
-        {
-          "modelAlias": "tsne",
-          "explainedVarianceRatio": null,
-          "reconstructionError": null,
-          "perplexity": 30,
-          "coherenceScore": null,
-          "isolationForestAnomalyDetection": 0.15
-        },
-        {
-          "modelAlias": "isomap",
-          "explainedVarianceRatio": 0.85,
-          "reconstructionError": 0.04,
-          "perplexity": null,
-          "coherenceScore": null,
-          "isolationForestAnomalyDetection": 0.09
-        },
-        {
-          "modelAlias": "autoencoder",
-          "explainedVarianceRatio": null,
-          "reconstructionError": 0.03,
-          "perplexity": null,
-          "coherenceScore": null,
-          "isolationForestAnomalyDetection": 0.13
-        },
-        {
-          "modelAlias": "umap",
-          "explainedVarianceRatio": null,
-          "reconstructionError": 0.03,
-          "perplexity": null,
-          "coherenceScore": null,
-          "isolationForestAnomalyDetection": 0.13
-        },
-        {
-          "modelAlias": "ica",
-          "explainedVarianceRatio": null,
-          "reconstructionError": null,
-          "perplexity": 30,
-          "coherenceScore": null,
-          "isolationForestAnomalyDetection": 0.15
-        },
-        {
-          "modelAlias": "lle",
-          "explainedVarianceRatio": null,
-          "reconstructionError": null,
-          "perplexity": 30,
-          "coherenceScore": null,
-          "isolationForestAnomalyDetection": 0.15
-        }
-      ]
-    },
-    {
-      "name": "Wine Quality Dimensionality Reduction",
-      "alias": "wine-quality-dr",
-      "features": "High dimensional data from Wine Quality",
-      "targetVariable": "Quality of wine",
-      "metrics": [
-        {
-          "modelAlias": "pca",
-          "explainedVarianceRatio": 0.92,
-          "reconstructionError": null,
-          "perplexity": null,
-          "coherenceScore": null,
-          "isolationForestAnomalyDetection": null
-        },
-        {
-          "modelAlias": "lda",
-          "explainedVarianceRatio": 0.92,
-          "reconstructionError": null,
-          "perplexity": null,
-          "coherenceScore": null,
-          "isolationForestAnomalyDetection": null
-        },
-        {
-          "modelAlias": "tsne",
-          "explainedVarianceRatio": null,
-          "reconstructionError": null,
-          "perplexity": 30,
-          "coherenceScore": null,
-          "isolationForestAnomalyDetection": null
-        },
-        {
-          "modelAlias": "isomap",
-          "explainedVarianceRatio": 0.92,
-          "reconstructionError": null,
-          "perplexity": null,
-          "coherenceScore": null,
-          "isolationForestAnomalyDetection": null
-        },
-        {
-          "modelAlias": "autoencoder",
-          "explainedVarianceRatio": null,
-          "reconstructionError": null,
-          "perplexity": null,
-          "coherenceScore": null,
-          "isolationForestAnomalyDetection": null
-        },
-        {
-          "modelAlias": "umap",
-          "explainedVarianceRatio": null,
-          "reconstructionError": null,
-          "perplexity": null,
-          "coherenceScore": null,
-          "isolationForestAnomalyDetection": null
-        },
-        {
-          "modelAlias": "ica",
-          "explainedVarianceRatio": null,
-          "reconstructionError": null,
-          "perplexity": 30,
-          "coherenceScore": null,
-          "isolationForestAnomalyDetection": null
-        },
-        {
-          "modelAlias": "lle",
-          "explainedVarianceRatio": null,
-          "reconstructionError": null,
-          "perplexity": 30,
-          "coherenceScore": null,
-          "isolationForestAnomalyDetection": null
-        }
-      ]
-    },
-    {
-      "name": "Color Image Dimensionality Reduction",
-      "alias": "color-image-dr",
-      "features": "High dimensional data from Color Image",
-      "targetVariable": "Image clusters (for interpretation)",
-      "metrics": [
+    }
+  },
+  {
+    "name": "Iris Dimensionality Reduction",
+    "alias": "iris-dr",
+    "description": "This is the dataset description",
+    "features": ["Feature 1", "Feature 2", "Feature 3"],
+    "targetVariable": "Target variable",
+    "performance": {
+      "dimensionalityReduction": [
         {
           "modelAlias": "pca",
           "explainedVarianceRatio": 0.92,
@@ -2013,5 +1839,230 @@
         }
       ]
     }
-  ]
-}
+  },
+  {
+    "name": "Customer Segmentation Dimensionality Reduction",
+    "alias": "customer-seg-dr",
+    "description": "This is the dataset description",
+    "features": ["Feature 1", "Feature 2", "Feature 3"],
+    "targetVariable": "Target variable",
+    "performance": {
+      "dimensionalityReduction": [
+        {
+          "modelAlias": "pca",
+          "explainedVarianceRatio": 0.8,
+          "reconstructionError": 0.05,
+          "perplexity": null,
+          "coherenceScore": null,
+          "isolationForestAnomalyDetection": 0.1
+        },
+        {
+          "modelAlias": "lda",
+          "explainedVarianceRatio": 0.75,
+          "reconstructionError": 0.07,
+          "perplexity": null,
+          "coherenceScore": 0.8,
+          "isolationForestAnomalyDetection": 0.12
+        },
+        {
+          "modelAlias": "tsne",
+          "explainedVarianceRatio": null,
+          "reconstructionError": null,
+          "perplexity": 30,
+          "coherenceScore": null,
+          "isolationForestAnomalyDetection": 0.15
+        },
+        {
+          "modelAlias": "isomap",
+          "explainedVarianceRatio": 0.85,
+          "reconstructionError": 0.04,
+          "perplexity": null,
+          "coherenceScore": null,
+          "isolationForestAnomalyDetection": 0.09
+        },
+        {
+          "modelAlias": "autoencoder",
+          "explainedVarianceRatio": null,
+          "reconstructionError": 0.03,
+          "perplexity": null,
+          "coherenceScore": null,
+          "isolationForestAnomalyDetection": 0.13
+        },
+        {
+          "modelAlias": "umap",
+          "explainedVarianceRatio": null,
+          "reconstructionError": 0.03,
+          "perplexity": null,
+          "coherenceScore": null,
+          "isolationForestAnomalyDetection": 0.13
+        },
+        {
+          "modelAlias": "ica",
+          "explainedVarianceRatio": null,
+          "reconstructionError": null,
+          "perplexity": 30,
+          "coherenceScore": null,
+          "isolationForestAnomalyDetection": 0.15
+        },
+        {
+          "modelAlias": "lle",
+          "explainedVarianceRatio": null,
+          "reconstructionError": null,
+          "perplexity": 30,
+          "coherenceScore": null,
+          "isolationForestAnomalyDetection": 0.15
+        }
+      ]
+    }
+  },
+  {
+    "name": "Wine Quality Dimensionality Reduction",
+    "alias": "wine-quality-dr",
+    "description": "This is the dataset description",
+    "features": ["Feature 1", "Feature 2", "Feature 3"],
+    "targetVariable": "Target variable",
+    "performance": {
+      "dimensionalityReduction": [
+        {
+          "modelAlias": "pca",
+          "explainedVarianceRatio": 0.92,
+          "reconstructionError": null,
+          "perplexity": null,
+          "coherenceScore": null,
+          "isolationForestAnomalyDetection": null
+        },
+        {
+          "modelAlias": "lda",
+          "explainedVarianceRatio": 0.92,
+          "reconstructionError": null,
+          "perplexity": null,
+          "coherenceScore": null,
+          "isolationForestAnomalyDetection": null
+        },
+        {
+          "modelAlias": "tsne",
+          "explainedVarianceRatio": null,
+          "reconstructionError": null,
+          "perplexity": 30,
+          "coherenceScore": null,
+          "isolationForestAnomalyDetection": null
+        },
+        {
+          "modelAlias": "isomap",
+          "explainedVarianceRatio": 0.92,
+          "reconstructionError": null,
+          "perplexity": null,
+          "coherenceScore": null,
+          "isolationForestAnomalyDetection": null
+        },
+        {
+          "modelAlias": "autoencoder",
+          "explainedVarianceRatio": null,
+          "reconstructionError": null,
+          "perplexity": null,
+          "coherenceScore": null,
+          "isolationForestAnomalyDetection": null
+        },
+        {
+          "modelAlias": "umap",
+          "explainedVarianceRatio": null,
+          "reconstructionError": null,
+          "perplexity": null,
+          "coherenceScore": null,
+          "isolationForestAnomalyDetection": null
+        },
+        {
+          "modelAlias": "ica",
+          "explainedVarianceRatio": null,
+          "reconstructionError": null,
+          "perplexity": 30,
+          "coherenceScore": null,
+          "isolationForestAnomalyDetection": null
+        },
+        {
+          "modelAlias": "lle",
+          "explainedVarianceRatio": null,
+          "reconstructionError": null,
+          "perplexity": 30,
+          "coherenceScore": null,
+          "isolationForestAnomalyDetection": null
+        }
+      ]
+    }
+  },
+  {
+    "name": "Color Image Dimensionality Reduction",
+    "alias": "color-image-dr",
+    "description": "This is the dataset description",
+    "features": ["Feature 1", "Feature 2", "Feature 3"],
+    "targetVariable": "Target variable",
+    "performance": {
+      "dimensionalityReduction": [
+        {
+          "modelAlias": "pca",
+          "explainedVarianceRatio": 0.92,
+          "reconstructionError": null,
+          "perplexity": null,
+          "coherenceScore": null,
+          "isolationForestAnomalyDetection": null
+        },
+        {
+          "modelAlias": "lda",
+          "explainedVarianceRatio": 0.92,
+          "reconstructionError": null,
+          "perplexity": null,
+          "coherenceScore": null,
+          "isolationForestAnomalyDetection": null
+        },
+        {
+          "modelAlias": "tsne",
+          "explainedVarianceRatio": null,
+          "reconstructionError": null,
+          "perplexity": 30,
+          "coherenceScore": null,
+          "isolationForestAnomalyDetection": null
+        },
+        {
+          "modelAlias": "isomap",
+          "explainedVarianceRatio": 0.92,
+          "reconstructionError": null,
+          "perplexity": null,
+          "coherenceScore": null,
+          "isolationForestAnomalyDetection": null
+        },
+        {
+          "modelAlias": "autoencoder",
+          "explainedVarianceRatio": null,
+          "reconstructionError": null,
+          "perplexity": null,
+          "coherenceScore": null,
+          "isolationForestAnomalyDetection": null
+        },
+        {
+          "modelAlias": "umap",
+          "explainedVarianceRatio": null,
+          "reconstructionError": null,
+          "perplexity": null,
+          "coherenceScore": null,
+          "isolationForestAnomalyDetection": null
+        },
+        {
+          "modelAlias": "ica",
+          "explainedVarianceRatio": null,
+          "reconstructionError": null,
+          "perplexity": 30,
+          "coherenceScore": null,
+          "isolationForestAnomalyDetection": null
+        },
+        {
+          "modelAlias": "lle",
+          "explainedVarianceRatio": null,
+          "reconstructionError": null,
+          "perplexity": 30,
+          "coherenceScore": null,
+          "isolationForestAnomalyDetection": null
+        }
+      ]
+    }
+  }
+]

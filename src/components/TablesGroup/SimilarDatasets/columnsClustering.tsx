@@ -1,31 +1,22 @@
 import { ColumnDef } from '@tanstack/react-table';
+import { ClusteringMetrics } from '../types';
 
-export type ClusteringMetrics = {
-  silhouetteScore: number;
-  daviesBouldinScore: number;
-  adjustedRandIndex: number;
-  normalizedMutualInformation: number;
-  homogeneity: number;
-  completeness: number;
-  vMeasure: number;
-};
-
-export const columnsClustering: ColumnDef<ClusteringMetrics>[] = [
+const columnsClustering: ColumnDef<ClusteringMetrics>[] = [
   {
     accessorKey: 'silhouetteScore',
     header: 'Silhouette Score',
   },
   {
     accessorKey: 'daviesBouldinScore',
-    header: 'Davies Bouldin Score',
+    header: 'Davies Bouldin\u00A0Score',
   },
   {
     accessorKey: 'adjustedRandIndex',
-    header: 'Adjusted Rand Index',
+    header: 'Adjusted Rand\u00A0Index',
   },
   {
     accessorKey: 'normalizedMutualInformation',
-    header: 'Normalized Mutual Information',
+    header: 'Normalized Mutual\u00A0Information',
   },
   {
     accessorKey: 'homogeneity',
@@ -37,6 +28,8 @@ export const columnsClustering: ColumnDef<ClusteringMetrics>[] = [
   },
   {
     accessorKey: 'vMeasure',
-    header: 'V-Measure',
+    header: 'V\u2011Measure',
   },
 ];
+
+export default columnsClustering;

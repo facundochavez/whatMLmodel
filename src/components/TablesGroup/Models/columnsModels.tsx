@@ -1,19 +1,7 @@
 import { ColumnDef } from '@tanstack/react-table';
 import Image from 'next/image';
 import { useTheme } from 'next-themes';
-
-export type Model = {
-  id: string;
-  alias: string;
-  name: string;
-  type: string;
-  icon: number;
-  metrics: {
-    trainingTime: string;
-    predictionSpeed: string;
-    memoryUsage: string;
-  };
-};
+import { Model } from '../types';
 
 function kebabToTitleCase(kebabStr: string): string {
   return kebabStr
@@ -22,7 +10,7 @@ function kebabToTitleCase(kebabStr: string): string {
     .join(' ');
 }
 
-export const columnsModels: ColumnDef<Model>[] = [
+const columnsModels: ColumnDef<Model>[] = [
   {
     accessorKey: 'name',
     header: () => {
@@ -38,10 +26,10 @@ export const columnsModels: ColumnDef<Model>[] = [
           <Image
             src={`./models-icons/model-icon-${icon}.svg`}
             alt={`${modelName} icon`}
-            width={30}
-            height={30}
+            width={25}
+            height={25}
             className='ml-1'
-            style={{ filter: theme === 'dark' ? undefined : 'brightness(0)' }}
+            /* style={{ filter: theme === 'dark' ? undefined : 'brightness(0)' }} */
           />
           <h2 className='text-left min-w-max text-base'>{modelName}</h2>
         </div>
@@ -59,3 +47,5 @@ export const columnsModels: ColumnDef<Model>[] = [
     cell: () => <div className='w-0' />,
   },
 ];
+
+export default columnsModels;

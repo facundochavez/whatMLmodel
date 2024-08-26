@@ -27,8 +27,8 @@ Necesito armar una serie de párrafos y tablas que que den recomendaciones de mo
       "paragraph": [String: Un análisis de los datos complejos que se pueden estar manejando y cuáles serían los 3 mejores modelos de "dimensionalityReduction"
       del MODELS LIST que podrían aplicarse, dando una justificación profunda y adaptada al problema en cuestión del por qué se recomiendan esos modelos y no otros].
       "tables": {
-        "models": [Array de Strings: alias de 3 modelos recomendados],
-        "similarDatasets": [Array de Strings: alias de los 3 datasets más similares que figuran en el SIMILAR DATASETS LIST que correspondan a dimensionalityReduction]
+        "modelsAliases": [Array de Strings: alias de 3 modelos recomendados],
+        "similarDatasetsAliases": [Array de Strings: alias de los 3 datasets más similares que figuran en el SIMILAR DATASETS LIST que correspondan a dimensionalityReduction]
       }
     },
     {
@@ -38,8 +38,8 @@ Necesito armar una serie de párrafos y tablas que que den recomendaciones de mo
       paragraph de dimensionalityReduction. Explicará qué tipo de problema se está abordando y por qué de forma muy personalidaza según el problemDescription. Luego, recomendará
       los mejores modelos que pueden aplicarse de ese tipo, dando una justificación profunda y adaptada al problema del por qué se recomiendan estos modelos y no otros],
       "tables": {
-        "models": [Array de Strings: alias de 6 modelos recomendados de este tipo],
-        "similarDatasets": [Array de Strings: alias de los 3 datasets más similares que figuran en el SIMILAR DATASETS LIST que correspondan al tipo primario]
+        "modelsAliases": [Array de Strings: alias de 6 modelos recomendados de este tipo],
+        "similarDatasetsAliases": [Array de Strings: alias de los 3 datasets más similares que figuran en el SIMILAR DATASETS LIST que correspondan al tipo primario]
       }
     },
     {
@@ -49,8 +49,8 @@ Necesito armar una serie de párrafos y tablas que que den recomendaciones de mo
       recomendaciones de los mejores modelos que pueden aplicarse y por qué dentro de ese tipo, dando una justificación profunda y adaptada al problema del por qué se recomiendan
       estos modelos y no otros],
       "tables": {
-        "models": [Array de Strings: alias de 4 modelos recomendados de este tipo],
-        "similarDatasets": [Array de Strings: alias de los 3 datasets más similares que figuran en el SIMILAR DATASETS LIST que correspondan al tipo secundario]
+        "modelsAliases": [Array de Strings: alias de 4 modelos recomendados de este tipo],
+        "similarDatasetsAliases": [Array de Strings: alias de los 3 datasets más similares que figuran en el SIMILAR DATASETS LIST que correspondan al tipo secundario]
       }
     }
 }

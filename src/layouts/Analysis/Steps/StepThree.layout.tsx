@@ -1,9 +1,6 @@
-import ModelsTable from '@/components/Tables/Models/Models.table';
-import { Model, columnsModels } from '@/components/Tables/Models/columnsModels';
-import SimilarDatasetsTable from '@/components/Tables/SimilarDatasets/SimilarDatasets.table';
-import Tables from '@/components/Tables/Tables';
+import TablesGroup from '@/components/TablesGroup/TablesGroup';
+import { ProblemType } from '@/components/TablesGroup/types';
 import modelsResponsesDataRaw from '@/prompts/modelsResponses.data.json';
-import getModels from '@/utils/getModel';
 
 /* async function getModels(aliases: string[]): Promise<Model[]> {
   try {
@@ -23,23 +20,23 @@ import getModels from '@/utils/getModel';
   
 } */
 
-interface Response {
+interface ModelResponse {
   alias: string;
   title: string;
   recomendations: {
-    type: string;
+    type: ProblemType;
     paragraph: string;
     tables: {
-      models: string[];
-      similarDatasets: string[];
+      modelsAliases: string[];
+      similarDatasetsAliases: string[];
     };
   }[];
 }
 
-const modelsResponsesData = modelsResponsesDataRaw as Response[];
-
 const StepThree = () => {
-  const response: Response = modelsResponsesData[4];
+  const modelsResponsesData: ModelResponse[] =
+    modelsResponsesDataRaw as ModelResponse[];
+  const response: ModelResponse = modelsResponsesData[0];
 
   return (
     <div className='w-full max-w-[1050px] flex flex-col gap-8 mt-8'>
@@ -50,11 +47,14 @@ const StepThree = () => {
             <p className='text-muted-foreground'>{recomendation.paragraph}</p>
             {index === 0 && (
               <p className='text-muted-foreground'>
-                Here’s a list of the best models you can apply and their metrics
-                for datasets similar to yours:
+                Here’s a list of the best models you can apply and their
+                performance metrics for datasets similar to yours:
               </p>
             )}
-            <Tables type={recomendation.type} tables={recomendation.tables} />
+            <TablesGroup
+              type={recomendation.type}
+              tables={recomendation.tables}
+            />
           </section>
         );
       })}

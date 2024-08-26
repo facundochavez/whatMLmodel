@@ -13,16 +13,12 @@ import {
   TableHeader,
   TableRow,
 } from '@/components/ui/table';
+import { DataTableProps } from '../types';
 
-interface DataTableProps<TData, TValue> {
-  columns: ColumnDef<TData, TValue>[];
-  data: TData[];
-}
-
-export function ModelsTable<TData, TValue>({
+const ModelsTable = <TData, TValue>({
   columns,
   data,
-}: DataTableProps<TData, TValue>) {
+}: DataTableProps<TData, TValue>) => {
   const table = useReactTable({
     data,
     columns,
@@ -75,6 +71,6 @@ export function ModelsTable<TData, TValue>({
       </Table>
     </div>
   );
-}
+};
 
 export default ModelsTable;

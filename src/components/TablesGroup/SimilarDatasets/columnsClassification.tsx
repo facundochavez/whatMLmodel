@@ -1,15 +1,7 @@
 import { ColumnDef } from '@tanstack/react-table';
+import { ClassificationMetrics } from '../types';
 
-export type ClassificationMetrics = {
-  accuracy: number;
-  precision: number;
-  recall: number;
-  f1Score: number;
-  rocAuc: number;
-  crossEntropy: number;
-};
-
-export const columnsClassification: ColumnDef<ClassificationMetrics>[] = [
+const columnsClassification: ColumnDef<ClassificationMetrics>[] = [
   {
     accessorKey: 'accuracy',
     header: 'Accuracy',
@@ -35,3 +27,5 @@ export const columnsClassification: ColumnDef<ClassificationMetrics>[] = [
     header: 'Cross-Entropy',
   },
 ];
+
+export default columnsClassification;

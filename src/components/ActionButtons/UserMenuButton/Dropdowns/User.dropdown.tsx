@@ -55,7 +55,7 @@ const UserDropdown: React.FC<UserDropdownProps> = ({ children }) => {
           >
             {infoResponsesData.slice(0, 3).map((item: recentResponses) => (
               <div
-                className='w-full flex jkustify-between'
+                className='w-full flex justify-between'
                 key={item.output.alias}
               >
                 <DropdownMenuItem className='w-full'>
@@ -134,7 +134,7 @@ const ActionsForRecentMenu: React.FC<ActionsForRecentMenuProps> = ({
         e.preventDefault();
         setIsDropdownOpen(!isDropdownOpen);
       }}
-      className='p-0'
+      className='p-0 absolute right-[5px]'
     >
       <DropdownMenu open={isDropdownOpen} onOpenChange={setIsDropdownOpen}>
         <DropdownMenuTrigger>

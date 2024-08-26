@@ -1,18 +1,11 @@
 import { ColumnDef } from '@tanstack/react-table';
+import { DimensionalityReductionMetrics } from '../types';
 
-export type DimensionalityReductionMetrics = {
-  explainedVarianceRatio: number;
-  reconstructionError: number;
-  perplexity: number;
-  coherenceScore: number;
-  isolationForestAnomalyDetection: number;
-};
-
-export const columnsDimensionalityReduction: ColumnDef<DimensionalityReductionMetrics>[] =
+const columnsDimensionalityReduction: ColumnDef<DimensionalityReductionMetrics>[] =
   [
     {
       accessorKey: 'explainedVarianceRatio',
-      header: 'Explained Variance Ratio',
+      header: 'Explained Variance\u00A0Ratio',
     },
     {
       accessorKey: 'reconstructionError',
@@ -28,6 +21,8 @@ export const columnsDimensionalityReduction: ColumnDef<DimensionalityReductionMe
     },
     {
       accessorKey: 'isolationForestAnomalyDetection',
-      header: 'Isolation Forest Anomaly Detection',
+      header: 'Isolation\u00A0Forest Anomaly\u00A0Detection',
     },
   ];
+
+export default columnsDimensionalityReduction;

@@ -13,16 +13,12 @@ import {
   TableHeader,
   TableRow,
 } from '@/components/ui/table';
+import { DataTableProps } from '../types';
 
-interface DataTableProps<TData, TValue> {
-  columns: ColumnDef<TData, TValue>[];
-  data: TData[];
-}
-
-export function SimilarDatasetsTable<TData, TValue>({
+const SimilarDatasetTable = <TData, TValue>({
   columns,
   data,
-}: DataTableProps<TData, TValue>) {
+}: DataTableProps<TData, TValue>) => {
   const table = useReactTable({
     data,
     columns,
@@ -32,9 +28,9 @@ export function SimilarDatasetsTable<TData, TValue>({
   return (
     <div className='rounded-md border bg-background w-full overflow-auto'>
       <Table>
-        <TableHeader>
+        <TableHeader className=''>
           {table.getHeaderGroups().map((headerGroup) => (
-            <TableRow key={headerGroup.id} className='h-16'>
+            <TableRow key={headerGroup.id} className='h-16 max-h-16'>
               {headerGroup.headers.map((header) => {
                 return (
                   <TableHead key={header.id} className='text-center'>
@@ -58,7 +54,10 @@ export function SimilarDatasetsTable<TData, TValue>({
                 data-state={row.getIsSelected() && 'selected'}
               >
                 {row.getVisibleCells().map((cell) => (
-                  <TableCell key={cell.id} className='text-center py-3'>
+                  <TableCell
+                    key={cell.id}
+                    className='text-center py-3 h-[50px]'
+                  >
                     {flexRender(cell.column.columnDef.cell, cell.getContext())}
                   </TableCell>
                 ))}
@@ -75,6 +74,6 @@ export function SimilarDatasetsTable<TData, TValue>({
       </Table>
     </div>
   );
-}
+};
 
-export default SimilarDatasetsTable;
+export default SimilarDatasetTable;
