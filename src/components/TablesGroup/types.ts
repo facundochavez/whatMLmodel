@@ -55,6 +55,7 @@ export type SimilarDatasetsData = SimilarDataset[];
 
 export type DatasetSelectorProps = {
   similarDatasets: SimilarDataset[];
+  setSelectedDataset: (value: string) => void;
 };
 
 // PERFORMANCE METRICS:
