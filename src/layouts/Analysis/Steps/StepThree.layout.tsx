@@ -47,7 +47,7 @@ const StepThree = () => {
             <p className='text-muted-foreground'>{recomendation.paragraph}</p>
             {index === 0 && (
               <p className='text-muted-foreground'>
-                Here’s a list of the best models you can apply and their
+                Here is a list of the best models you can apply and their
                 performance metrics for datasets similar to yours:
               </p>
             )}

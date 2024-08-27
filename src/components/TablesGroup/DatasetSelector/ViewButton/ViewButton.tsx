@@ -16,16 +16,16 @@ const ViewButton: React.FC<ButtonProps> = () => {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button variant='secondary' className='px-3 md:pr-4'>
-          <Eye className='h-5 w-5' />
+        <Button variant='secondary' className='px-3 md:pr-4 bg-secondary'>
+          <Eye className='h-[18px] w-[18px]' />
           <span className='hidden ml-2 md:flex'>View</span>
         </Button>
       </DialogTrigger>
       <DialogContent>
         <DialogHeader>
-          <DialogTitle>Titanic</DialogTitle>
+          <DialogTitle>Dataset title</DialogTitle>
           <DialogDescription>
-          Based on the features of Titanic passengers, the goal is to determine which types of people were more likely to survive.
+          This is the dataset description.
           </DialogDescription>
         </DialogHeader>
       </DialogContent>

@@ -28,9 +28,9 @@ const SimilarDatasetTable = <TData, TValue>({
   return (
     <div className='rounded-md border bg-background w-full overflow-auto'>
       <Table>
-        <TableHeader className=''>
+        <TableHeader>
           {table.getHeaderGroups().map((headerGroup) => (
-            <TableRow key={headerGroup.id} className='h-16 max-h-16'>
+            <TableRow key={headerGroup.id} className='h-16 bg-muted/30'>
               {headerGroup.headers.map((header) => {
                 return (
                   <TableHead key={header.id} className='text-center'>

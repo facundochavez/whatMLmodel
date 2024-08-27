@@ -42,7 +42,7 @@ const TablesGroup: React.FC<TablesProps> = ({ type, tables }) => {
   };
 
   return (
-    <div className='flex flex-col gap-4 mt-2'>
+    <div className='flex flex-col gap-4 my-8'>
       <DatasetSelector similarDatasets={similarDatasets} setSelectedDataset={setSelectedDataset} />
       <div className='flex gap-4'>
         <ModelsTable columns={columnsModels} data={models} />

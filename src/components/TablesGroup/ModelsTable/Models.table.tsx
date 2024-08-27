@@ -28,9 +28,9 @@ const ModelsTable = <TData, TValue>({
   return (
     <div className='rounded-md border bg-background w-[350px] min-w-[350px]'>
       <Table>
-        <TableHeader>
+        <TableHeader className=''>
           {table.getHeaderGroups().map((headerGroup) => (
-            <TableRow key={headerGroup.id} className='h-16'>
+            <TableRow key={headerGroup.id} className='h-16 bg-muted/30'>
               {headerGroup.headers.map((header) => {
                 return (
                   <TableHead key={header.id} className='text-center'>
