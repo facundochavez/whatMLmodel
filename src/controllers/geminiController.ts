@@ -1,6 +1,6 @@
-import { NextApiRequest, NextApiResponse } from "next";
-import { generateDatasetParameters } from "@/services/geminiService";
-import { promptContext } from "@/prompts/promptContext";
+import { NextApiRequest, NextApiResponse } from 'next';
+import { generateDatasetParameters } from '@/services/geminiService';
+import { promptContext } from '@/prompts/promptContext';
 
 const createDatasetParameters = async (
   req: NextApiRequest,
@@ -16,12 +16,13 @@ const createDatasetParameters = async (
     let jsonString = data.trim();
 
     // Si el string está rodeado de comillas simples, conviértelas en comillas dobles
-    if (
-      (jsonString.startsWith("'") && jsonString.endsWith("'")) ||
-      (jsonString.startsWith("```json") && jsonString.endsWith("```"))
-    ) {
+    if (jsonString.startsWith("'") && jsonString.endsWith("'")) {
       jsonString = jsonString.slice(1, -1).replace(/'/g, '"');
+    } else if (jsonString.startsWith('```json') && jsonString.endsWith('```')) {
+      jsonString = jsonString.slice(6, -3);
     }
+
+    console.log(jsonString);
 
     // Parsear el JSON
     const result = JSON.parse(jsonString);

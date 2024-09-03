@@ -37,7 +37,6 @@ const StepOne: React.FC = () => {
   function onSubmit(values: z.infer<typeof stepOneSchema>) {
     // Haz algo con los valores del formulario.
     // ✅ Esto será seguro en cuanto a tipos y validado.
-    console.log(values);
   }
 
   return (

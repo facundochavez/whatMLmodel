@@ -70,16 +70,13 @@ export default function getPerformanceMetrics({
       (metric) => metric.modelAlias === modelAlias
     );
 
-    console.log(foundMetrics);
-
     metrics.forEach((metric) => {
       (metricsToPush as any)[metric] = foundMetrics?.[metric] || '-';
     });
 
     performanceMetrics.push(metricsToPush);
   });
-  
-  console.log(performanceMetrics);
+
 
 
   return performanceMetrics;

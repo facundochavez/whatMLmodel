@@ -65,7 +65,6 @@ const StepTwo: React.FC = () => {
   function onSubmit(values: z.infer<typeof stepTwoSchema>) {
     // Haz algo con los valores del formulario.
     // ✅ Esto será seguro en cuanto a tipos y validado.
-    console.log(values);
   }
 
   return (
