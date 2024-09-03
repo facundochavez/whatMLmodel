@@ -15,9 +15,12 @@ import { TablesProps } from './types';
 import { useState } from 'react';
 import getPerformanceMetrics from '@/utils/getPerformanceMetrics';
 import DatasetSelector from './DatasetSelector/DatasetSelector';
+import { Dialog } from '@/components/ui/dialog';
+import SimilarDatasetDialogContent from '../DialogsContents/SimilarDataset.dialogContent';
 
 const TablesGroup: React.FC<TablesProps> = ({ type, tables }) => {
   const [selectedDataset, setSelectedDataset] = useState<string>('0');
+  const [action, setAction] = useState('view-dataset');
 
   const models: Model[] = getModels({
     type: type,
@@ -42,17 +45,23 @@ const TablesGroup: React.FC<TablesProps> = ({ type, tables }) => {
   };
 
   return (
-    <div className='flex flex-col gap-4 my-8'>
-      <DatasetSelector similarDatasets={similarDatasets} setSelectedDataset={setSelectedDataset} />
-      <div className='flex gap-4'>
-        <ModelsTable columns={columnsModels} data={models} />
-        <SimilarDatasetTable
-          columns={columnsPerformanceMetrics[type]}
-          // @ts-ignore
-          data={performanceMetrics}
+    <Dialog>
+      <div className='flex flex-col gap-3 my-8'>
+        <DatasetSelector
+          similarDatasets={similarDatasets}
+          setSelectedDataset={setSelectedDataset}
         />
+        <div className='flex gap-4'>
+          <ModelsTable columns={columnsModels(type)} data={models} />
+          <SimilarDatasetTable
+            columns={columnsPerformanceMetrics[type]}
+            // @ts-ignore
+            data={performanceMetrics}
+          />
+        </div>
       </div>
-    </div>
+      <SimilarDatasetDialogContent />
+    </Dialog>
   );
 };
 

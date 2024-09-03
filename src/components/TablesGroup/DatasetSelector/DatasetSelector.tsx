@@ -18,7 +18,7 @@ const DatasetSelector: React.FC<DatasetSelectorProps> = ({
   setSelectedDataset,
 }) => {
   return (
-    <header className='flex flex-col gap-x-3 gap-y-2 pl-[370px] lg:flex-row lg:items-center'>
+    <header className='flex flex-col gap-x-3 gap-y-1 pl-[370px] lg:flex-row lg:items-center'>
       <h2 className='min-w-max'>Similar dataset:</h2>
       <div className='flex gap-3 items-center w-full'>
         <Select

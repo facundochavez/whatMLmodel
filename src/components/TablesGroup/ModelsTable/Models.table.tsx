@@ -26,7 +26,7 @@ const ModelsTable = <TData, TValue>({
   });
 
   return (
-    <div className='rounded-md border bg-background w-[350px] min-w-[350px]'>
+    <div className='rounded-md border bg-background'>
       <Table>
         <TableHeader className=''>
           {table.getHeaderGroups().map((headerGroup) => (
@@ -54,7 +54,7 @@ const ModelsTable = <TData, TValue>({
                 data-state={row.getIsSelected() && 'selected'}
               >
                 {row.getVisibleCells().map((cell) => (
-                  <TableCell key={cell.id} className='text-center py-3'>
+                  <TableCell key={cell.id} className='text-center py-0 px-0 h-16'>
                     {flexRender(cell.column.columnDef.cell, cell.getContext())}
                   </TableCell>
                 ))}

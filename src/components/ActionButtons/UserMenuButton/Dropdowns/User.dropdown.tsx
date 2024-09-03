@@ -23,11 +23,12 @@ import ConfirmLogoutDialogContent from '@/components/DialogsContents/ConfirmLogo
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { AlertDialog, AlertDialogTrigger } from '@/components/ui/alert-dialog';
+import ViewButton from '@/components/TablesGroup/DatasetSelector/ViewButton/ViewButton';
 
 interface UserDropdownProps {
   children?: React.ReactNode;
 }
-
+ViewButton
 const UserDropdown: React.FC<UserDropdownProps> = ({ children }) => {
   const [action, setAction] = useState('log-out');
 
@@ -134,7 +135,7 @@ const ActionsForRecentMenu: React.FC<ActionsForRecentMenuProps> = ({
         e.preventDefault();
         setIsDropdownOpen(!isDropdownOpen);
       }}
-      className='p-0 absolute right-[5px]'
+      className='p-0 absolute right-1.5'
     >
       <DropdownMenu open={isDropdownOpen} onOpenChange={setIsDropdownOpen}>
         <DropdownMenuTrigger>

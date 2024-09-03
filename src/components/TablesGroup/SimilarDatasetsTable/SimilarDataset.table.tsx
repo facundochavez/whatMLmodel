@@ -56,7 +56,7 @@ const SimilarDatasetTable = <TData, TValue>({
                 {row.getVisibleCells().map((cell) => (
                   <TableCell
                     key={cell.id}
-                    className='text-center py-3 h-[50px]'
+                    className='text-center py-0 h-16'
                   >
                     {flexRender(cell.column.columnDef.cell, cell.getContext())}
                   </TableCell>
