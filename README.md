@@ -8,6 +8,7 @@
 
 - *Next.js*: A React framework for building server-side rendered applications.
 - *ShadCn*: A UI component library built on top of Radix UI for creating accessible and customizable components.
+- *Tailwind CSS*: A utility-first CSS framework for rapid UI development.
 - *Gemini*: Used for integrating generative AI functionalities.
 - *Prisma ORM*: Auto-generated and type-safe database client.
 - *PostgreSQL*: Object-relational database.
