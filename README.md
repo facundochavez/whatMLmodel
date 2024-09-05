@@ -2,6 +2,8 @@
 
 *whatMLmodel* is a web application designed to help data scientists and machine learning developers explore and experiment with machine learning models. It provides an easy way to analyze datasets and get recommendations for appropriate models based on your input. Whether you're studying machine learning or exploring new models, *whatMLmodel* offers a dashboard to document and analyze problems effectively.
 
+![wMLm capture](https://github.com/user-attachments/assets/95484d21-3e30-47a2-b7f5-9f8938feb26d)
+
 ## Technologies Used
 
 - *Next.js*: A React framework for building server-side rendered applications.
