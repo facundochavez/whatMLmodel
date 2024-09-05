@@ -7,6 +7,7 @@
 ## Technologies Used
 
 - *Next.js*: A React framework for building server-side rendered applications.
+- *TypeScript*: A strongly typed programming language that builds on JavaScript, adding static types to enhance code quality and maintainability.
 - *ShadCn*: A UI component library built on top of Radix UI for creating accessible and customizable components.
 - *Tailwind CSS*: A utility-first CSS framework for rapid UI development.
 - *Gemini*: Used for integrating generative AI functionalities.
