@@ -1,40 +1,87 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# whatMLmodel
 
-## Getting Started
+*whatMLmodel* is a web application designed to help data scientists and machine learning developers explore and experiment with machine learning models. It provides an easy way to analyze datasets and get recommendations for appropriate models based on your input. Whether you're studying machine learning or exploring new models, *whatMLmodel* offers a dashboard to document and analyze problems effectively.
 
-First, run the development server:
+## Technologies Used
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+- *Next.js*: A React framework for building server-side rendered applications.
+- *ShadCn*: A UI component library built on top of Radix UI for creating accessible and customizable components.
+- *Gemini*: Used for integrating generative AI functionalities.
+- *Prisma ORM*: Auto-generated and type-safe database client.
+- *PostgreSQL*: Object-relational database.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Contribution Guide
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+We welcome contributions to *whatMLmodel*! To contribute, please follow these steps:
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+1. *Fork the Repository*: Create a personal copy of the repository by forking it on GitHub.
+2. *Clone the Repository*: Clone your forked repository to your local machine.
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+    ```bash
+    git clone <https://github.com/your-username/whatMLmodel.git>
+    ```
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+3. *Install Dependencies*: Navigate to the project directory and install the required dependencies.
 
-## Learn More
+    ```bash
+    cd whatMLmodel
+    npm install
+    ```
 
-To learn more about Next.js, take a look at the following resources:
+4. *Create a .env File*: Create a .env file in the root directory and add the following information:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+    GOOGLE_API_KEY=Your_Google_API_Key
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+    You can obtain this API key from [Gemini](https://aistudio.google.com).
+5. *Code Standards*: Follow the coding standards inherited from ShadCn. Ensure your code adheres to these guidelines.
+6. *Commit Messages*: Use clear and descriptive commit messages. Follow the conventional commit style where applicable.
+7. *Pull Requests*: When submitting a pull request, ensure that your code is well-tested and follows the project's contribution guidelines. Describe your changes in detail in the PR description.
 
-## Deploy on Vercel
+## Installation and Setup
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+To run *whatMLmodel* locally, follow these steps:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+1. *Clone the Repository*:
+
+    ```bash
+    git clone <https://github.com/your-username/whatMLmodel.git>
+    ```
+
+2. *Navigate to the Project Directory*:
+
+    ```bash
+    cd whatMLmodel
+    ```
+
+3. *Install Dependencies*:
+
+    ```bash
+    npm install
+    ```
+
+4. *Create a .env File*: Add your Google API key in a .env file in the root directory:
+
+    GOOGLE_API_KEY=Your_Google_API_Key
+
+5. *Run the Application*:
+
+    ```bash
+    npm run dev
+    ```
+
+    Visit <http://localhost:3000/> in your browser to see the application running.
+
+## Usage
+
+Once the application is running, you can start by providing a simple description of your dataset and target value. The application will generate detailed fields and provide recommendations for machine learning models that best fit your problem.
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## Additional Information
+
+- For more information on contributing and project updates, please refer to the [GitHub repository](https://github.com/your-username/whatMLmodel).
+- If you encounter issues or have questions, open an issue on the GitHub repository or submit a pull request with your improvements.
+
+Thank you for contributing to *whatMLmodel*!
