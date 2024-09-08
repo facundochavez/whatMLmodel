@@ -2,10 +2,14 @@
 
 *whatMLmodel* is a web application designed to help data scientists and machine learning developers explore and experiment with machine learning models. It provides an easy way to analyze datasets and get recommendations for appropriate models based on your input. Whether you're studying machine learning or exploring new models, *whatMLmodel* offers a dashboard to document and analyze problems effectively.
 
+![wMLm capture](https://github.com/user-attachments/assets/95484d21-3e30-47a2-b7f5-9f8938feb26d)
+
 ## Technologies Used
 
 - *Next.js*: A React framework for building server-side rendered applications.
+- *TypeScript*: A strongly typed programming language that builds on JavaScript, adding static types to enhance code quality and maintainability.
 - *ShadCn*: A UI component library built on top of Radix UI for creating accessible and customizable components.
+- *Tailwind CSS*: A utility-first CSS framework for rapid UI development.
 - *Gemini*: Used for integrating generative AI functionalities.
 - *Prisma ORM*: Auto-generated and type-safe database client.
 - *PostgreSQL*: Object-relational database.
