@@ -1,6 +1,7 @@
-import { NextApiRequest, NextApiResponse } from 'next';
-import { generateDatasetParameters } from '@/services/geminiService';
-import { promptContext } from '@/prompts/promptContext';
+import { NextApiRequest, NextApiResponse } from "next";
+import { generateDatasetParameters } from "@/services/geminiService";
+import { promptContext } from "@/prompts/promptContext";
+import extractBlockWithBraces from "@/utils/extractBlockWithBraces";
 
 const createDatasetParameters = async (
   req: NextApiRequest,
@@ -8,24 +9,10 @@ const createDatasetParameters = async (
 ) => {
   try {
     const { modelDescriptionPrompt } = req.body;
-
     const prompt = promptContext + modelDescriptionPrompt.toString();
     const data = await generateDatasetParameters(prompt);
-
-    // Asegúrate de que el string `data` sea un JSON válido
-    let jsonString = data.trim();
-
-    // Si el string está rodeado de comillas simples, conviértelas en comillas dobles
-    if (jsonString.startsWith("'") && jsonString.endsWith("'")) {
-      jsonString = jsonString.slice(1, -1).replace(/'/g, '"');
-    } else if (jsonString.startsWith('```json') && jsonString.endsWith('```')) {
-      jsonString = jsonString.slice(6, -3);
-    }
-
-    console.log(jsonString);
-
-    // Parsear el JSON
-    const result = JSON.parse(jsonString);
+    const formatData = extractBlockWithBraces(data);
+    const result = JSON.parse(formatData ?? "");
     res.status(201).json({ success: true, result });
   } catch (error) {
     res.status(500).json({ success: false, error: (error as any).message });
