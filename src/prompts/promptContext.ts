@@ -2,7 +2,7 @@
 
 export const promptContext = `Basándote en un input que describe un dataset y su variable objetivo, genera el output siguiente en formato JSON:
 {
-  "name": [String: nombre genérico sin mencionar el tipo de problema (no decir si es clasifiación, regresión u otro)],
+  "name": [String: nombre genérico sin mencionar el tipo de problema (no decir si es clasificación, regresión u otro)],
   "alias": [String: mismo nombre en kebab-case]
   "datasetDescription": [String: descripción sencilla del dataset, nombrando algunos features, y la variable objetivo. Es una idea clara del input, adecuándolo si es necesario],
   "language": [String: idioma que reconoces del input. Debe ser su código de idioma estándar (ISO 639-1): "en", "es", "fr", etc.]
@@ -17,4 +17,4 @@ export const promptContext = `Basándote en un input que describe un dataset y s
 }
 
 Nota: puedes basarte en datasets de internet para ayudarte a completar los campos (sobre todo numberOfFeatures y datasetSize) si se tratan de problemas típicos y conocidos de machine learning.
-      Los keys se escribirán siempre en inglés y en camelCase, pero los valores serán escritos en el idioma que indique "lenguage".`
+      Los keys se escribirán siempre en inglés y en camelCase, pero los valores serán escritos en el idioma que indique "language".`
