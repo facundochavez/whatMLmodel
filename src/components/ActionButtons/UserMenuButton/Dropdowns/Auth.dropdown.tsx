@@ -24,7 +24,7 @@ const AuthDropdown: React.FC<AuthDropdownProps> = ({ children }) => {
             <DropdownMenuGroup>
               <DropdownMenuItem onClick={() => {}}>
                 <LogIn className='mr-2 h-4 w-4' />
-                <span className='font-semibold'>Log in</span>
+                <span >Log in</span>
               </DropdownMenuItem>
 
               <DropdownMenuItem onClick={() => {}}>

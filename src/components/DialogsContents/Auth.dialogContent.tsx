@@ -22,7 +22,7 @@ const AuthDialogContent: React.FC = () => {
       <DialogHeader>
         <DialogTitle>Get Started</DialogTitle>
         <DialogDescription>
-          Please log in or register to access the AI analysis features for free.
+          Please log in or register to access the AI features.
         </DialogDescription>
       </DialogHeader>
       <DialogClose asChild>

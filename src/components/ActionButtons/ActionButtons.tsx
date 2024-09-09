@@ -1,34 +1,49 @@
-import { Button } from '@/components/ui/button';
-import { Github, Share2 } from 'lucide-react';
+import { useState, useEffect } from 'react';
+
 import ModeToggle from './ModeToggle/ModeToggle';
 import UserMenuButton from './UserMenuButton/UserMenuButton';
+import ShareButton from './ShareButton/ShareButton';
+import GitHubLink from './GitHubLink/GitHubLink';
+import UserSheet from './UserSheet/UserSheet';
+
+import { Dialog } from '@/components/ui/dialog';
+import { AlertDialog } from '@/components/ui/alert-dialog';
+import AuthDialogContent from '@/components/DialogsContents/Auth.dialogContent';
+import ConfirmLogoutDialogContent from '../DialogsContents/ConfirmLogout.dialogContent';
+import ConfirmDeleteDialogContent from '../DialogsContents/ConfirmDelete.dialogContent';
+import { Sheet } from '@/components/ui/sheet';
 
 const ActionButtons: React.FC = () => {
-  function shareApp() {
-    navigator.share({
-      title: 'whatMLmodel appication',
-      url: 'https://whatmlmodel.vercel.app/',
-    });
-  }
+  const [isLoggedIn, setIsLoggedIn] = useState(true);
+  const [isMounted, setIsMounted] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    setIsMounted(true);
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 640);
+    };
+    handleResize();
+
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  if (!isMounted) return null;
+
   return (
-    <>
-      <Button
-        onClick={() =>
-          window.open('https://github.com/facundochavez/whatMLmodel', '_blank')
-        }
-        variant='secondary'
-        size='icon'
-      >
-        <Github className='h-5 w-5' />
-        <span className='sr-only'>Link to GitHub repository</span>
-      </Button>
-      <Button onClick={shareApp} variant='secondary' size='icon'>
-        <Share2 className='h-5 w-5' />
-        <span className='sr-only'>Share</span>
-      </Button>
-      <ModeToggle />
-      <UserMenuButton />
-    </>
+    <Sheet>
+      {isMobile ? (
+        <UserSheet isLoggedIn={isLoggedIn} />
+      ) : (
+        <aside className='flex gap-2'>
+          <GitHubLink />
+          <ShareButton />
+          <ModeToggle />
+          <UserMenuButton isLoggedIn={isLoggedIn} />
+        </aside>
+      )}
+    </Sheet>
   );
 };
 

@@ -9,7 +9,7 @@ const Hero = () => {
       className={`w-full flex flex-col items-center max-w-[700px] py-5 sm:py-16`}
     >
       <h2 className='text-3xl text-center text-muted-foreground font-semibold sm:text-4xl'>
-        Use IA to find the machine learning model that best fits your data
+        Use AI to find the machine learning model that best fits your data
       </h2>
       <div className='w-full flex gap-2 items-center flex-wrap justify-center mt-6'>
         <p className='text-[13px]'>Try with:</p>

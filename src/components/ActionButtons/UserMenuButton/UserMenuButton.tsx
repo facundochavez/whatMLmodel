@@ -4,9 +4,7 @@ import { useState } from 'react';
 import AuthDropdown from './Dropdowns/Auth.dropdown';
 import UserDropdown from './Dropdowns/User.dropdown';
 
-const UserMenuButton: React.FC = () => {
-  const [isLoggedIn, setIsLoggedIn] = useState(true);
-
+const UserMenuButton: React.FC<{ isLoggedIn: boolean }> = ({ isLoggedIn }) => {
   const trigger = (
     <Button variant='outline' size='icon'>
       <UserRound className='h-5 w-5 rotate-0 scale-100 transition-all' />
