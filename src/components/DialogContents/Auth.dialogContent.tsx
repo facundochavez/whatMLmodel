@@ -7,15 +7,16 @@ import {
   DialogTitle,
 } from '@/components/ui/dialog';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import LoginForm from '../Forms/Login.form';
-import RegisterForm from '../Forms/Register.form';
+import LoginForm from '@/components/Forms/Login.form';
+import RegisterForm from '@/components/Forms/Register.form';
 import Image from 'next/image';
 import { Separator } from '@/components/ui/separator';
 import { useState } from 'react';
-import { DialogClose } from '@radix-ui/react-dialog';
+import { DialogClose } from '@/components/ui/dialog';
+import { useGlobalContext } from '@/context/global.context';
 
 const AuthDialogContent: React.FC = () => {
-  const [isRegistering, setIsRegistering] = useState(false);
+  const { isRegistering, setIsRegistering } = useGlobalContext();
 
   return (
     <DialogContent>

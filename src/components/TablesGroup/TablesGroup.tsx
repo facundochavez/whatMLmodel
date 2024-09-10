@@ -1,6 +1,6 @@
 import ModelsTable from './ModelsTable/Models.table';
 import getModels from '@/utils/getModel';
-import { Model, ProblemType } from './types';
+import { Model } from './types';
 import columnsModels from './ModelsTable/columnsModels';
 
 import SimilarDatasetTable from './SimilarDatasetsTable/SimilarDataset.table';
@@ -16,11 +16,10 @@ import { useState } from 'react';
 import getPerformanceMetrics from '@/utils/getPerformanceMetrics';
 import DatasetSelector from './DatasetSelector/DatasetSelector';
 import { Dialog } from '@/components/ui/dialog';
-import SimilarDatasetDialogContent from '../DialogsContents/SimilarDataset.dialogContent';
+import SimilarDatasetDialogContent from '../DialogContents/SimilarDataset.dialogContent';
 
 const TablesGroup: React.FC<TablesProps> = ({ type, tables }) => {
   const [selectedDataset, setSelectedDataset] = useState<string>('0');
-  const [action, setAction] = useState('view-dataset');
 
   const models: Model[] = getModels({
     type: type,

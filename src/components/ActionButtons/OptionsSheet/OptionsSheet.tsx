@@ -1,46 +1,39 @@
 import { Button } from '@/components/ui/button';
-import { UserRound } from 'lucide-react';
-import { useState } from 'react';
-
 import {
   Sheet,
   SheetTrigger,
   SheetContent,
   SheetHeader,
-  SheetTitle,
-  SheetDescription,
-  SheetFooter,
-  SheetClose,
 } from '@/components/ui/sheet';
 
 import { Menu } from 'lucide-react';
 import GitHubLink from '../GitHubLink/GitHubLink';
 import ShareButton from '../ShareButton/ShareButton';
 import ModeToggle from '../ModeToggle/ModeToggle';
-import AuthContent from './Contents/Auth.content';
-import UserContent from './Contents/User.content';
+import AuthSheetContent from './SheetContents/Auth.sheetContent';
+import UserSheetContent from './SheetContents/User.sheetContent';
 
-const UserSheet: React.FC<{ isLoggedIn: boolean }> = ({ isLoggedIn }) => {
+const OptionsSheet: React.FC<{ isLoggedIn: boolean }> = ({ isLoggedIn }) => {
   return (
-    <>
-      <SheetTrigger >
+    <Sheet>
+      <SheetTrigger>
         <Button variant='outline' size='icon'>
           <Menu className='h-5 w-5' />
           <span className='sr-only'>Open menu</span>
         </Button>
       </SheetTrigger>
-      <SheetContent className='flex flex-col'>
+      <SheetContent className='flex flex-col h-full max-w-[350px]'>
         <SheetHeader>
-          <div className='flex gap-2 justify-end'>
+          <div className='flex gap-2 justify-end flex-shrink-0'>
             <GitHubLink />
             <ShareButton />
             <ModeToggle />
           </div>
         </SheetHeader>
-        {!isLoggedIn ? <AuthContent /> : <UserContent />}
+        {!isLoggedIn ? <AuthSheetContent /> : <UserSheetContent />}
       </SheetContent>
-      </>
+    </Sheet>
   );
 };
 
-export default UserSheet;
+export default OptionsSheet;

@@ -1,16 +1,13 @@
-import { Dialog, DialogTrigger } from '@/components/ui/dialog';
 import { DatasetSelectorProps } from '../types';
 import {
   Select,
   SelectContent,
   SelectGroup,
   SelectItem,
-  SelectLabel,
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
-import { Button } from '@/components/ui/button';
-import { Eye, ChevronRight } from 'lucide-react';
+
 import ViewButton from './ViewButton/ViewButton';
 
 const DatasetSelector: React.FC<DatasetSelectorProps> = ({

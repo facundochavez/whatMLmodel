@@ -4,15 +4,12 @@ import { useTheme } from 'next-themes';
 import { Model, ProblemType } from '../types';
 import {
   DropdownMenu,
-  DropdownMenuCheckboxItem,
   DropdownMenuContent,
   DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
 import { Button } from '@/components/ui/button';
-import { Code, CodeXml, MoreHorizontal, Sparkles } from 'lucide-react';
+import { CodeXml, MoreHorizontal, Sparkles } from 'lucide-react';
 
 import {
   Tooltip,
@@ -59,7 +56,10 @@ const columnsModels = (type: ProblemType): ColumnDef<Model>[] => [
                 </h2>
               </div>
             </TooltipTrigger>
-            <TooltipContent side='right' className='ml-11 flex flex-col items-start p-4'>
+            <TooltipContent
+              side='right'
+              className='ml-11 flex flex-col items-start p-4'
+            >
               <h2 className='mb-2'>{modelName}</h2>
               <ul className='w-full min-w-56 [&>li]:w-full [&>li]:text-left [&>li]:flex [&>li]:justify-between [&>li>label]:text-muted-foreground'>
                 <li>

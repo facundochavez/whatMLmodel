@@ -1,5 +1,3 @@
-import Image from 'next/image';
-import ActionButtons from '@/components/ActionButtons/ActionButtons';
 import tryExamplesData from '@/data/try-examples.data.json';
 import { Badge } from '@/components/ui/badge';
 

@@ -1,9 +1,7 @@
-'use client';
-
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
-
+import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import {
   Form,
@@ -15,18 +13,16 @@ import {
   FormMessage,
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
-import { useState } from 'react';
-import { DialogClose, DialogFooter } from '@/components/ui/dialog';
 import { Eye, EyeOff } from 'lucide-react';
-import { Checkbox } from '@/components/ui/checkbox';
+import { DialogClose, DialogFooter } from '@/components/ui/dialog';
 
-// Esquema de validación con zod
-const registerSchema = z
+// Esquema de validación con Zod
+const changePasswordSchema = z
   .object({
-    email: z.string().email({
-      message: 'Please enter a valid email address.',
+    currentPassword: z.string().min(8, {
+      message: 'The current password must have at least 8 characters.',
     }),
-    password: z
+    newPassword: z
       .string()
       .min(8, { message: 'Password must be at least 8 characters.' })
       .regex(/[a-z]/, {
@@ -39,69 +35,49 @@ const registerSchema = z
       .regex(/[^a-zA-Z0-9]/, {
         message: 'Password must include at least one special character.',
       }),
-    confirmPassword: z.string().min(8, {
+    confirmNewPassword: z.string().min(8, {
       message: 'Please confirm your password.',
     }),
-    termsAndConditions: z.boolean().refine((checked) => checked, {
-      message: 'You must agree to the terms and conditions.',
-    }),
   })
-  .refine((data) => data.password === data.confirmPassword, {
+  .refine((data) => data.newPassword === data.confirmNewPassword, {
+    message: "Passwords don't match.",
     path: ['confirmPassword'],
-    message: 'Passwords do not match.',
   });
 
-const RegisterForm: React.FC = () => {
-  const [showPassword, setShowPassword] = useState(false);
+const ChangePasswordForm: React.FC = () => {
+  const [showCurrentPassword, setShowCurrentPassword] = useState(false);
+  const [showNewPassword, setShowNewPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
-  // 1. Define tu formulario.
-  const form = useForm<z.infer<typeof registerSchema>>({
-    resolver: zodResolver(registerSchema),
+  const form = useForm<z.infer<typeof changePasswordSchema>>({
+    resolver: zodResolver(changePasswordSchema),
     defaultValues: {
-      email: '',
-      password: '',
-      confirmPassword: '',
-      termsAndConditions: false,
+      currentPassword: '',
+      newPassword: '',
+      confirmNewPassword: '',
     },
   });
 
-  // 2. Define un manejador de envío.
-  function onSubmit(values: z.infer<typeof registerSchema>) {
-    // Haz algo con los valores del formulario.
-    // ✅ Esto será seguro en cuanto a tipos y validado.
+  function handlePasswordChange(values: z.infer<typeof changePasswordSchema>) {
+    console.log('Password changed:', values);
   }
 
   return (
     <Form {...form}>
       <form
-        onSubmit={form.handleSubmit(onSubmit)}
-        className='flex flex-col gap-2'
+        onSubmit={form.handleSubmit(handlePasswordChange)}
+        className='flex flex-col gap-4'
       >
         <FormField
           control={form.control}
-          name='email'
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Email</FormLabel>
-              <FormControl>
-                <Input type='email' placeholder='you@example.com' {...field} />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-
-        <FormField
-          control={form.control}
-          name='password'
+          name='currentPassword'
           render={({ field }) => (
             <FormItem className='relative'>
-              <FormLabel>Password</FormLabel>
+              <FormLabel>Current Password</FormLabel>
               <FormControl>
                 <>
                   <Input
-                    type={showPassword ? 'text' : 'password'}
+                    type={showCurrentPassword ? 'text' : 'password'}
                     placeholder='•••••'
                     className='pr-10'
                     {...field}
@@ -111,9 +87,9 @@ const RegisterForm: React.FC = () => {
                     className='absolute right-0 top-6'
                     size='icon'
                     type='button'
-                    onClick={() => setShowPassword(!showPassword)}
+                    onClick={() => setShowCurrentPassword(!showCurrentPassword)}
                   >
-                    {showPassword ? (
+                    {showCurrentPassword ? (
                       <EyeOff className='h-5 w-5' />
                     ) : (
                       <Eye className='h-5 w-5' />
@@ -121,7 +97,6 @@ const RegisterForm: React.FC = () => {
                   </Button>
                 </>
               </FormControl>
-
               <FormMessage />
             </FormItem>
           )}
@@ -129,10 +104,44 @@ const RegisterForm: React.FC = () => {
 
         <FormField
           control={form.control}
-          name='confirmPassword'
+          name='newPassword'
           render={({ field }) => (
             <FormItem className='relative'>
-              <FormLabel>Confirm Password</FormLabel>
+              <FormLabel>New Password</FormLabel>
+              <FormControl>
+                <>
+                  <Input
+                    type={showNewPassword ? 'text' : 'password'}
+                    placeholder='•••••'
+                    className='pr-10'
+                    {...field}
+                  />
+                  <Button
+                    variant='link'
+                    className='absolute right-0 top-6'
+                    size='icon'
+                    type='button'
+                    onClick={() => setShowNewPassword(!showNewPassword)}
+                  >
+                    {showNewPassword ? (
+                      <EyeOff className='h-5 w-5' />
+                    ) : (
+                      <Eye className='h-5 w-5' />
+                    )}
+                  </Button>
+                </>
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+
+        <FormField
+          control={form.control}
+          name='confirmNewPassword'
+          render={({ field }) => (
+            <FormItem className='relative'>
+              <FormLabel>Confirm New Password</FormLabel>
               <FormControl>
                 <>
                   <Input
@@ -165,44 +174,19 @@ const RegisterForm: React.FC = () => {
           )}
         />
 
-        <FormField
-          control={form.control}
-          name='termsAndConditions'
-          render={({ field }) => (
-            <FormItem className='flex items-center space-y-0 gap-2'>
-              <FormControl>
-                <Checkbox></Checkbox>
-              </FormControl>
-              <FormLabel className='text-base text-muted-foreground'>
-                I agree to the{' '}
-                <a href='#' className='underline hover:text-foreground'>
-                  Terms and Conditions.
-                </a>
-              </FormLabel>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-
-        <DialogFooter>
+        <DialogFooter className='pt-2'>
           <DialogClose asChild>
             <Button variant='outline' type='button'>
               Cancel
             </Button>
           </DialogClose>
           <DialogClose asChild>
-            <Button type='submit'>Register</Button>
+            <Button type='submit'>Save</Button>
           </DialogClose>
-
-          {/*  <Button variant='outline' type='button'>
-            Cancel
-          </Button>
-
-          <Button type='submit'>Register</Button> */}
         </DialogFooter>
       </form>
     </Form>
   );
 };
 
-export default RegisterForm;
+export default ChangePasswordForm;

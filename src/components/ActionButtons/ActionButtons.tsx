@@ -1,49 +1,47 @@
 import { useState, useEffect } from 'react';
 
 import ModeToggle from './ModeToggle/ModeToggle';
-import UserMenuButton from './UserMenuButton/UserMenuButton';
+import OptionsMenuButton from './OptionsMenuButton/OptionsMenuButton';
 import ShareButton from './ShareButton/ShareButton';
 import GitHubLink from './GitHubLink/GitHubLink';
-import UserSheet from './UserSheet/UserSheet';
-
+import OptionsSheet from './OptionsSheet/OptionsSheet';
 import { Dialog } from '@/components/ui/dialog';
 import { AlertDialog } from '@/components/ui/alert-dialog';
-import AuthDialogContent from '@/components/DialogsContents/Auth.dialogContent';
-import ConfirmLogoutDialogContent from '../DialogsContents/ConfirmLogout.dialogContent';
-import ConfirmDeleteDialogContent from '../DialogsContents/ConfirmDelete.dialogContent';
-import { Sheet } from '@/components/ui/sheet';
+import AuthDialogContent from '@/components/DialogContents/Auth.dialogContent';
+import ConfirmLogoutDialogContent from '../DialogContents/ConfirmLogout.dialogContent';
+import AccountSettingsDialogContent from '../DialogContents/AccountSettings.dialogContent';
+import useIsMobile from '@/hooks/useIsMobile';
+import { useGlobalContext } from '@/context/global.context';
 
 const ActionButtons: React.FC = () => {
-  const [isLoggedIn, setIsLoggedIn] = useState(true);
+  const { showDialog, setShowDialog, isLoggedIn } = useGlobalContext();
+  const isMobile = useIsMobile();
   const [isMounted, setIsMounted] = useState(false);
-  const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
     setIsMounted(true);
-    const handleResize = () => {
-      setIsMobile(window.innerWidth < 640);
-    };
-    handleResize();
-
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
   }, []);
 
   if (!isMounted) return null;
 
   return (
-    <Sheet>
-      {isMobile ? (
-        <UserSheet isLoggedIn={isLoggedIn} />
-      ) : (
-        <aside className='flex gap-2'>
-          <GitHubLink />
-          <ShareButton />
-          <ModeToggle />
-          <UserMenuButton isLoggedIn={isLoggedIn} />
-        </aside>
-      )}
-    </Sheet>
+    <Dialog open={showDialog} onOpenChange={setShowDialog}>
+      <AlertDialog>
+        {isMobile ? (
+          <OptionsSheet isLoggedIn={isLoggedIn} />
+        ) : (
+          <aside className='flex gap-2'>
+            <GitHubLink />
+            <ShareButton />
+            <ModeToggle />
+            <OptionsMenuButton isLoggedIn={isLoggedIn} />
+          </aside>
+        )}
+        <ConfirmLogoutDialogContent />
+      </AlertDialog>
+
+      {!isLoggedIn ? <AuthDialogContent /> : <AccountSettingsDialogContent />}
+    </Dialog>
   );
 };
 

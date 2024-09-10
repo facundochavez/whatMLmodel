@@ -1,6 +1,5 @@
 'use client';
 import {
-  ColumnDef,
   flexRender,
   getCoreRowModel,
   useReactTable,
@@ -54,7 +53,10 @@ const ModelsTable = <TData, TValue>({
                 data-state={row.getIsSelected() && 'selected'}
               >
                 {row.getVisibleCells().map((cell) => (
-                  <TableCell key={cell.id} className='text-center py-0 px-0 h-16'>
+                  <TableCell
+                    key={cell.id}
+                    className='text-center py-0 px-0 h-16'
+                  >
                     {flexRender(cell.column.columnDef.cell, cell.getContext())}
                   </TableCell>
                 ))}
