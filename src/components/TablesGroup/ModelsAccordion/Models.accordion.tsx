@@ -50,7 +50,7 @@ const ModelsAccordion: React.FC<ModelsAccordionProps> = ({
                 </h2>
               </AccordionTrigger>
               <AccordionContent className='flex flex-col gap-2'>
-                <header className='p-4 bg-muted/30 my-1 rounded border'>
+                <header className='p-4 rounded border'>
                   <ul className='w-full [&>li]:w-full [&>li]:text-left [&>li]:flex [&>li]:justify-between [&>li>label]:text-muted-foreground'>
                     <li>
                       <label>Training time</label>
@@ -71,7 +71,7 @@ const ModelsAccordion: React.FC<ModelsAccordionProps> = ({
                     similarDatasets={similarDatasets}
                     setSelectedDataset={setSelectedDataset}
                   />
-                  <ul className='w-full p-4 bg-background rounded border [&>li]:w-full [&>li]:text-left [&>li]:flex [&>li]:justify-between [&>li>label]:text-muted-foreground'>
+                  <ul className='w-full p-4 bg-muted/30 rounded border [&>li]:w-full [&>li]:text-left [&>li]:flex [&>li]:justify-between [&>li>label]:text-muted-foreground'>
                     {columnsPerformanceMetrics.map(
                       (
                         metric: {
@@ -95,7 +95,7 @@ const ModelsAccordion: React.FC<ModelsAccordionProps> = ({
                 <footer className='flex flex-col gap-2'>
                   <Dialog>
                     <DialogTrigger asChild>
-                      <Button variant='outline'>
+                      <Button variant='secondary' >
                         <CodeXml className='mr-2 h-4 w-4' />
                         <span>Similar dataset code</span>
                       </Button>
@@ -104,7 +104,7 @@ const ModelsAccordion: React.FC<ModelsAccordionProps> = ({
                   </Dialog>
                   <Dialog>
                     <DialogTrigger asChild>
-                      <Button>
+                      <Button >
                         <Sparkles className='mr-2 h-4 w-4' />
                         <span>Generate code</span>
                       </Button>
