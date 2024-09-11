@@ -14,7 +14,9 @@ import {
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 import { Eye, EyeOff } from 'lucide-react';
-import { DialogClose, DialogFooter } from '@/components/ui/dialog';
+import { Dialog, DialogClose, DialogFooter } from '@/components/ui/dialog';
+import { DialogTrigger } from '@radix-ui/react-dialog';
+import ResetPasswordDialogContent from '../DialogContents/ResetPassword.dialogContent';
 
 // Esquema de validación con Zod
 const changePasswordSchema = z
@@ -59,7 +61,7 @@ const ChangePasswordForm: React.FC = () => {
   });
 
   function handlePasswordChange(values: z.infer<typeof changePasswordSchema>) {
-    console.log('Password changed:', values);
+    /* console.log('Password changed:', values); */
   }
 
   return (
@@ -101,6 +103,20 @@ const ChangePasswordForm: React.FC = () => {
             </FormItem>
           )}
         />
+
+        <Dialog >
+          <DialogTrigger asChild>
+            <Button
+              type='button'
+              variant='link'
+              size='sm'
+              className='self-end px-1 -my-3'
+            >
+              Forgot password?
+            </Button>
+          </DialogTrigger>
+          <ResetPasswordDialogContent />
+        </Dialog>
 
         <FormField
           control={form.control}

@@ -9,15 +9,23 @@ import {
 } from '@/components/ui/select';
 
 import ViewButton from './ViewButton/ViewButton';
+import { useGlobalContext } from '@/context/global.context';
 
 const DatasetSelector: React.FC<DatasetSelectorProps> = ({
   similarDatasets,
   setSelectedDataset,
 }) => {
+  const { isMobile } = useGlobalContext();
+
   return (
-    <header className='flex flex-col gap-x-3 gap-y-1 pl-[370px] lg:flex-row lg:items-center'>
-      <h2 className='min-w-max'>Similar dataset:</h2>
-      <div className='flex gap-3 items-center w-full'>
+    <header
+      className={
+        `flex flex-col gap-x-3 gap-y-1 lg:flex-row lg:items-center` +
+        (isMobile ? '' : ' pl-[370px]')
+      }
+    >
+      <h2 className='min-w-max text-base'>Similar dataset:</h2>
+      <div className='flex gap-2 sm:gap-3 items-center w-full'>
         <Select
           defaultValue='0'
           onValueChange={(value) => setSelectedDataset(value)}

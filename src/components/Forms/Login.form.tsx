@@ -15,8 +15,9 @@ import {
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 import { useState } from 'react';
-import { DialogClose, DialogFooter } from '@/components/ui/dialog';
+import { Dialog, DialogClose, DialogFooter, DialogTrigger } from '@/components/ui/dialog';
 import { Eye, EyeOff } from 'lucide-react';
+import ResetPasswordDialogContent from '@/components/DialogContents/ResetPassword.dialogContent';
 
 // Esquema de validación con zod
 const loginSchema = z.object({
@@ -98,14 +99,19 @@ const LoginForm: React.FC = () => {
           )}
         />
 
-        <Button
-          type='button'
-          variant='link'
-          size='sm'
-          className='self-end px-1'
-        >
-          Forgot password?
-        </Button>
+        <Dialog>
+          <DialogTrigger asChild>
+            <Button
+              type='button'
+              variant='link'
+              size='sm'
+              className='self-end px-1'
+            >
+              Forgot password?
+            </Button>
+          </DialogTrigger>
+          <ResetPasswordDialogContent />
+        </Dialog>
 
         <DialogFooter className='pt-2'>
           <DialogClose asChild>

@@ -58,6 +58,14 @@ export type DatasetSelectorProps = {
   setSelectedDataset: (value: string) => void;
 };
 
+export type ModelsAccordionProps = {
+  models: Model[];
+  similarDatasets: SimilarDataset[];
+  performanceMetrics: PerformanceMetrics;
+  columnsPerformanceMetrics: Record<string, any>;
+  setSelectedDataset: (value: string) => void;
+};
+
 // PERFORMANCE METRICS:
 
 export type Performance = {

@@ -17,6 +17,10 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from '@/components/ui/tooltip';
+import { Dialog, DialogTrigger } from '@/components/ui/dialog';
+import SimilarDatasetDialogContent from '@/components/DialogContents/SimilarDataset.dialogContent';
+import { useState } from 'react';
+import GenerateCodeDialogContent from '@/components/DialogContents/GenerateCode.dialogContent';
 
 function kebabToTitleCase(kebabStr: string): string {
   return kebabStr
@@ -34,14 +38,20 @@ const columnsModels = (type: ProblemType): ColumnDef<Model>[] => [
       );
     },
     cell: ({ row }) => {
+      const [showTooltip, setShowTooltip] = useState(false);
       const modelName: string = row.original.name;
       const icon: number = row.original.icon;
       const { theme } = useTheme();
 
       return (
         <TooltipProvider disableHoverableContent>
-          <Tooltip delayDuration={0}>
-            <TooltipTrigger asChild>
+          <Tooltip delayDuration={0} open={showTooltip}>
+            <TooltipTrigger
+              asChild
+              onMouseEnter={() => setShowTooltip(true)}
+              onMouseLeave={() => setShowTooltip(false)}
+              onClick={() => setShowTooltip(!showTooltip)}
+            >
               <div className='flex items-center gap-5 p-4 min-w-max'>
                 <Image
                   src={`./models-icons/model-icon-${icon}.svg`}
@@ -85,27 +95,41 @@ const columnsModels = (type: ProblemType): ColumnDef<Model>[] => [
     id: 'actions',
     enableHiding: false,
     cell: ({ row }) => {
+      const [isGenerating, setIsGenerating] = useState<boolean>(true);
       const payment = row.original;
 
       return (
-        <DropdownMenu>
-          <DropdownMenuTrigger asChild className='mr-4'>
-            <Button variant='ghost' className='h-8 w-8 p-0'>
-              <span className='sr-only'>Open menu</span>
-              <MoreHorizontal className='h-4 w-4' />
-            </Button>
-          </DropdownMenuTrigger>
-          <DropdownMenuContent align='center' className='text-base'>
-            <DropdownMenuItem>
-              <Sparkles className='mr-2 h-4 w-4' />
-              <span className='text-base'>Generate code</span>
-            </DropdownMenuItem>
-            <DropdownMenuItem>
-              <CodeXml className='mr-2 h-4 w-4' />
-              <span className='text-base pr-1'>Similar dataset code</span>
-            </DropdownMenuItem>
-          </DropdownMenuContent>
-        </DropdownMenu>
+        <Dialog>
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild className='mr-4'>
+              <Button variant='ghost' className='h-8 w-8 p-0'>
+                <span className='sr-only'>Open menu</span>
+                <MoreHorizontal className='h-4 w-4' />
+              </Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align='center' className='text-base'>
+              <DialogTrigger asChild onClick={() => setIsGenerating(false)}>
+                <DropdownMenuItem>
+                  <CodeXml className='mr-2 h-4 w-4' />
+                  <span className='text-base'>Similar dataset code</span>
+                </DropdownMenuItem>
+              </DialogTrigger>
+              
+              <DialogTrigger asChild onClick={() => setIsGenerating(true)}>
+                <DropdownMenuItem>
+                  <Sparkles className='mr-2 h-4 w-4' />
+                  <span className='text-base'>Generate code</span>
+                </DropdownMenuItem>
+              </DialogTrigger>
+            </DropdownMenuContent>
+          </DropdownMenu>
+
+          {isGenerating ? (
+            <GenerateCodeDialogContent />
+          ) : (
+            <SimilarDatasetDialogContent />
+          )}
+        </Dialog>
       );
     },
   },

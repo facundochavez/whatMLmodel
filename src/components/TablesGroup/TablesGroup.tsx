@@ -17,8 +17,12 @@ import getPerformanceMetrics from '@/utils/getPerformanceMetrics';
 import DatasetSelector from './DatasetSelector/DatasetSelector';
 import { Dialog } from '@/components/ui/dialog';
 import SimilarDatasetDialogContent from '../DialogContents/SimilarDataset.dialogContent';
+import { useGlobalContext } from '@/context/global.context';
+import ModelsAccordion from './ModelsAccordion/Models.accordion';
 
 const TablesGroup: React.FC<TablesProps> = ({ type, tables }) => {
+  const { isMobile } = useGlobalContext();
+
   const [selectedDataset, setSelectedDataset] = useState<string>('0');
 
   const models: Model[] = getModels({
@@ -43,24 +47,29 @@ const TablesGroup: React.FC<TablesProps> = ({ type, tables }) => {
     dimensionalityReduction: columnsDimensionalityReduction,
   };
 
-  return (
-    <Dialog>
-      <div className='flex flex-col gap-3 my-8'>
-        <DatasetSelector
-          similarDatasets={similarDatasets}
-          setSelectedDataset={setSelectedDataset}
+  return isMobile ? (
+    <ModelsAccordion
+      models={models}
+      similarDatasets={similarDatasets}
+      performanceMetrics={performanceMetrics}
+      columnsPerformanceMetrics={columnsPerformanceMetrics[type]}
+      setSelectedDataset={setSelectedDataset}
+    />
+  ) : (
+    <div className='flex flex-col gap-3 my-8'>
+      <DatasetSelector
+        similarDatasets={similarDatasets}
+        setSelectedDataset={setSelectedDataset}
+      />
+      <div className='flex gap-4'>
+        <ModelsTable columns={columnsModels(type)} data={models} />
+        <SimilarDatasetTable
+          columns={columnsPerformanceMetrics[type]}
+          // @ts-ignore
+          data={performanceMetrics}
         />
-        <div className='flex gap-4'>
-          <ModelsTable columns={columnsModels(type)} data={models} />
-          <SimilarDatasetTable
-            columns={columnsPerformanceMetrics[type]}
-            // @ts-ignore
-            data={performanceMetrics}
-          />
-        </div>
       </div>
-      <SimilarDatasetDialogContent />
-    </Dialog>
+    </div>
   );
 };
 

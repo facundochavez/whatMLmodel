@@ -16,7 +16,8 @@ interface GlobalProviderProps {
 }
 
 export const GlobalProvider = ({ children }: GlobalProviderProps) => {
-  const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
+  const [isLoggedIn, setIsLoggedIn] = useState<boolean>(true);
+
   const [isMobile, setIsMobile] = useState<boolean>(false);
   const [showDialog, setShowDialog] = useState<boolean>(false);
   const [isRegistering, setIsRegistering] = useState<boolean>(false);

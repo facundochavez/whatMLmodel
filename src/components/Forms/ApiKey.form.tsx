@@ -39,14 +39,14 @@ const ApiKeyForm: React.FC = () => {
   // Función de manejo del submit
   function handleAPIkey(values: z.infer<typeof apiKeySchema>) {
     // Mostrar el valor de la API key en la consola
-    console.log('API Key:', values.apiKey);
+    /* console.log('API Key:', values.apiKey); */
   }
 
   return (
     <Form {...form}>
       <form
         onSubmit={form.handleSubmit(handleAPIkey)}
-        className='flex flex-col gap-2'
+        className='flex flex-col gap-2 w-full'
       >
         <FormField
           control={form.control}
