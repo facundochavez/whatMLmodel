@@ -60,6 +60,7 @@ export type DatasetSelectorProps = {
 
 export type ModelsAccordionProps = {
   models: Model[];
+  type: ProblemType;
   similarDatasets: SimilarDataset[];
   performanceMetrics: PerformanceMetrics;
   columnsPerformanceMetrics: Record<string, any>;
@@ -80,6 +81,13 @@ export type PerformanceMetrics =
   | ClassificationMetrics[]
   | ClusteringMetrics[]
   | DimensionalityReductionMetrics[];
+
+export type PerformanceMetricsByType = {
+  regression: RegressionMetrics[];
+  classification: ClassificationMetrics[];
+  clustering: ClusteringMetrics[];
+  dimensionalityReduction: DimensionalityReductionMetrics[];
+};
 
 export type PerformanceMetricsList = {
   regression: (keyof RegressionMetrics)[];
@@ -128,3 +136,27 @@ export type DimensionalityReductionMetrics = {
   coherenceScore: number | string;
   isolationForestAnomalyDetection: number | string;
 };
+
+export type RegressionMetricsKeys = keyof RegressionMetrics;
+export type ClassificationMetricsKeys = keyof ClassificationMetrics;
+export type ClusteringMetricsKeys = keyof ClusteringMetrics;
+export type DimensionalityReductionMetricsKeys =
+  keyof DimensionalityReductionMetrics;
+
+export type MetricsKeysByProblemType<T extends ProblemType> =
+  T extends 'regression'
+    ? RegressionMetricsKeys
+    : T extends 'classification'
+    ? ClassificationMetricsKeys
+    : T extends 'clustering'
+    ? ClusteringMetricsKeys
+    : T extends 'dimensionalityReduction'
+    ? DimensionalityReductionMetricsKeys
+    : never;
+
+    export type MetricsByModelType<T extends ProblemType> = 
+  T extends 'regression' ? RegressionMetrics[] :
+  T extends 'classification' ? ClassificationMetrics[] :
+  T extends 'clustering' ? ClusteringMetrics[] :
+  T extends 'dimensionalityReduction' ? DimensionalityReductionMetrics[] :
+  never;

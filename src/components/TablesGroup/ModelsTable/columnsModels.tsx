@@ -21,20 +21,16 @@ import { Dialog, DialogTrigger } from '@/components/ui/dialog';
 import SimilarDatasetDialogContent from '@/components/DialogContents/SimilarDataset.dialogContent';
 import { useState } from 'react';
 import GenerateCodeDialogContent from '@/components/DialogContents/GenerateCode.dialogContent';
+import kebabToTitleCase from '@/utils/kebabToTitleCase';
 
-function kebabToTitleCase(kebabStr: string): string {
-  return kebabStr
-    .split('-')
-    .map((word) => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
-    .join(' ');
-}
+
 
 const columnsModels = (type: ProblemType): ColumnDef<Model>[] => [
   {
     accessorKey: 'name',
     header: () => {
       return (
-        <div className='text-left ml-1'>{kebabToTitleCase(type)} Models</div>
+        <h3 className='text-left ml-1'>{kebabToTitleCase(type)} Models</h3>
       );
     },
     cell: ({ row }) => {

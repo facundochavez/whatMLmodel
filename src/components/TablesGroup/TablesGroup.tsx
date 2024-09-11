@@ -15,8 +15,6 @@ import { TablesProps } from './types';
 import { useState } from 'react';
 import getPerformanceMetrics from '@/utils/getPerformanceMetrics';
 import DatasetSelector from './DatasetSelector/DatasetSelector';
-import { Dialog } from '@/components/ui/dialog';
-import SimilarDatasetDialogContent from '../DialogContents/SimilarDataset.dialogContent';
 import { useGlobalContext } from '@/context/global.context';
 import ModelsAccordion from './ModelsAccordion/Models.accordion';
 
@@ -50,6 +48,7 @@ const TablesGroup: React.FC<TablesProps> = ({ type, tables }) => {
   return isMobile ? (
     <ModelsAccordion
       models={models}
+      type={type}
       similarDatasets={similarDatasets}
       performanceMetrics={performanceMetrics}
       columnsPerformanceMetrics={columnsPerformanceMetrics[type]}

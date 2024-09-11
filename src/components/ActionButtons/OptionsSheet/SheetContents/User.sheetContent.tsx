@@ -49,19 +49,21 @@ const UserSheetContent: React.FC = () => {
           <ul>
             {infoResponsesData.slice(0, 3).map((item: recentResponses) => {
               return (
-                <li className='relative h-8' key={item.output.alias}>
-                  <Button
-                    variant='ghost'
-                    className='flex w-full text-left h-full px-0 pr-8 font-normal'
-                  >
-                    <span className='w-full overflow-hidden text-ellipsis whitespace-nowrap'>
-                      {item.output.name}
-                    </span>
-                  </Button>
-                  <div className='absolute right-0 top-0'>
-                    <AnalysisActionsDropdown isFavorite />
-                  </div>
-                </li>
+                <SheetClose asChild>
+                  <li className='relative h-8' key={item.output.alias}>
+                    <Button
+                      variant='ghost'
+                      className='flex w-full text-left h-full px-0 pr-8 font-normal'
+                    >
+                      <span className='w-full overflow-hidden text-ellipsis whitespace-nowrap'>
+                        {item.output.name}
+                      </span>
+                    </Button>
+                    <div className='absolute right-0 top-0'>
+                      <AnalysisActionsDropdown isFavorite />
+                    </div>
+                  </li>
+                </SheetClose>
               );
             })}
           </ul>
