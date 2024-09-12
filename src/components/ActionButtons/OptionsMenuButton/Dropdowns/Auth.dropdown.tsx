@@ -16,13 +16,13 @@ const AuthDropdown: React.FC = () => {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button variant='outline' size='icon'>
+        <Button variant='outline' size='icon' className='bg-transparent'>
           <UserRound className='h-5 w-5' />
           <span className='sr-only'>Toggle menu</span>
         </Button>
       </DropdownMenuTrigger>
 
-      <DropdownMenuContent align='end' className='min-w-36'>
+      <DropdownMenuContent align='end' className='min-w-36 z-[150]'>
         <DialogTrigger className='w-full'>
           <DropdownMenuGroup>
             <DropdownMenuItem

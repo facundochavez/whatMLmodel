@@ -17,12 +17,12 @@ const OptionsSheet: React.FC<{ isLoggedIn: boolean }> = ({ isLoggedIn }) => {
   return (
     <Sheet>
       <SheetTrigger>
-        <Button variant='outline' size='icon'>
+        <Button variant='outline' size='icon' className='bg-transparent'>
           <Menu className='h-5 w-5' />
           <span className='sr-only'>Open menu</span>
         </Button>
       </SheetTrigger>
-      <SheetContent className='flex flex-col h-full max-w-[350px]'>
+      <SheetContent className='flex flex-col h-full max-w-[350px] z-[150]'>
         <SheetHeader>
           <div className='flex gap-2 justify-end flex-shrink-0'>
             <GitHubLink />

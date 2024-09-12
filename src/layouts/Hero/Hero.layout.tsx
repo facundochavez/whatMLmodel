@@ -4,7 +4,7 @@ import { Badge } from '@/components/ui/badge';
 const Hero = () => {
   return (
     <section
-      className={`w-full flex flex-col items-center max-w-[700px] pt-6 pb-12 sm:pt-12 sm:pb-16`}
+      className={`w-full flex flex-col items-center max-w-[700px] pt-6 pb-12 sm:pt-12 sm:pb-16 mt-[90px]`}
     >
       <h2 className='text-3xl text-center text-muted-foreground font-semibold sm:text-4xl'>
         Use AI to find the machine learning model that best fits your data

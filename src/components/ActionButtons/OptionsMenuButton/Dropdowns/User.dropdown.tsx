@@ -28,13 +28,13 @@ const UserDropdown: React.FC = () => {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button variant='outline' size='icon'>
+        <Button variant='outline' size='icon' className='bg-transparent'>
           <Menu className='h-5 w-5' />
           <span className='sr-only'>Toggle menu</span>
         </Button>
       </DropdownMenuTrigger>
 
-      <DropdownMenuContent align='end' className='min-w-36' loop>
+      <DropdownMenuContent align='end' className='min-w-36 z-[150]' loop>
         <DialogTrigger asChild>
           <DropdownMenuItem className='font-semibold'>
             <UserRound className='mr-2 h-4 w-4' />
@@ -53,7 +53,7 @@ const UserDropdown: React.FC = () => {
         {/* FAVORITES LIST */}
 
         <AlertDialog>
-          <DropdownMenuLabel className='flex items-center text-muted-foreground font-semibold'>
+          <DropdownMenuLabel className='flex items-center font-semibold'>
             <Star className='h-4 w-4  mr-2' />
             <span>Favorites</span>
           </DropdownMenuLabel>
@@ -83,7 +83,7 @@ const UserDropdown: React.FC = () => {
 
           {/* RECENT LIST */}
 
-          <DropdownMenuLabel className='flex items-center text-muted-foreground font-semibold'>
+          <DropdownMenuLabel className='flex items-center font-semibold'>
             <History className='h-4 w-4 mr-2' />
             <span>Recent</span>
           </DropdownMenuLabel>

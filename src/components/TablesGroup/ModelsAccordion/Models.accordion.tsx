@@ -14,6 +14,7 @@ import { Dialog, DialogTrigger } from '@/components/ui/dialog';
 import GenerateCodeDialogContent from '@/components/DialogContents/GenerateCode.dialogContent';
 import SimilarDatasetDialogContent from '@/components/DialogContents/SimilarDataset.dialogContent';
 import kebabToTitleCase from '@/utils/kebabToTitleCase';
+import { Separator } from '@/components/ui/separator';
 
 const ModelsAccordion: React.FC<ModelsAccordionProps> = ({
   models,
@@ -51,17 +52,21 @@ const ModelsAccordion: React.FC<ModelsAccordionProps> = ({
               </AccordionTrigger>
               <AccordionContent className='flex flex-col gap-2'>
                 <header className='p-4 rounded border'>
-                  <ul className='w-full [&>li]:w-full [&>li]:text-left [&>li]:flex [&>li]:justify-between [&>li>label]:text-muted-foreground'>
+                  <ul className='w-full [&>li]:w-full [&>li]:text-left [&>li]:flex [&>li]:justify-between [&>li]:items-center [&>li]:gap-3 [&>li>label]:text-muted-foreground'>
                     <li>
                       <label>Training time</label>
+                      <Separator className='hidden xs:flex flex-grow w-0'></Separator>
                       <span>{model.metrics.trainingTime}</span>
                     </li>
                     <li>
                       <label>Prediction speed</label>
+                      <Separator className='hidden xs:flex flex-grow w-0'></Separator>
+
                       <span>{model.metrics.predictionSpeed}</span>
                     </li>
                     <li>
                       <label>Memory usage</label>
+                      <Separator className='hidden xs:flex flex-grow w-0'></Separator>
                       <span>{model.metrics.memoryUsage}</span>
                     </li>
                   </ul>
@@ -71,7 +76,7 @@ const ModelsAccordion: React.FC<ModelsAccordionProps> = ({
                     similarDatasets={similarDatasets}
                     setSelectedDataset={setSelectedDataset}
                   />
-                  <ul className='w-full p-4 bg-muted/30 rounded border [&>li]:w-full [&>li]:text-left [&>li]:flex [&>li]:justify-between [&>li>label]:text-muted-foreground'>
+                  <ul className='w-full p-4 bg-muted/30 rounded border [&>li]:w-full [&>li]:text-left [&>li]:flex [&>li]:justify-between [&>li]:items-center [&>li]:gap-3 [&>li>label]:text-muted-foreground'>
                     {columnsPerformanceMetrics.map(
                       (
                         metric: {
@@ -85,6 +90,7 @@ const ModelsAccordion: React.FC<ModelsAccordionProps> = ({
                         return (
                           <li key={index}>
                             <label>{metric.header}</label>
+                            <Separator className='hidden xs:flex flex-grow w-0'></Separator>
                             <span>{value}</span>
                           </li>
                         );
@@ -95,7 +101,7 @@ const ModelsAccordion: React.FC<ModelsAccordionProps> = ({
                 <footer className='flex flex-col gap-2'>
                   <Dialog>
                     <DialogTrigger asChild>
-                      <Button variant='secondary' >
+                      <Button variant='secondary'>
                         <CodeXml className='mr-2 h-4 w-4' />
                         <span>Similar dataset code</span>
                       </Button>
@@ -104,7 +110,7 @@ const ModelsAccordion: React.FC<ModelsAccordionProps> = ({
                   </Dialog>
                   <Dialog>
                     <DialogTrigger asChild>
-                      <Button >
+                      <Button>
                         <Sparkles className='mr-2 h-4 w-4' />
                         <span>Generate code</span>
                       </Button>

@@ -17,8 +17,8 @@ const UserSheetContent: React.FC = () => {
   const { setShowDialog } = useGlobalContext();
 
   return (
-    <div className='flex flex-col gap-4 h-full overflow-hidden'>
-      <header className='flex flex-col gap-2'>
+    <div className='flex flex-col gap-4 h-full overflow-y-hidden w-full'>
+      <header className='flex flex-col gap-2 w-full'>
         <SheetClose asChild>
           <Button
             className='w-full'

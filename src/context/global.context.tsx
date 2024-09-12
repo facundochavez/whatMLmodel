@@ -16,18 +16,20 @@ interface GlobalProviderProps {
 }
 
 export const GlobalProvider = ({ children }: GlobalProviderProps) => {
-  const [isLoggedIn, setIsLoggedIn] = useState<boolean>(true);
+  const [isUserLoggedIn, setIsUserLoggedIn] = useState<boolean>(true);
 
   const [isMobile, setIsMobile] = useState<boolean>(false);
   const [showDialog, setShowDialog] = useState<boolean>(false);
-  const [isRegistering, setIsRegistering] = useState<boolean>(false);
+
+  const [isUserRegistering, setIsUserRegistering] = useState<boolean>(false);
+  const [isAiThinking, setIsAiThinking] = useState<boolean>(false);
 
   useEffect(() => {
     const handleResize = () => {
       setIsMobile(window.innerWidth < 640);
     };
-
     handleResize();
+
     window.addEventListener('resize', handleResize);
     return () => {
       window.removeEventListener('resize', handleResize);
@@ -37,12 +39,12 @@ export const GlobalProvider = ({ children }: GlobalProviderProps) => {
   return (
     <GlobalContext.Provider
       value={{
-        isLoggedIn,
+        isLoggedIn: isUserLoggedIn,
         isMobile,
         showDialog,
         setShowDialog,
-        isRegistering,
-        setIsRegistering,
+        isRegistering: isUserRegistering,
+        setIsRegistering: setIsUserRegistering,
       }}
     >
       {children}

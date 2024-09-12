@@ -30,6 +30,7 @@ const AnalysisActionsDropdown: React.FC<AnalysisActionsDropdownProps> = ({
         onClick={(e) => e.stopPropagation()}
         loop
         align='end'
+        className='z-[200]'
       >
         {!isFavorite ? (
           <DropdownMenuItem>

@@ -18,7 +18,7 @@ module.exports = {
     },
     extend: {
 			screens: {
-        xs: '360px', // Definir el nuevo tamaño "xs"
+        xs: '400px', // Definir el nuevo tamaño "xs"
       },
       colors: {
         border: 'hsl(var(--border))',
