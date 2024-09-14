@@ -1,13 +1,3 @@
-import { Button } from '@/components/ui/button';
-import {
-  Dialog,
-  DialogClose,
-  DialogContent,
-  DialogDescription,
-  DialogFooter,
-  DialogHeader,
-  DialogTitle,
-} from '@/components/ui/dialog';
 import {
   AlertDialogAction,
   AlertDialogCancel,
@@ -18,13 +8,7 @@ import {
   AlertDialogTitle,
 } from '@/components/ui/alert-dialog';
 
-interface ConfirmDeleteDialogProps {
-  children?: React.ReactNode;
-}
-
-const ConfirmDeleteDialogContent: React.FC<ConfirmDeleteDialogProps> = ({
-  children,
-}) => {
+const ConfirmDeleteDialogContent: React.FC = () => {
   return (
     <AlertDialogContent>
       <AlertDialogHeader>

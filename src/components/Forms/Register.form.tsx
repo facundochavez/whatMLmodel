@@ -42,6 +42,9 @@ const registerSchema = z
     confirmPassword: z.string().min(8, {
       message: 'Please confirm your password.',
     }),
+    termsAndConditions: z.boolean().refine((checked) => checked, {
+      message: 'You must agree to the terms and conditions.',
+    }),
   })
   .refine((data) => data.password === data.confirmPassword, {
     path: ['confirmPassword'],
@@ -59,6 +62,7 @@ const RegisterForm: React.FC = () => {
       email: '',
       password: '',
       confirmPassword: '',
+      termsAndConditions: false,
     },
   });
 
@@ -152,18 +156,18 @@ const RegisterForm: React.FC = () => {
                   </Button>
                 </>
               </FormControl>
+              <FormMessage />
               <FormDescription>
                 Must be at least 8 characters and include a mix of uppercase,
                 lowercase, numbers, and special characters.
               </FormDescription>
-              <FormMessage />
             </FormItem>
           )}
         />
 
         <FormField
           control={form.control}
-          name='confirmPassword'
+          name='termsAndConditions'
           render={({ field }) => (
             <FormItem className='flex items-center space-y-0 gap-2'>
               <FormControl>

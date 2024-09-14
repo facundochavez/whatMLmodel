@@ -84,7 +84,7 @@ const StepTwo: React.FC = () => {
                 <FormControl>
                   <Textarea
                     className='resize-none h-24'
-                    placeholder='Your dataset description here...'
+                    placeholder='Your problem description here...'
                     {...field}
                   />
                 </FormControl>
@@ -148,7 +148,7 @@ const StepTwo: React.FC = () => {
                           onMouseLeave={() => setShowTooltip(false)}
                         >
                           <p>
-                            Some features handle complex data as large texts,
+                            Some features handle complex data as long texts,
                             images, videos, high-dimensional data, etc.
                           </p>
                         </TooltipContent>

@@ -2,8 +2,8 @@
   {
     "input": "Based on the features of Titanic passengers, I need to determine the probability of survival.",
     "output": {
-      "name": "Titanic",
-      "alias": "titanic",
+      "name": "Titanic Survivors",
+      "alias": "titanic-survivors",
       "datasetDescription": "Based on the features of Titanic passengers (such as sex, age and socio-economic class), I need to determine the probability of survival.",
       "language": "en",
       "details": {

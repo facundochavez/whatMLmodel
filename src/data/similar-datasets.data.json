@@ -615,8 +615,8 @@
     }
   },
   {
-    "name": "Titanic",
-    "alias": "titanic",
+    "name": "Titanic Survivors",
+    "alias": "titanic-survivors",
     "description": "This is the dataset description",
     "features": ["Feature 1", "Feature 2", "Feature 3"],
     "targetVariable": "Target variable",

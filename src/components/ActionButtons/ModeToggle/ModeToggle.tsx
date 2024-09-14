@@ -20,12 +20,12 @@ const ModeToggle: React.FC = () => {
           <span className='sr-only'>Toggle theme</span>
         </Button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent align='center'>
-        <DropdownMenuItem onClick={() => setTheme('light')}>
-          Light
-        </DropdownMenuItem>
+      <DropdownMenuContent align='end' className='z-[150]'>
         <DropdownMenuItem onClick={() => setTheme('dark')}>
           Dark
+        </DropdownMenuItem>
+        <DropdownMenuItem onClick={() => setTheme('light')}>
+          Light
         </DropdownMenuItem>
         <DropdownMenuItem onClick={() => setTheme('system')}>
           System
