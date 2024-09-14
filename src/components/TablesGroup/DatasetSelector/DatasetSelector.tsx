@@ -30,13 +30,13 @@ const DatasetSelector: React.FC<DatasetSelectorProps> = ({
           defaultValue='0'
           onValueChange={(value) => setSelectedDataset(value)}
         >
-          <SelectTrigger className='w-full md:w-52 bg-muted/30 sm:bg-background'>
+          <SelectTrigger className='w-full md:w-52 bg-muted/30 sm:bg-background text-sm sm:text-base'>
             <SelectValue placeholder='Select a datset' />
           </SelectTrigger>
           <SelectContent className='bg-primary-foreground sm:bg-background'>
             <SelectGroup>
               {similarDatasets.map((dataset, index) => (
-                <SelectItem key={index} value={`${index}`}>
+                <SelectItem key={index} value={`${index}`} className='text-sm sm:text-base'>
                   {dataset.name}
                 </SelectItem>
               ))}

@@ -99,7 +99,7 @@ const columnsModels = (type: ProblemType): ColumnDef<Model>[] => [
             <DropdownMenuContent align='center' className='text-base'>
               <DialogTrigger asChild onClick={() => setIsGenerating(false)}>
                 <DropdownMenuItem>
-                  <CodeXml className='mr-2 h-4 w-4' />
+                  <CodeXml className='mr-2 h-[18px] w-[18px]' />
                   <span className='text-base pr-1'>Similar dataset code</span>
                 </DropdownMenuItem>
               </DialogTrigger>
