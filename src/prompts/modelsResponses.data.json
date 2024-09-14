@@ -1,6 +1,6 @@
 [
   {
-    "alias": "titanic",
+    "alias": "titanic-survivors",
     "title": "Recommended Models for Titanic Survival Prediction",
     "recomendations": [
       {
@@ -15,7 +15,7 @@
             "svm-c"
           ],
           "similarDatasetsAliases": [
-            "titanic",
+            "titanic-survivors",
             "iris-classification",
             "cifar-10"
           ]

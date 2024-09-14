@@ -1,10 +1,10 @@
 import AuthDropdown from './Dropdowns/Auth.dropdown';
 import UserDropdown from './Dropdowns/User.dropdown';
 
-const OptionsMenuButton: React.FC<{ isLoggedIn: boolean }> = ({
-  isLoggedIn,
+const OptionsMenuButton: React.FC<{ isUserLoggedIn: boolean }> = ({
+  isUserLoggedIn,
 }) => {
-  return !isLoggedIn ? <AuthDropdown /> : <UserDropdown />;
+  return !isUserLoggedIn ? <AuthDropdown /> : <UserDropdown />;
 };
 
 export default OptionsMenuButton;

@@ -4,7 +4,7 @@ import { useGlobalContext } from '@/context/global.context';
 import { useEffect, useState } from 'react';
 
 const Header = () => {
-  const [showHeader, setShowHeader] = useState<boolean>(false);
+  const [showHeader, setShowHeader] = useState<boolean>(true);
   const [lastScrollY, setLastScrollY] = useState(0);
   const [isScrollOnTop, setIsScrollOnTop] = useState(true);
 

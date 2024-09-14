@@ -5,7 +5,7 @@ import { SheetClose } from '@/components/ui/sheet';
 import { useGlobalContext } from '@/context/global.context';
 
 const AuthSheetContent: React.FC = () => {
-  const { setShowDialog, setIsRegistering } = useGlobalContext();
+  const { setShowDialog, setIsUserRegistering } = useGlobalContext();
 
   return (
     <div className='h-full flex flex-col justify-center gap-2 items-center text-center'>
@@ -19,7 +19,7 @@ const AuthSheetContent: React.FC = () => {
           <Button
             className='w-full'
             onClick={() => {
-              setIsRegistering(false);
+              setIsUserRegistering(false);
               setShowDialog(true);
             }}
           >
@@ -34,7 +34,7 @@ const AuthSheetContent: React.FC = () => {
             variant='outline'
             type='button'
             onClick={() => {
-              setIsRegistering(true);
+              setIsUserRegistering(true);
               setShowDialog(true);
             }}
           >

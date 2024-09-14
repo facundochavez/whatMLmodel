@@ -21,7 +21,7 @@ import ConfirmDeleteDialogContent from '@/components/DialogContents/ConfirmDelet
 
 import { Button } from '@/components/ui/button';
 import { AlertDialog, AlertDialogTrigger } from '@/components/ui/alert-dialog';
-import AnalysisActionsDropdown from '../../AnalysisActions.dropdown';
+import AnalysisActionsDropdown from '@/components/ActionButtons/AnalysisDropdown/Analysis.dropdown';
 import { DialogTrigger } from '@/components/ui/dialog';
 
 const UserDropdown: React.FC = () => {

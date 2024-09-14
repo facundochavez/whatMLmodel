@@ -15,6 +15,7 @@ import GenerateCodeDialogContent from '@/components/DialogContents/GenerateCode.
 import SimilarDatasetDialogContent from '@/components/DialogContents/SimilarDataset.dialogContent';
 import kebabToTitleCase from '@/utils/kebabToTitleCase';
 import { Separator } from '@/components/ui/separator';
+import getModelIcon from '@/utils/getModelIcon';
 
 const ModelsAccordion: React.FC<ModelsAccordionProps> = ({
   models,
@@ -35,17 +36,13 @@ const ModelsAccordion: React.FC<ModelsAccordionProps> = ({
           const modelPerformanceMetrics = performanceMetrics.find(
             (metric) => metric.modelAlias === model.alias
           );
+          const ModelIcon = getModelIcon({ iconNumber: model.icon });
           return (
             <AccordionItem key={index} value={model.alias}>
               <AccordionTrigger className='flex items-center gap-5 overflow-hidden'>
-                <Image
-                  src={`./models-icons/model-icon-${model.icon}.svg`}
-                  alt={`${model.name} icon`}
-                  width={26}
-                  height={26}
-                  className='ml-1'
-                  /* style={{ filter: theme === 'dark' ? undefined : 'brightness(0)' }} */
-                />
+                <div>
+                <ModelIcon />
+                </div>
                 <h2 className='w-full text-left text-base truncate'>
                   {model.name}
                 </h2>
@@ -98,7 +95,7 @@ const ModelsAccordion: React.FC<ModelsAccordionProps> = ({
                     )}
                   </ul>
                 </div>
-                <footer className='flex flex-col gap-2'>
+                <footer className='flex flex-col gap-2 mt-0.5'>
                   <Dialog>
                     <DialogTrigger asChild>
                       <Button variant='secondary'>

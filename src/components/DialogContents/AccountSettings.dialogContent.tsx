@@ -13,8 +13,11 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import ApiKeyDialogContent from '@/components/DialogContents/ApiKey.dialogContent';
 import ChangePasswordDialogContent from '@/components/DialogContents/ChangePassword.dialogContent';
+import { useGlobalContext } from '@/context/global.context';
 
 const AccountSettingsDialogContent: React.FC = () => {
+  const {userEmail} = useGlobalContext();
+
   return (
     <DialogContent>
       <DialogHeader>
@@ -24,7 +27,7 @@ const AccountSettingsDialogContent: React.FC = () => {
       <ul className='flex flex-col gap-2 [&>li]:relative [&>li]:flex [&>li]:flex-col [&>li]:gap-2 [&>li>label]:text-base  [&>li>label]:pl-1 [&>li>input]:!opacity-100'>
         <li>
           <Label>Email</Label>
-          <Input type='email' disabled value={'your_email@gmail.com'} />
+          <Input type='email' disabled value={userEmail} />
         </li>
 
         <li>

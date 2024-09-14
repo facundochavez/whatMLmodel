@@ -13,7 +13,7 @@ import ModeToggle from '../ModeToggle/ModeToggle';
 import AuthSheetContent from './SheetContents/Auth.sheetContent';
 import UserSheetContent from './SheetContents/User.sheetContent';
 
-const OptionsSheet: React.FC<{ isLoggedIn: boolean }> = ({ isLoggedIn }) => {
+const OptionsSheet: React.FC<{ isUserLoggedIn: boolean }> = ({ isUserLoggedIn }) => {
   return (
     <Sheet>
       <SheetTrigger>
@@ -30,7 +30,7 @@ const OptionsSheet: React.FC<{ isLoggedIn: boolean }> = ({ isLoggedIn }) => {
             <ModeToggle />
           </div>
         </SheetHeader>
-        {!isLoggedIn ? <AuthSheetContent /> : <UserSheetContent />}
+        {!isUserLoggedIn ? <AuthSheetContent /> : <UserSheetContent />}
       </SheetContent>
     </Sheet>
   );

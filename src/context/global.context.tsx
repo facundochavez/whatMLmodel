@@ -1,12 +1,13 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
 
 interface GlobalContextProps {
-  isLoggedIn: boolean;
+  isUserLoggedIn: boolean;
+  userEmail: string;
   isMobile: boolean;
   showDialog: boolean;
   setShowDialog: React.Dispatch<React.SetStateAction<boolean>>;
-  isRegistering: boolean;
-  setIsRegistering: React.Dispatch<React.SetStateAction<boolean>>;
+  isUserRegistering: boolean;
+  setIsUserRegistering: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 const GlobalContext = createContext<GlobalContextProps | undefined>(undefined);
@@ -17,6 +18,7 @@ interface GlobalProviderProps {
 
 export const GlobalProvider = ({ children }: GlobalProviderProps) => {
   const [isUserLoggedIn, setIsUserLoggedIn] = useState<boolean>(true);
+  const userEmail = 'your_email@gmail.com';
 
   const [isMobile, setIsMobile] = useState<boolean>(false);
   const [showDialog, setShowDialog] = useState<boolean>(false);
@@ -39,12 +41,13 @@ export const GlobalProvider = ({ children }: GlobalProviderProps) => {
   return (
     <GlobalContext.Provider
       value={{
-        isLoggedIn: isUserLoggedIn,
+        isUserLoggedIn,
+        userEmail,
         isMobile,
         showDialog,
         setShowDialog,
-        isRegistering: isUserRegistering,
-        setIsRegistering: setIsUserRegistering,
+        isUserRegistering,
+        setIsUserRegistering,
       }}
     >
       {children}

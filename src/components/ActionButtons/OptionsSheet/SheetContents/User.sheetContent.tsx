@@ -8,7 +8,7 @@ import { AlertDialog, AlertDialogTrigger } from '@/components/ui/alert-dialog';
 
 import { Label } from '@/components/ui/label';
 import { Separator } from '@/components/ui/separator';
-import AnalysisActionsDropdown from '@/components/ActionButtons/AnalysisActions.dropdown';
+import AnalysisActionsDropdown from '@/components/ActionButtons/AnalysisDropdown/Analysis.dropdown';
 
 import { SheetClose } from '@/components/ui/sheet';
 import { useGlobalContext } from '@/context/global.context';

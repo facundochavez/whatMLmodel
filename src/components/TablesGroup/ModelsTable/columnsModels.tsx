@@ -22,8 +22,7 @@ import SimilarDatasetDialogContent from '@/components/DialogContents/SimilarData
 import { useState } from 'react';
 import GenerateCodeDialogContent from '@/components/DialogContents/GenerateCode.dialogContent';
 import kebabToTitleCase from '@/utils/kebabToTitleCase';
-
-
+import getModelIcon from '@/utils/getModelIcon';
 
 const columnsModels = (type: ProblemType): ColumnDef<Model>[] => [
   {
@@ -38,6 +37,7 @@ const columnsModels = (type: ProblemType): ColumnDef<Model>[] => [
       const modelName: string = row.original.name;
       const icon: number = row.original.icon;
       const { theme } = useTheme();
+      const ModelIcon = getModelIcon({ iconNumber: icon });
 
       return (
         <TooltipProvider disableHoverableContent>
@@ -48,15 +48,8 @@ const columnsModels = (type: ProblemType): ColumnDef<Model>[] => [
               onMouseLeave={() => setShowTooltip(false)}
               onClick={() => setShowTooltip(!showTooltip)}
             >
-              <div className='flex items-center gap-5 p-4 min-w-max'>
-                <Image
-                  src={`./models-icons/model-icon-${icon}.svg`}
-                  alt={`${modelName} icon`}
-                  width={26}
-                  height={26}
-                  className='ml-1'
-                  /* style={{ filter: theme === 'dark' ? undefined : 'brightness(0)' }} */
-                />
+              <div className='flex items-center gap-4 p-4 min-w-max pl-5'>
+                <ModelIcon />
                 <h2 className='w-full max-w-56 min-w-56 text-left text-base truncate pr-1'>
                   {modelName}
                 </h2>
@@ -110,7 +103,7 @@ const columnsModels = (type: ProblemType): ColumnDef<Model>[] => [
                   <span className='text-base pr-1'>Similar dataset code</span>
                 </DropdownMenuItem>
               </DialogTrigger>
-              
+
               <DialogTrigger asChild onClick={() => setIsGenerating(true)}>
                 <DropdownMenuItem>
                   <Sparkles className='mr-2 h-4 w-4' />

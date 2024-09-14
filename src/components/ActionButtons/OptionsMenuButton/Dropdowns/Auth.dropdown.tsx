@@ -11,7 +11,7 @@ import { Button } from '@/components/ui/button';
 import { useGlobalContext } from '@/context/global.context';
 
 const AuthDropdown: React.FC = () => {
-  const { setIsRegistering } = useGlobalContext();
+  const { setIsUserRegistering } = useGlobalContext();
 
   return (
     <DropdownMenu>
@@ -27,7 +27,7 @@ const AuthDropdown: React.FC = () => {
           <DropdownMenuGroup>
             <DropdownMenuItem
               onClick={() => {
-                setIsRegistering(false);
+                setIsUserRegistering(false);
               }}
             >
               <LogIn className='mr-2 h-4 w-4' />
@@ -36,7 +36,7 @@ const AuthDropdown: React.FC = () => {
 
             <DropdownMenuItem
               onClick={() => {
-                setIsRegistering(true);
+                setIsUserRegistering(true);
               }}
             >
               <UserRoundPlus className='mr-2 h-4 w-4' />
