@@ -23,8 +23,11 @@ import { Button } from '@/components/ui/button';
 import { AlertDialog, AlertDialogTrigger } from '@/components/ui/alert-dialog';
 import AnalysisActionsDropdown from '@/components/ActionButtons/AnalysisDropdown/Analysis.dropdown';
 import { DialogTrigger } from '@/components/ui/dialog';
+import { useGlobalContext } from '@/context/global.context';
 
 const UserDropdown: React.FC = () => {
+  const { setShowAccountSettingsDialog } = useGlobalContext();
+
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
@@ -35,12 +38,10 @@ const UserDropdown: React.FC = () => {
       </DropdownMenuTrigger>
 
       <DropdownMenuContent align='end' className='min-w-36 z-[150]' loop>
-        <DialogTrigger asChild>
-          <DropdownMenuItem className='font-semibold'>
+          <DropdownMenuItem className='font-semibold' onClick={() => setShowAccountSettingsDialog(true)}>
             <UserRound className='mr-2 h-4 w-4' />
             <span>Account settings</span>
           </DropdownMenuItem>
-        </DialogTrigger>
 
         <DropdownMenuSeparator />
 

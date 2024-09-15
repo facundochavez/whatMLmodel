@@ -6,12 +6,12 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
 import { LogIn, UserRound, UserRoundPlus } from 'lucide-react';
-import { DialogTrigger } from '@/components/ui/dialog';
 import { Button } from '@/components/ui/button';
 import { useGlobalContext } from '@/context/global.context';
 
 const AuthDropdown: React.FC = () => {
-  const { setIsUserRegistering } = useGlobalContext();
+  const { setIsUserRegistering, setShowAuthDialog } = useGlobalContext();
+
 
   return (
     <DropdownMenu>
@@ -23,11 +23,11 @@ const AuthDropdown: React.FC = () => {
       </DropdownMenuTrigger>
 
       <DropdownMenuContent align='end' className='min-w-36 z-[150]'>
-        <DialogTrigger className='w-full'>
           <DropdownMenuGroup>
             <DropdownMenuItem
               onClick={() => {
                 setIsUserRegistering(false);
+                setShowAuthDialog(true);
               }}
             >
               <LogIn className='mr-2 h-4 w-4' />
@@ -37,13 +37,13 @@ const AuthDropdown: React.FC = () => {
             <DropdownMenuItem
               onClick={() => {
                 setIsUserRegistering(true);
+                setShowAuthDialog(true);
               }}
             >
               <UserRoundPlus className='mr-2 h-4 w-4' />
               <span>Register</span>
             </DropdownMenuItem>
           </DropdownMenuGroup>
-        </DialogTrigger>
       </DropdownMenuContent>
     </DropdownMenu>
   );

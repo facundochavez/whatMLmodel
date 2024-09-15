@@ -1,7 +1,7 @@
 'use client';
 
 import { zodResolver } from '@hookform/resolvers/zod';
-import { useForm } from 'react-hook-form';
+import { set, useForm } from 'react-hook-form';
 import { z } from 'zod';
 
 import { Button } from '@/components/ui/button';
@@ -18,6 +18,7 @@ import { useState } from 'react';
 import { Dialog, DialogClose, DialogFooter, DialogTrigger } from '@/components/ui/dialog';
 import { Eye, EyeOff } from 'lucide-react';
 import ResetPasswordDialogContent from '@/components/DialogContents/ResetPassword.dialogContent';
+import { useGlobalContext } from '@/context/global.context';
 
 // Esquema de validación con zod
 const loginSchema = z.object({
@@ -28,6 +29,7 @@ const loginSchema = z.object({
 });
 
 const LoginForm: React.FC = () => {
+  const { setShowResetPasswordDialog } = useGlobalContext();
   const [showPassword, setShowPassword] = useState(false);
 
   // 1. Define tu formulario.
@@ -99,9 +101,9 @@ const LoginForm: React.FC = () => {
           )}
         />
 
-        <Dialog>
-          <DialogTrigger asChild>
+          <DialogClose asChild>
             <Button
+              onClick={() => setShowResetPasswordDialog(true)}
               type='button'
               variant='link'
               size='sm'
@@ -109,9 +111,7 @@ const LoginForm: React.FC = () => {
             >
               Forgot password?
             </Button>
-          </DialogTrigger>
-          <ResetPasswordDialogContent />
-        </Dialog>
+          </DialogClose>
 
         <DialogFooter className='pt-2'>
           <DialogClose asChild>

@@ -17,6 +17,7 @@ import { Eye, EyeOff } from 'lucide-react';
 import { Dialog, DialogClose, DialogFooter } from '@/components/ui/dialog';
 import { DialogTrigger } from '@radix-ui/react-dialog';
 import ResetPasswordDialogContent from '../DialogContents/ResetPassword.dialogContent';
+import { useGlobalContext } from '@/context/global.context';
 
 // Esquema de validación con Zod
 const changePasswordSchema = z
@@ -50,6 +51,7 @@ const ChangePasswordForm: React.FC = () => {
   const [showCurrentPassword, setShowCurrentPassword] = useState(false);
   const [showNewPassword, setShowNewPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+  const { setShowResetPasswordDialog } = useGlobalContext();
 
   const form = useForm<z.infer<typeof changePasswordSchema>>({
     resolver: zodResolver(changePasswordSchema),
@@ -104,9 +106,9 @@ const ChangePasswordForm: React.FC = () => {
           )}
         />
 
-        <Dialog >
-          <DialogTrigger asChild>
+          <DialogClose asChild>
             <Button
+              onClick={() => setShowResetPasswordDialog(true)}
               type='button'
               variant='link'
               size='sm'
@@ -114,9 +116,7 @@ const ChangePasswordForm: React.FC = () => {
             >
               Forgot password?
             </Button>
-          </DialogTrigger>
-          <ResetPasswordDialogContent />
-        </Dialog>
+          </DialogClose>
 
         <FormField
           control={form.control}
