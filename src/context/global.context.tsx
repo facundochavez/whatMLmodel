@@ -4,10 +4,19 @@ interface GlobalContextProps {
   isUserLoggedIn: boolean;
   userEmail: string;
   isMobile: boolean;
-  showDialog: boolean;
-  setShowDialog: React.Dispatch<React.SetStateAction<boolean>>;
+  showAuthDialog: boolean;
+  setShowAuthDialog: React.Dispatch<React.SetStateAction<boolean>>;
+  showAccountSettingsDialog: boolean;
+  setShowAccountSettingsDialog: React.Dispatch<React.SetStateAction<boolean>>;
+  showChangePasswordDialog: boolean;
+  setShowChangePasswordDialog: React.Dispatch<React.SetStateAction<boolean>>;
+  showApiKeyDialog: boolean;
+  setShowApiKeyDialog: React.Dispatch<React.SetStateAction<boolean>>;
+  showResetPasswordDialog: boolean;
+  setShowResetPasswordDialog: React.Dispatch<React.SetStateAction<boolean>>;
   isUserRegistering: boolean;
   setIsUserRegistering: React.Dispatch<React.SetStateAction<boolean>>;
+
 }
 
 const GlobalContext = createContext<GlobalContextProps | undefined>(undefined);
@@ -21,7 +30,13 @@ export const GlobalProvider = ({ children }: GlobalProviderProps) => {
   const userEmail = 'your_email@gmail.com';
 
   const [isMobile, setIsMobile] = useState<boolean>(false);
-  const [showDialog, setShowDialog] = useState<boolean>(false);
+  const [showAuthDialog, setShowAuthDialog] = useState<boolean>(false);
+  const [showAccountSettingsDialog, setShowAccountSettingsDialog] = useState<boolean>(false);
+  const [showChangePasswordDialog, setShowChangePasswordDialog] = useState<boolean>(false);
+  const [showApiKeyDialog, setShowApiKeyDialog] = useState<boolean>(false);
+  const [showResetPasswordDialog, setShowResetPasswordDialog] = useState<boolean>(false);
+
+
 
   const [isUserRegistering, setIsUserRegistering] = useState<boolean>(false);
   const [isAiThinking, setIsAiThinking] = useState<boolean>(false);
@@ -44,8 +59,16 @@ export const GlobalProvider = ({ children }: GlobalProviderProps) => {
         isUserLoggedIn,
         userEmail,
         isMobile,
-        showDialog,
-        setShowDialog,
+        showAuthDialog,
+        setShowAuthDialog,
+        showAccountSettingsDialog,
+        setShowAccountSettingsDialog,
+        showChangePasswordDialog,
+        setShowChangePasswordDialog,
+        showApiKeyDialog,
+        setShowApiKeyDialog,
+        showResetPasswordDialog,
+        setShowResetPasswordDialog,
         isUserRegistering,
         setIsUserRegistering,
       }}

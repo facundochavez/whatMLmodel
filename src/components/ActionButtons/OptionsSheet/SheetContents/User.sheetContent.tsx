@@ -14,7 +14,7 @@ import { SheetClose } from '@/components/ui/sheet';
 import { useGlobalContext } from '@/context/global.context';
 
 const UserSheetContent: React.FC = () => {
-  const { setShowDialog } = useGlobalContext();
+  const { setShowAccountSettingsDialog } = useGlobalContext();
 
   return (
     <div className='flex flex-col gap-4 h-full overflow-y-hidden w-full'>
@@ -23,7 +23,7 @@ const UserSheetContent: React.FC = () => {
           <Button
             className='w-full'
             variant='outline'
-            onClick={() => setShowDialog(true)}
+            onClick={() => setShowAccountSettingsDialog(true)}
           >
             <UserRound className='mr-2 h-4 w-4' />
             <span>Account settings</span>

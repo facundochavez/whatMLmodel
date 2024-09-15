@@ -12,8 +12,10 @@ import ShareButton from '../ShareButton/ShareButton';
 import ModeToggle from '../ModeToggle/ModeToggle';
 import AuthSheetContent from './SheetContents/Auth.sheetContent';
 import UserSheetContent from './SheetContents/User.sheetContent';
+import { useGlobalContext } from '@/context/global.context';
 
-const OptionsSheet: React.FC<{ isUserLoggedIn: boolean }> = ({ isUserLoggedIn }) => {
+const OptionsSheet: React.FC = () => {
+  const { isUserLoggedIn } = useGlobalContext();
   return (
     <Sheet>
       <SheetTrigger>
