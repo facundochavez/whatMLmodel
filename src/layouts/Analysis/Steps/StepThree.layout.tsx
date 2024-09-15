@@ -23,7 +23,7 @@ import modelsResponsesDataRaw from '@/prompts/modelsResponses.data.json';
 interface ModelResponse {
   alias: string;
   title: string;
-  recomendations: {
+  recommendations: {
     type: ProblemType;
     paragraph: string;
     tables: {
@@ -41,7 +41,7 @@ const StepThree = () => {
   return (
     <div className='w-full max-w-[1050px] flex flex-col gap-8 mt-8'>
       <h1 className='text-2xl font-semibold'>{response.title}</h1>
-      {response.recomendations.map((recomendation, index) => {
+      {response.recommendations.map((recomendation, index) => {
         return (
           <section key={index} className='flex flex-col gap-4'>
             <p className='text-muted-foreground'>{recomendation.paragraph}</p>
