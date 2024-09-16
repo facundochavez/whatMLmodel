@@ -73,8 +73,8 @@ const ResetPasswordDialogContent: React.FC = () => {
                   <FormControl>
                     <>
                       <Input
-                        type='text'
-                        placeholder='•••••'
+                        type='email'
+                        placeholder='your_email@example.com'
                         className='pr-10'
                         disabled={isUserLoggedIn}
                         {...field}

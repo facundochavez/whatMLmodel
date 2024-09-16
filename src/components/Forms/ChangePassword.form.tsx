@@ -94,9 +94,9 @@ const ChangePasswordForm: React.FC = () => {
                     onClick={() => setShowCurrentPassword(!showCurrentPassword)}
                   >
                     {showCurrentPassword ? (
-                      <EyeOff className='h-5 w-5' />
+                      <EyeOff className='h-5 w-5' strokeWidth={1.8} />
                     ) : (
-                      <Eye className='h-5 w-5' />
+                      <Eye className='h-5 w-5' strokeWidth={1.8} />
                     )}
                   </Button>
                 </>
@@ -140,9 +140,9 @@ const ChangePasswordForm: React.FC = () => {
                     onClick={() => setShowNewPassword(!showNewPassword)}
                   >
                     {showNewPassword ? (
-                      <EyeOff className='h-5 w-5' />
+                      <EyeOff className='h-5 w-5' strokeWidth={1.8} />
                     ) : (
-                      <Eye className='h-5 w-5' />
+                      <Eye className='h-5 w-5' strokeWidth={1.8} />
                     )}
                   </Button>
                 </>
@@ -174,9 +174,9 @@ const ChangePasswordForm: React.FC = () => {
                     onClick={() => setShowConfirmPassword(!showConfirmPassword)}
                   >
                     {showConfirmPassword ? (
-                      <EyeOff className='h-5 w-5' />
+                      <EyeOff className='h-5 w-5' strokeWidth={1.8} />
                     ) : (
-                      <Eye className='h-5 w-5' />
+                      <Eye className='h-5 w-5' strokeWidth={1.8} />
                     )}
                   </Button>
                 </>

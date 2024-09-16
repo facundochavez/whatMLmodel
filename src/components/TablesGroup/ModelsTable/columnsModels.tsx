@@ -9,7 +9,7 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
 import { Button } from '@/components/ui/button';
-import { CodeXml, MoreHorizontal, Sparkles } from 'lucide-react';
+import { CodeXml, MoreHorizontal } from 'lucide-react';
 
 import {
   Tooltip,
@@ -23,6 +23,7 @@ import { useState } from 'react';
 import GenerateCodeDialogContent from '@/components/DialogContents/GenerateCode.dialogContent';
 import kebabToTitleCase from '@/utils/kebabToTitleCase';
 import getModelIcon from '@/utils/getModelIcon';
+import { AiStarsIcon } from '@/icons/AiStarsIcon';
 
 const columnsModels = (type: ProblemType): ColumnDef<Model>[] => [
   {
@@ -36,8 +37,7 @@ const columnsModels = (type: ProblemType): ColumnDef<Model>[] => [
       const [showTooltip, setShowTooltip] = useState(false);
       const modelName: string = row.original.name;
       const icon: number = row.original.icon;
-      const { theme } = useTheme();
-      const ModelIcon = getModelIcon({ iconNumber: icon });
+      const ModelIcon = getModelIcon({ iconNumber: icon }) as React.FC;
 
       return (
         <TooltipProvider disableHoverableContent>
@@ -106,7 +106,7 @@ const columnsModels = (type: ProblemType): ColumnDef<Model>[] => [
 
               <DialogTrigger asChild onClick={() => setIsGenerating(true)}>
                 <DropdownMenuItem>
-                  <Sparkles className='mr-2 h-4 w-4' />
+                  <AiStarsIcon className='ml-0.5 mr-2 h-[16px] w-[16px]' />
                   <span className='text-base'>Generate code</span>
                 </DropdownMenuItem>
               </DialogTrigger>

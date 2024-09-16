@@ -9,13 +9,14 @@ import { ModelsAccordionProps } from '../types';
 import Image from 'next/image';
 import DatasetSelector from '../DatasetSelector/DatasetSelector';
 import { Button } from '@/components/ui/button';
-import { CodeXml, Sparkles } from 'lucide-react';
+import { CodeXml } from 'lucide-react';
 import { Dialog, DialogTrigger } from '@/components/ui/dialog';
 import GenerateCodeDialogContent from '@/components/DialogContents/GenerateCode.dialogContent';
 import SimilarDatasetDialogContent from '@/components/DialogContents/SimilarDataset.dialogContent';
 import kebabToTitleCase from '@/utils/kebabToTitleCase';
 import { Separator } from '@/components/ui/separator';
 import getModelIcon from '@/utils/getModelIcon';
+import { AiStarsIcon } from '@/icons/AiStarsIcon';
 
 const ModelsAccordion: React.FC<ModelsAccordionProps> = ({
   models,
@@ -36,12 +37,14 @@ const ModelsAccordion: React.FC<ModelsAccordionProps> = ({
           const modelPerformanceMetrics = performanceMetrics.find(
             (metric) => metric.modelAlias === model.alias
           );
-          const ModelIcon = getModelIcon({ iconNumber: model.icon });
+          const ModelIcon = getModelIcon({
+            iconNumber: model.icon,
+          }) as React.FC;
           return (
             <AccordionItem key={index} value={model.alias}>
               <AccordionTrigger className='flex items-center gap-5 overflow-hidden'>
                 <div>
-                <ModelIcon />
+                  <ModelIcon />
                 </div>
                 <h2 className='w-full text-left text-base truncate'>
                   {model.name}
@@ -98,7 +101,7 @@ const ModelsAccordion: React.FC<ModelsAccordionProps> = ({
                 <footer className='flex flex-col gap-2 mt-0.5'>
                   <Dialog>
                     <DialogTrigger asChild>
-                      <Button variant='secondary'>
+                      <Button variant='secondary' className='border'>
                         <CodeXml className='mr-2 h-[18px] w-[18px]' />
                         <span>Similar dataset code</span>
                       </Button>
@@ -108,7 +111,7 @@ const ModelsAccordion: React.FC<ModelsAccordionProps> = ({
                   <Dialog>
                     <DialogTrigger asChild>
                       <Button>
-                        <Sparkles className='mr-2 h-4 w-4' />
+                        <AiStarsIcon className='mr-1.5 h-[18px] w-[18px]' />
                         <span>Generate code</span>
                       </Button>
                     </DialogTrigger>

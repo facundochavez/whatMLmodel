@@ -70,9 +70,9 @@ const ApiKeyForm: React.FC = () => {
                     onClick={() => setShowAPIkey(!showAPIkey)}
                   >
                     {showAPIkey ? (
-                      <EyeOff className='h-5 w-5' />
+                      <EyeOff className='h-5 w-5' strokeWidth={1.8} />
                     ) : (
-                      <Eye className='h-5 w-5' />
+                      <Eye className='h-5 w-5' strokeWidth={1.8} />
                     )}
                   </Button>
                 </>

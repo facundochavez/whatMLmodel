@@ -1,5 +1,6 @@
 import tryExamplesData from '@/data/try-examples.data.json';
 import { Badge } from '@/components/ui/badge';
+import { tryingExampleService } from '@/services/tryingExampleService';
 
 const Hero = () => {
   return (
@@ -14,9 +15,9 @@ const Hero = () => {
         {tryExamplesData.map((example) => (
           <Badge
             key={example.id}
-            /* onClick={() => handleDescriptionValue(example.value)} */
             variant='secondary'
             className='cursor-pointer'
+            onClick={() => tryingExampleService.setSubject(example.value)}
           >
             {`"${example.name}..."`}
           </Badge>

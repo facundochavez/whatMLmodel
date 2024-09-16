@@ -11,13 +11,13 @@ const Header = () => {
   useEffect(() => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
-      if (currentScrollY > lastScrollY) {
-        setShowHeader(false);
-      } else {
+      if (currentScrollY < lastScrollY || currentScrollY <= 30) {
         setShowHeader(true);
+      } else {
+        setShowHeader(false);
       }
       setLastScrollY(currentScrollY);
-      if (currentScrollY === 0) {
+      if (currentScrollY <= 35) {
         setIsScrollOnTop(true);
       } else {
         setIsScrollOnTop(false);

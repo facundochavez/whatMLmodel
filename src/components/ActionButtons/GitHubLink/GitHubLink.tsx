@@ -17,7 +17,7 @@ const GitHubLink: React.FC = () => {
       variant='secondary'
       size='icon'
     >
-      <Github className='h-5 w-5' />
+      <Github className='h-5 w-5'  strokeWidth={1.8} />
       <span className='sr-only'>Link to GitHub repository</span>
     </Button>
   );

@@ -15,7 +15,7 @@ import {
   FormMessage,
 } from '@/components/ui/form';
 
-import { CircleHelp, RefreshCcw, Sparkles } from 'lucide-react';
+import { CircleHelp, RefreshCcw } from 'lucide-react';
 import { DialogFooter } from '@/components/ui/dialog';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
@@ -34,6 +34,7 @@ import {
   TooltipTrigger,
 } from '@/components/ui/tooltip';
 import { useState } from 'react';
+import { AiStarsIcon } from '@/icons/AiStarsIcon';
 
 // Esquema de validación con zod
 const stepTwoSchema = z.object({
@@ -69,7 +70,10 @@ const StepTwo: React.FC = () => {
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className='w-full max-w-[700px]'>
+      <form
+        onSubmit={form.handleSubmit(onSubmit)}
+        className='w-full max-w-[700px]'
+      >
         <div className='w-full flex flex-col gap-4 border rounded-md px-[5%] py-8 bg-muted/30'>
           <FormLabel className='block text-lg text-center self-center mb-4'>
             {' '}
@@ -218,7 +222,7 @@ const StepTwo: React.FC = () => {
             Cancel and retry
           </Button>
           <Button type='submit'>
-            <Sparkles className='w-4 h-4 mr-2' />
+            <AiStarsIcon className='mr-1.5 h-[18px] w-[18px]' />
             Get models
           </Button>
         </DialogFooter>

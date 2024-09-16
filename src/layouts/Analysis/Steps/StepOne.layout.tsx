@@ -14,9 +14,11 @@ import {
   FormMessage,
 } from '@/components/ui/form';
 
-import { Sparkles } from 'lucide-react';
 import { Textarea } from '@/components/ui/textarea';
 import { DialogFooter } from '@/components/ui/dialog';
+import { useEffect } from 'react';
+import { tryingExampleService } from '@/services/tryingExampleService';
+import { AiStarsIcon } from '@/icons/AiStarsIcon';
 
 // Esquema de validación con zod
 const stepOneSchema = z.object({
@@ -24,6 +26,8 @@ const stepOneSchema = z.object({
 });
 
 const StepOne: React.FC = () => {
+  const subscription$ = tryingExampleService.getSubject();
+
   // 1. Define tu formulario.
   const form = useForm<z.infer<typeof stepOneSchema>>({
     resolver: zodResolver(stepOneSchema),
@@ -32,15 +36,26 @@ const StepOne: React.FC = () => {
     },
   });
 
+  useEffect(() => {
+    const subscription = subscription$.subscribe((data) => {
+      // No es necesario especificar el tipo aquí, ya que está tipado correctamente en SubjectManager
+      form.setValue('datasetDescription', data);
+    });
+
+    return () => subscription.unsubscribe(); // Limpia la suscripción cuando el componente se desmonte
+  }, [subscription$, form]);
+
   // 2. Define un manejador de envío.
   function onSubmit(values: z.infer<typeof stepOneSchema>) {
     // Haz algo con los valores del formulario.
-    // ✅ Esto será seguro en cuanto a tipos y validado.
   }
 
   return (
-    <Form {...form} >
-      <form onSubmit={form.handleSubmit(onSubmit)} className='w-full max-w-[700px]'>
+    <Form {...form}>
+      <form
+        onSubmit={form.handleSubmit(onSubmit)}
+        className='w-full max-w-[700px]'
+      >
         <FormField
           control={form.control}
           name='datasetDescription'
@@ -64,7 +79,7 @@ const StepOne: React.FC = () => {
 
         <DialogFooter className='mt-4'>
           <Button type='submit'>
-            <Sparkles className='w-4 h-4 mr-2' />
+            <AiStarsIcon className='mr-1.5 h-[18px] w-[18px]' />
             Let's go
           </Button>
         </DialogFooter>

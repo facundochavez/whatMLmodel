@@ -30,16 +30,15 @@ export const GlobalProvider = ({ children }: GlobalProviderProps) => {
   const userEmail = 'your_email@gmail.com';
 
   const [isMobile, setIsMobile] = useState<boolean>(false);
+  const [isUserRegistering, setIsUserRegistering] = useState<boolean>(false);
+  const [isAiThinking, setIsAiThinking] = useState<boolean>(false);
+
+  // DIALOGS STATES
   const [showAuthDialog, setShowAuthDialog] = useState<boolean>(false);
   const [showAccountSettingsDialog, setShowAccountSettingsDialog] = useState<boolean>(false);
   const [showChangePasswordDialog, setShowChangePasswordDialog] = useState<boolean>(false);
   const [showApiKeyDialog, setShowApiKeyDialog] = useState<boolean>(false);
   const [showResetPasswordDialog, setShowResetPasswordDialog] = useState<boolean>(false);
-
-
-
-  const [isUserRegistering, setIsUserRegistering] = useState<boolean>(false);
-  const [isAiThinking, setIsAiThinking] = useState<boolean>(false);
 
   useEffect(() => {
     const handleResize = () => {

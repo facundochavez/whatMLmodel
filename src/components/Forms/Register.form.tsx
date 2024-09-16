@@ -114,9 +114,9 @@ const RegisterForm: React.FC = () => {
                     onClick={() => setShowPassword(!showPassword)}
                   >
                     {showPassword ? (
-                      <EyeOff className='h-5 w-5' />
+                      <EyeOff className='h-5 w-5' strokeWidth={1.8} />
                     ) : (
-                      <Eye className='h-5 w-5' />
+                      <Eye className='h-5 w-5' strokeWidth={1.8} />
                     )}
                   </Button>
                 </>
@@ -149,9 +149,9 @@ const RegisterForm: React.FC = () => {
                     onClick={() => setShowConfirmPassword(!showConfirmPassword)}
                   >
                     {showConfirmPassword ? (
-                      <EyeOff className='h-5 w-5' />
+                      <EyeOff className='h-5 w-5' strokeWidth={1.8} />
                     ) : (
-                      <Eye className='h-5 w-5' />
+                      <Eye className='h-5 w-5' strokeWidth={1.8} />
                     )}
                   </Button>
                 </>

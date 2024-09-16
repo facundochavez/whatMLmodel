@@ -9,7 +9,6 @@ import { AlertDialog } from "@/components/ui/alert-dialog";
 import AuthDialogContent from "@/components/DialogContents/Auth.dialogContent";
 import ConfirmLogoutDialogContent from "../DialogContents/ConfirmLogout.dialogContent";
 import AccountSettingsDialogContent from "../DialogContents/AccountSettings.dialogContent";
-import useIsMobile from "@/hooks/useIsMobile";
 import { useGlobalContext } from "@/context/global.context";
 import ResetPasswordDialogContent from "../DialogContents/ResetPassword.dialogContent";
 import ApiKeyDialogContent from "../DialogContents/ApiKey.dialogContent";
@@ -29,7 +28,7 @@ const ActionButtons: React.FC = () => {
     setShowChangePasswordDialog,
     setShowResetPasswordDialog,
   } = useGlobalContext();
-  const isMobile = useIsMobile();
+  const {isMobile} = useGlobalContext();
   const [isMounted, setIsMounted] = useState(false);
 
   useEffect(() => {
