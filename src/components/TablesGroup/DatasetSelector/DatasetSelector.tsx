@@ -1,4 +1,3 @@
-import { DatasetSelectorProps } from '../types';
 import {
   Select,
   SelectContent,
@@ -10,12 +9,11 @@ import {
 
 import ViewButton from './ViewButton/ViewButton';
 import { useGlobalContext } from '@/context/global.context';
+import { useTablesGroupContext } from '../tablesGroup.context';
 
-const DatasetSelector: React.FC<DatasetSelectorProps> = ({
-  similarDatasets,
-  setSelectedDataset,
-}) => {
+const DatasetSelector: React.FC = () => {
   const { isMobile } = useGlobalContext();
+  const { similarDatasets, setSelectedDataset, selectedDataset } = useTablesGroupContext();
 
   return (
     <header
@@ -28,6 +26,7 @@ const DatasetSelector: React.FC<DatasetSelectorProps> = ({
       <div className='flex gap-2 sm:gap-3 items-center w-full'>
         <Select
           defaultValue='0'
+          value={`${selectedDataset}`}
           onValueChange={(value) => setSelectedDataset(value)}
         >
           <SelectTrigger className='w-full md:w-52 bg-muted/30 sm:bg-background text-sm sm:text-base'>

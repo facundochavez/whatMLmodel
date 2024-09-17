@@ -5,8 +5,6 @@ import {
   AccordionTrigger,
 } from '@/components/ui/accordion';
 import { Card } from '@/components/ui/card';
-import { ModelsAccordionProps } from '../types';
-import Image from 'next/image';
 import DatasetSelector from '../DatasetSelector/DatasetSelector';
 import { Button } from '@/components/ui/button';
 import { CodeXml } from 'lucide-react';
@@ -17,16 +15,14 @@ import kebabToTitleCase from '@/utils/kebabToTitleCase';
 import { Separator } from '@/components/ui/separator';
 import getModelIcon from '@/utils/getModelIcon';
 import { AiStarsIcon } from '@/icons/AiStarsIcon';
+import { useTablesGroupContext } from '../tablesGroup.context';
 
-const ModelsAccordion: React.FC<ModelsAccordionProps> = ({
-  models,
-  type,
-  similarDatasets,
-  performanceMetrics,
-  columnsPerformanceMetrics,
-  setSelectedDataset,
-}) => {
-  console.log(performanceMetrics[0]);
+const ModelsAccordion: React.FC = () => {
+  const { models, type, performanceMetrics, columnsPerformanceMetrics } =
+    useTablesGroupContext();
+
+  const columns = columnsPerformanceMetrics[type];
+
   return (
     <Card>
       <Accordion type='single' collapsible>
@@ -35,7 +31,7 @@ const ModelsAccordion: React.FC<ModelsAccordionProps> = ({
         </header>
         {models.map((model, index) => {
           const modelPerformanceMetrics = performanceMetrics.find(
-            (metric) => metric.modelAlias === model.alias
+            (metric: any) => metric.modelAlias === model.alias
           );
           const ModelIcon = getModelIcon({
             iconNumber: model.icon,
@@ -72,12 +68,9 @@ const ModelsAccordion: React.FC<ModelsAccordionProps> = ({
                   </ul>
                 </header>
                 <div className='flex flex-col gap-2'>
-                  <DatasetSelector
-                    similarDatasets={similarDatasets}
-                    setSelectedDataset={setSelectedDataset}
-                  />
+                  <DatasetSelector />
                   <ul className='w-full p-4 bg-muted/30 rounded border [&>li]:w-full [&>li]:text-left [&>li]:flex [&>li]:justify-between [&>li]:items-center [&>li]:gap-3 [&>li>label]:text-muted-foreground'>
-                    {columnsPerformanceMetrics.map(
+                    {columns.map(
                       (
                         metric: {
                           header: string;

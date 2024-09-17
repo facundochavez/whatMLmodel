@@ -53,20 +53,6 @@ export type SimilarDataset = {
 
 export type SimilarDatasetsData = SimilarDataset[];
 
-export type DatasetSelectorProps = {
-  similarDatasets: SimilarDataset[];
-  setSelectedDataset: (value: string) => void;
-};
-
-export type ModelsAccordionProps = {
-  models: Model[];
-  type: ProblemType;
-  similarDatasets: SimilarDataset[];
-  performanceMetrics: PerformanceMetrics;
-  columnsPerformanceMetrics: Record<string, any>;
-  setSelectedDataset: (value: string) => void;
-};
-
 // PERFORMANCE METRICS:
 
 export type Performance = {

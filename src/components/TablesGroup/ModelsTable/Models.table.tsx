@@ -1,5 +1,6 @@
 'use client';
 import {
+  ColumnDef,
   flexRender,
   getCoreRowModel,
   useReactTable,
@@ -13,14 +14,17 @@ import {
   TableRow,
 } from '@/components/ui/table';
 import { DataTableProps } from '../types';
+import { useTablesGroupContext } from '../tablesGroup.context';
+import columnsModels from './columnsModels';
 
-const ModelsTable = <TData, TValue>({
-  columns,
-  data,
-}: DataTableProps<TData, TValue>) => {
+const ModelsTable = <TData, TValue>() => {
+  const { type, models } = useTablesGroupContext();
+
+  const columns = columnsModels(type);
+
   const table = useReactTable({
-    data,
-    columns,
+    data: models as TData[],
+    columns: columns as ColumnDef<TData, TValue>[],
     getCoreRowModel: getCoreRowModel(),
   });
 
