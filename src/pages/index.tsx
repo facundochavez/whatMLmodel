@@ -27,7 +27,6 @@ export default function Home() {
       </Head>
       <Header />
       <main className='w-full flex flex-col items-center px-[5%] pb-20 pt-[90px]'>
-        <Hero />
         <Analysis />
       </main>
       <footer></footer>

@@ -11,13 +11,13 @@ const Header = () => {
   useEffect(() => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
-      if (currentScrollY < lastScrollY || currentScrollY <= 30) {
+      if (currentScrollY < lastScrollY || currentScrollY <= 10) {
         setShowHeader(true);
       } else {
         setShowHeader(false);
       }
       setLastScrollY(currentScrollY);
-      if (currentScrollY <= 35) {
+      if (currentScrollY <= 25) {
         setIsScrollOnTop(true);
       } else {
         setIsScrollOnTop(false);
@@ -43,14 +43,14 @@ const Header = () => {
             alt='logo'
             width={100}
             height={48}
-            className='w-full max-w-[270px] h-[48px] -translate-y-2 dark:hidden '
+            className='w-full max-w-[270px] h-[48px] -translate-y-2 dark:hidden cursor-pointer'
           />
           <Image
             src='/wMLm-logo-dark.svg'
             alt='logo'
             width={100}
             height={48}
-            className='w-full max-w-[270px] h-[48px] hidden -translate-y-2 dark:flex'
+            className='w-full max-w-[270px] h-[48px] hidden -translate-y-2 dark:flex cursor-pointer'
           />
         </div>
         <div className='flex-shrink-0'>

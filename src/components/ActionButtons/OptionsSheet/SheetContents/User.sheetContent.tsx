@@ -20,17 +20,6 @@ const UserSheetContent: React.FC = () => {
     <div className='flex flex-col gap-4 h-full overflow-y-hidden w-full'>
       <header className='flex flex-col gap-2 w-full'>
         <SheetClose asChild>
-          <Button
-            className='w-full'
-            variant='outline'
-            onClick={() => setShowAccountSettingsDialog(true)}
-          >
-            <UserRound className='mr-2 h-4 w-4' />
-            <span>Account settings</span>
-          </Button>
-        </SheetClose>
-
-        <SheetClose asChild>
           <Button variant='secondary'>
             <CirclePlus className='mr-2 h-4 w-4' />
             <span>New analysis</span>
@@ -100,6 +89,15 @@ const UserSheetContent: React.FC = () => {
       </AlertDialog>
 
       <footer className='flex flex-col gap-2'>
+        <SheetClose asChild>
+          <Button
+            className='w-full'
+            onClick={() => setShowAccountSettingsDialog(true)}
+          >
+            <UserRound className='mr-2 h-4 w-4' />
+            <span>Account settings</span>
+          </Button>
+        </SheetClose>
         <AlertDialogTrigger
           asChild
           onClick={(e) => {

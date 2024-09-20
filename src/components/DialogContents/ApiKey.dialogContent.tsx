@@ -14,8 +14,8 @@ const ApiKeyDialogContent: React.FC = () => {
       <DialogHeader>
         <DialogTitle>Gemini API key</DialogTitle>
         <DialogDescription>
-          Your free tokens are over. Please enter your Gemini API key to
-          continue accessing AI features.
+          Your free tokens are over, but you can continue using whatMLmodel by
+          entering your Gemini API key. Don't worry, getting one is also free.
         </DialogDescription>
       </DialogHeader>
       <h2>How to get it:</h2>

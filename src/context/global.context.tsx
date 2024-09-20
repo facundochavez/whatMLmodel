@@ -3,7 +3,12 @@ import React, { createContext, useContext, useState, useEffect } from 'react';
 interface GlobalContextProps {
   isUserLoggedIn: boolean;
   userEmail: string;
+  currentAnalysis: any;
   isMobile: boolean;
+  isUserRegistering: boolean;
+  setIsUserRegistering: React.Dispatch<React.SetStateAction<boolean>>;
+  isAiThinking: boolean;
+  setIsAiThinking: React.Dispatch<React.SetStateAction<boolean>>;
   showAuthDialog: boolean;
   setShowAuthDialog: React.Dispatch<React.SetStateAction<boolean>>;
   showAccountSettingsDialog: boolean;
@@ -14,9 +19,8 @@ interface GlobalContextProps {
   setShowApiKeyDialog: React.Dispatch<React.SetStateAction<boolean>>;
   showResetPasswordDialog: boolean;
   setShowResetPasswordDialog: React.Dispatch<React.SetStateAction<boolean>>;
-  isUserRegistering: boolean;
-  setIsUserRegistering: React.Dispatch<React.SetStateAction<boolean>>;
-
+  selectedStep: number;
+  setSelectedStep: React.Dispatch<React.SetStateAction<number>>;
 }
 
 const GlobalContext = createContext<GlobalContextProps | undefined>(undefined);
@@ -28,6 +32,7 @@ interface GlobalProviderProps {
 export const GlobalProvider = ({ children }: GlobalProviderProps) => {
   const [isUserLoggedIn, setIsUserLoggedIn] = useState<boolean>(true);
   const userEmail = 'your_email@gmail.com';
+  const [currentAnalysis, setCurrentAnalysis] = useState<any>({title: 'Titanic Survivors'});
 
   const [isMobile, setIsMobile] = useState<boolean>(false);
   const [isUserRegistering, setIsUserRegistering] = useState<boolean>(false);
@@ -35,10 +40,16 @@ export const GlobalProvider = ({ children }: GlobalProviderProps) => {
 
   // DIALOGS STATES
   const [showAuthDialog, setShowAuthDialog] = useState<boolean>(false);
-  const [showAccountSettingsDialog, setShowAccountSettingsDialog] = useState<boolean>(false);
-  const [showChangePasswordDialog, setShowChangePasswordDialog] = useState<boolean>(false);
+  const [showAccountSettingsDialog, setShowAccountSettingsDialog] =
+    useState<boolean>(false);
+  const [showChangePasswordDialog, setShowChangePasswordDialog] =
+    useState<boolean>(false);
   const [showApiKeyDialog, setShowApiKeyDialog] = useState<boolean>(false);
-  const [showResetPasswordDialog, setShowResetPasswordDialog] = useState<boolean>(false);
+  const [showResetPasswordDialog, setShowResetPasswordDialog] =
+    useState<boolean>(false);
+
+  // ANALYSIS STEPS
+  const [selectedStep, setSelectedStep] = useState<number>(1);
 
   useEffect(() => {
     const handleResize = () => {
@@ -57,7 +68,12 @@ export const GlobalProvider = ({ children }: GlobalProviderProps) => {
       value={{
         isUserLoggedIn,
         userEmail,
+        currentAnalysis,
         isMobile,
+        isUserRegistering,
+        setIsUserRegistering,
+        isAiThinking,
+        setIsAiThinking,
         showAuthDialog,
         setShowAuthDialog,
         showAccountSettingsDialog,
@@ -68,8 +84,8 @@ export const GlobalProvider = ({ children }: GlobalProviderProps) => {
         setShowApiKeyDialog,
         showResetPasswordDialog,
         setShowResetPasswordDialog,
-        isUserRegistering,
-        setIsUserRegistering,
+        selectedStep,
+        setSelectedStep,
       }}
     >
       {children}

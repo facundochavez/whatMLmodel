@@ -38,18 +38,13 @@ const UserDropdown: React.FC = () => {
       </DropdownMenuTrigger>
 
       <DropdownMenuContent align='end' className='min-w-36 z-[150]' loop>
-          <DropdownMenuItem className='font-semibold' onClick={() => setShowAccountSettingsDialog(true)}>
-            <UserRound className='mr-2 h-4 w-4' />
-            <span>Account settings</span>
-          </DropdownMenuItem>
 
-        <DropdownMenuSeparator />
 
-        <DropdownMenuItem className='font-semibold'>
+        <DropdownMenuItem className='font-semibold md:hidden'>
           <CirclePlus className='mr-2 h-4 w-4' />
           <span>New analysis</span>
         </DropdownMenuItem>
-        <DropdownMenuSeparator />
+        <DropdownMenuSeparator className='md:hidden' />
 
         {/* FAVORITES LIST */}
 
@@ -79,11 +74,9 @@ const UserDropdown: React.FC = () => {
               );
             })}
           </DropdownMenuGroup>
-
           <DropdownMenuSeparator />
 
           {/* RECENT LIST */}
-
           <DropdownMenuLabel className='flex items-center font-semibold'>
             <History className='h-4 w-4 mr-2' />
             <span>Recent</span>
@@ -111,7 +104,15 @@ const UserDropdown: React.FC = () => {
           </DropdownMenuGroup>
           <ConfirmDeleteDialogContent />
         </AlertDialog>
+        <DropdownMenuSeparator />
 
+        <DropdownMenuItem
+          className='font-semibold'
+          onClick={() => setShowAccountSettingsDialog(true)}
+        >
+          <UserRound className='mr-2 h-4 w-4' />
+          <span>Account settings</span>
+        </DropdownMenuItem>
         <DropdownMenuSeparator />
 
         <AlertDialogTrigger asChild>

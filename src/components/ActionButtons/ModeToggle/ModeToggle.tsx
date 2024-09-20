@@ -7,9 +7,11 @@ import {
 import { useTheme } from 'next-themes';
 import { Moon, Sun } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { useGlobalContext } from '@/context/global.context';
 
 const ModeToggle: React.FC = () => {
   const { setTheme } = useTheme();
+  const {isMobile} = useGlobalContext();
 
   return (
     <DropdownMenu>
@@ -20,7 +22,7 @@ const ModeToggle: React.FC = () => {
           <span className='sr-only'>Toggle theme</span>
         </Button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent align='end' className='z-[150]'>
+      <DropdownMenuContent align={isMobile ? 'end' : 'center'} className='z-[150]'>
         <DropdownMenuItem onClick={() => setTheme('dark')}>
           Dark
         </DropdownMenuItem>

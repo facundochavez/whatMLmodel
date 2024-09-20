@@ -1,18 +1,20 @@
-import { useState, useEffect } from "react";
-import ModeToggle from "./ModeToggle/ModeToggle";
-import OptionsMenuButton from "./OptionsMenuButton/OptionsMenuButton";
-import ShareButton from "./ShareButton/ShareButton";
-import GitHubLink from "./GitHubLink/GitHubLink";
-import OptionsSheet from "./OptionsSheet/OptionsSheet";
-import { Dialog } from "@/components/ui/dialog";
-import { AlertDialog } from "@/components/ui/alert-dialog";
-import AuthDialogContent from "@/components/DialogContents/Auth.dialogContent";
-import ConfirmLogoutDialogContent from "../DialogContents/ConfirmLogout.dialogContent";
-import AccountSettingsDialogContent from "../DialogContents/AccountSettings.dialogContent";
-import { useGlobalContext } from "@/context/global.context";
-import ResetPasswordDialogContent from "../DialogContents/ResetPassword.dialogContent";
-import ApiKeyDialogContent from "../DialogContents/ApiKey.dialogContent";
-import ChangePasswordDialogContent from "../DialogContents/ChangePassword.dialogContent";
+import { useState, useEffect } from 'react';
+import ModeToggle from './ModeToggle/ModeToggle';
+import OptionsMenuButton from './OptionsMenuButton/OptionsMenuButton';
+import ShareButton from './ShareButton/ShareButton';
+import GitHubLink from './GitHubLink/GitHubLink';
+import OptionsSheet from './OptionsSheet/OptionsSheet';
+import { Dialog } from '@/components/ui/dialog';
+import { AlertDialog } from '@/components/ui/alert-dialog';
+import AuthDialogContent from '@/components/DialogContents/Auth.dialogContent';
+import ConfirmLogoutDialogContent from '../DialogContents/ConfirmLogout.dialogContent';
+import AccountSettingsDialogContent from '../DialogContents/AccountSettings.dialogContent';
+import { useGlobalContext } from '@/context/global.context';
+import ResetPasswordDialogContent from '../DialogContents/ResetPassword.dialogContent';
+import ApiKeyDialogContent from '../DialogContents/ApiKey.dialogContent';
+import ChangePasswordDialogContent from '../DialogContents/ChangePassword.dialogContent';
+import { Button } from '@/components/ui/button';
+import { CirclePlus } from 'lucide-react';
 
 const ActionButtons: React.FC = () => {
   const {
@@ -28,7 +30,7 @@ const ActionButtons: React.FC = () => {
     setShowChangePasswordDialog,
     setShowResetPasswordDialog,
   } = useGlobalContext();
-  const {isMobile} = useGlobalContext();
+  const { isMobile } = useGlobalContext();
   const [isMounted, setIsMounted] = useState(false);
 
   useEffect(() => {
@@ -42,10 +44,14 @@ const ActionButtons: React.FC = () => {
       {isMobile ? (
         <OptionsSheet />
       ) : (
-        <aside className="flex gap-2">
+        <aside className='flex gap-2'>
           <GitHubLink />
           <ShareButton />
           <ModeToggle />
+          <Button variant='secondary' className='hidden md:flex'>
+            <CirclePlus className='mr-2 h-4 w-4' />
+            <span>New analysis</span>
+          </Button>
           <OptionsMenuButton />
         </aside>
       )}
