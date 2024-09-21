@@ -1,6 +1,6 @@
+'use client';
 import Image from 'next/image';
 import ActionButtons from '@/components/ActionButtons/ActionButtons';
-import { useGlobalContext } from '@/context/global.context';
 import { useEffect, useState } from 'react';
 
 const Header = () => {

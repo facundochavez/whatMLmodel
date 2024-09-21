@@ -15,7 +15,7 @@ import {
   FormMessage,
 } from '@/components/ui/form';
 
-import { ArrowLeft, CircleHelp, CirclePlus, RefreshCcw } from 'lucide-react';
+import { ArrowLeft, CircleHelp, RefreshCcw } from 'lucide-react';
 import { DialogFooter } from '@/components/ui/dialog';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
@@ -37,6 +37,7 @@ import { useState } from 'react';
 import { AiStarsIcon } from '@/icons/AiStarsIcon';
 import { useGlobalContext } from '@/context/global.context';
 import useTextReveal from '@/hooks/useTextReveal';
+import Link from 'next/link';
 
 // Esquema de validación con zod
 const stepTwoSchema = z.object({
@@ -74,15 +75,16 @@ const StepTwo: React.FC = () => {
   return (
     <div className='w-full flex flex-col items-center gap-6'>
       <header className='w-full flex items-center justify-center max-w-[1050px] relative px-14'>
-        <Button
-          variant='outline'
-          size='icon'
-          className='absolute left-0 opacity-0 animate-fade-in [animation-fill-mode:forwards]'
-          style={{ animationDelay: '1s' }}
-          onClick={() => setSelectedStep(1)}
-        >
-          <ArrowLeft className='h-5 w-5' />
-        </Button>
+        <Link href='/'>
+          <Button
+            variant='outline'
+            size='icon'
+            className='absolute left-0 opacity-0 animate-fade-in [animation-fill-mode:forwards]'
+            style={{ animationDelay: '1s' }}
+          >
+            <ArrowLeft className='h-5 w-5' />
+          </Button>
+        </Link>
         {useTextReveal(currentAnalysis.title)}
       </header>
 

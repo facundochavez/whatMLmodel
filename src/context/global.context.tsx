@@ -1,3 +1,4 @@
+'use client';
 import React, { createContext, useContext, useState, useEffect } from 'react';
 
 interface GlobalContextProps {
@@ -26,13 +27,15 @@ interface GlobalContextProps {
 const GlobalContext = createContext<GlobalContextProps | undefined>(undefined);
 
 interface GlobalProviderProps {
-  children: JSX.Element | JSX.Element[];
+  children: React.ReactNode;
 }
 
 export const GlobalProvider = ({ children }: GlobalProviderProps) => {
   const [isUserLoggedIn, setIsUserLoggedIn] = useState<boolean>(true);
   const userEmail = 'your_email@gmail.com';
-  const [currentAnalysis, setCurrentAnalysis] = useState<any>({title: 'Titanic Survivors'});
+  const [currentAnalysis, setCurrentAnalysis] = useState<any>({
+    title: 'Titanic Survivors',
+  });
 
   const [isMobile, setIsMobile] = useState<boolean>(false);
   const [isUserRegistering, setIsUserRegistering] = useState<boolean>(false);
