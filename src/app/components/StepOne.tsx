@@ -22,6 +22,7 @@ import { AiStarsIcon } from '@/icons/AiStarsIcon';
 import { useGlobalContext } from '@/context/global.context';
 import Link from 'next/link';
 import { TransitionLink } from '@/components/TransitionLink/TransitionLink';
+import { LoaderCircle } from 'lucide-react';
 
 // Esquema de validación con zod
 const stepOneSchema = z.object({
@@ -29,6 +30,7 @@ const stepOneSchema = z.object({
 });
 
 const StepOne: React.FC = () => {
+  const { isGeneratingInfo } = useGlobalContext();
   const subscription$ = tryingExampleService.getSubject();
   const form = useForm<z.infer<typeof stepOneSchema>>({
     resolver: zodResolver(stepOneSchema),
@@ -75,11 +77,20 @@ const StepOne: React.FC = () => {
               </FormItem>
             )}
           />
-          <TransitionLink href='/analysis'>
+          <TransitionLink href='/analysis' sleepTime={1500}>
             <DialogFooter className='mt-4'>
-              <Button type='submit'>
-                <AiStarsIcon className='mr-1.5 h-[18px] w-[18px]' />
-                Let's go
+              <Button type='submit' disabled={isGeneratingInfo}>
+                {isGeneratingInfo ? (
+                  <>
+                    <LoaderCircle className='h-4 w-4 mr-2 animate-spin' />
+                    Generating info
+                  </>
+                ) : (
+                  <>
+                    <AiStarsIcon className='mr-1.5 h-[18px] w-[18px]' />
+                    Let's go
+                  </>
+                )}
               </Button>
             </DialogFooter>
           </TransitionLink>

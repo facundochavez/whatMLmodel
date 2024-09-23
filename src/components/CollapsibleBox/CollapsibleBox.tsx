@@ -62,7 +62,7 @@ export const CollapsibleBox = ({
         variant='secondary'
         onClick={() => setIsExpanded(!isExpanded)}
       >
-        {isExpanded ? 'View Less' : 'View More'}
+        {isExpanded ? 'View less' : 'View more'}
       </Button>
     </div>
   );

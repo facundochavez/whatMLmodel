@@ -1,7 +1,9 @@
+'use client';
 import { Button } from '@/components/ui/button';
 import { Share2 } from 'lucide-react';
+import { ButtonProps } from '@/components/ui/button';
 
-const ShareButton: React.FC = () => {
+const ShareButton: React.FC<ButtonProps> = ({...props}) => {
   function shareApp() {
     navigator.share({
       title: 'whatMLmodel application',
@@ -10,7 +12,7 @@ const ShareButton: React.FC = () => {
   }
 
   return (
-    <Button onClick={shareApp} variant='secondary' size='icon'>
+    <Button onClick={shareApp} size='icon' {...props}>
       <Share2 className='h-5 w-5' strokeWidth={1.6} />
       <span className='sr-only'>Share</span>
     </Button>

@@ -4,7 +4,7 @@
     "name": "Titanic Survivors",
     "datasetDescription": "Based on the features of Titanic passengers (such as sex, age and socio-economic class), I need to determine the probability of survival.",
     "icon": 10,
-    "link": { "platform": "Kaggle", "href": "https://www.kaggle.com/" },
+    "link": { "platform": "Kaggle", "url": "https://www.kaggle.com/" },
     "updated": false,
     "language": "en",
     "info": {
@@ -54,7 +54,7 @@
     "name": "House Prices",
     "datasetDescription": "Dataset contains information about residential properties in Ames, Iowa (such as quality, size, location, and other property attributes). The goal is to predict the sale price of properties based on various features such as quality, size, location, and other property attributes.",
     "icon": 1,
-    "link": { "platform": "", "href": "" },
+    "link": { "platform": "", "url": "" },
     "updated": true,
     "language": "en",
     "info": {
@@ -109,7 +109,7 @@
     "name": "Digit Recognizer",
     "datasetDescription": "Based on grayscale images of handwritten digits from 0 to 9, the goal is to develop a model that can accurately classify each digit.",
     "icon": 5,
-    "link": { "platform": "Supabase", "href": "https://www.supabase.com/" },
+    "link": { "platform": "Supabase", "url": "https://www.supabase.com/" },
     "updated": true,
     "language": "en",
     "info": {
@@ -147,7 +147,7 @@
     "name": "Tumor Tissues",
     "datasetDescription": "High resolution images of tumor tissues are available in a cancer study. The dataset is very large and has high dimensionality due to the resolution of the images. The goal is to classify the images into categories such as benign, malignant, or uncertain.",
     "icon": 19,
-    "link": { "platform": "LeetCode", "href": "https://leetcode.com/" },
+    "link": { "platform": "LeetCode", "url": "https://leetcode.com/" },
     "updated": false,
     "language": "en",
     "info": {
@@ -195,7 +195,7 @@
     "name": "Medical Images",
     "datasetDescription": "You have a dataset with high-dimensional features extracted from medical images, such as MRI scans. The dataset includes a large number of features representing different aspects of the images. The goal is to build a model to classify these images into different categories, such as 'normal', 'abnormal', and 'critical'.",
     "icon": 23,
-    "link": { "platform": "", "href": "https://www.kaggle.com/" },
+    "link": { "platform": "", "url": "https://www.kaggle.com/" },
     "updated": true,
     "language": "en",
     "info": {
@@ -261,7 +261,7 @@
     "name": "House Price",
     "datasetDescription": "You have a dataset containing historical house prices along with features such as the number of bedrooms, square footage, and location. The goal is to predict house prices based on these features. Additionally, you want to categorize houses into different price ranges (e.g., low, medium, high) for market analysis purposes.",
     "icon": 1,
-    "link": { "platform": "Kaggle", "href": "" },
+    "link": { "platform": "Kaggle", "url": "" },
     "updated": false,
     "language": "en",
     "info": {
@@ -315,7 +315,7 @@
     "name": "Customer Review Satisfaction",
     "datasetDescription": "Based on the features of customer reviews (such as review text, rating, and length of review), I want to build a model to predict the satisfaction score of each review. The satisfaction score is a numerical value ranging from 1 to 10.",
     "icon": 23,
-    "link": { "platform": "Kaggle", "href": "https://www.kaggle.com/" },
+    "link": { "platform": "Kaggle", "url": "https://www.kaggle.com/" },
     "updated": false,
     "language": "en",
     "info": {
@@ -374,7 +374,7 @@
     "name": "Customer Transactions",
     "datasetDescription": "You are working on a dataset of customer transactions with features like purchase frequency, average transaction amount, and customer demographics. The goal is to segment customers into distinct groups based on their purchasing behavior and classify new customers into these segments.",
     "icon": 19,
-    "link": { "platform": "Supabase", "href": "https://www.supabase.com/" },
+    "link": { "platform": "Supabase", "url": "https://www.supabase.com/" },
     "updated": true,
     "language": "en",
     "info": {
@@ -432,7 +432,7 @@
     "name": "Residential Property Pricing",
     "datasetDescription": "You have a dataset of residential properties with features such as location, size, and type of property. The goal is to predict the price of the properties. Initially, properties will be clustered into different segments based on these features, and then regression models will be applied within each segment to predict the property prices.",
     "icon": 19,
-    "link": { "platform": "Kaggle", "href": "https://www.kaggle.com/" },
+    "link": { "platform": "Kaggle", "url": "https://www.kaggle.com/" },
     "updated": false,
     "language": "en",
     "info": {
@@ -490,7 +490,7 @@
     "name": "Customer Products Review",
     "datasetDescription": "We have a dataset containing customer reviews for various products. The dataset includes text reviews with features extracted from the text, such as TF-IDF vectors and word embeddings. The goal is to build a model to classify these reviews into categories such as 'positive', 'negative', and 'neutral'.",
     "icon": 23,
-    "link": { "platform": "", "href": "" },
+    "link": { "platform": "", "url": "" },
     "updated": true,
     "language": "en",
     "info": {
@@ -541,7 +541,7 @@
     "name": "Air-Quality Index",
     "datasetDescription": "Estimate the air quality index (AQI) for a specific location based on factors like temperature, humidity, wind speed, and historical pollution levels.",
     "icon": 1,
-    "link": { "platform": "Kaggle", "href": "https://www.kaggle.com/" },
+    "link": { "platform": "Kaggle", "url": "https://www.kaggle.com/" },
     "updated": true,
     "language": "en",
     "info": {

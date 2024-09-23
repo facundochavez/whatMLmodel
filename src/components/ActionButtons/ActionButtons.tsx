@@ -15,8 +15,11 @@ import ApiKeyDialogContent from '../DialogContents/ApiKey.dialogContent';
 import ChangePasswordDialogContent from '../DialogContents/ChangePassword.dialogContent';
 import { Button } from '@/components/ui/button';
 import { CirclePlus } from 'lucide-react';
+import { usePathname } from 'next/navigation';
+import { TransitionLink } from '../TransitionLink/TransitionLink';
 
 const ActionButtons: React.FC = () => {
+  const pathname = usePathname();
   const {
     isUserLoggedIn,
     showAccountSettingsDialog,
@@ -45,13 +48,21 @@ const ActionButtons: React.FC = () => {
         <OptionsSheet />
       ) : (
         <aside className='flex gap-2'>
-          <GitHubLink />
-          <ShareButton />
+          <GitHubLink variant='secondary' />
+          <ShareButton variant='secondary' />
           <ModeToggle />
-          <Button variant='secondary' className='hidden md:flex'>
-            <CirclePlus className='mr-2 h-4 w-4' />
-            <span>New analysis</span>
-          </Button>
+          <div
+            className={`-ml-2 w-0 overflow-hidden duration-200 cubic-bezier(0,.78,.58,1.02) ${
+              pathname === '/analysis' && 'md:w-[138px] md:ml-0'
+            }`}
+          >
+            <TransitionLink href='/'>
+              <Button className='hidden md:flex' variant='secondary'>
+                <CirclePlus className='mr-2 h-4 w-4' />
+                <span>New analysis</span>
+              </Button>
+            </TransitionLink>
+          </div>
           <OptionsMenuButton />
         </aside>
       )}

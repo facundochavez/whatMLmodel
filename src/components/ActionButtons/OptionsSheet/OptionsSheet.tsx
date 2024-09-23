@@ -27,8 +27,8 @@ const OptionsSheet: React.FC = () => {
       <SheetContent className='flex flex-col h-full max-w-[350px] z-[150]'>
         <SheetHeader>
           <div className='flex gap-2 justify-end flex-shrink-0'>
-            <GitHubLink />
-            <ShareButton />
+            <GitHubLink variant='secondary' />
+            <ShareButton variant='secondary' />
             <ModeToggle />
           </div>
         </SheetHeader>

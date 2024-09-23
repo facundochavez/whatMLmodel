@@ -22,10 +22,11 @@ import ConfirmDeleteDialogContent from '@/components/DialogContents/ConfirmDelet
 import { Button } from '@/components/ui/button';
 import { AlertDialog, AlertDialogTrigger } from '@/components/ui/alert-dialog';
 import AnalysisActionsDropdown from '@/components/ActionButtons/AnalysisDropdown/Analysis.dropdown';
-import { DialogTrigger } from '@/components/ui/dialog';
 import { useGlobalContext } from '@/context/global.context';
+import { usePathname } from 'next/navigation';
 
 const UserDropdown: React.FC = () => {
+  const pathname = usePathname();
   const { setShowAccountSettingsDialog } = useGlobalContext();
 
   return (
@@ -38,13 +39,15 @@ const UserDropdown: React.FC = () => {
       </DropdownMenuTrigger>
 
       <DropdownMenuContent align='end' className='min-w-36 z-[150]' loop>
-
-
-        <DropdownMenuItem className='font-semibold md:hidden'>
-          <CirclePlus className='mr-2 h-4 w-4' />
-          <span>New analysis</span>
-        </DropdownMenuItem>
-        <DropdownMenuSeparator className='md:hidden' />
+        {pathname === '/analysis' && (
+          <>
+            <DropdownMenuItem className='font-semibold md:hidden'>
+              <CirclePlus className='mr-2 h-4 w-4' />
+              <span>New analysis</span>
+            </DropdownMenuItem>
+            <DropdownMenuSeparator className='md:hidden' />
+          </>
+        )}
 
         {/* FAVORITES LIST */}
 

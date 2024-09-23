@@ -2,6 +2,7 @@ import { Star, LogOut, History, CirclePlus, UserRound } from 'lucide-react';
 import infoResponsesData from '@/prompts/infoResponses.data.json';
 import { recentResponses } from '@/types';
 import ConfirmDeleteDialogContent from '@/components/DialogContents/ConfirmDelete.dialogContent';
+import { usePathname } from 'next/navigation';
 
 import { Button } from '@/components/ui/button';
 import { AlertDialog, AlertDialogTrigger } from '@/components/ui/alert-dialog';
@@ -14,21 +15,24 @@ import { SheetClose } from '@/components/ui/sheet';
 import { useGlobalContext } from '@/context/global.context';
 
 const UserSheetContent: React.FC = () => {
+  const pathname = usePathname();
   const { setShowAccountSettingsDialog } = useGlobalContext();
 
   return (
     <div className='flex flex-col gap-4 h-full overflow-y-hidden w-full'>
-      <header className='flex flex-col gap-2 w-full'>
-        <SheetClose asChild>
-          <Button variant='secondary'>
-            <CirclePlus className='mr-2 h-4 w-4' />
-            <span>New analysis</span>
-          </Button>
-        </SheetClose>
-      </header>
+      {pathname === '/analysis' && (
+        <header className='flex flex-col gap-2 w-full -mb-2'>
+          <SheetClose asChild>
+            <Button variant='secondary'>
+              <CirclePlus className='mr-2 h-4 w-4' />
+              <span>New analysis</span>
+            </Button>
+          </SheetClose>
+        </header>
+      )}
 
       <AlertDialog>
-        <div className='flex flex-col h-full overflow-auto gap-2 [&>label]:text-muted-foreground'>
+        <div className='flex flex-col h-full overflow-auto gap-2 [&>label]:text-muted-foreground mt-2'>
           {/* FAVORITES LIST */}
           <Label className='flex items-center'>
             <Star className='h-4 w-4 mr-2' />

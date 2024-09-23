@@ -22,6 +22,10 @@ interface GlobalContextProps {
   setShowResetPasswordDialog: React.Dispatch<React.SetStateAction<boolean>>;
   selectedStep: number;
   setSelectedStep: React.Dispatch<React.SetStateAction<number>>;
+  isGeneratingInfo: boolean;
+  setIsGeneratingInfo: React.Dispatch<React.SetStateAction<boolean>>;
+  isGettingModels: boolean;
+  setIsGettingModels: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 const GlobalContext = createContext<GlobalContextProps | undefined>(undefined);
@@ -53,6 +57,10 @@ export const GlobalProvider = ({ children }: GlobalProviderProps) => {
 
   // ANALYSIS STEPS
   const [selectedStep, setSelectedStep] = useState<number>(1);
+
+  //AUXILIAR PARA SIMULAR EL ESTADO DE CARGA
+  const [isGeneratingInfo, setIsGeneratingInfo] = useState<boolean>(false);
+  const [isGettingModels, setIsGettingModels] = useState<boolean>(false);
 
   useEffect(() => {
     const handleResize = () => {
@@ -89,6 +97,10 @@ export const GlobalProvider = ({ children }: GlobalProviderProps) => {
         setShowResetPasswordDialog,
         selectedStep,
         setSelectedStep,
+        isGeneratingInfo,
+        setIsGeneratingInfo,
+        isGettingModels,
+        setIsGettingModels,
       }}
     >
       {children}

@@ -14,7 +14,7 @@ export interface ModelResponse {
   icon: number;
   link: {
     platform: string;
-    href: string;
+    url: string;
   };
   updated: boolean;
   language: string;
@@ -36,3 +36,9 @@ export interface ModelResponse {
     };
   }[];
 }
+
+export type Collaborator = {
+  name: string;
+  nick: string;
+  url: string;
+};

@@ -5,7 +5,7 @@ import { tryingExampleService } from '@/services/tryingExampleService';
 const Hero = () => {
   return (
     <section
-      className={`w-full flex flex-col items-center max-w-[700px] pt-6 pb-12 sm:pt-16 sm:pb-16 lg:pt-20`}
+      className={`w-full flex flex-col items-center max-w-[700px] pt-6 sm:pt-16 lg:pt-20`}
     >
       <h2 className='text-3xl text-center text-muted-foreground font-semibold sm:text-4xl'>
         Use AI to find the machine learning model that best fits your data

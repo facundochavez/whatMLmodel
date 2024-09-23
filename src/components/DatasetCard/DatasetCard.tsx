@@ -91,11 +91,13 @@ const DatasetLayerCard = ({
         <Button
           variant='link'
           className={`p-0 ${isTopLayer ? 'text-background' : ''}`}
-          onClick={() => window.open(dataset.link.href, '_blank')}
+          onClick={() => {
+            if (dataset.link.url) window.open(dataset.link.url, '_blank');
+          }}
         >
-          {dataset.link.platform ? (
+          {dataset.link.url ? (
             <>
-              <span>View on {dataset.link.platform}</span>
+              <span>View on {dataset.link.platform || 'platform'}</span>
               <ArrowRight className='ml-2 h-4 w-4' />
             </>
           ) : (
