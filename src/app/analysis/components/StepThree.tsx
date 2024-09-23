@@ -1,6 +1,7 @@
 import TablesGroup from '@/components/TablesGroup/TablesGroup';
 import { ProblemType } from '@/components/TablesGroup/types';
 import modelsResponsesDataRaw from '@/prompts/modelsResponses.data.json';
+import { ModelResponse } from '@/types';
 
 /* async function getModels(aliases: string[]): Promise<Model[]> {
   try {
@@ -20,27 +21,14 @@ import modelsResponsesDataRaw from '@/prompts/modelsResponses.data.json';
   
 } */
 
-interface ModelResponse {
-  alias: string;
-  title: string;
-  recommendations: {
-    type: ProblemType;
-    paragraph: string;
-    tables: {
-      modelsAliases: string[];
-      similarDatasetsAliases: string[];
-    };
-  }[];
-}
-
 const StepThree = () => {
   const modelsResponsesData: ModelResponse[] =
     modelsResponsesDataRaw as ModelResponse[];
   const response: ModelResponse = modelsResponsesData[0];
 
   return (
-    <div className='w-full max-w-[1050px] flex flex-col gap-8 mt-8'>
-      <h1 className='text-2xl font-semibold'>{response.title}</h1>
+    <section className='w-full max-w-[1050px] flex flex-col gap-8 mt-8'>
+      <h3 className='text-2xl font-semibold'>{response.recomendationsTitle}</h3>
       {response.recommendations.map((recomendation, index) => {
         return (
           <section key={index} className='flex flex-col gap-4'>
@@ -58,7 +46,7 @@ const StepThree = () => {
           </section>
         );
       })}
-    </div>
+    </section>
   );
 };
 

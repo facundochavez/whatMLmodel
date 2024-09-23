@@ -4,7 +4,7 @@ Basándote en un input que describe un dataset y su variable objetivo, genera el
   "alias": [String: mismo nombre en kebab-case]
   "datasetDescription": [String: descripción sencilla del dataset, nombrando algunos features, y la variable objetivo. Es una idea clara del input, adecuándolo si es necesario],
   "language": [String: idioma que reconoces del input. Debe ser su código de idioma estándar (ISO 639-1): "en", "es", "fr", etc.]
-  "details":{
+  "info":{
     "problemDescription": [String: descripción del problema (sin mencionar los features), y el objetivo de una forma clara y precisa],
     "mainFeatures": [String: hasta siete features principales del dataset que consideres lógicos, incluyendo al final la variable objetivo, separados por comas y escritos en PascalCase],
     "targetVariable": [String: La variable objetivo dicha de forma simple y directa en Title Case],

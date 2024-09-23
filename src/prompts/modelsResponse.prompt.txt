@@ -5,7 +5,7 @@ Basándote en la información de un dataset que tiene la siguiente estructura:
   "alias": [String]
   "datasetDescription": [String],
   "language": [String: (ISO 639-1)]
-  "details":{
+  "info":{
     "problemDescription": [String],
     "mainFeatures": [String],
     "targetVariable": [String],

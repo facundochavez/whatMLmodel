@@ -6,7 +6,7 @@
       "alias": "titanic-survivors",
       "datasetDescription": "Based on the features of Titanic passengers (such as sex, age and socio-economic class), I need to determine the probability of survival.",
       "language": "en",
-      "details": {
+      "info": {
         "problemDescription": "Based on the features of Titanic passengers, the goal is to determine which types of people were more likely to survive.",
         "mainFeatures": "Sex, Age, Pclass, Fare, SibSp, Parch, Survival",
         "targetVariable": "Survival Status",
@@ -23,7 +23,7 @@
       "alias": "house-prices",
       "datasetDescription": "Dataset contains information about residential properties in Ames, Iowa (such as quality, size, location, and other property attributes). The goal is to predict the sale price of properties based on various features such as quality, size, location, and other property attributes.",
       "language": "en",
-      "details": {
+      "info": {
         "problemDescription": "Based on information about residential properties in Ames, Iowa, the goal is to predict the sales price of a given property.",
         "mainFeatures": "OverallQual, GrLivArea, YearBuilt, Neighborhood, TotalBsmtSF, GarageCars, SalePrice",
         "targetVariable": "Sale Price",
@@ -40,7 +40,7 @@
       "alias": "digit-recognizer",
       "datasetDescription": "Based on grayscale images of handwritten digits from 0 to 9, the goal is to develop a model that can accurately classify each digit.",
       "language": "en",
-      "details": {
+      "info": {
         "problemDescription": "Based on grayscale images of handwritten digits, the goal is to build a model to accurately classify each digit from 0 to 9.",
         "mainFeatures": "Image, Label",
         "targetVariable": "Label",
@@ -57,7 +57,7 @@
       "alias": "tumor-tissues",
       "datasetDescription": "High resolution images of tumor tissues are available in a cancer study. The dataset is very large and has high dimensionality due to the resolution of the images. The goal is to classify the images into categories such as benign, malignant, or uncertain.",
       "language": "en",
-      "details": {
+      "info": {
         "problemDescription": "Given high-resolution images of tumor tissues, the goal is to classify these images into categories such as benign, malignant, or uncertain.",
         "mainFeatures": "ImagePixels, TumorCategory",
         "targetVariable": "Tumor Category",
@@ -74,7 +74,7 @@
       "alias": "medical-images",
       "datasetDescription": "You have a dataset with high-dimensional features extracted from medical images, such as MRI scans. The dataset includes a large number of features representing different aspects of the images. The goal is to build a model to classify these images into different categories, such as 'normal', 'abnormal', and 'critical'.",
       "language": "en",
-      "details": {
+      "info": {
         "problemDescription": "Given high-dimensional features extracted from medical images, the goal is to classify these images into categories such as 'normal', 'abnormal', and 'critical'.",
         "mainFeatures": "ImageFeatures, NormalClass, AbnormalClass, CriticalClass",
         "targetVariable": "Image Category",
@@ -91,7 +91,7 @@
       "alias": "house-price",
       "datasetDescription": "You have a dataset containing historical house prices along with features such as the number of bedrooms, square footage, and location. The goal is to predict house prices based on these features. Additionally, you want to categorize houses into different price ranges (e.g., low, medium, high) for market analysis purposes.",
       "language": "en",
-      "details": {
+      "info": {
         "problemDescription": "Given historical house prices and features like the number of bedrooms, square footage, and location, the goal is to predict house prices and categorize houses into different price ranges for market analysis.",
         "mainFeatures": "NumberOfBedrooms, SquareFootage, Location, HousePrice, PriceCategory",
         "targetVariable": "House Price",
@@ -108,7 +108,7 @@
       "alias": "customer-review-satisfaction",
       "datasetDescription": "Based on the features of customer reviews (such as review text, rating, and length of review), I want to build a model to predict the satisfaction score of each review. The satisfaction score is a numerical value ranging from 1 to 10.",
       "language": "en",
-      "details": {
+      "info": {
         "problemDescription": "Given various features of customer reviews, the goal is to predict the satisfaction score of each review, which is a numerical value ranging from 1 to 10.",
         "mainFeatures": "ReviewText, Rating, ReviewLength, SatisfactionScore",
         "targetVariable": "Satisfaction Score",
@@ -125,7 +125,7 @@
       "alias": "customer-transactions",
       "datasetDescription": "You are working on a dataset of customer transactions with features like purchase frequency, average transaction amount, and customer demographics. The goal is to segment customers into distinct groups based on their purchasing behavior and classify new customers into these segments.",
       "language": "en",
-      "details": {
+      "info": {
         "problemDescription": "Given features related to customer transactions, the goal is to segment customers into distinct groups based on their purchasing behavior and classify new customers into these predefined segments.",
         "mainFeatures": "PurchaseFrequency, AvgTransactionAmount, CustomerDemographics, CustomerSegment",
         "targetVariable": "Customer Segment",
@@ -142,7 +142,7 @@
       "alias": "residential-property-pricing",
       "datasetDescription": "You have a dataset of residential properties with features such as location, size, and type of property. The goal is to predict the price of the properties. Initially, properties will be clustered into different segments based on these features, and then regression models will be applied within each segment to predict the property prices.",
       "language": "en",
-      "details": {
+      "info": {
         "problemDescription": "Given features related to residential properties, the goal is to first cluster the properties into different segments based on their characteristics and then use regression models to predict the property prices within each segment.",
         "mainFeatures": "Location, Size, PropertyType, PropertyPrice",
         "targetVariable": "Property Price",
@@ -159,7 +159,7 @@
       "alias": "customer-products-review",
       "datasetDescription": "We have a dataset containing customer reviews for various products. The dataset includes text reviews with features extracted from the text, such as TF-IDF vectors and word embeddings. The goal is to build a model to classify these reviews into categories such as 'positive', 'negative', and 'neutral'.",
       "language": "en",
-      "details": {
+      "info": {
         "problemDescription": "Given customer reviews with features extracted from text, the goal is to classify these reviews into categories like 'positive', 'negative', and 'neutral'.",
         "mainFeatures": "TF-IDF Vectors, Word Embeddings, ReviewText, ReviewCategory",
         "targetVariable": "Review Category",
@@ -176,7 +176,7 @@
       "alias": "air-quality-index",
       "datasetDescription": "Estimate the air quality index (AQI) for a specific location based on factors like temperature, humidity, wind speed, and historical pollution levels.",
       "language": "en",
-      "details": {
+      "info": {
         "problemDescription": "Given factors such as temperature, humidity, wind speed, and historical pollution levels, the goal is to estimate the air quality index (AQI) for a specific location.",
         "mainFeatures": "Temperature, Humidity, WindSpeed, HistoricalPollutionLevels, AQI",
         "targetVariable": "Air Quality Index",

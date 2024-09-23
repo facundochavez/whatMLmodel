@@ -1,622 +1,7 @@
 [
   {
-    "name": "House prices",
-    "alias": "house-prices",
-    "description": "This is the dataset description",
-    "features": ["Feature 1", "Feature 2", "Feature 3"],
-    "targetVariable": "Target variable",
-    "performance": {
-      "regression": [
-        {
-          "modelAlias": "linear-regression",
-          "meanSquaredError": 2100000.0,
-          "meanAbsoluteError": 1100.0,
-          "rootMeanSquaredError": 1443.0,
-          "rSquared": 0.85,
-          "adjustedRSquared": 0.92
-        },
-        {
-          "modelAlias": "polynomial-regression",
-          "meanSquaredError": 1800000.0,
-          "meanAbsoluteError": 950.0,
-          "rootMeanSquaredError": 1340.0,
-          "rSquared": 0.88,
-          "adjustedRSquared": 0.94
-        },
-        {
-          "modelAlias": "elastic-net-regression",
-          "meanSquaredError": 2000000.0,
-          "meanAbsoluteError": 1050.0,
-          "rootMeanSquaredError": 1410.0,
-          "rSquared": 0.86,
-          "adjustedRSquared": 0.93
-        },
-        {
-          "modelAlias": "gradient-boosting-r",
-          "meanSquaredError": 1600000.0,
-          "meanAbsoluteError": 900.0,
-          "rootMeanSquaredError": 1265.0,
-          "rSquared": 0.9,
-          "adjustedRSquared": 0.8
-        },
-        {
-          "modelAlias": "neural-networks-r",
-          "meanSquaredError": 1900000.0,
-          "meanAbsoluteError": 980.0,
-          "rootMeanSquaredError": 1376.0,
-          "rSquared": 0.87,
-          "adjustedRSquared": 0.92
-        },
-        {
-          "modelAlias": "svm-r",
-          "meanSquaredError": 2200000.0,
-          "meanAbsoluteError": 1150.0,
-          "rootMeanSquaredError": 1483.0,
-          "rSquared": 0.84,
-          "adjustedRSquared": 0.91
-        },
-        {
-          "modelAlias": "decision-tree-r",
-          "meanSquaredError": 2300000.0,
-          "meanAbsoluteError": 1200.0,
-          "rootMeanSquaredError": 1517.0,
-          "rSquared": 0.83,
-          "adjustedRSquared": 0.9
-        },
-        {
-          "modelAlias": "random-forest-r",
-          "meanSquaredError": 1700000.0,
-          "meanAbsoluteError": 940.0,
-          "rootMeanSquaredError": 1304.0,
-          "rSquared": 0.89,
-          "adjustedRSquared": 0.92
-        },
-        {
-          "modelAlias": "xgboost-r",
-          "meanSquaredError": 1750000.0,
-          "meanAbsoluteError": 960.0,
-          "rootMeanSquaredError": 1323.0,
-          "rSquared": 0.88,
-          "adjustedRSquared": 0.92
-        },
-        {
-          "modelAlias": "lightgbm-r",
-          "meanSquaredError": 1650000.0,
-          "meanAbsoluteError": 910.0,
-          "rootMeanSquaredError": 1284.0,
-          "rSquared": 0.8,
-          "adjustedRSquared": 0.85
-        },
-        {
-          "modelAlias": "catboost-c",
-          "meanSquaredError": 1900000.0,
-          "meanAbsoluteError": 980.0,
-          "rootMeanSquaredError": 1376.0,
-          "rSquared": 0.87,
-          "adjustedRSquared": 0.92
-        },
-        {
-          "modelAlias": "ensemble-methods-r",
-          "meanSquaredError": 1900000.0,
-          "meanAbsoluteError": 980.0,
-          "rootMeanSquaredError": 1376.0,
-          "rSquared": 0.87,
-          "adjustedRSquared": 0.92
-        },
-        {
-          "modelAlias": "mlp-r",
-          "meanSquaredError": 1900000.0,
-          "meanAbsoluteError": 980.0,
-          "rootMeanSquaredError": 1376.0,
-          "rSquared": 0.87,
-          "adjustedRSquared": 0.92
-        },
-        {
-          "modelAlias": "elm-r",
-          "meanSquaredError": 1900000.0,
-          "meanAbsoluteError": 980.0,
-          "rootMeanSquaredError": 1376.0,
-          "rSquared": 0.87,
-          "adjustedRSquared": 0.92
-        }
-      ]
-    }
-  },
-  {
-    "name": "Boston Housing",
-    "alias": "boston-housing",
-    "description": "This is the dataset description",
-    "features": ["Feature 1", "Feature 2", "Feature 3"],
-    "targetVariable": "Target variable",
-    "performance": {
-      "regression": [
-        {
-          "modelAlias": "linear-regression",
-          "meanAbsoluteError": 3.5,
-          "meanSquaredError": 18.0,
-          "rootMeanSquaredError": 4.24,
-          "rSquared": 0.74,
-          "adjustedRSquared": 0.72
-        },
-        {
-          "modelAlias": "polynomial-regression",
-          "meanAbsoluteError": 3.2,
-          "meanSquaredError": 15.0,
-          "rootMeanSquaredError": 3.87,
-          "rSquared": 0.78,
-          "adjustedRSquared": 0.76
-        },
-        {
-          "modelAlias": "elastic-net-regression",
-          "meanAbsoluteError": 3.4,
-          "meanSquaredError": 17.0,
-          "rootMeanSquaredError": 4.12,
-          "rSquared": 0.75,
-          "adjustedRSquared": 0.73
-        },
-        {
-          "modelAlias": "gradient-boosting-r",
-          "meanAbsoluteError": 2.9,
-          "meanSquaredError": 12.0,
-          "rootMeanSquaredError": 3.46,
-          "rSquared": 0.83,
-          "adjustedRSquared": 0.81
-        },
-        {
-          "modelAlias": "neural-networks-r",
-          "meanAbsoluteError": 3.0,
-          "meanSquaredError": 13.0,
-          "rootMeanSquaredError": 3.61,
-          "rSquared": 0.8,
-          "adjustedRSquared": 0.78
-        },
-        {
-          "modelAlias": "svm-r",
-          "meanAbsoluteError": 3.3,
-          "meanSquaredError": 16.0,
-          "rootMeanSquaredError": 4.0,
-          "rSquared": 0.76,
-          "adjustedRSquared": 0.74
-        },
-        {
-          "modelAlias": "decision-tree-r",
-          "meanAbsoluteError": 3.7,
-          "meanSquaredError": 19.0,
-          "rootMeanSquaredError": 4.36,
-          "rSquared": 0.72,
-          "adjustedRSquared": 0.7
-        },
-        {
-          "modelAlias": "random-forest-r",
-          "meanAbsoluteError": 2.8,
-          "meanSquaredError": 11.0,
-          "rootMeanSquaredError": 3.32,
-          "rSquared": 0.85,
-          "adjustedRSquared": 0.83
-        },
-        {
-          "modelAlias": "xgboost-r",
-          "meanAbsoluteError": 2.9,
-          "meanSquaredError": 12.0,
-          "rootMeanSquaredError": 3.46,
-          "rSquared": 0.84,
-          "adjustedRSquared": 0.82
-        },
-        {
-          "modelAlias": "lightgbm-r",
-          "meanAbsoluteError": 2.85,
-          "meanSquaredError": 11.5,
-          "rootMeanSquaredError": 3.39,
-          "rSquared": 0.84,
-          "adjustedRSquared": 0.82
-        },
-        {
-          "modelAlias": "catboost-r",
-          "meanAbsoluteError": 2.95,
-          "meanSquaredError": 12.5,
-          "rootMeanSquaredError": 3.54,
-          "rSquared": 0.83,
-          "adjustedRSquared": 0.81
-        },
-        {
-          "modelAlias": "ensemble-methods-r",
-          "meanAbsoluteError": 2.8,
-          "meanSquaredError": 11.0,
-          "rootMeanSquaredError": 3.32,
-          "rSquared": 0.85,
-          "adjustedRSquared": 0.83
-        },
-        {
-          "modelAlias": "mlp-r",
-          "meanAbsoluteError": 3.0,
-          "meanSquaredError": 13.0,
-          "rootMeanSquaredError": 3.61,
-          "rSquared": 0.8,
-          "adjustedRSquared": 0.78
-        },
-        {
-          "modelAlias": "elm-r",
-          "meanAbsoluteError": 3.1,
-          "meanSquaredError": 13.5,
-          "rootMeanSquaredError": 3.67,
-          "rSquared": 0.79,
-          "adjustedRSquared": 0.77
-        }
-      ]
-    }
-  },
-  {
-    "name": "Auto MPG",
-    "alias": "auto-mpg",
-    "description": "This is the dataset description",
-    "features": ["Feature 1", "Feature 2", "Feature 3"],
-    "targetVariable": "Target variable",
-    "performance": {
-      "regression": [
-        {
-          "modelAlias": "linear-regression",
-          "meanAbsoluteError": 3.7,
-          "meanSquaredError": 17.0,
-          "rootMeanSquaredError": 4.12,
-          "rSquared": 0.73,
-          "adjustedRSquared": 0.71
-        },
-        {
-          "modelAlias": "polynomial-regression",
-          "meanAbsoluteError": 3.5,
-          "meanSquaredError": 16.0,
-          "rootMeanSquaredError": 4.0,
-          "rSquared": 0.75,
-          "adjustedRSquared": 0.73
-        },
-        {
-          "modelAlias": "elastic-net-regression",
-          "meanAbsoluteError": 3.6,
-          "meanSquaredError": 16.5,
-          "rootMeanSquaredError": 4.06,
-          "rSquared": 0.74,
-          "adjustedRSquared": 0.72
-        },
-        {
-          "modelAlias": "gradient-boosting-r",
-          "meanAbsoluteError": 2.9,
-          "meanSquaredError": 11.0,
-          "rootMeanSquaredError": 3.32,
-          "rSquared": 0.83,
-          "adjustedRSquared": 0.81
-        },
-        {
-          "modelAlias": "neural-networks-r",
-          "meanAbsoluteError": 3.0,
-          "meanSquaredError": 12.0,
-          "rootMeanSquaredError": 3.46,
-          "rSquared": 0.8,
-          "adjustedRSquared": 0.78
-        },
-        {
-          "modelAlias": "svm-r",
-          "meanAbsoluteError": 3.4,
-          "meanSquaredError": 14.0,
-          "rootMeanSquaredError": 3.74,
-          "rSquared": 0.77,
-          "adjustedRSquared": 0.75
-        },
-        {
-          "modelAlias": "decision-tree-r",
-          "meanAbsoluteError": 3.8,
-          "meanSquaredError": 18.0,
-          "rootMeanSquaredError": 4.24,
-          "rSquared": 0.71,
-          "adjustedRSquared": 0.69
-        },
-        {
-          "modelAlias": "random-forest-r",
-          "meanAbsoluteError": 2.8,
-          "meanSquaredError": 10.5,
-          "rootMeanSquaredError": 3.24,
-          "rSquared": 0.85,
-          "adjustedRSquared": 0.83
-        },
-        {
-          "modelAlias": "xgboost-r",
-          "meanAbsoluteError": 2.9,
-          "meanSquaredError": 11.5,
-          "rootMeanSquaredError": 3.39,
-          "rSquared": 0.84,
-          "adjustedRSquared": 0.82
-        },
-        {
-          "modelAlias": "lightgbm-r",
-          "meanAbsoluteError": 2.85,
-          "meanSquaredError": 11.0,
-          "rootMeanSquaredError": 3.32,
-          "rSquared": 0.85,
-          "adjustedRSquared": 0.83
-        },
-        {
-          "modelAlias": "catboost-r",
-          "meanAbsoluteError": 2.95,
-          "meanSquaredError": 12.0,
-          "rootMeanSquaredError": 3.46,
-          "rSquared": 0.83,
-          "adjustedRSquared": 0.81
-        },
-        {
-          "modelAlias": "ensemble-methods-r",
-          "meanAbsoluteError": 2.8,
-          "meanSquaredError": 10.5,
-          "rootMeanSquaredError": 3.24,
-          "rSquared": 0.85,
-          "adjustedRSquared": 0.83
-        },
-        {
-          "modelAlias": "mlp-r",
-          "meanAbsoluteError": 3.0,
-          "meanSquaredError": 12.0,
-          "rootMeanSquaredError": 3.46,
-          "rSquared": 0.8,
-          "adjustedRSquared": 0.78
-        },
-        {
-          "modelAlias": "elm-r",
-          "meanAbsoluteError": 3.1,
-          "meanSquaredError": 12.5,
-          "rootMeanSquaredError": 3.67,
-          "rSquared": 0.79,
-          "adjustedRSquared": 0.77
-        }
-      ]
-    }
-  },
-  {
-    "name": "Diamonds",
-    "alias": "diamonds",
-    "description": "This is the dataset description",
-    "features": ["Feature 1", "Feature 2", "Feature 3"],
-    "targetVariable": "Target variable",
-    "performance": {
-      "regression": [
-        {
-          "modelAlias": "linear-regression",
-          "meanAbsoluteError": 240.0,
-          "meanSquaredError": 70000.0,
-          "rootMeanSquaredError": 264.5,
-          "rSquared": 0.9,
-          "adjustedRSquared": 0.89
-        },
-        {
-          "modelAlias": "polynomial-regression",
-          "meanAbsoluteError": 220.0,
-          "meanSquaredError": 65000.0,
-          "rootMeanSquaredError": 255.0,
-          "rSquared": 0.91,
-          "adjustedRSquared": 0.9
-        },
-        {
-          "modelAlias": "elastic-net-regression",
-          "meanAbsoluteError": 230.0,
-          "meanSquaredError": 68000.0,
-          "rootMeanSquaredError": 260.0,
-          "rSquared": 0.9,
-          "adjustedRSquared": 0.89
-        },
-        {
-          "modelAlias": "gradient-boosting-r",
-          "meanAbsoluteError": 200.0,
-          "meanSquaredError": 55000.0,
-          "rootMeanSquaredError": 234.0,
-          "rSquared": 0.93,
-          "adjustedRSquared": 0.92
-        },
-        {
-          "modelAlias": "neural-networks-r",
-          "meanAbsoluteError": 210.0,
-          "meanSquaredError": 58000.0,
-          "rootMeanSquaredError": 241.0,
-          "rSquared": 0.92,
-          "adjustedRSquared": 0.91
-        },
-        {
-          "modelAlias": "svm-r",
-          "meanAbsoluteError": 220.0,
-          "meanSquaredError": 60000.0,
-          "rootMeanSquaredError": 245.0,
-          "rSquared": 0.91,
-          "adjustedRSquared": 0.9
-        },
-        {
-          "modelAlias": "decision-tree-r",
-          "meanAbsoluteError": 250.0,
-          "meanSquaredError": 72000.0,
-          "rootMeanSquaredError": 268.0,
-          "rSquared": 0.88,
-          "adjustedRSquared": 0.87
-        },
-        {
-          "modelAlias": "random-forest-r",
-          "meanAbsoluteError": 190.0,
-          "meanSquaredError": 53000.0,
-          "rootMeanSquaredError": 230.0,
-          "rSquared": 0.94,
-          "adjustedRSquared": 0.93
-        },
-        {
-          "modelAlias": "xgboost-r",
-          "meanAbsoluteError": 195.0,
-          "meanSquaredError": 54000.0,
-          "rootMeanSquaredError": 232.0,
-          "rSquared": 0.94,
-          "adjustedRSquared": 0.93
-        },
-        {
-          "modelAlias": "lightgbm-r",
-          "meanAbsoluteError": 190.0,
-          "meanSquaredError": 52000.0,
-          "rootMeanSquaredError": 228.0,
-          "rSquared": 0.94,
-          "adjustedRSquared": 0.93
-        },
-        {
-          "modelAlias": "catboost-r",
-          "meanAbsoluteError": 200.0,
-          "meanSquaredError": 55000.0,
-          "rootMeanSquaredError": 234.0,
-          "rSquared": 0.93,
-          "adjustedRSquared": 0.92
-        },
-        {
-          "modelAlias": "ensemble-methods-r",
-          "meanAbsoluteError": 190.0,
-          "meanSquaredError": 51000.0,
-          "rootMeanSquaredError": 225.0,
-          "rSquared": 0.95,
-          "adjustedRSquared": 0.94
-        },
-        {
-          "modelAlias": "mlp-r",
-          "meanAbsoluteError": 210.0,
-          "meanSquaredError": 57000.0,
-          "rootMeanSquaredError": 238.0,
-          "rSquared": 0.92,
-          "adjustedRSquared": 0.91
-        },
-        {
-          "modelAlias": "elm-r",
-          "meanAbsoluteError": 220.0,
-          "meanSquaredError": 60000.0,
-          "rootMeanSquaredError": 245.0,
-          "rSquared": 0.91,
-          "adjustedRSquared": 0.9
-        }
-      ]
-    }
-  },
-  {
-    "name": "California Housing",
-    "alias": "california-housing",
-    "description": "This is the dataset description",
-    "features": ["Feature 1", "Feature 2", "Feature 3"],
-    "targetVariable": "Target variable",
-    "performance": {
-      "regression": [
-        {
-          "modelAlias": "linear-regression",
-          "meanAbsoluteError": 50000.0,
-          "meanSquaredError": 3000000000.0,
-          "rootMeanSquaredError": 54700.0,
-          "rSquared": 0.75,
-          "adjustedRSquared": 0.74
-        },
-        {
-          "modelAlias": "polynomial-regression",
-          "meanAbsoluteError": 48000.0,
-          "meanSquaredError": 2900000000.0,
-          "rootMeanSquaredError": 53800.0,
-          "rSquared": 0.77,
-          "adjustedRSquared": 0.76
-        },
-        {
-          "modelAlias": "elastic-net-regression",
-          "meanAbsoluteError": 49000.0,
-          "meanSquaredError": 2950000000.0,
-          "rootMeanSquaredError": 54200.0,
-          "rSquared": 0.76,
-          "adjustedRSquared": 0.75
-        },
-        {
-          "modelAlias": "gradient-boosting-r",
-          "meanAbsoluteError": 45000.0,
-          "meanSquaredError": 2700000000.0,
-          "rootMeanSquaredError": 51900.0,
-          "rSquared": 0.8,
-          "adjustedRSquared": 0.79
-        },
-        {
-          "modelAlias": "neural-networks-r",
-          "meanAbsoluteError": 46000.0,
-          "meanSquaredError": 2750000000.0,
-          "rootMeanSquaredError": 52500.0,
-          "rSquared": 0.79,
-          "adjustedRSquared": 0.78
-        },
-        {
-          "modelAlias": "svm-r",
-          "meanAbsoluteError": 47000.0,
-          "meanSquaredError": 2800000000.0,
-          "rootMeanSquaredError": 52900.0,
-          "rSquared": 0.78,
-          "adjustedRSquared": 0.77
-        },
-        {
-          "modelAlias": "decision-tree-r",
-          "meanAbsoluteError": 52000.0,
-          "meanSquaredError": 3200000000.0,
-          "rootMeanSquaredError": 56500.0,
-          "rSquared": 0.72,
-          "adjustedRSquared": 0.71
-        },
-        {
-          "modelAlias": "random-forest-r",
-          "meanAbsoluteError": 44000.0,
-          "meanSquaredError": 2600000000.0,
-          "rootMeanSquaredError": 51000.0,
-          "rSquared": 0.81,
-          "adjustedRSquared": 0.8
-        },
-        {
-          "modelAlias": "xgboost-r",
-          "meanAbsoluteError": 44500.0,
-          "meanSquaredError": 2650000000.0,
-          "rootMeanSquaredError": 51500.0,
-          "rSquared": 0.8,
-          "adjustedRSquared": 0.79
-        },
-        {
-          "modelAlias": "lightgbm-r",
-          "meanAbsoluteError": 44000.0,
-          "meanSquaredError": 2580000000.0,
-          "rootMeanSquaredError": 50800.0,
-          "rSquared": 0.81,
-          "adjustedRSquared": 0.8
-        },
-        {
-          "modelAlias": "catboost-r",
-          "meanAbsoluteError": 45500.0,
-          "meanSquaredError": 2700000000.0,
-          "rootMeanSquaredError": 51900.0,
-          "rSquared": 0.79,
-          "adjustedRSquared": 0.78
-        },
-        {
-          "modelAlias": "ensemble-methods-r",
-          "meanAbsoluteError": 43500.0,
-          "meanSquaredError": 2550000000.0,
-          "rootMeanSquaredError": 50500.0,
-          "rSquared": 0.82,
-          "adjustedRSquared": 0.81
-        },
-        {
-          "modelAlias": "mlp-r",
-          "meanAbsoluteError": 46000.0,
-          "meanSquaredError": 2750000000.0,
-          "rootMeanSquaredError": 52500.0,
-          "rSquared": 0.79,
-          "adjustedRSquared": 0.78
-        },
-        {
-          "modelAlias": "elm-r",
-          "meanAbsoluteError": 47000.0,
-          "meanSquaredError": 2800000000.0,
-          "rootMeanSquaredError": 52900.0,
-          "rSquared": 0.78,
-          "adjustedRSquared": 0.77
-        }
-      ]
-    }
-  },
-  {
-    "name": "Titanic Survivors",
     "alias": "titanic-survivors",
+    "name": "Titanic Survivors",
     "description": "This is the dataset description",
     "features": ["Feature 1", "Feature 2", "Feature 3"],
     "targetVariable": "Target variable",
@@ -788,8 +173,623 @@
     }
   },
   {
-    "name": "Digit Recognizer",
+    "alias": "house-prices",
+    "name": "House prices",
+    "description": "This is the dataset description",
+    "features": ["Feature 1", "Feature 2", "Feature 3"],
+    "targetVariable": "Target variable",
+    "performance": {
+      "regression": [
+        {
+          "modelAlias": "linear-regression",
+          "meanSquaredError": 2100000.0,
+          "meanAbsoluteError": 1100.0,
+          "rootMeanSquaredError": 1443.0,
+          "rSquared": 0.85,
+          "adjustedRSquared": 0.92
+        },
+        {
+          "modelAlias": "polynomial-regression",
+          "meanSquaredError": 1800000.0,
+          "meanAbsoluteError": 950.0,
+          "rootMeanSquaredError": 1340.0,
+          "rSquared": 0.88,
+          "adjustedRSquared": 0.94
+        },
+        {
+          "modelAlias": "elastic-net-regression",
+          "meanSquaredError": 2000000.0,
+          "meanAbsoluteError": 1050.0,
+          "rootMeanSquaredError": 1410.0,
+          "rSquared": 0.86,
+          "adjustedRSquared": 0.93
+        },
+        {
+          "modelAlias": "gradient-boosting-r",
+          "meanSquaredError": 1600000.0,
+          "meanAbsoluteError": 900.0,
+          "rootMeanSquaredError": 1265.0,
+          "rSquared": 0.9,
+          "adjustedRSquared": 0.8
+        },
+        {
+          "modelAlias": "neural-networks-r",
+          "meanSquaredError": 1900000.0,
+          "meanAbsoluteError": 980.0,
+          "rootMeanSquaredError": 1376.0,
+          "rSquared": 0.87,
+          "adjustedRSquared": 0.92
+        },
+        {
+          "modelAlias": "svm-r",
+          "meanSquaredError": 2200000.0,
+          "meanAbsoluteError": 1150.0,
+          "rootMeanSquaredError": 1483.0,
+          "rSquared": 0.84,
+          "adjustedRSquared": 0.91
+        },
+        {
+          "modelAlias": "decision-tree-r",
+          "meanSquaredError": 2300000.0,
+          "meanAbsoluteError": 1200.0,
+          "rootMeanSquaredError": 1517.0,
+          "rSquared": 0.83,
+          "adjustedRSquared": 0.9
+        },
+        {
+          "modelAlias": "random-forest-r",
+          "meanSquaredError": 1700000.0,
+          "meanAbsoluteError": 940.0,
+          "rootMeanSquaredError": 1304.0,
+          "rSquared": 0.89,
+          "adjustedRSquared": 0.92
+        },
+        {
+          "modelAlias": "xgboost-r",
+          "meanSquaredError": 1750000.0,
+          "meanAbsoluteError": 960.0,
+          "rootMeanSquaredError": 1323.0,
+          "rSquared": 0.88,
+          "adjustedRSquared": 0.92
+        },
+        {
+          "modelAlias": "lightgbm-r",
+          "meanSquaredError": 1650000.0,
+          "meanAbsoluteError": 910.0,
+          "rootMeanSquaredError": 1284.0,
+          "rSquared": 0.8,
+          "adjustedRSquared": 0.85
+        },
+        {
+          "modelAlias": "catboost-c",
+          "meanSquaredError": 1900000.0,
+          "meanAbsoluteError": 980.0,
+          "rootMeanSquaredError": 1376.0,
+          "rSquared": 0.87,
+          "adjustedRSquared": 0.92
+        },
+        {
+          "modelAlias": "ensemble-methods-r",
+          "meanSquaredError": 1900000.0,
+          "meanAbsoluteError": 980.0,
+          "rootMeanSquaredError": 1376.0,
+          "rSquared": 0.87,
+          "adjustedRSquared": 0.92
+        },
+        {
+          "modelAlias": "mlp-r",
+          "meanSquaredError": 1900000.0,
+          "meanAbsoluteError": 980.0,
+          "rootMeanSquaredError": 1376.0,
+          "rSquared": 0.87,
+          "adjustedRSquared": 0.92
+        },
+        {
+          "modelAlias": "elm-r",
+          "meanSquaredError": 1900000.0,
+          "meanAbsoluteError": 980.0,
+          "rootMeanSquaredError": 1376.0,
+          "rSquared": 0.87,
+          "adjustedRSquared": 0.92
+        }
+      ]
+    }
+  },
+  {
+    "alias": "boston-housing",
+    "name": "Boston Housing",
+    "description": "This is the dataset description",
+    "features": ["Feature 1", "Feature 2", "Feature 3"],
+    "targetVariable": "Target variable",
+    "performance": {
+      "regression": [
+        {
+          "modelAlias": "linear-regression",
+          "meanAbsoluteError": 3.5,
+          "meanSquaredError": 18.0,
+          "rootMeanSquaredError": 4.24,
+          "rSquared": 0.74,
+          "adjustedRSquared": 0.72
+        },
+        {
+          "modelAlias": "polynomial-regression",
+          "meanAbsoluteError": 3.2,
+          "meanSquaredError": 15.0,
+          "rootMeanSquaredError": 3.87,
+          "rSquared": 0.78,
+          "adjustedRSquared": 0.76
+        },
+        {
+          "modelAlias": "elastic-net-regression",
+          "meanAbsoluteError": 3.4,
+          "meanSquaredError": 17.0,
+          "rootMeanSquaredError": 4.12,
+          "rSquared": 0.75,
+          "adjustedRSquared": 0.73
+        },
+        {
+          "modelAlias": "gradient-boosting-r",
+          "meanAbsoluteError": 2.9,
+          "meanSquaredError": 12.0,
+          "rootMeanSquaredError": 3.46,
+          "rSquared": 0.83,
+          "adjustedRSquared": 0.81
+        },
+        {
+          "modelAlias": "neural-networks-r",
+          "meanAbsoluteError": 3.0,
+          "meanSquaredError": 13.0,
+          "rootMeanSquaredError": 3.61,
+          "rSquared": 0.8,
+          "adjustedRSquared": 0.78
+        },
+        {
+          "modelAlias": "svm-r",
+          "meanAbsoluteError": 3.3,
+          "meanSquaredError": 16.0,
+          "rootMeanSquaredError": 4.0,
+          "rSquared": 0.76,
+          "adjustedRSquared": 0.74
+        },
+        {
+          "modelAlias": "decision-tree-r",
+          "meanAbsoluteError": 3.7,
+          "meanSquaredError": 19.0,
+          "rootMeanSquaredError": 4.36,
+          "rSquared": 0.72,
+          "adjustedRSquared": 0.7
+        },
+        {
+          "modelAlias": "random-forest-r",
+          "meanAbsoluteError": 2.8,
+          "meanSquaredError": 11.0,
+          "rootMeanSquaredError": 3.32,
+          "rSquared": 0.85,
+          "adjustedRSquared": 0.83
+        },
+        {
+          "modelAlias": "xgboost-r",
+          "meanAbsoluteError": 2.9,
+          "meanSquaredError": 12.0,
+          "rootMeanSquaredError": 3.46,
+          "rSquared": 0.84,
+          "adjustedRSquared": 0.82
+        },
+        {
+          "modelAlias": "lightgbm-r",
+          "meanAbsoluteError": 2.85,
+          "meanSquaredError": 11.5,
+          "rootMeanSquaredError": 3.39,
+          "rSquared": 0.84,
+          "adjustedRSquared": 0.82
+        },
+        {
+          "modelAlias": "catboost-r",
+          "meanAbsoluteError": 2.95,
+          "meanSquaredError": 12.5,
+          "rootMeanSquaredError": 3.54,
+          "rSquared": 0.83,
+          "adjustedRSquared": 0.81
+        },
+        {
+          "modelAlias": "ensemble-methods-r",
+          "meanAbsoluteError": 2.8,
+          "meanSquaredError": 11.0,
+          "rootMeanSquaredError": 3.32,
+          "rSquared": 0.85,
+          "adjustedRSquared": 0.83
+        },
+        {
+          "modelAlias": "mlp-r",
+          "meanAbsoluteError": 3.0,
+          "meanSquaredError": 13.0,
+          "rootMeanSquaredError": 3.61,
+          "rSquared": 0.8,
+          "adjustedRSquared": 0.78
+        },
+        {
+          "modelAlias": "elm-r",
+          "meanAbsoluteError": 3.1,
+          "meanSquaredError": 13.5,
+          "rootMeanSquaredError": 3.67,
+          "rSquared": 0.79,
+          "adjustedRSquared": 0.77
+        }
+      ]
+    }
+  },
+  {
+    "alias": "auto-mpg",
+    "name": "Auto MPG",
+    "description": "This is the dataset description",
+    "features": ["Feature 1", "Feature 2", "Feature 3"],
+    "targetVariable": "Target variable",
+    "performance": {
+      "regression": [
+        {
+          "modelAlias": "linear-regression",
+          "meanAbsoluteError": 3.7,
+          "meanSquaredError": 17.0,
+          "rootMeanSquaredError": 4.12,
+          "rSquared": 0.73,
+          "adjustedRSquared": 0.71
+        },
+        {
+          "modelAlias": "polynomial-regression",
+          "meanAbsoluteError": 3.5,
+          "meanSquaredError": 16.0,
+          "rootMeanSquaredError": 4.0,
+          "rSquared": 0.75,
+          "adjustedRSquared": 0.73
+        },
+        {
+          "modelAlias": "elastic-net-regression",
+          "meanAbsoluteError": 3.6,
+          "meanSquaredError": 16.5,
+          "rootMeanSquaredError": 4.06,
+          "rSquared": 0.74,
+          "adjustedRSquared": 0.72
+        },
+        {
+          "modelAlias": "gradient-boosting-r",
+          "meanAbsoluteError": 2.9,
+          "meanSquaredError": 11.0,
+          "rootMeanSquaredError": 3.32,
+          "rSquared": 0.83,
+          "adjustedRSquared": 0.81
+        },
+        {
+          "modelAlias": "neural-networks-r",
+          "meanAbsoluteError": 3.0,
+          "meanSquaredError": 12.0,
+          "rootMeanSquaredError": 3.46,
+          "rSquared": 0.8,
+          "adjustedRSquared": 0.78
+        },
+        {
+          "modelAlias": "svm-r",
+          "meanAbsoluteError": 3.4,
+          "meanSquaredError": 14.0,
+          "rootMeanSquaredError": 3.74,
+          "rSquared": 0.77,
+          "adjustedRSquared": 0.75
+        },
+        {
+          "modelAlias": "decision-tree-r",
+          "meanAbsoluteError": 3.8,
+          "meanSquaredError": 18.0,
+          "rootMeanSquaredError": 4.24,
+          "rSquared": 0.71,
+          "adjustedRSquared": 0.69
+        },
+        {
+          "modelAlias": "random-forest-r",
+          "meanAbsoluteError": 2.8,
+          "meanSquaredError": 10.5,
+          "rootMeanSquaredError": 3.24,
+          "rSquared": 0.85,
+          "adjustedRSquared": 0.83
+        },
+        {
+          "modelAlias": "xgboost-r",
+          "meanAbsoluteError": 2.9,
+          "meanSquaredError": 11.5,
+          "rootMeanSquaredError": 3.39,
+          "rSquared": 0.84,
+          "adjustedRSquared": 0.82
+        },
+        {
+          "modelAlias": "lightgbm-r",
+          "meanAbsoluteError": 2.85,
+          "meanSquaredError": 11.0,
+          "rootMeanSquaredError": 3.32,
+          "rSquared": 0.85,
+          "adjustedRSquared": 0.83
+        },
+        {
+          "modelAlias": "catboost-r",
+          "meanAbsoluteError": 2.95,
+          "meanSquaredError": 12.0,
+          "rootMeanSquaredError": 3.46,
+          "rSquared": 0.83,
+          "adjustedRSquared": 0.81
+        },
+        {
+          "modelAlias": "ensemble-methods-r",
+          "meanAbsoluteError": 2.8,
+          "meanSquaredError": 10.5,
+          "rootMeanSquaredError": 3.24,
+          "rSquared": 0.85,
+          "adjustedRSquared": 0.83
+        },
+        {
+          "modelAlias": "mlp-r",
+          "meanAbsoluteError": 3.0,
+          "meanSquaredError": 12.0,
+          "rootMeanSquaredError": 3.46,
+          "rSquared": 0.8,
+          "adjustedRSquared": 0.78
+        },
+        {
+          "modelAlias": "elm-r",
+          "meanAbsoluteError": 3.1,
+          "meanSquaredError": 12.5,
+          "rootMeanSquaredError": 3.67,
+          "rSquared": 0.79,
+          "adjustedRSquared": 0.77
+        }
+      ]
+    }
+  },
+  {
+    "alias": "diamonds",
+    "name": "Diamonds",
+    "description": "This is the dataset description",
+    "features": ["Feature 1", "Feature 2", "Feature 3"],
+    "targetVariable": "Target variable",
+    "performance": {
+      "regression": [
+        {
+          "modelAlias": "linear-regression",
+          "meanAbsoluteError": 240.0,
+          "meanSquaredError": 70000.0,
+          "rootMeanSquaredError": 264.5,
+          "rSquared": 0.9,
+          "adjustedRSquared": 0.89
+        },
+        {
+          "modelAlias": "polynomial-regression",
+          "meanAbsoluteError": 220.0,
+          "meanSquaredError": 65000.0,
+          "rootMeanSquaredError": 255.0,
+          "rSquared": 0.91,
+          "adjustedRSquared": 0.9
+        },
+        {
+          "modelAlias": "elastic-net-regression",
+          "meanAbsoluteError": 230.0,
+          "meanSquaredError": 68000.0,
+          "rootMeanSquaredError": 260.0,
+          "rSquared": 0.9,
+          "adjustedRSquared": 0.89
+        },
+        {
+          "modelAlias": "gradient-boosting-r",
+          "meanAbsoluteError": 200.0,
+          "meanSquaredError": 55000.0,
+          "rootMeanSquaredError": 234.0,
+          "rSquared": 0.93,
+          "adjustedRSquared": 0.92
+        },
+        {
+          "modelAlias": "neural-networks-r",
+          "meanAbsoluteError": 210.0,
+          "meanSquaredError": 58000.0,
+          "rootMeanSquaredError": 241.0,
+          "rSquared": 0.92,
+          "adjustedRSquared": 0.91
+        },
+        {
+          "modelAlias": "svm-r",
+          "meanAbsoluteError": 220.0,
+          "meanSquaredError": 60000.0,
+          "rootMeanSquaredError": 245.0,
+          "rSquared": 0.91,
+          "adjustedRSquared": 0.9
+        },
+        {
+          "modelAlias": "decision-tree-r",
+          "meanAbsoluteError": 250.0,
+          "meanSquaredError": 72000.0,
+          "rootMeanSquaredError": 268.0,
+          "rSquared": 0.88,
+          "adjustedRSquared": 0.87
+        },
+        {
+          "modelAlias": "random-forest-r",
+          "meanAbsoluteError": 190.0,
+          "meanSquaredError": 53000.0,
+          "rootMeanSquaredError": 230.0,
+          "rSquared": 0.94,
+          "adjustedRSquared": 0.93
+        },
+        {
+          "modelAlias": "xgboost-r",
+          "meanAbsoluteError": 195.0,
+          "meanSquaredError": 54000.0,
+          "rootMeanSquaredError": 232.0,
+          "rSquared": 0.94,
+          "adjustedRSquared": 0.93
+        },
+        {
+          "modelAlias": "lightgbm-r",
+          "meanAbsoluteError": 190.0,
+          "meanSquaredError": 52000.0,
+          "rootMeanSquaredError": 228.0,
+          "rSquared": 0.94,
+          "adjustedRSquared": 0.93
+        },
+        {
+          "modelAlias": "catboost-r",
+          "meanAbsoluteError": 200.0,
+          "meanSquaredError": 55000.0,
+          "rootMeanSquaredError": 234.0,
+          "rSquared": 0.93,
+          "adjustedRSquared": 0.92
+        },
+        {
+          "modelAlias": "ensemble-methods-r",
+          "meanAbsoluteError": 190.0,
+          "meanSquaredError": 51000.0,
+          "rootMeanSquaredError": 225.0,
+          "rSquared": 0.95,
+          "adjustedRSquared": 0.94
+        },
+        {
+          "modelAlias": "mlp-r",
+          "meanAbsoluteError": 210.0,
+          "meanSquaredError": 57000.0,
+          "rootMeanSquaredError": 238.0,
+          "rSquared": 0.92,
+          "adjustedRSquared": 0.91
+        },
+        {
+          "modelAlias": "elm-r",
+          "meanAbsoluteError": 220.0,
+          "meanSquaredError": 60000.0,
+          "rootMeanSquaredError": 245.0,
+          "rSquared": 0.91,
+          "adjustedRSquared": 0.9
+        }
+      ]
+    }
+  },
+  {
+    "alias": "california-housing",
+    "name": "California Housing",
+    "description": "This is the dataset description",
+    "features": ["Feature 1", "Feature 2", "Feature 3"],
+    "targetVariable": "Target variable",
+    "performance": {
+      "regression": [
+        {
+          "modelAlias": "linear-regression",
+          "meanAbsoluteError": 50000.0,
+          "meanSquaredError": 3000000000.0,
+          "rootMeanSquaredError": 54700.0,
+          "rSquared": 0.75,
+          "adjustedRSquared": 0.74
+        },
+        {
+          "modelAlias": "polynomial-regression",
+          "meanAbsoluteError": 48000.0,
+          "meanSquaredError": 2900000000.0,
+          "rootMeanSquaredError": 53800.0,
+          "rSquared": 0.77,
+          "adjustedRSquared": 0.76
+        },
+        {
+          "modelAlias": "elastic-net-regression",
+          "meanAbsoluteError": 49000.0,
+          "meanSquaredError": 2950000000.0,
+          "rootMeanSquaredError": 54200.0,
+          "rSquared": 0.76,
+          "adjustedRSquared": 0.75
+        },
+        {
+          "modelAlias": "gradient-boosting-r",
+          "meanAbsoluteError": 45000.0,
+          "meanSquaredError": 2700000000.0,
+          "rootMeanSquaredError": 51900.0,
+          "rSquared": 0.8,
+          "adjustedRSquared": 0.79
+        },
+        {
+          "modelAlias": "neural-networks-r",
+          "meanAbsoluteError": 46000.0,
+          "meanSquaredError": 2750000000.0,
+          "rootMeanSquaredError": 52500.0,
+          "rSquared": 0.79,
+          "adjustedRSquared": 0.78
+        },
+        {
+          "modelAlias": "svm-r",
+          "meanAbsoluteError": 47000.0,
+          "meanSquaredError": 2800000000.0,
+          "rootMeanSquaredError": 52900.0,
+          "rSquared": 0.78,
+          "adjustedRSquared": 0.77
+        },
+        {
+          "modelAlias": "decision-tree-r",
+          "meanAbsoluteError": 52000.0,
+          "meanSquaredError": 3200000000.0,
+          "rootMeanSquaredError": 56500.0,
+          "rSquared": 0.72,
+          "adjustedRSquared": 0.71
+        },
+        {
+          "modelAlias": "random-forest-r",
+          "meanAbsoluteError": 44000.0,
+          "meanSquaredError": 2600000000.0,
+          "rootMeanSquaredError": 51000.0,
+          "rSquared": 0.81,
+          "adjustedRSquared": 0.8
+        },
+        {
+          "modelAlias": "xgboost-r",
+          "meanAbsoluteError": 44500.0,
+          "meanSquaredError": 2650000000.0,
+          "rootMeanSquaredError": 51500.0,
+          "rSquared": 0.8,
+          "adjustedRSquared": 0.79
+        },
+        {
+          "modelAlias": "lightgbm-r",
+          "meanAbsoluteError": 44000.0,
+          "meanSquaredError": 2580000000.0,
+          "rootMeanSquaredError": 50800.0,
+          "rSquared": 0.81,
+          "adjustedRSquared": 0.8
+        },
+        {
+          "modelAlias": "catboost-r",
+          "meanAbsoluteError": 45500.0,
+          "meanSquaredError": 2700000000.0,
+          "rootMeanSquaredError": 51900.0,
+          "rSquared": 0.79,
+          "adjustedRSquared": 0.78
+        },
+        {
+          "modelAlias": "ensemble-methods-r",
+          "meanAbsoluteError": 43500.0,
+          "meanSquaredError": 2550000000.0,
+          "rootMeanSquaredError": 50500.0,
+          "rSquared": 0.82,
+          "adjustedRSquared": 0.81
+        },
+        {
+          "modelAlias": "mlp-r",
+          "meanAbsoluteError": 46000.0,
+          "meanSquaredError": 2750000000.0,
+          "rootMeanSquaredError": 52500.0,
+          "rSquared": 0.79,
+          "adjustedRSquared": 0.78
+        },
+        {
+          "modelAlias": "elm-r",
+          "meanAbsoluteError": 47000.0,
+          "meanSquaredError": 2800000000.0,
+          "rootMeanSquaredError": 52900.0,
+          "rSquared": 0.78,
+          "adjustedRSquared": 0.77
+        }
+      ]
+    }
+  },
+  {
     "alias": "digit-recognizer",
+    "name": "Digit Recognizer",
     "description": "This is the dataset description",
     "features": ["Feature 1", "Feature 2", "Feature 3"],
     "targetVariable": "Target variable",
@@ -961,8 +961,8 @@
     }
   },
   {
-    "name": "Iris Classification",
     "alias": "iris-classification",
+    "name": "Iris Classification",
     "description": "This is the dataset description",
     "features": ["Feature 1", "Feature 2", "Feature 3"],
     "targetVariable": "Target variable",
@@ -1086,8 +1086,8 @@
     }
   },
   {
-    "name": "Wine Quality",
     "alias": "wine-quality",
+    "name": "Wine Quality",
     "description": "This is the dataset description",
     "features": ["Feature 1", "Feature 2", "Feature 3"],
     "targetVariable": "Target variable",
@@ -1211,8 +1211,8 @@
     }
   },
   {
-    "name": "CIFAR-10",
     "alias": "cifar-10",
+    "name": "CIFAR-10",
     "description": "This is the dataset description",
     "features": ["Feature 1", "Feature 2", "Feature 3"],
     "targetVariable": "Target variable",
@@ -1336,8 +1336,8 @@
     }
   },
   {
-    "name": "Iris Clustering",
     "alias": "iris-clustering",
+    "name": "Iris Clustering",
     "description": "This is the dataset description",
     "features": ["Feature 1", "Feature 2", "Feature 3"],
     "targetVariable": "Target variable",
@@ -1407,8 +1407,8 @@
     }
   },
   {
-    "name": "Mall Customers",
     "alias": "mall-customers",
+    "name": "Mall Customers",
     "description": "This is the dataset description",
     "features": ["Feature 1", "Feature 2", "Feature 3"],
     "targetVariable": "Target variable",
@@ -1478,8 +1478,8 @@
     }
   },
   {
-    "name": "Color Image Clustering",
     "alias": "color-image-clustering",
+    "name": "Color Image Clustering",
     "description": "This is the dataset description",
     "features": ["Feature 1", "Feature 2", "Feature 3"],
     "targetVariable": "Target variable",
@@ -1549,8 +1549,8 @@
     }
   },
   {
-    "name": "Crime Scene Clustering",
     "alias": "crime-scene-clustering",
+    "name": "Crime Scene Clustering",
     "description": "This is the dataset description",
     "features": ["Feature 1", "Feature 2", "Feature 3"],
     "targetVariable": "Target variable",
@@ -1620,8 +1620,8 @@
     }
   },
   {
-    "name": "Wine Data Clustering",
     "alias": "wine-data-clustering",
+    "name": "Wine Data Clustering",
     "description": "This is the dataset description",
     "features": ["Feature 1", "Feature 2", "Feature 3"],
     "targetVariable": "Target variable",
@@ -1691,8 +1691,8 @@
     }
   },
   {
-    "name": "CIFAR-10 Dimensionality Reduction",
     "alias": "cifar-10-dr",
+    "name": "CIFAR-10 Dimensionality Reduction",
     "description": "This is the dataset description",
     "features": ["Feature 1", "Feature 2", "Feature 3"],
     "targetVariable": "Target variable",
@@ -1766,8 +1766,8 @@
     }
   },
   {
-    "name": "Iris Dimensionality Reduction",
     "alias": "iris-dr",
+    "name": "Iris Dimensionality Reduction",
     "description": "This is the dataset description",
     "features": ["Feature 1", "Feature 2", "Feature 3"],
     "targetVariable": "Target variable",
@@ -1841,8 +1841,8 @@
     }
   },
   {
-    "name": "Customer Segmentation Dimensionality Reduction",
     "alias": "customer-seg-dr",
+    "name": "Customer Segmentation Dimensionality Reduction",
     "description": "This is the dataset description",
     "features": ["Feature 1", "Feature 2", "Feature 3"],
     "targetVariable": "Target variable",
@@ -1916,8 +1916,8 @@
     }
   },
   {
-    "name": "Wine Quality Dimensionality Reduction",
     "alias": "wine-quality-dr",
+    "name": "Wine Quality Dimensionality Reduction",
     "description": "This is the dataset description",
     "features": ["Feature 1", "Feature 2", "Feature 3"],
     "targetVariable": "Target variable",
@@ -1991,8 +1991,8 @@
     }
   },
   {
-    "name": "Color Image Dimensionality Reduction",
     "alias": "color-image-dr",
+    "name": "Color Image Dimensionality Reduction",
     "description": "This is the dataset description",
     "features": ["Feature 1", "Feature 2", "Feature 3"],
     "targetVariable": "Target variable",

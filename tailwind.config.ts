@@ -1,4 +1,4 @@
-import { delay } from "rxjs";
+import { delay } from 'rxjs';
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {
@@ -67,10 +67,6 @@ module.exports = {
           '0%': { opacity: 0 },
           '100%': { opacity: 1 },
         },
-        'zoom-out': {
-          from: { opacity: 1, transform: 'scale(1)' },
-          to: { opacity: 0, transform: 'scale(0.80)' },
-        },
         'accordion-down': {
           from: {
             height: '0',
@@ -95,24 +91,12 @@ module.exports = {
             transform: 'translate(0, 0)',
           },
         },
-        'slide-up': {
-          '0%': {
-            transform: 'translateY(50px)',
-            opacity: 0,
-          },
-          '100%': {
-            transform: 'translateY(0)',
-            opacity: 1,
-          },
-        },
       },
       animation: {
         'accordion-down': 'accordion-down 0.2s ease-out',
         'accordion-up': 'accordion-up 0.2s ease-out',
-        'text-reveal': 'text-reveal 1.5s cubic-bezier(0.77, 0, 0.175, 1) 0.5s',
-        'slide-up': 'slide-up 0.8s cubic-bezier(0.77, 0, 0.175, 1)',
-        'fade-in': 'fade-in 0.5s cubic-bezier(0.77, 0, 0.175, 1) 0.5s',
-        'zoom-out': 'zoom-out 0.5s cubic-bezier(0.77, 0, 0.175, 1) 0.5s',
+        'text-reveal': 'text-reveal 0.5s cubic-bezier(0.77, 0, 0.175, 1)',
+        'fade-in': 'fade-in 0.5s 0.5s',
       },
     },
   },

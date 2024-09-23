@@ -1,5 +1,5 @@
 import { SimilarDatasetsData } from '@/components/TablesGroup/types';
-// Aquí y en getPerformanceMetrics se está llamando al siguiente JSON completo pero aquí no se necesita performance.
+// Aquí y en getPerformanceMetrics se está llamando al siguiente JSON completo pero aquí no se necesita performance metrics.
 import similarDatasetsDataRaw from '@/data/similar-datasets.data.json';
 
 const similarDatasetsData: SimilarDatasetsData =

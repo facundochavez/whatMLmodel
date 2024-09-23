@@ -38,6 +38,7 @@ import { AiStarsIcon } from '@/icons/AiStarsIcon';
 import { useGlobalContext } from '@/context/global.context';
 import useTextReveal from '@/hooks/useTextReveal';
 import Link from 'next/link';
+import { TransitionLink } from '@/components/TransitionLink/TransitionLink';
 
 // Esquema de validación con zod
 const stepTwoSchema = z.object({
@@ -73,18 +74,16 @@ const StepTwo: React.FC = () => {
   }
 
   return (
-    <div className='w-full flex flex-col items-center gap-6'>
-      <header className='w-full flex items-center justify-center max-w-[1050px] relative px-14'>
-        <Link href='/'>
-          <Button
-            variant='outline'
-            size='icon'
-            className='absolute left-0 opacity-0 animate-fade-in [animation-fill-mode:forwards]'
-            style={{ animationDelay: '1s' }}
-          >
+    <section className='w-full flex flex-col items-center gap-6'>
+      <header className='w-full flex items-center justify-center max-w-[1050px] relative pl-14 pr-8 md:pr-14'>
+        <TransitionLink
+          href='/'
+          className='absolute left-0 opacity-0 animate-fade-in [animation-fill-mode:forwards]'
+        >
+          <Button variant='outline' size='icon'>
             <ArrowLeft className='h-5 w-5' />
           </Button>
-        </Link>
+        </TransitionLink>
         {useTextReveal(currentAnalysis.title)}
       </header>
 
@@ -264,7 +263,7 @@ const StepTwo: React.FC = () => {
           </DialogFooter>
         </form>
       </Form>
-    </div>
+    </section>
   );
 };
 

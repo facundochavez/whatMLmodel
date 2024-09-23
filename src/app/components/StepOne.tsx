@@ -21,6 +21,7 @@ import { tryingExampleService } from '@/services/tryingExampleService';
 import { AiStarsIcon } from '@/icons/AiStarsIcon';
 import { useGlobalContext } from '@/context/global.context';
 import Link from 'next/link';
+import { TransitionLink } from '@/components/TransitionLink/TransitionLink';
 
 // Esquema de validación con zod
 const stepOneSchema = z.object({
@@ -49,43 +50,42 @@ const StepOne: React.FC = () => {
   }
 
   return (
-    <Form {...form}>
-      <form
-        onSubmit={form.handleSubmit(onSubmit)}
-        className='w-full max-w-[700px]'
-      >
-        <FormField
-          control={form.control}
-          name='datasetDescription'
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>
-                Make a simple description of your dataset and target variable:
-              </FormLabel>
-              <FormControl>
-                <Textarea
-                  className='resize-none h-60 sm:h-44'
-                  placeholder='Your dataset description here...'
-                  spellCheck={false}
-                  maxLength={300}
-                  currentLength={form.watch('datasetDescription').length || 0}
-                  {...field}
-                />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-        <DialogFooter className='mt-4'>
-          <Link href='/analysis'>
-            <Button type='submit'>
-              <AiStarsIcon className='mr-1.5 h-[18px] w-[18px]' />
-              Let's go
-            </Button>
-          </Link>
-        </DialogFooter>
-      </form>
-    </Form>
+    <section className='w-full max-w-[700px]'>
+      <Form {...form}>
+        <form onSubmit={form.handleSubmit(onSubmit)} className='w-full'>
+          <FormField
+            control={form.control}
+            name='datasetDescription'
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>
+                  Make a simple description of your dataset and target variable:
+                </FormLabel>
+                <FormControl>
+                  <Textarea
+                    className='resize-none h-60 sm:h-44'
+                    placeholder='Your dataset description here...'
+                    spellCheck={false}
+                    maxLength={300}
+                    currentLength={form.watch('datasetDescription').length || 0}
+                    {...field}
+                  />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          <TransitionLink href='/analysis'>
+            <DialogFooter className='mt-4'>
+              <Button type='submit'>
+                <AiStarsIcon className='mr-1.5 h-[18px] w-[18px]' />
+                Let's go
+              </Button>
+            </DialogFooter>
+          </TransitionLink>
+        </form>
+      </Form>
+    </section>
   );
 };
 

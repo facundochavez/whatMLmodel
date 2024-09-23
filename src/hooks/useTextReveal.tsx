@@ -5,7 +5,7 @@ const useTextReveal = (text: string) => {
   let count = 0;
 
   return (
-    <h2 className='flex flex-wrap overflow-hidden text-2xl leading-6 sm:text-3xl md:text-4xl font-semibold text-center justify-center'>
+    <h2 className='flex flex-wrap overflow-hidden text-3xl leading-6 md:text-4xl font-semibold text-center justify-center'>
       {words.map((word, wordIndex) => (
         <span key={`word-${wordIndex}`} className='flex overflow-hidden'>
           {word.split('').map((char) => {

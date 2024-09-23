@@ -4,7 +4,7 @@ import {
   ProblemType,
   PerformanceMetricsList,
 } from '@/components/TablesGroup/types';
-// Aquí y en getSimilarDatasets se está llamando al siguiente JSON completo pero aquí sólo se necesita la performance de un dataset para una serie de modelos dados.
+// Aquí y en getSimilarDatasets se está llamando al siguiente JSON completo pero aquí sólo se necesita la performance metrics de un dataset para una serie de modelos dados.
 import similarDatasetsDataRaw from '@/data/similar-datasets.data.json';
 
 const similarDatasetsData: SimilarDatasetsData =

@@ -32,7 +32,7 @@ const Header = () => {
 
   return (
     <header
-      className={`z-[100] w-full px-[5%] flex justify-center fixed transition-transform ${
+      className={`z-[100] w-screen px-[5%] flex justify-center fixed transition-transform ${
         !showHeader && 'translate-y-[-100%]'
       } ${!isScrollOnTop && 'border-b backdrop-blur-md bg-background/50'}`}
     >
