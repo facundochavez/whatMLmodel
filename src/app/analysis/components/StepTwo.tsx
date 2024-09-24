@@ -26,9 +26,9 @@ const StepTwo = () => {
   const {
     isAiGettingRecommendations: isGettingRecommendations,
     setIsAiGettingRecommendations: setIsGettingRecommendations,
-    setSelectedAnalysis,
-    selectedAnalysisIndex,
-    selectedAnalysis,
+    setCurrentAnalysis,
+    currentAnalysis,
+    currentAnalysisIndex,
     setIsAiThinking,
     isUserEditingInfo,
     setIsUserEditingInfo,
@@ -44,11 +44,11 @@ const StepTwo = () => {
     setIsFormCollapsed(true);
     setIsGettingRecommendations(true);
 
-    const auxiliarAnalysis = modelsResponsesData[selectedAnalysisIndex];
+    const auxiliarAnalysis = modelsResponsesData[currentAnalysisIndex];
 
     setTimeout(() => {
       setIsAiThinking(true);
-      setSelectedAnalysis((prev) => ({
+      setCurrentAnalysis((prev) => ({
         ...prev,
         recomendationsTitle: auxiliarAnalysis.recomendationsTitle,
         recommendations: auxiliarAnalysis.recommendations,
@@ -69,7 +69,7 @@ const StepTwo = () => {
             <ArrowLeft className='h-5 w-5' />
           </Button>
         </TransitionLink>
-        {useTextReveal(selectedAnalysis.title || '')}
+        {useTextReveal(currentAnalysis.title || '')}
       </header>
 
       <StepTwoForm
@@ -78,7 +78,7 @@ const StepTwo = () => {
       >
         <DialogFooter className='mt-4 md:mt-0'>
           {isUserEditingInfo ? (
-            !selectedAnalysis?.recommendations ? (
+            !currentAnalysis?.recommendations ? (
               <>
                 {!isGettingRecommendations && (
                   <TransitionLink href='/'>

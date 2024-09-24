@@ -5,8 +5,9 @@ const useTypingEffect = (
   text: string = '',
   wordsInterval: number = 10,
   delay: number = 0,
-  duration: number = 100
+  disabled: boolean = false
 ) => {
+  if (disabled) return text;
   const [currentPosition, setCurrentPosition] = useState(0);
   const words = text.split(' ');
   const items: string[] = [];
@@ -22,7 +23,7 @@ const useTypingEffect = (
       while (currentPosition < items.length) {
         const interval = setInterval(() => {
           setCurrentPosition((prevPosition) => prevPosition + 1);
-        }, duration);
+        }, 100);
 
         return () => clearInterval(interval);
       }

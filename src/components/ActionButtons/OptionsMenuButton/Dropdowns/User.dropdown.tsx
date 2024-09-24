@@ -15,19 +15,20 @@ import {
   Menu,
   UserRound,
 } from 'lucide-react';
-import infoResponsesData from '@/prompts/infoResponses.data.json';
-import { recentResponses } from '@/types';
 import ConfirmDeleteDialogContent from '@/components/DialogContents/ConfirmDelete.dialogContent';
 
 import { Button } from '@/components/ui/button';
 import { AlertDialog, AlertDialogTrigger } from '@/components/ui/alert-dialog';
 import AnalysisActionsDropdown from '@/components/ActionButtons/AnalysisDropdown/Analysis.dropdown';
 import { useGlobalContext } from '@/context/global.context';
+import { useAnalyzesContext } from '@/context/analyzes.context';
 import { usePathname } from 'next/navigation';
 
 const UserDropdown: React.FC = () => {
   const pathname = usePathname();
-  const { setShowAccountSettingsDialog } = useGlobalContext();
+  const { setShowAccountSettingsDialog, setSelectedAnalysisId } =
+    useGlobalContext();
+  const { recents, favorites } = useAnalyzesContext();
 
   return (
     <DropdownMenu>
@@ -57,20 +58,20 @@ const UserDropdown: React.FC = () => {
             <span>Favorites</span>
           </DropdownMenuLabel>
 
-          <DropdownMenuGroup className='overflow-auto max-h-40 max-w-52'>
-            {infoResponsesData.slice(0, 3).map((item: recentResponses) => {
+          <DropdownMenuGroup className='overflow-auto /*max-h-40*/ max-w-52'>
+            {favorites.map((analysis) => {
               return (
-                <div
-                  className='w-full flex justify-between'
-                  key={item.output.alias}
-                >
+                <div className='w-full flex justify-between' key={analysis.id}>
                   <DropdownMenuItem className='w-full'>
                     <span className='line-clamp-1 pr-4 w-full'>
-                      {item.output.name}
+                      {analysis.title}
                     </span>
                   </DropdownMenuItem>
 
-                  <DropdownMenuItem className='p-0 absolute right-1.5'>
+                  <DropdownMenuItem
+                    className='p-0 absolute right-1.5'
+                    onClick={() => setSelectedAnalysisId(analysis.id || '')}
+                  >
                     <AnalysisActionsDropdown isFavorite />
                   </DropdownMenuItem>
                 </div>
@@ -85,20 +86,20 @@ const UserDropdown: React.FC = () => {
             <span>Recent</span>
           </DropdownMenuLabel>
 
-          <DropdownMenuGroup className='overflow-auto max-h-40 max-w-52'>
-            {infoResponsesData.slice(3, 7).map((item: recentResponses) => {
+          <DropdownMenuGroup className='overflow-auto /*max-h-40*/ max-w-52'>
+            {recents.map((analysis) => {
               return (
-                <div
-                  className='w-full flex justify-between'
-                  key={item.output.alias}
-                >
+                <div className='w-full flex justify-between' key={analysis.id}>
                   <DropdownMenuItem className='w-full'>
                     <span className='line-clamp-1 pr-4 w-full'>
-                      {item.output.name}
+                      {analysis.title}
                     </span>
                   </DropdownMenuItem>
 
-                  <DropdownMenuItem className='p-0 absolute right-1.5'>
+                  <DropdownMenuItem
+                    className='p-0 absolute right-1.5'
+                    onClick={() => setSelectedAnalysisId(analysis.id || '')}
+                  >
                     <AnalysisActionsDropdown />
                   </DropdownMenuItem>
                 </div>

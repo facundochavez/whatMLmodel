@@ -40,7 +40,7 @@ const stepOneSchema = z.object({
 });
 
 const StepOne = () => {
-  const { isAiGeneratingInfo: isGeneratingInfo, setSelectedAnalysis, selectedAnalysisIndex } =
+  const { isAiGeneratingInfo: isGeneratingInfo, setCurrentAnalysis, currentAnalysisIndex, setIsAiGeneratingInfo } =
     useGlobalContext();
   const subscription$ = tryingExampleService.getSubject();
   const form = useForm<z.infer<typeof stepOneSchema>>({
@@ -57,9 +57,11 @@ const StepOne = () => {
     modelsResponsesDataRaw
   );
   const handleGenerateInfo = () => {
-    const auxiliarAnalysis = modelsResponsesData[selectedAnalysisIndex];
+    const auxiliarAnalysis = modelsResponsesData[currentAnalysisIndex];
+    setIsAiGeneratingInfo(true);
 
-    setSelectedAnalysis({
+    setCurrentAnalysis({
+      id: auxiliarAnalysis.id,
       alias: auxiliarAnalysis.alias,
       title: auxiliarAnalysis.title,
       datasetDescription: auxiliarAnalysis.datasetDescription,

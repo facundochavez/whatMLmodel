@@ -8,8 +8,10 @@ export interface recentResponses {
 }
 
 export interface ModelResponse {
+  id?: string;
   alias?: string;
   title?: string;
+  favorite?: boolean;
   datasetDescription?: string;
   icon?: number;
   link?: {

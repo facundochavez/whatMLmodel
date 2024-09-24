@@ -5,16 +5,15 @@ import { ModelResponse } from '@/types';
 interface GlobalContextProps {
   isUserLoggedIn: boolean;
   userEmail: string;
-  selectedAnalysis: ModelResponse;
-  setSelectedAnalysis: React.Dispatch<React.SetStateAction<ModelResponse>>;
+  currentAnalysis: ModelResponse;
+  setCurrentAnalysis: React.Dispatch<React.SetStateAction<ModelResponse>>;
   isAiGeneratingInfo: boolean;
   setIsAiGeneratingInfo: React.Dispatch<React.SetStateAction<boolean>>;
   isAiGettingRecommendations: boolean;
   setIsAiGettingRecommendations: React.Dispatch<React.SetStateAction<boolean>>;
-  selectedAnalysisIndex: number;
-
-  selectedStep: number;
-  setSelectedStep: React.Dispatch<React.SetStateAction<number>>;
+  currentAnalysisIndex: number;
+  selectedAnalysisId: string;
+  setSelectedAnalysisId: React.Dispatch<React.SetStateAction<string>>;
 
   isMobile: boolean;
   isUserRegistering: boolean;
@@ -45,13 +44,14 @@ export const GlobalProvider = ({ children }: GlobalProviderProps) => {
   // MOVER A REDUX
   const [isUserLoggedIn, setIsUserLoggedIn] = useState<boolean>(true);
   const userEmail = 'your_email@gmail.com';
-  const [selectedAnalysis, setSelectedAnalysis] = useState<ModelResponse>({});
+  const [currentAnalysis, setCurrentAnalysis] = useState<ModelResponse>({});
+  const [selectedAnalysisId, setSelectedAnalysisId] = useState<string>('');
 
   //AUXILIARES PARA SIMULAR LA GENERACIÓN DE INFO Y EL ESTADO DE CARGA (BORRAR AL FINAL)
   const [isAiGeneratingInfo, setIsAiGeneratingInfo] = useState<boolean>(false);
   const [isAiGettingRecommendations, setIsAiGettingRecommendations] =
     useState<boolean>(false);
-  const selectedAnalysisIndex = 0;
+  const currentAnalysisIndex = 0;
 
   // BASICS
   const [isMobile, setIsMobile] = useState<boolean>(false);
@@ -69,9 +69,6 @@ export const GlobalProvider = ({ children }: GlobalProviderProps) => {
   const [showResetPasswordDialog, setShowResetPasswordDialog] =
     useState<boolean>(false);
 
-  // ANALYSIS STEPS
-  const [selectedStep, setSelectedStep] = useState<number>(1);
-
   useEffect(() => {
     const handleResize = () => {
       setIsMobile(window.innerWidth < 640);
@@ -87,7 +84,7 @@ export const GlobalProvider = ({ children }: GlobalProviderProps) => {
   useEffect(() => {
     setTimeout(() => {
       setIsAiThinking(false);
-    }, 10000);
+    }, 3000);
   }, [isAiThinking]);
 
   return (
@@ -95,16 +92,15 @@ export const GlobalProvider = ({ children }: GlobalProviderProps) => {
       value={{
         isUserLoggedIn,
         userEmail,
-        selectedAnalysis,
-        setSelectedAnalysis,
+        currentAnalysis,
+        setCurrentAnalysis,
         isAiGeneratingInfo,
         setIsAiGeneratingInfo,
         isAiGettingRecommendations,
         setIsAiGettingRecommendations,
-        selectedAnalysisIndex,
-
-        selectedStep,
-        setSelectedStep,
+        currentAnalysisIndex,
+        selectedAnalysisId,
+        setSelectedAnalysisId,
 
         isMobile,
         isUserRegistering,
@@ -130,7 +126,6 @@ export const GlobalProvider = ({ children }: GlobalProviderProps) => {
   );
 };
 
-// Custom hook to use the GlobalContext
 export const useGlobalContext = () => {
   const context = useContext(GlobalContext);
   if (!context) {

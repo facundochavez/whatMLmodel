@@ -1,6 +1,4 @@
 import { Star, LogOut, History, CirclePlus, UserRound } from 'lucide-react';
-import infoResponsesData from '@/prompts/infoResponses.data.json';
-import { recentResponses } from '@/types';
 import ConfirmDeleteDialogContent from '@/components/DialogContents/ConfirmDelete.dialogContent';
 import { usePathname } from 'next/navigation';
 
@@ -13,10 +11,12 @@ import AnalysisActionsDropdown from '@/components/ActionButtons/AnalysisDropdown
 
 import { SheetClose } from '@/components/ui/sheet';
 import { useGlobalContext } from '@/context/global.context';
+import { useAnalyzesContext } from '@/context/analyzes.context';
 
-const UserSheetContent: React.FC = () => {
+const UserSheetContent = () => {
   const pathname = usePathname();
   const { setShowAccountSettingsDialog } = useGlobalContext();
+  const { recents, favorites } = useAnalyzesContext();
 
   return (
     <div className='flex flex-col gap-4 h-full overflow-y-hidden w-full'>
@@ -40,16 +40,16 @@ const UserSheetContent: React.FC = () => {
           </Label>
 
           <ul>
-            {infoResponsesData.slice(0, 3).map((item: recentResponses) => {
+            {favorites.map((analysis) => {
               return (
                 <SheetClose asChild>
-                  <li className='relative h-8' key={item.output.alias}>
+                  <li className='relative h-8' key={analysis.id}>
                     <Button
                       variant='ghost'
                       className='flex w-full text-left h-full px-0 pr-8 font-normal'
                     >
                       <span className='w-full overflow-hidden text-ellipsis whitespace-nowrap'>
-                        {item.output.name}
+                        {analysis.title}
                       </span>
                     </Button>
                     <div className='absolute right-0 top-0'>
@@ -70,15 +70,15 @@ const UserSheetContent: React.FC = () => {
           </Label>
 
           <ul>
-            {infoResponsesData.slice(3, 7).map((item: recentResponses) => {
+            {recents.map((analysis) => {
               return (
-                <li className='relative h-8' key={item.output.alias}>
+                <li className='relative h-8' key={analysis.id}>
                   <Button
                     variant='ghost'
                     className='flex w-full text-left h-full px-0 pr-8 font-normal'
                   >
                     <span className='w-full overflow-hidden text-ellipsis whitespace-nowrap'>
-                      {item.output.name}
+                      {analysis.title}
                     </span>
                   </Button>
                   <div className='absolute right-0 top-0'>

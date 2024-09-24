@@ -21,29 +21,28 @@ export const TransitionLink = ({
 }: TransitionLinkProps) => {
   const router = useRouter();
   const pathname = usePathname();
-  const { setIsAiGeneratingInfo: setIsGeneratingInfo } = useGlobalContext();
+  const { setIsAiGeneratingInfo } = useGlobalContext();
 
   const handleTransition = async (
     e: React.MouseEvent<HTMLAnchorElement, MouseEvent>
   ) => {
     e.preventDefault();
 
-    //AUXILIAR PARA SIMULAR EL ESTADO DE CARGA (BORRAR LUEGO)
-    setIsGeneratingInfo(true);
-
-    await sleep(sleepTime);
-    const main = document.querySelector('main');
-    if (!main) return;
-    main.classList.add('page-transition');
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-    await sleep(200);
-    router.push(href);
+    if (pathname !== href) {
+      await sleep(sleepTime);
+      const main = document.querySelector('main');
+      if (!main) return;
+      main.classList.add('page-transition');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      await sleep(200);
+      router.push(href);
+    }
   };
 
   useEffect(() => {
     const main = document.querySelector('main');
     if (!main) return;
-    setIsGeneratingInfo(false);
+    setIsAiGeneratingInfo(false);
     main.classList.remove('page-transition');
   }, [pathname]);
 

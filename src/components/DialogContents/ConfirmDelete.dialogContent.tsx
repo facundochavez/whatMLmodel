@@ -7,8 +7,13 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
 } from '@/components/ui/alert-dialog';
+import { useAnalyzesContext } from '@/context/analyzes.context';
+import { useGlobalContext } from '@/context/global.context';
 
 const ConfirmDeleteDialogContent: React.FC = () => {
+  const { selectedAnalysisId } = useGlobalContext();
+  const { deleteAnalysis } = useAnalyzesContext();
+  
   return (
     <AlertDialogContent>
       <AlertDialogHeader>
@@ -22,7 +27,9 @@ const ConfirmDeleteDialogContent: React.FC = () => {
       </AlertDialogHeader>
       <AlertDialogFooter>
         <AlertDialogCancel>Cancel</AlertDialogCancel>
-        <AlertDialogAction>Delete</AlertDialogAction>
+        <AlertDialogAction onClick={() => deleteAnalysis(selectedAnalysisId)}>
+          Delete
+        </AlertDialogAction>
       </AlertDialogFooter>
     </AlertDialogContent>
   );

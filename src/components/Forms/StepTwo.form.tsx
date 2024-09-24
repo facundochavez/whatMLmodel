@@ -54,13 +54,13 @@ const StepTwoForm: React.FC<StepTwoFormProps> = ({
   onCollapseChange,
   children,
 }) => {
-  const { selectedAnalysis, isUserEditingInfo } = useGlobalContext();
+  const { currentAnalysis, isUserEditingInfo } = useGlobalContext();
   const [showTooltip, setShowTooltip] = useState(false);
   const [formLabel, setLabel] = useState('');
 
   useEffect(() => {
     const handleFormLabel = () => {
-      if (!selectedAnalysis?.recommendations) {
+      if (!currentAnalysis?.recommendations) {
         setLabel('Check the information and correct it before moving forward:');
       } else if (isUserEditingInfo) {
         setLabel('Edit the information to get new recommendations:');
@@ -70,18 +70,18 @@ const StepTwoForm: React.FC<StepTwoFormProps> = ({
     };
 
     handleFormLabel();
-  }, [selectedAnalysis, isUserEditingInfo]);
+  }, [currentAnalysis, isUserEditingInfo]);
 
   // 1. Define tu formulario.
   const form = useForm<z.infer<typeof stepTwoSchema>>({
     resolver: zodResolver(stepTwoSchema),
     defaultValues: {
-      problemDescription: selectedAnalysis?.info?.problemDescription,
-      mainFeatures: selectedAnalysis?.info?.mainFeatures,
-      targetVariable: selectedAnalysis?.info?.targetVariable,
-      hasComplexData: selectedAnalysis?.info?.hasComplexData,
-      numberOfFeatures: selectedAnalysis?.info?.numberOfFeatures,
-      datasetSize: selectedAnalysis?.info?.datasetSize,
+      problemDescription: currentAnalysis?.info?.problemDescription,
+      mainFeatures: currentAnalysis?.info?.mainFeatures,
+      targetVariable: currentAnalysis?.info?.targetVariable,
+      hasComplexData: currentAnalysis?.info?.hasComplexData,
+      numberOfFeatures: currentAnalysis?.info?.numberOfFeatures,
+      datasetSize: currentAnalysis?.info?.datasetSize,
     },
   });
 
@@ -100,16 +100,16 @@ const StepTwoForm: React.FC<StepTwoFormProps> = ({
         <CollapsibleBox
           arrowButton
           isButtonHighlighted={
-            selectedAnalysis?.recommendations && isUserEditingInfo
+            currentAnalysis?.recommendations && isUserEditingInfo
           }
           isDefaultOpen
-          disabled={!selectedAnalysis?.recommendations || isUserEditingInfo}
+          disabled={!currentAnalysis?.recommendations || isUserEditingInfo}
           externalIsCollapsed={isFormCollapsed}
           onCollapseChange={onCollapseChange}
         >
           <div
             className={`w-full flex flex-col gap-4 border rounded-md px-[5%] py-8 bg-muted/30 ${
-              selectedAnalysis?.recommendations &&
+              currentAnalysis?.recommendations &&
               isUserEditingInfo &&
               'border-2 border-foreground group'
             } ${!isUserEditingInfo && 'select-none pointer-events-none'}`}

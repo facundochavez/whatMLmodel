@@ -6,17 +6,17 @@ import StepTwo from '@/app/analysis/components/StepTwo';
 import { useGlobalContext } from '@/context/global.context';
 
 const AnalysisPage = () => {
-  const { selectedAnalysis, setIsAiThinking, setIsUserEditingInfo } =
+  const { currentAnalysis, setIsAiThinking, setIsUserEditingInfo } =
     useGlobalContext();
   const router = useRouter();
 
   useEffect(() => {
     const handleContext = () => {
       setIsAiThinking(false);
-      if (!selectedAnalysis?.info) {
+      if (!currentAnalysis?.info) {
         router.push('/');
       }
-      if (!selectedAnalysis?.recommendations) {
+      if (!currentAnalysis?.recommendations) {
         setIsUserEditingInfo(true);
       } else {
         setIsUserEditingInfo(false);
@@ -29,7 +29,7 @@ const AnalysisPage = () => {
   return (
     <>
       <StepTwo />
-      {selectedAnalysis.recommendations && <StepThree />}
+      {currentAnalysis.recommendations && <StepThree />}
     </>
   );
 };
