@@ -32,7 +32,7 @@ const UserDropdown: React.FC = () => {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button variant='outline' size='icon' className='bg-transparent'>
+        <Button variant='outline' size='icon'>
           <Menu className='h-5 w-5' />
           <span className='sr-only'>Toggle menu</span>
         </Button>

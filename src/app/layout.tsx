@@ -45,7 +45,7 @@ export default function RootLayout({
           <GlobalProvider>
             <div className='fixed top-0 inset-0 -z-10 h-screen w-screen bg-[linear-gradient(to_right,hsl(var(--background-lines))_1px,transparent_1px),linear-gradient(to_bottom,hsl(var(--background-lines))_1px,transparent_1px)] bg-[size:6rem_4rem]' />
             <Header />
-            <main className='w-screen min-h-[calc(100vh-50px)] flex flex-col items-center gap-12 sm:gap-16 px-[5%] pt-[90px] pb-10'>
+            <main className='w-screen min-h-[calc(100vh-50px)] flex flex-col items-center gap-12 sm:gap-16 px-[5%] pt-[85px] sm:pt-[95px] pb-10'>
               {children}
             </main>
             <Footer />

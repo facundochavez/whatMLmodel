@@ -15,7 +15,7 @@ const AuthDropdown: React.FC = () => {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button variant='outline' size='icon' className='bg-transparent'>
+        <Button variant='outline' size='icon'>
           <UserRound className='h-5 w-5' strokeWidth={1.8} />
           <span className='sr-only'>Toggle menu</span>
         </Button>

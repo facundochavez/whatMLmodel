@@ -18,7 +18,7 @@ const Header = () => {
         setShowHeader(false);
       }
       setLastScrollY(currentScrollY);
-      if (currentScrollY <= 25) {
+      if (currentScrollY <= 15) {
         setIsScrollOnTop(true);
       } else {
         setIsScrollOnTop(false);
@@ -37,7 +37,7 @@ const Header = () => {
         !showHeader && 'translate-y-[-100%]'
       } ${!isScrollOnTop && 'border-b backdrop-blur-md bg-background/50'}`}
     >
-      <nav className='w-full max-w-[1050px] flex items-start justify-between gap-4 pt-6 pb-4 sm:pt-8'>
+      <nav className='w-full max-w-[1050px] flex items-start justify-between gap-4 pt-6 pb-4 sm:pt-8 sm:pb-6'>
         <TransitionLink href='/'>
           <div className='flex-grow'>
             <Image
