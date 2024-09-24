@@ -37,7 +37,7 @@ const Header = () => {
         !showHeader && 'translate-y-[-100%]'
       } ${!isScrollOnTop && 'border-b backdrop-blur-md bg-background/50'}`}
     >
-      <nav className='w-full max-w-[1050px] flex items-start justify-between gap-4 pt-6 pb-4'>
+      <nav className='w-full max-w-[1050px] flex items-start justify-between gap-4 pt-6 pb-4 sm:pt-8'>
         <TransitionLink href='/'>
           <div className='flex-grow'>
             <Image
@@ -45,14 +45,14 @@ const Header = () => {
               alt='logo'
               width={100}
               height={48}
-              className='w-full max-w-[270px] h-[48px] -translate-y-2 dark:hidden cursor-pointer'
+              className='w-full max-w-[250px] h-[48px] -translate-y-2 dark:hidden cursor-pointer'
             />
             <Image
               src='/wMLm-logo-dark.svg'
               alt='logo'
               width={100}
               height={48}
-              className='w-full max-w-[270px] h-[48px] hidden -translate-y-2 dark:flex cursor-pointer'
+              className='w-full max-w-[250px] h-[48px] hidden -translate-y-2 dark:flex cursor-pointer'
             />
           </div>
         </TransitionLink>

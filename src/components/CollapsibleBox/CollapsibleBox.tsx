@@ -104,7 +104,7 @@ export const CollapsibleBox = ({
           disabled={disabled}
           className='opacity-100'
         >
-          {isCollapsed ? 'View all' : 'View less'}
+          {isCollapsed ? 'View more' : 'View less'}
         </Button>
       ) : (
         <Button
