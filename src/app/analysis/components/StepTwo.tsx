@@ -43,6 +43,7 @@ const StepTwo = () => {
   const handleGetRecomendations = () => {
     setIsFormCollapsed(true);
     setIsGettingRecommendations(true);
+
     const auxiliarAnalysis = modelsResponsesData[selectedAnalysisIndex];
 
     setTimeout(() => {
@@ -108,7 +109,10 @@ const StepTwo = () => {
                 {!isGettingRecommendations && (
                   <Button
                     variant='outline'
-                    onClick={() => {setIsUserEditingInfo(false); setIsFormCollapsed(true);}}
+                    onClick={() => {
+                      setIsUserEditingInfo(false);
+                      setIsFormCollapsed(true);
+                    }}
                   >
                     Cancel
                   </Button>

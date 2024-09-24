@@ -1,10 +1,11 @@
 import { useEffect, useState } from 'react';
+import sleep from '@/utils/sleep';
 
 const useTypingEffect = (
   text: string = '',
   wordsInterval: number = 10,
   delay: number = 0,
-  duration: number = 50
+  duration: number = 100
 ) => {
   const [currentPosition, setCurrentPosition] = useState(0);
   const words = text.split(' ');
@@ -15,25 +16,28 @@ const useTypingEffect = (
   }
 
   useEffect(() => {
-    const startAnimation = setTimeout(() => {
-      if (currentPosition < items.length) {
-        const intervalId = setInterval(() => {
+    const startAnimation = async () => {
+      currentPosition === 0 && (await sleep(delay));
+
+      while (currentPosition < items.length) {
+        const interval = setInterval(() => {
           setCurrentPosition((prevPosition) => prevPosition + 1);
         }, duration);
 
-        return () => {
-          clearInterval(intervalId);
-        };
+        return () => clearInterval(interval);
       }
-    }, delay);
-
-    return () => {
-      clearTimeout(startAnimation);
     };
-  }, [currentPosition, items, duration, delay]);
+
+    startAnimation();
+  }, []);
+
+  useEffect(() => {
+    setTimeout(() => {
+      setCurrentPosition(Infinity);
+    }, delay + 600);
+  }, []);
 
   return items.slice(0, currentPosition).join(' ');
 };
 
 export default useTypingEffect;
-

@@ -91,12 +91,23 @@ module.exports = {
             transform: 'translate(0, 0)',
           },
         },
+        'slide-up': {
+          '0%': {
+            transform: 'translateY(30px)',
+            opacity: '0',
+          },
+          '100%': {
+            transform: 'translateY(0)',
+            opacity: '1',
+          },
+        },
       },
       animation: {
         'accordion-down': 'accordion-down 0.2s ease-out',
         'accordion-up': 'accordion-up 0.2s ease-out',
         'text-reveal': 'text-reveal 0.5s cubic-bezier(0.77, 0, 0.175, 1)',
         'fade-in': 'fade-in 0.5s 0.5s',
+        'slide-up': 'slide-up ease-out 0.2s 0s',
       },
     },
   },
