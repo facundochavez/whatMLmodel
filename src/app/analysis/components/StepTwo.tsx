@@ -82,7 +82,11 @@ const StepTwo = () => {
               <>
                 {!isGettingRecommendations && (
                   <TransitionLink href='/'>
-                    <Button type='button' variant='secondary' className='w-full'>
+                    <Button
+                      type='button'
+                      variant='secondary'
+                      className='w-full'
+                    >
                       <RefreshCcw className='w-4 h-4 mr-2' />
                       Cancel and retry
                     </Button>
@@ -128,6 +132,7 @@ const StepTwo = () => {
                     onClick={handleGetRecomendations}
                     className='flex items-center'
                   >
+                    <AiStarsIcon className='mr-1.5 h-[18px] w-[18px]' />
                     Apply changes
                   </Button>
                 )}
