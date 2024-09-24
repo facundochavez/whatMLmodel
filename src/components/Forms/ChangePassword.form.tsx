@@ -1,3 +1,4 @@
+'use client';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
@@ -106,17 +107,17 @@ const ChangePasswordForm: React.FC = () => {
           )}
         />
 
-          <DialogClose asChild>
-            <Button
-              onClick={() => setShowResetPasswordDialog(true)}
-              type='button'
-              variant='link'
-              size='sm'
-              className='self-end px-1 -my-3'
-            >
-              Forgot password?
-            </Button>
-          </DialogClose>
+        <DialogClose asChild>
+          <Button
+            onClick={() => setShowResetPasswordDialog(true)}
+            type='button'
+            variant='link'
+            size='sm'
+            className='self-end px-1 -my-3'
+          >
+            Forgot password?
+          </Button>
+        </DialogClose>
 
         <FormField
           control={form.control}

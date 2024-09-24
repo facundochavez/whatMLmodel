@@ -20,7 +20,12 @@ export const metadata = {
   robots: {
     google: 'notranslate',
   },
-  viewport: 'width=device-width, initial-scale=1',
+  metadataBase: new URL('https://whatmlmodel.vercel.app'),
+};
+
+export const viewport = {
+  width: 'device-width',
+  initialScale: 1,
 };
 
 export default function RootLayout({
@@ -40,7 +45,7 @@ export default function RootLayout({
           <GlobalProvider>
             <div className='fixed top-0 inset-0 -z-10 h-screen w-screen bg-[linear-gradient(to_right,hsl(var(--background-lines))_1px,transparent_1px),linear-gradient(to_bottom,hsl(var(--background-lines))_1px,transparent_1px)] bg-[size:6rem_4rem]' />
             <Header />
-            <main className='w-screen flex flex-col items-center gap-12 sm:gap-16 px-[5%] pt-[90px]'>
+            <main className='w-screen min-h-[calc(100vh-50px)] flex flex-col items-center gap-12 sm:gap-16 px-[5%] pt-[90px] pb-10'>
               {children}
             </main>
             <Footer />

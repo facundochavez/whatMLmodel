@@ -1,15 +1,28 @@
 'use client';
 import React, { createContext, useContext, useState, useEffect } from 'react';
+import { ModelResponse } from '@/types';
 
 interface GlobalContextProps {
   isUserLoggedIn: boolean;
   userEmail: string;
-  currentAnalysis: any;
+  selectedAnalysis: ModelResponse;
+  setSelectedAnalysis: React.Dispatch<React.SetStateAction<ModelResponse>>;
+  isAiGeneratingInfo: boolean;
+  setIsAiGeneratingInfo: React.Dispatch<React.SetStateAction<boolean>>;
+  isAiGettingRecommendations: boolean;
+  setIsAiGettingRecommendations: React.Dispatch<React.SetStateAction<boolean>>;
+  selectedAnalysisIndex: number;
+
+  selectedStep: number;
+  setSelectedStep: React.Dispatch<React.SetStateAction<number>>;
+
   isMobile: boolean;
   isUserRegistering: boolean;
   setIsUserRegistering: React.Dispatch<React.SetStateAction<boolean>>;
   isAiThinking: boolean;
   setIsAiThinking: React.Dispatch<React.SetStateAction<boolean>>;
+  isUserEditingInfo: boolean;
+  setIsUserEditingInfo: React.Dispatch<React.SetStateAction<boolean>>;
   showAuthDialog: boolean;
   setShowAuthDialog: React.Dispatch<React.SetStateAction<boolean>>;
   showAccountSettingsDialog: boolean;
@@ -20,12 +33,6 @@ interface GlobalContextProps {
   setShowApiKeyDialog: React.Dispatch<React.SetStateAction<boolean>>;
   showResetPasswordDialog: boolean;
   setShowResetPasswordDialog: React.Dispatch<React.SetStateAction<boolean>>;
-  selectedStep: number;
-  setSelectedStep: React.Dispatch<React.SetStateAction<number>>;
-  isGeneratingInfo: boolean;
-  setIsGeneratingInfo: React.Dispatch<React.SetStateAction<boolean>>;
-  isGettingModels: boolean;
-  setIsGettingModels: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 const GlobalContext = createContext<GlobalContextProps | undefined>(undefined);
@@ -35,15 +42,22 @@ interface GlobalProviderProps {
 }
 
 export const GlobalProvider = ({ children }: GlobalProviderProps) => {
+  // MOVER A REDUX
   const [isUserLoggedIn, setIsUserLoggedIn] = useState<boolean>(true);
   const userEmail = 'your_email@gmail.com';
-  const [currentAnalysis, setCurrentAnalysis] = useState<any>({
-    title: 'Titanic Survivors',
-  });
+  const [selectedAnalysis, setSelectedAnalysis] = useState<ModelResponse>({});
 
+  //AUXILIARES PARA SIMULAR LA GENERACIÓN DE INFO Y EL ESTADO DE CARGA (BORRAR AL FINAL)
+  const [isAiGeneratingInfo, setIsAiGeneratingInfo] = useState<boolean>(false);
+  const [isAiGettingRecommendations, setIsAiGettingRecommendations] =
+    useState<boolean>(false);
+  const selectedAnalysisIndex = 0;
+
+  // BASICS
   const [isMobile, setIsMobile] = useState<boolean>(false);
   const [isUserRegistering, setIsUserRegistering] = useState<boolean>(false);
   const [isAiThinking, setIsAiThinking] = useState<boolean>(false);
+  const [isUserEditingInfo, setIsUserEditingInfo] = useState<boolean>(false);
 
   // DIALOGS STATES
   const [showAuthDialog, setShowAuthDialog] = useState<boolean>(false);
@@ -58,10 +72,6 @@ export const GlobalProvider = ({ children }: GlobalProviderProps) => {
   // ANALYSIS STEPS
   const [selectedStep, setSelectedStep] = useState<number>(1);
 
-  //AUXILIAR PARA SIMULAR EL ESTADO DE CARGA
-  const [isGeneratingInfo, setIsGeneratingInfo] = useState<boolean>(false);
-  const [isGettingModels, setIsGettingModels] = useState<boolean>(false);
-
   useEffect(() => {
     const handleResize = () => {
       setIsMobile(window.innerWidth < 640);
@@ -74,17 +84,35 @@ export const GlobalProvider = ({ children }: GlobalProviderProps) => {
     };
   }, []);
 
+  useEffect(() => {
+    setTimeout(() => {
+      setIsAiThinking(false);
+    }, 10000);
+  }, [isAiThinking]);
+
   return (
     <GlobalContext.Provider
       value={{
         isUserLoggedIn,
         userEmail,
-        currentAnalysis,
+        selectedAnalysis,
+        setSelectedAnalysis,
+        isAiGeneratingInfo,
+        setIsAiGeneratingInfo,
+        isAiGettingRecommendations,
+        setIsAiGettingRecommendations,
+        selectedAnalysisIndex,
+
+        selectedStep,
+        setSelectedStep,
+
         isMobile,
         isUserRegistering,
         setIsUserRegistering,
         isAiThinking,
         setIsAiThinking,
+        isUserEditingInfo,
+        setIsUserEditingInfo,
         showAuthDialog,
         setShowAuthDialog,
         showAccountSettingsDialog,
@@ -95,12 +123,6 @@ export const GlobalProvider = ({ children }: GlobalProviderProps) => {
         setShowApiKeyDialog,
         showResetPasswordDialog,
         setShowResetPasswordDialog,
-        selectedStep,
-        setSelectedStep,
-        isGeneratingInfo,
-        setIsGeneratingInfo,
-        isGettingModels,
-        setIsGettingModels,
       }}
     >
       {children}

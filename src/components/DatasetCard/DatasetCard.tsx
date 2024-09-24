@@ -14,8 +14,10 @@ import { Badge } from '@/components/ui/badge';
 import { useGlobalContext } from '@/context/global.context';
 import { DialogTrigger } from '@radix-ui/react-dialog';
 
-export const DatasetCard = ({ dataset }: { dataset: ModelResponse }) => {
-  const DatasetIcon = getModelIcon({ iconNumber: dataset.icon }) as React.FC;
+const DatasetCard = ({ dataset }: { dataset: ModelResponse }) => {
+  const DatasetIcon = getModelIcon({
+    iconNumber: dataset.icon as number,
+  }) as React.FC;
   const [isHovered, setIsHovered] = React.useState(false);
 
   return (
@@ -52,10 +54,11 @@ const DatasetLayerCard = ({
 
   return (
     <Card
-      className={`w-full duration-500 ${
+      className={`w-full ${
         isTopLayer && 'absolute top-0 left-0 bg-foreground'
       }`}
       style={{
+        transitionDuration: '0.35s',
         clipPath: isTopLayer
           ? isHovered
             ? 'polygon(0 100%, 100% 100%, 100% 0, 0 0)'
@@ -73,7 +76,7 @@ const DatasetLayerCard = ({
           }`}
         >
           <CardTitle className='truncate leading-normal font-normal text-xl pr-4'>
-            {dataset.name}
+            {dataset?.title}
           </CardTitle>
           <DatasetIcon />
         </div>
@@ -84,7 +87,7 @@ const DatasetLayerCard = ({
             isTopLayer ? 'text-[hsl(var(--muted-foreground-inverted))]' : ''
           } ${isMobile ? 'line-clamp-2' : 'line-clamp-3'}`}
         >
-          {dataset.info.problemDescription}
+          {dataset?.info?.problemDescription}
         </p>
       </CardContent>
       <CardFooter className='flex pb-5 justify-between'>
@@ -92,10 +95,10 @@ const DatasetLayerCard = ({
           variant='link'
           className={`p-0 ${isTopLayer ? 'text-background' : ''}`}
           onClick={() => {
-            if (dataset.link.url) window.open(dataset.link.url, '_blank');
+            if (dataset?.link?.url) window.open(dataset.link.url, '_blank');
           }}
         >
-          {dataset.link.url ? (
+          {dataset?.link?.url ? (
             <>
               <span>View on {dataset.link.platform || 'platform'}</span>
               <ArrowRight className='ml-2 h-4 w-4' />
@@ -119,3 +122,5 @@ const DatasetLayerCard = ({
     </Card>
   );
 };
+
+export default DatasetCard;

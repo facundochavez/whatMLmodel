@@ -8,17 +8,17 @@ export interface recentResponses {
 }
 
 export interface ModelResponse {
-  alias: string;
-  name: string;
-  datasetDescription: string;
-  icon: number;
-  link: {
+  alias?: string;
+  title?: string;
+  datasetDescription?: string;
+  icon?: number;
+  link?: {
     platform: string;
     url: string;
   };
-  updated: boolean;
-  language: string;
-  info: {
+  updated?: boolean;
+  language?: string;
+  info?: {
     problemDescription: string;
     mainFeatures: string;
     targetVariable: string;
@@ -26,15 +26,15 @@ export interface ModelResponse {
     datasetSize: number;
     hasComplexData: boolean;
   }
-  recomendationsTitle: string;
-  recommendations: {
+  recomendationsTitle?: string;
+  recommendations?: Array<{
     type: ProblemType;
     paragraph: string;
     tables: {
       modelsAliases: string[];
       similarDatasetsAliases: string[];
     };
-  }[];
+  }>;
 }
 
 export type Collaborator = {

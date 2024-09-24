@@ -18,7 +18,7 @@ export const TransitionLink = ({
   ...props
 }: TransitionLinkProps) => {
   const router = useRouter();
-  const { setIsGeneratingInfo } = useGlobalContext();
+  const { setIsAiGeneratingInfo: setIsGeneratingInfo } = useGlobalContext();
 
   function sleep(ms: number): Promise<void> {
     return new Promise((resolve) => setTimeout(resolve, ms));
@@ -38,6 +38,8 @@ export const TransitionLink = ({
     if (!main) return;
 
     main.classList.add('page-transition');
+
+    window.scrollTo({ top: 0, behavior: 'smooth' });
 
     await sleep(200);
 

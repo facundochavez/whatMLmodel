@@ -20,17 +20,28 @@ import { useEffect } from 'react';
 import { tryingExampleService } from '@/services/tryingExampleService';
 import { AiStarsIcon } from '@/icons/AiStarsIcon';
 import { useGlobalContext } from '@/context/global.context';
-import Link from 'next/link';
 import { TransitionLink } from '@/components/TransitionLink/TransitionLink';
 import { LoaderCircle } from 'lucide-react';
+
+
+// VALIDACIÓN DE DATOS (BORRAR LUEGO)
+import modelsResponsesDataRaw from '@/prompts/modelsResponses.data.json';
+import { ModelResponse } from '@/types';
+const validateModelResponses = (data: any[]): ModelResponse[] => {
+  return data.filter((item) => {
+    if (typeof item !== 'object' || !item) return false;
+    return true;
+  }) as ModelResponse[];
+};
 
 // Esquema de validación con zod
 const stepOneSchema = z.object({
   datasetDescription: z.string(),
 });
 
-const StepOne: React.FC = () => {
-  const { isGeneratingInfo } = useGlobalContext();
+const StepOne = () => {
+  const { isAiGeneratingInfo: isGeneratingInfo, setSelectedAnalysis, selectedAnalysisIndex } =
+    useGlobalContext();
   const subscription$ = tryingExampleService.getSubject();
   const form = useForm<z.infer<typeof stepOneSchema>>({
     resolver: zodResolver(stepOneSchema),
@@ -38,6 +49,24 @@ const StepOne: React.FC = () => {
       datasetDescription: '',
     },
   });
+
+  
+  
+  // SIMULANDO GENERACIÓN DE INFO (BORRAR LUEGO)
+  const modelsResponsesData: ModelResponse[] = validateModelResponses(
+    modelsResponsesDataRaw
+  );
+  const handleGenerateInfo = () => {
+    const auxiliarAnalysis = modelsResponsesData[selectedAnalysisIndex];
+
+    setSelectedAnalysis({
+      alias: auxiliarAnalysis.alias,
+      title: auxiliarAnalysis.title,
+      datasetDescription: auxiliarAnalysis.datasetDescription,
+      language: auxiliarAnalysis.language,
+      info: auxiliarAnalysis.info,
+    });
+  };
 
   useEffect(() => {
     const subscription = subscription$.subscribe((data) => {
@@ -79,7 +108,11 @@ const StepOne: React.FC = () => {
           />
           <TransitionLink href='/analysis' sleepTime={1500}>
             <DialogFooter className='mt-4'>
-              <Button type='submit' disabled={isGeneratingInfo}>
+              <Button
+                type='submit'
+                disabled={isGeneratingInfo}
+                onClick={handleGenerateInfo}
+              >
                 {isGeneratingInfo ? (
                   <>
                     <LoaderCircle className='h-4 w-4 mr-2 animate-spin' />

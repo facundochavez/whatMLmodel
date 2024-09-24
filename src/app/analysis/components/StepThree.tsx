@@ -1,42 +1,38 @@
 import TablesGroup from '@/components/TablesGroup/TablesGroup';
-import { ProblemType } from '@/components/TablesGroup/types';
+import { useGlobalContext } from '@/context/global.context';
+import useTypingEffect from '@/hooks/useTypingEffect';
+
+// VALIDACIÓN DE DATOS (BORRAR LUEGO)
 import modelsResponsesDataRaw from '@/prompts/modelsResponses.data.json';
 import { ModelResponse } from '@/types';
 
-/* async function getModels(aliases: string[]): Promise<Model[]> {
-  try {
-    const response = await fetch('/api/models', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ aliases }),
-    });
-    const data = await response.json();
-    return data;
-  } catch (error) {
-    console.error(error);
-    return [];
-  }
-  
-} */
+const validateModelResponses = (data: any[]): ModelResponse[] => {
+  return data.filter((item) => {
+    if (typeof item !== 'object' || !item) return false;
+    return true;
+  }) as ModelResponse[];
+};
 
 const StepThree = () => {
-  const modelsResponsesData: ModelResponse[] =
-    modelsResponsesDataRaw as ModelResponse[];
-  const response: ModelResponse = modelsResponsesData[0];
+  const { selectedAnalysis } = useGlobalContext();
 
   return (
-    <section className='w-full max-w-[1050px] flex flex-col gap-8 mt-8'>
-      <h3 className='text-2xl font-semibold'>{response.recomendationsTitle}</h3>
-      {response.recommendations.map((recomendation, index) => {
+    <section className='w-full max-w-[1050px] flex flex-col gap-8'>
+      <h3 className='text-2xl font-semibold'>
+
+        {useTypingEffect(selectedAnalysis.recomendationsTitle)}
+      </h3>
+      {selectedAnalysis?.recommendations?.map((recomendation, index) => {
         return (
           <section key={index} className='flex flex-col gap-4'>
-            <p className='text-muted-foreground'>{recomendation.paragraph}</p>
+            <p className='text-muted-foreground'>
+              {useTypingEffect(recomendation.paragraph)}
+            </p>
             {index === 0 && (
               <p className='text-muted-foreground'>
-                Here is a list of the best models you can apply and their
-                performance metrics for datasets similar to yours:
+                {useTypingEffect(
+                  'Here is a list of the best models you can apply and their performance metrics for datasets similar to yours:'
+                )}
               </p>
             )}
             <TablesGroup
