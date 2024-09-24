@@ -2,6 +2,7 @@ import React, { useEffect, useState, useRef } from 'react';
 import { Button } from '@/components/ui/button';
 import { ChevronUp } from 'lucide-react';
 import { clear } from 'console';
+import { useGlobalContext } from '@/context/global.context';
 
 interface CollapsibleBoxProps {
   children: React.ReactNode;
@@ -24,6 +25,7 @@ export const CollapsibleBox = ({
   externalIsCollapsed,
   onCollapseChange,
 }: CollapsibleBoxProps) => {
+  const { isMobile } = useGlobalContext();
   const [isCollapsed, setIsCollapsed] = useState(
     externalIsCollapsed !== undefined ? externalIsCollapsed : !isDefaultOpen
   );
@@ -84,7 +86,7 @@ export const CollapsibleBox = ({
   };
 
   return (
-    <div className='w-full flex flex-col items-center gap-8'>
+    <div className='w-full flex flex-col items-center gap-8 relative'>
       <div
         className={`w-full duration-500 ease-in-out overflow-hidden`}
         style={{
@@ -95,6 +97,12 @@ export const CollapsibleBox = ({
         <div className='w-full' ref={contentRef}>
           {children}
         </div>
+        {isCollapsed && (
+          <div
+          className={`absolute bottom-0 w-full`}
+            style={{ height: isMobile ? '190px' : '225px' }}
+          ></div>
+        )}
       </div>
       {!arrowButton ? (
         <Button
