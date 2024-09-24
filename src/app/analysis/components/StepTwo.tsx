@@ -55,7 +55,7 @@ const StepTwo = () => {
       }));
       setIsGettingRecommendations(false);
       setIsUserEditingInfo(false);
-    }, 1000);
+    }, 2000);
   };
 
   return (
