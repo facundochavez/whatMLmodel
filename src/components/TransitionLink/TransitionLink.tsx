@@ -38,12 +38,6 @@ export const TransitionLink = ({
     }
   };
 
-  useEffect(() => {
-    const main = document.querySelector('main');
-    if (!main) return;
-    main.classList.remove('page-transition');
-  }, [pathname]);
-
   return (
     <Link
       onClick={handleTransition}

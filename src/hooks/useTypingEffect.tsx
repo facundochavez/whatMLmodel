@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import sleep from '@/utils/sleep';
 
 const useTypingEffect = (
@@ -8,6 +8,7 @@ const useTypingEffect = (
   disabled: boolean = false
 ) => {
   if (disabled) return text;
+
   const [currentPosition, setCurrentPosition] = useState(0);
   const words = text.split(' ');
   const items: string[] = [];
@@ -16,27 +17,40 @@ const useTypingEffect = (
     items.push(words.slice(i, i + wordsInterval).join(' '));
   }
 
+  const isMounted = useRef(true);
+  useEffect(() => {
+    isMounted.current = true;
+    return () => {
+      isMounted.current = false;
+    };
+  }, []);
+
   useEffect(() => {
     const startAnimation = async () => {
       currentPosition === 0 && (await sleep(delay));
 
-      while (currentPosition < items.length) {
-        const interval = setInterval(() => {
-          setCurrentPosition((prevPosition) => prevPosition + 1);
-        }, 100);
-
-        return () => clearInterval(interval);
+      for (let i = currentPosition; i < items.length; i++) {
+        if (!isMounted.current) return;
+        await sleep(100);
+        setCurrentPosition((prevPosition) => prevPosition + 1);
       }
     };
 
     startAnimation();
-  }, []);
+    return () => {
+      setCurrentPosition(0);
+    };
+  }, [text, delay]);
 
   useEffect(() => {
-    setTimeout(() => {
-      setCurrentPosition(Infinity);
+    const timeoutId = setTimeout(() => {
+      if (isMounted.current) {
+        setCurrentPosition(Infinity);
+      }
     }, delay + 600);
-  }, []);
+
+    return () => clearTimeout(timeoutId);
+  }, [delay, text]);
 
   return items.slice(0, currentPosition).join(' ');
 };

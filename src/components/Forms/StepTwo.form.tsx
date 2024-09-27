@@ -45,15 +45,18 @@ const stepTwoSchema = z.object({
 
 interface StepTwoFormProps extends React.PropsWithChildren {
   isFormCollapsed: boolean;
+  isFormBlocked: boolean;
+  isUserEditingInfo: boolean;
   onCollapseChange: (collapsed: boolean) => void;
 }
 
 const StepTwoForm: React.FC<StepTwoFormProps> = ({
   isFormCollapsed,
+  isFormBlocked,
+  isUserEditingInfo,
   onCollapseChange,
   children,
 }) => {
-  const { isUserEditingInfo } = useGlobalContext();
   const { currentAnalysis } = useAnalyzesContext();
   const [showTooltip, setShowTooltip] = useState(false);
   const [formLabel, setLabel] = useState('');
@@ -102,8 +105,7 @@ const StepTwoForm: React.FC<StepTwoFormProps> = ({
           isButtonHighlighted={
             currentAnalysis?.recommendations && isUserEditingInfo
           }
-          isDefaultOpen
-          disabled={!currentAnalysis?.recommendations || isUserEditingInfo}
+          blocked={isFormBlocked}
           externalIsCollapsed={isFormCollapsed}
           onCollapseChange={onCollapseChange}
         >

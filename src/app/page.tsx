@@ -1,7 +1,7 @@
 'use client';
 import StepOne from './components/StepOne';
 import Hero from './components/Hero';
-import LatestDatasets from './components/LatestDatasets';
+import LatestPipelines from './components/LatestPipelines';
 import Collaborators from './components/Collaborators';
 
 export default function Home() {
@@ -9,7 +9,7 @@ export default function Home() {
     <>
       <Hero />
       <StepOne />
-      <LatestDatasets />
+      <LatestPipelines />
       <Collaborators />
     </>
   );

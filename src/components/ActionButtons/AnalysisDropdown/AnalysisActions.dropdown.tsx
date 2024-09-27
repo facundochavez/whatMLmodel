@@ -25,8 +25,9 @@ const AnalysisActionsDropdown: React.FC<AnalysisActionsDropdownProps> = ({
       <DropdownMenuTrigger>
         <Button
           asChild
+          size='icon'
           variant='ghost'
-          className='h-full w-6 p-1 flex opacity-50 hover:opacity-100'
+          className='h-[32px] w-6 p-1 flex opacity-50 hover:opacity-100'
         >
           <Ellipsis />
         </Button>

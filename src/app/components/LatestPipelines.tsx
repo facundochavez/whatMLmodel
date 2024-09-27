@@ -1,4 +1,6 @@
-import React from 'react';
+'use client';
+
+import React, { useState } from 'react';
 import modelsResponsesDataRaw from '@/prompts/modelsResponses.data.json';
 import DatasetCard from '@/components/DatasetCard/DatasetCard';
 import { Pipeline } from '@/types';
@@ -15,7 +17,8 @@ const validateModelResponses = (data: any[]): Pipeline[] => {
   }) as Pipeline[];
 };
 
-const LatestDatasets = () => {
+const LatestPipelines = () => {
+  const [isBoxCollapsed, setIsBoxCollapsed] = useState(true);
   const { isMobile } = useGlobalContext();
   const modelsResponsesData: Pipeline[] = validateModelResponses(
     modelsResponsesDataRaw
@@ -24,8 +27,12 @@ const LatestDatasets = () => {
   return (
     <Dialog>
       <section className={`w-full flex flex-col max-w-[1050px] mt-4 gap-5`}>
-        <h3 className='text-2xl font-semibold'>Latest datasets added</h3>
-        <CollapsibleBox collapsedHeight={isMobile ? 750 : 380}>
+        <h3 className='text-2xl font-semibold'>Latest pipelines added</h3>
+        <CollapsibleBox
+          collapsedHeight={isMobile ? 750 : 380}
+          externalIsCollapsed={isBoxCollapsed}
+          onCollapseChange={setIsBoxCollapsed}
+        >
           <ul className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4'>
             {modelsResponsesData.map((response, index) => {
               return (
@@ -42,4 +49,4 @@ const LatestDatasets = () => {
   );
 };
 
-export default LatestDatasets;
+export default LatestPipelines;

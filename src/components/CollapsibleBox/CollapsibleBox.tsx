@@ -9,10 +9,9 @@ interface CollapsibleBoxProps {
   collapsedHeight?: number;
   arrowButton?: boolean;
   isButtonHighlighted?: boolean;
-  isDefaultOpen?: boolean;
-  disabled?: boolean;
-  externalIsCollapsed?: boolean; // Nuevo prop para recibir directiva externa
-  onCollapseChange?: (collapsed: boolean) => void; // Callback para notificar cambios de colapsado
+  blocked?: boolean;
+  externalIsCollapsed?: boolean; 
+  onCollapseChange?: (collapsed: boolean) => void; 
 }
 
 export const CollapsibleBox = ({
@@ -20,14 +19,13 @@ export const CollapsibleBox = ({
   collapsedHeight = 200,
   arrowButton = false,
   isButtonHighlighted = false,
-  isDefaultOpen = false,
-  disabled = false,
-  externalIsCollapsed,
+  blocked = false,
+  externalIsCollapsed=false,
   onCollapseChange,
 }: CollapsibleBoxProps) => {
   const { isMobile } = useGlobalContext();
   const [isCollapsed, setIsCollapsed] = useState(
-    externalIsCollapsed !== undefined ? externalIsCollapsed : !isDefaultOpen
+    externalIsCollapsed !== undefined ? externalIsCollapsed : true
   );
   const [maskHeight, setMaskHeight] = useState(150);
   const [expandedHeight, setExpandedHeight] = useState(collapsedHeight);
@@ -69,12 +67,12 @@ export const CollapsibleBox = ({
   }, [children, isCollapsed]);
 
   useEffect(() => {
-    if (disabled) {
+    if (blocked) {
       setIsCollapsed(false);
     } else {
       setIsCollapsed(true);
     }
-  }, [disabled]);
+  }, [blocked]);
 
   const toggleCollapse = () => {
     if (externalIsCollapsed === undefined) {
@@ -109,7 +107,7 @@ export const CollapsibleBox = ({
           size='sm'
           variant='secondary'
           onClick={toggleCollapse}
-          disabled={disabled}
+          disabled={blocked}
           className='opacity-100'
         >
           {isCollapsed ? 'View more' : 'View less'}
@@ -120,7 +118,7 @@ export const CollapsibleBox = ({
           id='arrow-button'
           variant='outline'
           onClick={toggleCollapse}
-          disabled={disabled}
+          disabled={blocked}
           className={`!opacity-100 z-[1] -mt-12 duration-0 ${
             isButtonHighlighted && 'border-2 border-foreground'
           }`}

@@ -77,7 +77,7 @@ const StepOne: React.FC = () => {
                 </FormLabel>
                 <FormControl>
                   <Textarea
-                    className='resize-none h-60 sm:h-44'
+                    className='resize-none h-44 sm:h-44'
                     placeholder='Your dataset description here...'
                     spellCheck={false}
                     maxLength={300}

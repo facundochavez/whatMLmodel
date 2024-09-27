@@ -16,13 +16,13 @@ import { TransitionLink } from '@/components/TransitionLink/TransitionLink';
 import StepTwoForm from '@/components/Forms/StepTwo.form';
 import { useEffect, useState } from 'react';
 import { useAnalyzesContext } from '@/context/analyzes.context';
-import { isAiThinkingService } from '@/services/isAiThinkingService';
+import generateRandomUUID from '@/utils/generateRandomUUID';
 
-const StepTwo: React.FC = () => {
-  const [isAiGettingRecommendations, setIsAiGettingRecommendations] =
-    useState<boolean>(false);
-  const [isUserEditingInfo, setIsUserEditingInfo] = useState<boolean>(true);
+interface StepTwoProps extends React.PropsWithChildren {
+  setIsAiThinking: React.Dispatch<React.SetStateAction<boolean>>;
+}
 
+const StepTwo: React.FC<StepTwoProps> = ({ setIsAiThinking }) => {
   const {
     currentAnalysis,
     setCurrentAnalysis,
@@ -33,23 +33,49 @@ const StepTwo: React.FC = () => {
     handleUpdateRecommendations,
   } = useAnalyzesContext();
 
-  const [isFormCollapsed, setIsFormCollapsed] = useState(false);
-  const [isCreatingNewAnalysis, setIsCreatingNewAnalysis] = useState(false);
-  const [isUpdatingRecommendations, setIsUpdatingRecommendations] =
+  const [isUserEditingInfo, setIsUserEditingInfo] = useState<boolean>(false);
+  const [isFormCollapsed, setIsFormCollapsed] = useState(true);
+  const [isFormBlocked, setIsFormBlocked] = useState(false);
+  const [isButtonGettingRecommendations, setIsButtonGettingRecommendations] =
+    useState<boolean>(false);
+
+  const [isUseCreatingNewAnalysis, setIsUserCreatingNewAnalysis] =
+    useState(false);
+  const [isUserUpdatingRecommendations, setIsUserUpdatingRecommendations] =
     useState(false);
 
-  // SIMULACIÓN DE AI (MODIFICAR):
+  useEffect(() => {
+    if (!currentAnalysis.recommendations) {
+      setIsUserEditingInfo(true);
+      setIsFormCollapsed(false);
+      setIsFormBlocked(true);
+    } else {
+      setIsUserEditingInfo(false);
+      setIsFormCollapsed(true);
+      setIsFormBlocked(false);
+    }
+  }, [currentAnalysis.recommendations]);
+
+  useEffect(() => {
+    if (isUserEditingInfo) {
+      setIsFormCollapsed(false);
+      setIsFormBlocked(true);
+    }
+  }, [isUserEditingInfo]);
+
+  // SIMULACIÓN DE AI: GENERACIÓN DE RECOMENDACIONES
   const handleGetRecommendations = () => {
     setIsFormCollapsed(true);
-    setIsAiGettingRecommendations(true);
-    
-    isAiThinkingService.setSubject(true);
+    setIsButtonGettingRecommendations(true);
+
+    setIsAiThinking(true);
 
     setTimeout(() => {
       if (!currentAnalysis.id) {
+        const id = generateRandomUUID();
         const newAnalysis = {
           ...currentAnalysis,
-          id: crypto.randomUUID(),
+          id: id,
           createdAt: auxiliarAnalysis.createdAt,
           updatedAt: auxiliarAnalysis.updatedAt,
           isFavorite: auxiliarAnalysis.isFavorite,
@@ -58,7 +84,7 @@ const StepTwo: React.FC = () => {
           recommendations: auxiliarAnalysis.recommendations,
         };
         setCurrentAnalysis({ ...newAnalysis });
-        setIsCreatingNewAnalysis(true);
+        setIsUserCreatingNewAnalysis(true);
       } else {
         const newRecommendations = {
           recommendations: auxiliarAnalysisTwo.recommendations,
@@ -67,26 +93,25 @@ const StepTwo: React.FC = () => {
           ...currentAnalysis,
           ...newRecommendations,
         });
-        setIsUpdatingRecommendations(true);
+        setIsUserUpdatingRecommendations(true);
       }
-      setIsAiGettingRecommendations(false);
+      setIsButtonGettingRecommendations(false);
       setIsUserEditingInfo(false);
+      setIsFormBlocked(false);
     }, 1000);
   };
-
   useEffect(() => {
-    if (isCreatingNewAnalysis) {
+    if (isUseCreatingNewAnalysis) {
       currentAnalysis.id && handleAddAnalysis();
-      setIsCreatingNewAnalysis(false);
+      setIsUserCreatingNewAnalysis(false);
     }
-  }, [isCreatingNewAnalysis]);
-
+  }, [isUseCreatingNewAnalysis]);
   useEffect(() => {
-    if (isUpdatingRecommendations) {
+    if (isUserUpdatingRecommendations) {
       currentAnalysis.id && handleUpdateRecommendations();
-      setIsUpdatingRecommendations(false);
+      setIsUserUpdatingRecommendations(false);
     }
-  }, [isUpdatingRecommendations]);
+  }, [isUserUpdatingRecommendations]);
 
   return (
     <section className='w-full flex flex-col items-center gap-6'>
@@ -104,45 +129,52 @@ const StepTwo: React.FC = () => {
 
       <StepTwoForm
         isFormCollapsed={isFormCollapsed}
+        isFormBlocked={isFormBlocked}
+        isUserEditingInfo={isUserEditingInfo}
         onCollapseChange={(collapsed) => setIsFormCollapsed(collapsed)}
       >
         <DialogFooter className='mt-4 md:mt-0'>
           {isUserEditingInfo ? (
             !currentAnalysis?.recommendations ? (
               <>
-                {!isAiGettingRecommendations && (
-                  <TransitionLink href='/'>
-                    <Button type='button' variant='outline' className='w-full'>
-                      <RefreshCcw className='w-4 h-4 mr-2' />
-                      Cancel and retry
+                {!isButtonGettingRecommendations ? (
+                  <>
+                    <TransitionLink href='/'>
+                      <Button
+                        type='button'
+                        variant='outline'
+                        className='w-full'
+                      >
+                        <RefreshCcw className='w-4 h-4 mr-2' />
+                        Cancel and retry
+                      </Button>
+                    </TransitionLink>
+                    <Button
+                      type='submit'
+                      onClick={handleGetRecommendations}
+                      className='flex items-center'
+                    >
+                      <AiStarsIcon className='mr-1.5 h-[18px] w-[18px]' />
+                      Get models
                     </Button>
-                  </TransitionLink>
-                )}
-                {isAiGettingRecommendations ? (
+                  </>
+                ) : (
                   <Button type='button' disabled className='flex items-center'>
                     <LoaderCircle className='h-4 w-4 mr-2 animate-spin' />
                     Getting models
-                  </Button>
-                ) : (
-                  <Button
-                    type='submit'
-                    onClick={handleGetRecommendations}
-                    className='flex items-center'
-                  >
-                    <AiStarsIcon className='mr-1.5 h-[18px] w-[18px]' />
-                    Get models
                   </Button>
                 )}
               </>
             ) : (
               <>
-                {!isAiGettingRecommendations ? (
+                {!isButtonGettingRecommendations ? (
                   <>
                     <Button
                       variant='outline'
                       onClick={() => {
                         setIsUserEditingInfo(false);
                         setIsFormCollapsed(true);
+                        setIsFormBlocked(false);
                       }}
                     >
                       Cancel
@@ -152,7 +184,6 @@ const StepTwo: React.FC = () => {
                       onClick={handleGetRecommendations}
                       className='flex items-center'
                     >
-                      <AiStarsIcon className='mr-1.5 h-[18px] w-[18px]' />
                       Apply changes
                     </Button>
                   </>

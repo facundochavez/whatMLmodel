@@ -1,21 +1,13 @@
 import TablesGroup from '@/components/TablesGroup/TablesGroup';
 import { useAnalyzesContext } from '@/context/analyzes.context';
-import { useGlobalContext } from '@/context/global.context';
 import useTypingEffect from '@/hooks/useTypingEffect';
-import { isAiThinkingService } from '@/services/isAiThinkingService';
-import { useEffect, useState } from 'react';
 
-const StepThree: React.FC = () => {
+interface StepThreeProps extends React.PropsWithChildren {
+  isAiThinking: boolean;
+}
+
+const StepThree: React.FC<StepThreeProps> = ({ isAiThinking }) => {
   const { currentAnalysis } = useAnalyzesContext();
-  const isAiThinking = isAiThinkingService.getSubject();
-
-  useEffect(() => {
-    if (isAiThinking) {
-      setTimeout(() => {
-        isAiThinkingService.setSubject(false);
-      }, 3000);
-    }
-  }, [isAiThinking]);
 
   return (
     <section className='w-full max-w-[1050px] flex flex-col gap-8'>
@@ -46,8 +38,8 @@ const StepThree: React.FC = () => {
               </p>
             )}
             <div
-              className='opacity-0 w-full animate-slide-up [animation-fill-mode:forwards]'
-              style={{ animationDelay: `${index * 800 + 700}ms` }}
+              className={`w-full ${isAiThinking && 'opacity-0 animate-slide-up [animation-fill-mode:forwards]'}`}
+              style={{ animationDelay: `${ index * 800 + 700}ms` }}
             >
               <TablesGroup
                 type={recommendation.type}

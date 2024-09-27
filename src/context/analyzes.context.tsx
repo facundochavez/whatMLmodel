@@ -2,7 +2,8 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import modelsResponsesDataRaw from '@/prompts/modelsResponses.data.json';
 import { Pipeline, View } from '@/types';
-import { useRouter } from 'next/navigation';
+import { useRouter, usePathname } from 'next/navigation';
+import sleep from '@/utils/sleep';
 
 interface AnalyzesContextProps {
   analyzesView: View[];
@@ -15,6 +16,8 @@ interface AnalyzesContextProps {
   setSelectedAnalysisId: React.Dispatch<React.SetStateAction<string>>;
   auxiliarAnalysis: Pipeline;
   auxiliarAnalysisTwo: Pipeline;
+
+  isPageTransitioning: boolean;
 
   handleToggleFavorite: (id: string) => void;
   handleDeleteAnalysis: (id: string) => void;
@@ -32,7 +35,6 @@ interface AnalyzesProviderProps {
 }
 
 export const AnalyzesProvider = ({ children }: AnalyzesProviderProps) => {
-  const router = useRouter();
   // ESTE ARRAY SIMULA LA BASE DE DATOS
   const [analyzes, setAnalyzes] = useState<Pipeline[]>(
     modelsResponsesDataRaw as Pipeline[]
@@ -120,6 +122,10 @@ export const AnalyzesProvider = ({ children }: AnalyzesProviderProps) => {
     } */
   };
 
+  // HANDLE DELETE ANALYSIS
+  const router = useRouter();
+  const pathname = usePathname();
+
   const handleDeleteAnalysis = async (analysisId: string) => {
     const updatedAnalyzesView = analyzesView.filter(
       (analysisView) => analysisView.id !== analysisId
@@ -132,10 +138,20 @@ export const AnalyzesProvider = ({ children }: AnalyzesProviderProps) => {
     setAnalyzes(updatedAnalyses);
 
     if (currentAnalysis?.id === analysisId) {
-      setCurrentAnalysis({});
+      const main = document.querySelector('main');
+      if (!main) return;
+      main.classList.add('page-transition');
+      await sleep(300);
       router.push('/');
+      setCurrentAnalysis({});
     }
   };
+
+  useEffect(() => {
+    const main = document.querySelector('main');
+    if (!main) return;
+    main.classList.remove('page-transition');
+  }, [pathname]);
 
   const handleAddAnalysis = () => {
     if (currentAnalysis) {
@@ -164,8 +180,8 @@ export const AnalyzesProvider = ({ children }: AnalyzesProviderProps) => {
         recommendations: currentAnalysis.recommendations,
       };
       const updatedAnalyzes = [...analyzes];
-      updatedAnalyzes.splice(analysisIndex, 1); // Elimina el análisis de su posición actual
-      setAnalyzes([updatedAnalysis, ...updatedAnalyzes]); // Inserta el análisis al principio
+      updatedAnalyzes.splice(analysisIndex, 1);
+      setAnalyzes([updatedAnalysis, ...updatedAnalyzes]);
     }
 
     const analysisViewIndex = analyzesView.findIndex(
@@ -177,20 +193,41 @@ export const AnalyzesProvider = ({ children }: AnalyzesProviderProps) => {
         ...analyzesView[analysisViewIndex],
       };
       const updatedAnalyzesView = [...analyzesView];
-      updatedAnalyzesView.splice(analysisViewIndex, 1); // Elimina el análisis de su posición actual
-      setAnalyzesView([updatedAnalysisView, ...updatedAnalyzesView]); // Inserta el análisis al principio
+      updatedAnalyzesView.splice(analysisViewIndex, 1);
+      setAnalyzesView([updatedAnalysisView, ...updatedAnalyzesView]);
     }
   };
 
-  const handleSelectAnalysis = (analysisId: string) => {
+  // HANDLE SELECT ANALYSIS
+  const [isPageTransitioning, setIsPageTransitioning] = useState(false);
+  const handleSelectAnalysis = async (analysisId: string) => {
+    if (currentAnalysis?.id === analysisId && pathname === '/analysis') return;
+    const main = document.querySelector('main');
+    if (!main) return;
+    main.classList.add('page-transition');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+
     const analysis = analyzes.find((analysis) => analysis.id === analysisId);
-    if (analysis) {
-      setCurrentAnalysis({
-        ...analysis,
-      });
+    await sleep(200);
+    setCurrentAnalysis({
+      ...analysis,
+    });
+
+    if (pathname === '/analysis') {
+      setIsPageTransitioning(true);
+    } else {
       router.push('/analysis');
     }
   };
+
+  useEffect(() => {
+    if (isPageTransitioning) {
+      const main = document.querySelector('main');
+      if (!main) return;
+      main.classList.remove('page-transition');
+      setIsPageTransitioning(false);
+    }
+  }, [currentAnalysis]);
 
   return (
     <AnalyzesContext.Provider
@@ -206,11 +243,13 @@ export const AnalyzesProvider = ({ children }: AnalyzesProviderProps) => {
         auxiliarAnalysis,
         auxiliarAnalysisTwo,
 
+        isPageTransitioning,
+
         handleToggleFavorite,
         handleDeleteAnalysis,
         handleAddAnalysis,
         handleUpdateRecommendations,
-        handleSelectAnalysis
+        handleSelectAnalysis,
       }}
     >
       {children}

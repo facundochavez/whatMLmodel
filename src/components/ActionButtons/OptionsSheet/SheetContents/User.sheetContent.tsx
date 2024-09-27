@@ -16,7 +16,8 @@ import { useAnalyzesContext } from '@/context/analyzes.context';
 const UserSheetContent = () => {
   const pathname = usePathname();
   const { setShowAccountSettingsDialog } = useGlobalContext();
-  const { recentsView, favoritesView } = useAnalyzesContext();
+  const { recentsView, favoritesView, handleSelectAnalysis } =
+    useAnalyzesContext();
 
   return (
     <div className='flex flex-col gap-4 h-full overflow-y-hidden w-full'>
@@ -43,11 +44,14 @@ const UserSheetContent = () => {
               <ul>
                 {favoritesView.map((favoriteView) => {
                   return (
-                    <SheetClose asChild>
-                      <li className='relative h-8' key={favoriteView.id}>
+                    <SheetClose asChild key={favoriteView.id}>
+                      <li className='relative h-8'>
                         <Button
                           variant='ghost'
                           className='flex w-full text-left h-full px-0 pr-8 font-normal'
+                          onClick={() =>
+                            handleSelectAnalysis(favoriteView.id as string)
+                          }
                         >
                           <span className='w-full overflow-hidden text-ellipsis whitespace-nowrap'>
                             {favoriteView.title}
@@ -67,7 +71,9 @@ const UserSheetContent = () => {
             </>
           )}
 
-          {favoritesView.length !== 0 && recentsView.length !== 0 && <Separator className='mt-2 mb-3' />}
+          {favoritesView.length !== 0 && recentsView.length !== 0 && (
+            <Separator className='mt-2 mb-3' />
+          )}
 
           {recentsView.length !== 0 && (
             <>
@@ -79,21 +85,26 @@ const UserSheetContent = () => {
               <ul>
                 {recentsView.map((recentView) => {
                   return (
-                    <li className='relative h-8' key={recentView.id}>
-                      <Button
-                        variant='ghost'
-                        className='flex w-full text-left h-full px-0 pr-8 font-normal'
-                      >
-                        <span className='w-full overflow-hidden text-ellipsis whitespace-nowrap'>
-                          {recentView.title}
-                        </span>
-                      </Button>
-                      <div className='absolute right-0 top-0'>
-                        <AnalysisActionsDropdown
-                          analysisId={recentView.id as string}
-                        />
-                      </div>
-                    </li>
+                    <SheetClose asChild key={recentView.id}>
+                      <li className='relative h-8'>
+                        <Button
+                          variant='ghost'
+                          className='flex w-full text-left h-full px-0 pr-8 font-normal'
+                          onClick={() =>
+                            handleSelectAnalysis(recentView.id as string)
+                          }
+                        >
+                          <span className='w-full overflow-hidden text-ellipsis whitespace-nowrap'>
+                            {recentView.title}
+                          </span>
+                        </Button>
+                        <div className='absolute right-0 top-0'>
+                          <AnalysisActionsDropdown
+                            analysisId={recentView.id as string}
+                          />
+                        </div>
+                      </li>
+                    </SheetClose>
                   );
                 })}
               </ul>

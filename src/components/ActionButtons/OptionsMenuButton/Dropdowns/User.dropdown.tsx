@@ -23,6 +23,7 @@ import AnalysisActionsDropdown from '@/components/ActionButtons/AnalysisDropdown
 import { useGlobalContext } from '@/context/global.context';
 import { useAnalyzesContext } from '@/context/analyzes.context';
 import { usePathname } from 'next/navigation';
+import { TransitionLink } from '@/components/TransitionLink/TransitionLink';
 
 const UserDropdown: React.FC = () => {
   const pathname = usePathname();
