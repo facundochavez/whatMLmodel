@@ -6,7 +6,7 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/card';
-import { ModelResponse } from '@/types';
+import { Pipeline } from '@/types';
 import getModelIcon from '@/utils/getModelIcon';
 import { Button } from '@/components/ui/button';
 import { ArrowRight } from 'lucide-react';
@@ -14,7 +14,7 @@ import { Badge } from '@/components/ui/badge';
 import { useGlobalContext } from '@/context/global.context';
 import { DialogTrigger } from '@radix-ui/react-dialog';
 
-const DatasetCard = ({ dataset }: { dataset: ModelResponse }) => {
+const DatasetCard = ({ dataset }: { dataset: Pipeline }) => {
   const DatasetIcon = getModelIcon({
     iconNumber: dataset.icon as number,
   }) as React.FC;
@@ -45,7 +45,7 @@ const DatasetLayerCard = ({
   isTopLayer = false,
   isHovered = false,
 }: {
-  dataset: ModelResponse;
+  dataset: Pipeline;
   DatasetIcon: React.FC;
   isTopLayer?: boolean;
   isHovered?: boolean;
@@ -107,7 +107,7 @@ const DatasetLayerCard = ({
             <span>View details</span>
           )}
         </Button>
-        {dataset.updated && (
+        {dataset.updatedAt && (
           <Badge
             className={`font-bold hover:bg-foreground active:bg-foreground ${
               isTopLayer

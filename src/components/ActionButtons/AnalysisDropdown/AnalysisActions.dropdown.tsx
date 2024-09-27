@@ -7,18 +7,24 @@ import {
 import { AlertDialogTrigger } from '@/components/ui/alert-dialog';
 import { Button } from '@/components/ui/button';
 import { Trash, Ellipsis, Star, StarOff } from 'lucide-react';
+import { useAnalyzesContext } from '@/context/analyzes.context';
 
 type AnalysisActionsDropdownProps = {
+  analysisId: string;
   isFavorite?: boolean;
 };
 
 const AnalysisActionsDropdown: React.FC<AnalysisActionsDropdownProps> = ({
+  analysisId,
   isFavorite = false,
 }) => {
+  const { handleToggleFavorite, setSelectedAnalysisId } = useAnalyzesContext();
+
   return (
     <DropdownMenu>
       <DropdownMenuTrigger>
         <Button
+          asChild
           variant='ghost'
           className='h-full w-6 p-1 flex opacity-50 hover:opacity-100'
         >
@@ -27,27 +33,32 @@ const AnalysisActionsDropdown: React.FC<AnalysisActionsDropdownProps> = ({
       </DropdownMenuTrigger>
 
       <DropdownMenuContent
-        onClick={(e) => e.stopPropagation()}
+        onClick={(e) => {
+          e.stopPropagation();
+        }}
         loop
         align='end'
         className='z-[200]'
       >
-        {!isFavorite ? (
-          <DropdownMenuItem>
-            <Star className='mr-2.5 h-3.5 w-3.5' />
-            <span>Favorite</span>
-          </DropdownMenuItem>
-        ) : (
-          <DropdownMenuItem>
-            <StarOff className='mr-2.5 h-3.5 w-3.5' />
-            <span>Remove</span>
-          </DropdownMenuItem>
-        )}
+        <DropdownMenuItem onClick={() => handleToggleFavorite(analysisId)}>
+          {!isFavorite ? (
+            <>
+              <Star className='mr-2.5 h-3.5 w-3.5' />
+              <span>Favorite</span>
+            </>
+          ) : (
+            <>
+              <StarOff className='mr-2.5 h-3.5 w-3.5' />
+              <span>Unfavorite</span>
+            </>
+          )}
+        </DropdownMenuItem>
 
         <AlertDialogTrigger
           asChild
           onClick={(e) => {
             e.stopPropagation();
+            setSelectedAnalysisId(analysisId as string);
           }}
         >
           <DropdownMenuItem>

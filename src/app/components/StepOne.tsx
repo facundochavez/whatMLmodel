@@ -16,33 +16,21 @@ import {
 
 import { Textarea } from '@/components/ui/textarea';
 import { DialogFooter } from '@/components/ui/dialog';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { tryingExampleService } from '@/services/tryingExampleService';
 import { AiStarsIcon } from '@/icons/AiStarsIcon';
-import { useGlobalContext } from '@/context/global.context';
 import { TransitionLink } from '@/components/TransitionLink/TransitionLink';
 import { LoaderCircle } from 'lucide-react';
-
-
-// VALIDACIÓN DE DATOS (BORRAR LUEGO)
-import modelsResponsesDataRaw from '@/prompts/modelsResponses.data.json';
-import { ModelResponse } from '@/types';
-const validateModelResponses = (data: any[]): ModelResponse[] => {
-  return data.filter((item) => {
-    if (typeof item !== 'object' || !item) return false;
-    return true;
-  }) as ModelResponse[];
-};
+import { useAnalyzesContext } from '@/context/analyzes.context';
 
 // Esquema de validación con zod
 const stepOneSchema = z.object({
   datasetDescription: z.string(),
 });
 
-const StepOne = () => {
-  const { isAiGeneratingInfo: isGeneratingInfo, setCurrentAnalysis, currentAnalysisIndex, setIsAiGeneratingInfo } =
-    useGlobalContext();
-  const subscription$ = tryingExampleService.getSubject();
+const StepOne: React.FC = () => {
+  const [isAiGeneratingInfo, setIsAiGeneratingInfo] = useState<boolean>(false);
+  const { setCurrentAnalysis, auxiliarAnalysis } = useAnalyzesContext();
   const form = useForm<z.infer<typeof stepOneSchema>>({
     resolver: zodResolver(stepOneSchema),
     defaultValues: {
@@ -50,33 +38,26 @@ const StepOne = () => {
     },
   });
 
-  
-  
-  // SIMULANDO GENERACIÓN DE INFO (BORRAR LUEGO)
-  const modelsResponsesData: ModelResponse[] = validateModelResponses(
-    modelsResponsesDataRaw
-  );
+  // SIMULACIÓN DE AI (MODIFICAR LUEGO)
   const handleGenerateInfo = () => {
-    const auxiliarAnalysis = modelsResponsesData[currentAnalysisIndex];
     setIsAiGeneratingInfo(true);
-
     setCurrentAnalysis({
-      id: auxiliarAnalysis.id,
-      alias: auxiliarAnalysis.alias,
       title: auxiliarAnalysis.title,
       datasetDescription: auxiliarAnalysis.datasetDescription,
       language: auxiliarAnalysis.language,
       info: auxiliarAnalysis.info,
     });
   };
-
+  
+  // TRYEXAMPLES SERVICE
+  const tryExampleSubscription$ = tryingExampleService.getSubject();
   useEffect(() => {
-    const subscription = subscription$.subscribe((data) => {
+    const tryExampleSubscription = tryExampleSubscription$.subscribe((data) => {
       form.setValue('datasetDescription', data);
     });
 
-    return () => subscription.unsubscribe();
-  }, [subscription$, form]);
+    return () => tryExampleSubscription.unsubscribe();
+  }, [tryExampleSubscription$, form]);
 
   function onSubmit(values: z.infer<typeof stepOneSchema>) {
     // Manejar el envío del formulario
@@ -112,10 +93,10 @@ const StepOne = () => {
             <DialogFooter className='mt-4'>
               <Button
                 type='submit'
-                disabled={isGeneratingInfo}
+                disabled={isAiGeneratingInfo}
                 onClick={handleGenerateInfo}
               >
-                {isGeneratingInfo ? (
+                {isAiGeneratingInfo ? (
                   <>
                     <LoaderCircle className='h-4 w-4 mr-2 animate-spin' />
                     Generating info

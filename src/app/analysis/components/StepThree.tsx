@@ -1,26 +1,35 @@
 import TablesGroup from '@/components/TablesGroup/TablesGroup';
+import { useAnalyzesContext } from '@/context/analyzes.context';
 import { useGlobalContext } from '@/context/global.context';
 import useTypingEffect from '@/hooks/useTypingEffect';
+import { isAiThinkingService } from '@/services/isAiThinkingService';
+import { useEffect, useState } from 'react';
 
-const StepThree = () => {
-  const { currentAnalysis, isAiThinking } = useGlobalContext();
+const StepThree: React.FC = () => {
+  const { currentAnalysis } = useAnalyzesContext();
+  const isAiThinking = isAiThinkingService.getSubject();
+
+  useEffect(() => {
+    if (isAiThinking) {
+      setTimeout(() => {
+        isAiThinkingService.setSubject(false);
+      }, 3000);
+    }
+  }, [isAiThinking]);
 
   return (
     <section className='w-full max-w-[1050px] flex flex-col gap-8'>
-      <h3 className='text-2xl font-semibold'>
-        {useTypingEffect(
-          currentAnalysis.recomendationsTitle,
-          2,
-          0,
-          !isAiThinking
-        )}
-      </h3>
-      {currentAnalysis?.recommendations?.map((recomendation, index) => {
+      {currentAnalysis?.recommendations?.map((recommendation, index) => {
         return (
           <section key={index} className='flex flex-col gap-8 sm:gap-4'>
+            {recommendation.title && (
+              <h3 className='text-2xl font-semibold sm:pb-4'>
+                {useTypingEffect(recommendation.title, 2, 0, !isAiThinking)}
+              </h3>
+            )}
             <p className='text-muted-foreground'>
               {useTypingEffect(
-                recomendation.paragraph,
+                recommendation.paragraph,
                 8,
                 index * 800 + 200,
                 !isAiThinking
@@ -41,8 +50,8 @@ const StepThree = () => {
               style={{ animationDelay: `${index * 800 + 700}ms` }}
             >
               <TablesGroup
-                type={recomendation.type}
-                tables={recomendation.tables}
+                type={recommendation.type}
+                tables={recommendation.tables}
               />
             </div>
           </section>

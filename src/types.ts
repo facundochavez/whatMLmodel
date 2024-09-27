@@ -1,24 +1,18 @@
 import { ProblemType } from './components/TablesGroup/types';
 
-export interface recentResponses {
-  output: {
-    alias: string;
-    name: string;
-  };
-}
-
-export interface ModelResponse {
+export interface Pipeline {
   id?: string;
   alias?: string;
   title?: string;
-  favorite?: boolean;
+  createdAt?: string;
+  updatedAt?: string;
+  isFavorite?: boolean;
   datasetDescription?: string;
   icon?: number;
   link?: {
     platform: string;
     url: string;
   };
-  updated?: boolean;
   language?: string;
   info?: {
     problemDescription: string;
@@ -28,8 +22,8 @@ export interface ModelResponse {
     datasetSize: number;
     hasComplexData: boolean;
   }
-  recomendationsTitle?: string;
   recommendations?: Array<{
+    title?: string;
     type: ProblemType;
     paragraph: string;
     tables: {
@@ -37,6 +31,12 @@ export interface ModelResponse {
       similarDatasetsAliases: string[];
     };
   }>;
+}
+
+export interface View {
+  id?: string;
+  title?: string;
+  isFavorite?: boolean;
 }
 
 export type Collaborator = {

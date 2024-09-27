@@ -1,30 +1,23 @@
 'use client';
 import { useEffect } from 'react';
-import { useRouter } from 'next/navigation'; // useRouter para la navegación
+import { useRouter } from 'next/navigation';
 import StepThree from '@/app/analysis/components/StepThree';
 import StepTwo from '@/app/analysis/components/StepTwo';
 import { useGlobalContext } from '@/context/global.context';
+import { useAnalyzesContext } from '@/context/analyzes.context';
 
-const AnalysisPage = () => {
-  const { currentAnalysis, setIsAiThinking, setIsUserEditingInfo } =
-    useGlobalContext();
+const AnalysisPage: React.FC = () => {
+  const { currentAnalysis } = useAnalyzesContext();
   const router = useRouter();
 
   useEffect(() => {
-    const handleContext = () => {
-      setIsAiThinking(false);
+    const handleRoute = () => {
       if (!currentAnalysis?.info) {
         router.push('/');
       }
-      if (!currentAnalysis?.recommendations) {
-        setIsUserEditingInfo(true);
-      } else {
-        setIsUserEditingInfo(false);
-      }
     };
-
-    handleContext();
-  }, []);
+    handleRoute();
+  }, [currentAnalysis]);
 
   return (
     <>

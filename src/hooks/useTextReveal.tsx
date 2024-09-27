@@ -9,10 +9,19 @@ const useTextReveal = (text: string) => {
     setTimeout(() => {
       setOverflow('visible');
     }, words.length * 305);
-  }, []);
+  }, [overflow]);
+
+  const [uniqueKey, setUniqueKey] = useState(0);
+  useEffect(() => {
+    setUniqueKey((prevKey) => prevKey + 1);
+    setOverflow('hidden');
+  }, [text]);
 
   return (
-    <h2 className={`flex flex-wrap text-3xl leading-7 md:text-4xl font-semibold text-center justify-center overflow-${overflow}`}>
+    <h2
+      key={uniqueKey}
+      className={`flex flex-wrap text-3xl leading-7 md:text-4xl font-semibold text-center justify-center overflow-${overflow}`}
+    >
       {words.map((word, wordIndex) => (
         <span key={`word-${wordIndex}`} className={`flex overflow-${overflow}`}>
           {word.split('').map((char) => {

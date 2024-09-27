@@ -19,16 +19,16 @@ import ConfirmDeleteDialogContent from '@/components/DialogContents/ConfirmDelet
 
 import { Button } from '@/components/ui/button';
 import { AlertDialog, AlertDialogTrigger } from '@/components/ui/alert-dialog';
-import AnalysisActionsDropdown from '@/components/ActionButtons/AnalysisDropdown/Analysis.dropdown';
+import AnalysisActionsDropdown from '@/components/ActionButtons/AnalysisDropdown/AnalysisActions.dropdown';
 import { useGlobalContext } from '@/context/global.context';
 import { useAnalyzesContext } from '@/context/analyzes.context';
 import { usePathname } from 'next/navigation';
 
 const UserDropdown: React.FC = () => {
   const pathname = usePathname();
-  const { setShowAccountSettingsDialog, setSelectedAnalysisId } =
-    useGlobalContext();
-  const { recents, favorites } = useAnalyzesContext();
+  const { setShowAccountSettingsDialog } = useGlobalContext();
+  const { recentsView, favoritesView, handleSelectAnalysis } =
+    useAnalyzesContext();
 
   return (
     <DropdownMenu>
@@ -50,65 +50,84 @@ const UserDropdown: React.FC = () => {
           </>
         )}
 
-        {/* FAVORITES LIST */}
-
         <AlertDialog>
-          <DropdownMenuLabel className='flex items-center font-semibold'>
-            <Star className='h-4 w-4  mr-2' />
-            <span>Favorites</span>
-          </DropdownMenuLabel>
+          {favoritesView.length !== 0 && (
+            <>
+              <DropdownMenuLabel className='flex items-center font-semibold'>
+                <Star className='h-4 w-4  mr-2' />
+                <span>Favorites</span>
+              </DropdownMenuLabel>
+              <DropdownMenuGroup className='overflow-auto /*max-h-40*/ max-w-52'>
+                {favoritesView.map((favoriteView) => {
+                  return (
+                    <div
+                      className='w-full flex justify-between'
+                      key={favoriteView.id}
+                    >
+                      <DropdownMenuItem
+                        className='w-full'
+                        onClick={() =>
+                          handleSelectAnalysis(favoriteView.id as string)
+                        }
+                      >
+                        <span className='line-clamp-1 pr-6 w-full'>
+                          {favoriteView.title}
+                        </span>
+                      </DropdownMenuItem>
 
-          <DropdownMenuGroup className='overflow-auto /*max-h-40*/ max-w-52'>
-            {favorites.map((analysis) => {
-              return (
-                <div className='w-full flex justify-between' key={analysis.id}>
-                  <DropdownMenuItem className='w-full'>
-                    <span className='line-clamp-1 pr-4 w-full'>
-                      {analysis.title}
-                    </span>
-                  </DropdownMenuItem>
+                      <DropdownMenuItem className='p-0 absolute right-1.5'>
+                        <AnalysisActionsDropdown
+                          analysisId={favoriteView.id as string}
+                          isFavorite
+                        />
+                      </DropdownMenuItem>
+                    </div>
+                  );
+                })}
+              </DropdownMenuGroup>
+              <DropdownMenuSeparator />
+            </>
+          )}
 
-                  <DropdownMenuItem
-                    className='p-0 absolute right-1.5'
-                    onClick={() => setSelectedAnalysisId(analysis.id || '')}
-                  >
-                    <AnalysisActionsDropdown isFavorite />
-                  </DropdownMenuItem>
-                </div>
-              );
-            })}
-          </DropdownMenuGroup>
-          <DropdownMenuSeparator />
+          {recentsView.length !== 0 && (
+            <>
+              <DropdownMenuLabel className='flex items-center font-semibold'>
+                <History className='h-4 w-4 mr-2' />
+                <span>Recents</span>
+              </DropdownMenuLabel>
 
-          {/* RECENT LIST */}
-          <DropdownMenuLabel className='flex items-center font-semibold'>
-            <History className='h-4 w-4 mr-2' />
-            <span>Recent</span>
-          </DropdownMenuLabel>
+              <DropdownMenuGroup className='overflow-auto /*max-h-40*/ max-w-52'>
+                {recentsView.map((recentView) => {
+                  return (
+                    <div
+                      className='w-full flex justify-between'
+                      key={recentView.id}
+                    >
+                      <DropdownMenuItem
+                        className='w-full'
+                        onClick={() =>
+                          handleSelectAnalysis(recentView.id as string)
+                        }
+                      >
+                        <span className='line-clamp-1 pr-6 w-full'>
+                          {recentView.title}
+                        </span>
+                      </DropdownMenuItem>
 
-          <DropdownMenuGroup className='overflow-auto /*max-h-40*/ max-w-52'>
-            {recents.map((analysis) => {
-              return (
-                <div className='w-full flex justify-between' key={analysis.id}>
-                  <DropdownMenuItem className='w-full'>
-                    <span className='line-clamp-1 pr-4 w-full'>
-                      {analysis.title}
-                    </span>
-                  </DropdownMenuItem>
-
-                  <DropdownMenuItem
-                    className='p-0 absolute right-1.5'
-                    onClick={() => setSelectedAnalysisId(analysis.id || '')}
-                  >
-                    <AnalysisActionsDropdown />
-                  </DropdownMenuItem>
-                </div>
-              );
-            })}
-          </DropdownMenuGroup>
+                      <DropdownMenuItem className='p-0 absolute right-1.5'>
+                        <AnalysisActionsDropdown
+                          analysisId={recentView.id as string}
+                        />
+                      </DropdownMenuItem>
+                    </div>
+                  );
+                })}
+              </DropdownMenuGroup>
+              <DropdownMenuSeparator />
+            </>
+          )}
           <ConfirmDeleteDialogContent />
         </AlertDialog>
-        <DropdownMenuSeparator />
 
         <DropdownMenuItem
           className='font-semibold'

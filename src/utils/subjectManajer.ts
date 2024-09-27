@@ -1,13 +1,13 @@
 import { Subject } from 'rxjs';
 
-export class SubjectManager {
-  subject$ = new Subject<string>();
+export class SubjectManager<T> {
+  subject$ = new Subject<T>();
 
   getSubject() {
     return this.subject$.asObservable();
   }
 
-  setSubject(value: string) {
+  setSubject(value: T) {
     this.subject$.next(value);
   }
 }

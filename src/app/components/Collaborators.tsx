@@ -3,9 +3,9 @@ import React from 'react';
 import CollaboratorsDaraRaw from '@/data/Collaborators.data.json';
 import CollaboratorThumbnail from '@/components/CollaboratorThumbnail/CollaboratorThumbnail';
 import { Collaborator } from '@/types';
-import { BookDown, Code, Code2, Github } from 'lucide-react';
+import { Code2 } from 'lucide-react';
 
-const Collaborators = () => {
+const Collaborators: React.FC = () => {
   const collaborators: Collaborator[] = CollaboratorsDaraRaw as Collaborator[];
 
   return (

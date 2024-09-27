@@ -2,61 +2,91 @@
 
 import { Button } from '@/components/ui/button';
 
-import { ArrowLeft, LoaderCircle, PenLine, RefreshCcw } from 'lucide-react';
+import {
+  ArrowLeft,
+  LoaderCircle,
+  PenLine,
+  RefreshCcw,
+  Star,
+} from 'lucide-react';
 import { DialogFooter } from '@/components/ui/dialog';
 import { AiStarsIcon } from '@/icons/AiStarsIcon';
-import { useGlobalContext } from '@/context/global.context';
 import useTextReveal from '@/hooks/useTextReveal';
 import { TransitionLink } from '@/components/TransitionLink/TransitionLink';
-
-// VALIDACIÓN DE DATOS (BORRAR LUEGO)
-import modelsResponsesDataRaw from '@/prompts/modelsResponses.data.json';
-import { ModelResponse } from '@/types';
 import StepTwoForm from '@/components/Forms/StepTwo.form';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { useAnalyzesContext } from '@/context/analyzes.context';
+import { isAiThinkingService } from '@/services/isAiThinkingService';
 
-const validateModelResponses = (data: any[]): ModelResponse[] => {
-  return data.filter((item) => {
-    if (typeof item !== 'object' || !item) return false;
-    return true;
-  }) as ModelResponse[];
-};
+const StepTwo: React.FC = () => {
+  const [isAiGettingRecommendations, setIsAiGettingRecommendations] =
+    useState<boolean>(false);
+  const [isUserEditingInfo, setIsUserEditingInfo] = useState<boolean>(true);
 
-const StepTwo = () => {
   const {
-    isAiGettingRecommendations: isGettingRecommendations,
-    setIsAiGettingRecommendations: setIsGettingRecommendations,
-    setCurrentAnalysis,
     currentAnalysis,
-    currentAnalysisIndex,
-    setIsAiThinking,
-    isUserEditingInfo,
-    setIsUserEditingInfo,
-  } = useGlobalContext();
+    setCurrentAnalysis,
+    handleToggleFavorite,
+    auxiliarAnalysis,
+    auxiliarAnalysisTwo,
+    handleAddAnalysis,
+    handleUpdateRecommendations,
+  } = useAnalyzesContext();
 
   const [isFormCollapsed, setIsFormCollapsed] = useState(false);
+  const [isCreatingNewAnalysis, setIsCreatingNewAnalysis] = useState(false);
+  const [isUpdatingRecommendations, setIsUpdatingRecommendations] =
+    useState(false);
 
-  // SIMULANDO GENERACIÓN DE RECOMENDACIONES (CAMBIAR ÚNICAMENTE LA DEPENDENCIA DE "ISGETTINGRECOMMENDATIONS", CUIDAR LOS ESTADOS )
-  const modelsResponsesData: ModelResponse[] = validateModelResponses(
-    modelsResponsesDataRaw
-  );
-  const handleGetRecomendations = () => {
+  // SIMULACIÓN DE AI (MODIFICAR):
+  const handleGetRecommendations = () => {
     setIsFormCollapsed(true);
-    setIsGettingRecommendations(true);
-
-    const auxiliarAnalysis = modelsResponsesData[currentAnalysisIndex];
+    setIsAiGettingRecommendations(true);
+    
+    isAiThinkingService.setSubject(true);
 
     setTimeout(() => {
-      setIsAiThinking(true);
-      setCurrentAnalysis((prev) => ({
-        ...prev,
-        recomendationsTitle: auxiliarAnalysis.recomendationsTitle,
-        recommendations: auxiliarAnalysis.recommendations,
-      }));
-      setIsGettingRecommendations(false);
+      if (!currentAnalysis.id) {
+        const newAnalysis = {
+          ...currentAnalysis,
+          id: crypto.randomUUID(),
+          createdAt: auxiliarAnalysis.createdAt,
+          updatedAt: auxiliarAnalysis.updatedAt,
+          isFavorite: auxiliarAnalysis.isFavorite,
+          icon: auxiliarAnalysis.icon,
+          link: auxiliarAnalysis.link,
+          recommendations: auxiliarAnalysis.recommendations,
+        };
+        setCurrentAnalysis({ ...newAnalysis });
+        setIsCreatingNewAnalysis(true);
+      } else {
+        const newRecommendations = {
+          recommendations: auxiliarAnalysisTwo.recommendations,
+        };
+        setCurrentAnalysis({
+          ...currentAnalysis,
+          ...newRecommendations,
+        });
+        setIsUpdatingRecommendations(true);
+      }
+      setIsAiGettingRecommendations(false);
       setIsUserEditingInfo(false);
     }, 1000);
   };
+
+  useEffect(() => {
+    if (isCreatingNewAnalysis) {
+      currentAnalysis.id && handleAddAnalysis();
+      setIsCreatingNewAnalysis(false);
+    }
+  }, [isCreatingNewAnalysis]);
+
+  useEffect(() => {
+    if (isUpdatingRecommendations) {
+      currentAnalysis.id && handleUpdateRecommendations();
+      setIsUpdatingRecommendations(false);
+    }
+  }, [isUpdatingRecommendations]);
 
   return (
     <section className='w-full flex flex-col items-center gap-6'>
@@ -80,19 +110,15 @@ const StepTwo = () => {
           {isUserEditingInfo ? (
             !currentAnalysis?.recommendations ? (
               <>
-                {!isGettingRecommendations && (
+                {!isAiGettingRecommendations && (
                   <TransitionLink href='/'>
-                    <Button
-                      type='button'
-                      variant='secondary'
-                      className='w-full'
-                    >
+                    <Button type='button' variant='outline' className='w-full'>
                       <RefreshCcw className='w-4 h-4 mr-2' />
                       Cancel and retry
                     </Button>
                   </TransitionLink>
                 )}
-                {isGettingRecommendations ? (
+                {isAiGettingRecommendations ? (
                   <Button type='button' disabled className='flex items-center'>
                     <LoaderCircle className='h-4 w-4 mr-2 animate-spin' />
                     Getting models
@@ -100,7 +126,7 @@ const StepTwo = () => {
                 ) : (
                   <Button
                     type='submit'
-                    onClick={handleGetRecomendations}
+                    onClick={handleGetRecommendations}
                     className='flex items-center'
                   >
                     <AiStarsIcon className='mr-1.5 h-[18px] w-[18px]' />
@@ -110,38 +136,58 @@ const StepTwo = () => {
               </>
             ) : (
               <>
-                {!isGettingRecommendations && (
-                  <Button
-                    variant='secondary'
-                    onClick={() => {
-                      setIsUserEditingInfo(false);
-                      setIsFormCollapsed(true);
-                    }}
-                  >
-                    Cancel
-                  </Button>
-                )}
-                {isGettingRecommendations ? (
+                {!isAiGettingRecommendations ? (
+                  <>
+                    <Button
+                      variant='outline'
+                      onClick={() => {
+                        setIsUserEditingInfo(false);
+                        setIsFormCollapsed(true);
+                      }}
+                    >
+                      Cancel
+                    </Button>
+                    <Button
+                      type='submit'
+                      onClick={handleGetRecommendations}
+                      className='flex items-center'
+                    >
+                      <AiStarsIcon className='mr-1.5 h-[18px] w-[18px]' />
+                      Apply changes
+                    </Button>
+                  </>
+                ) : (
                   <Button type='button' disabled className='flex items-center'>
                     <LoaderCircle className='h-4 w-4 mr-2 animate-spin' />
                     Getting models
-                  </Button>
-                ) : (
-                  <Button
-                    type='submit'
-                    onClick={handleGetRecomendations}
-                    className='flex items-center'
-                  >
-                    <AiStarsIcon className='mr-1.5 h-[18px] w-[18px]' />
-                    Apply changes
                   </Button>
                 )}
               </>
             )
           ) : (
-            <Button onClick={() => setIsUserEditingInfo(true)}>
-              <PenLine className='w-4 h-4 mr-2' /> Edit info
-            </Button>
+            <>
+              <Button
+                variant='outline'
+                onClick={() => {
+                  handleToggleFavorite(currentAnalysis.id as string);
+                }}
+              >
+                {!currentAnalysis?.isFavorite ? (
+                  <>
+                    <Star className='w-4 h-4 mr-2' />
+                    Favorite
+                  </>
+                ) : (
+                  <>
+                    <Star className='w-4 h-4 mr-2 fill-foreground' />
+                    In favorites
+                  </>
+                )}
+              </Button>
+              <Button onClick={() => setIsUserEditingInfo(true)}>
+                <PenLine className='w-4 h-4 mr-2' /> Edit info
+              </Button>
+            </>
           )}
         </DialogFooter>
       </StepTwoForm>

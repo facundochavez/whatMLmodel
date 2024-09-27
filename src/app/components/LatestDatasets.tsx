@@ -1,23 +1,23 @@
 import React from 'react';
 import modelsResponsesDataRaw from '@/prompts/modelsResponses.data.json';
 import DatasetCard from '@/components/DatasetCard/DatasetCard';
-import { ModelResponse } from '@/types';
+import { Pipeline } from '@/types';
 import { Dialog } from '@radix-ui/react-dialog';
 import SimilarDatasetDialogContent from '@/components/DialogContents/SimilarDataset.dialogContent';
 import { CollapsibleBox } from '@/components/CollapsibleBox/CollapsibleBox';
 import { useGlobalContext } from '@/context/global.context';
 
 // VALIDACIÓN DE DATOS (BORRAR LUEGO)
-const validateModelResponses = (data: any[]): ModelResponse[] => {
+const validateModelResponses = (data: any[]): Pipeline[] => {
   return data.filter((item) => {
     if (typeof item !== 'object' || !item) return false;
     return true;
-  }) as ModelResponse[];
+  }) as Pipeline[];
 };
 
 const LatestDatasets = () => {
   const { isMobile } = useGlobalContext();
-  const modelsResponsesData: ModelResponse[] = validateModelResponses(
+  const modelsResponsesData: Pipeline[] = validateModelResponses(
     modelsResponsesDataRaw
   );
 

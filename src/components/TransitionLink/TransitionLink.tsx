@@ -21,7 +21,6 @@ export const TransitionLink = ({
 }: TransitionLinkProps) => {
   const router = useRouter();
   const pathname = usePathname();
-  const { setIsAiGeneratingInfo } = useGlobalContext();
 
   const handleTransition = async (
     e: React.MouseEvent<HTMLAnchorElement, MouseEvent>
@@ -42,7 +41,6 @@ export const TransitionLink = ({
   useEffect(() => {
     const main = document.querySelector('main');
     if (!main) return;
-    setIsAiGeneratingInfo(false);
     main.classList.remove('page-transition');
   }, [pathname]);
 

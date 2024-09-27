@@ -13,8 +13,7 @@ import {
   FormMessage,
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
-import { DialogClose, DialogFooter } from '@/components/ui/dialog';
-import { CircleHelp, Eye, EyeOff } from 'lucide-react';
+import { CircleHelp } from 'lucide-react';
 import { useEffect, useRef, useState } from 'react';
 import { CollapsibleBox } from '../CollapsibleBox/CollapsibleBox';
 import { useGlobalContext } from '@/context/global.context';
@@ -32,6 +31,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from '../ui/select';
+import { useAnalyzesContext } from '@/context/analyzes.context';
 
 // Esquema de validación con zod
 const stepTwoSchema = z.object({
@@ -46,7 +46,6 @@ const stepTwoSchema = z.object({
 interface StepTwoFormProps extends React.PropsWithChildren {
   isFormCollapsed: boolean;
   onCollapseChange: (collapsed: boolean) => void;
-
 }
 
 const StepTwoForm: React.FC<StepTwoFormProps> = ({
@@ -54,7 +53,8 @@ const StepTwoForm: React.FC<StepTwoFormProps> = ({
   onCollapseChange,
   children,
 }) => {
-  const { currentAnalysis, isUserEditingInfo } = useGlobalContext();
+  const { isUserEditingInfo } = useGlobalContext();
+  const { currentAnalysis } = useAnalyzesContext();
   const [showTooltip, setShowTooltip] = useState(false);
   const [formLabel, setLabel] = useState('');
 
@@ -193,11 +193,7 @@ const StepTwoForm: React.FC<StepTwoFormProps> = ({
                           >
                             <CircleHelp className='inline w-4 h-4 ml-1 mt-0.5' />
                           </TooltipTrigger>
-                          <TooltipContent
-                            className='text-muted-foreground max-w-[min(370px,80vw)]'
-                            onMouseEnter={() => setShowTooltip(true)}
-                            onMouseLeave={() => setShowTooltip(false)}
-                          >
+                          <TooltipContent className='text-center text-muted-foreground max-w-[min(280px,80vw)]'>
                             <p>
                               Some features handle complex data as long texts,
                               images, videos, high-dimensional data, etc.
