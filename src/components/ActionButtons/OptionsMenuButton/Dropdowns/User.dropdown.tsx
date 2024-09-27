@@ -23,7 +23,7 @@ import AnalysisActionsDropdown from '@/components/ActionButtons/AnalysisDropdown
 import { useGlobalContext } from '@/context/global.context';
 import { useAnalyzesContext } from '@/context/analyzes.context';
 import { usePathname } from 'next/navigation';
-import { TransitionLink } from '@/components/TransitionLink/TransitionLink';
+import { ScrollArea } from '@/components/ui/scroll-area';
 
 const UserDropdown: React.FC = () => {
   const pathname = usePathname();
@@ -54,76 +54,92 @@ const UserDropdown: React.FC = () => {
         <AlertDialog>
           {favoritesView.length !== 0 && (
             <>
-              <DropdownMenuLabel className='flex items-center font-semibold'>
-                <Star className='h-4 w-4  mr-2' />
+              <DropdownMenuLabel className='flex items-center text-muted-foreground'>
+                <Star className='h-4 w-4 mr-2' />
                 <span>Favorites</span>
               </DropdownMenuLabel>
-              <DropdownMenuGroup className='overflow-auto /*max-h-40*/ max-w-52'>
-                {favoritesView.map((favoriteView) => {
-                  return (
-                    <div
-                      className='w-full flex justify-between'
-                      key={favoriteView.id}
-                    >
-                      <DropdownMenuItem
-                        className='w-full'
-                        onClick={() =>
-                          handleSelectAnalysis(favoriteView.id as string)
-                        }
+              <ScrollArea
+                style={{
+                  height: `${
+                    (favoritesView.length <= 5 ? favoritesView.length : 4.6) *
+                    32
+                  }px`,
+                }}
+              >
+                <DropdownMenuGroup className='overflow-auto /*max-h-40*/ max-w-52'>
+                  {favoritesView.map((favoriteView) => {
+                    return (
+                      <div
+                        className='w-full flex justify-between relative'
+                        key={favoriteView.id}
                       >
-                        <span className='line-clamp-1 pr-6 w-full'>
-                          {favoriteView.title}
-                        </span>
-                      </DropdownMenuItem>
+                        <DropdownMenuItem
+                          className='w-full'
+                          onClick={() =>
+                            handleSelectAnalysis(favoriteView.id as string)
+                          }
+                        >
+                          <span className='line-clamp-1 pr-8 w-full'>
+                            {favoriteView.title}
+                          </span>
+                        </DropdownMenuItem>
 
-                      <DropdownMenuItem className='p-0 absolute right-1.5'>
-                        <AnalysisActionsDropdown
-                          analysisId={favoriteView.id as string}
-                          isFavorite
-                        />
-                      </DropdownMenuItem>
-                    </div>
-                  );
-                })}
-              </DropdownMenuGroup>
+                        <DropdownMenuItem className='p-0 absolute right-0'>
+                          <AnalysisActionsDropdown
+                            analysisId={favoriteView.id as string}
+                            isFavorite
+                          />
+                        </DropdownMenuItem>
+                      </div>
+                    );
+                  })}
+                </DropdownMenuGroup>
+              </ScrollArea>
               <DropdownMenuSeparator />
             </>
           )}
 
           {recentsView.length !== 0 && (
             <>
-              <DropdownMenuLabel className='flex items-center font-semibold'>
+              <DropdownMenuLabel className='flex items-center text-muted-foreground'>
                 <History className='h-4 w-4 mr-2' />
                 <span>Recents</span>
               </DropdownMenuLabel>
-
-              <DropdownMenuGroup className='overflow-auto /*max-h-40*/ max-w-52'>
-                {recentsView.map((recentView) => {
-                  return (
-                    <div
-                      className='w-full flex justify-between'
-                      key={recentView.id}
-                    >
-                      <DropdownMenuItem
-                        className='w-full'
-                        onClick={() =>
-                          handleSelectAnalysis(recentView.id as string)
-                        }
+              <ScrollArea
+                style={{
+                  height: `${
+                    (recentsView.length <= 5 ? recentsView.length : 4.6) * 32
+                  }px`,
+                }}
+              >
+                <DropdownMenuGroup className='overflow-auto /*max-h-40*/ max-w-52'>
+                  {recentsView.map((recentView) => {
+                    return (
+                      <div
+                        className='w-full flex justify-between relative'
+                        key={recentView.id}
                       >
-                        <span className='line-clamp-1 pr-6 w-full'>
-                          {recentView.title}
-                        </span>
-                      </DropdownMenuItem>
+                        <DropdownMenuItem
+                          className='w-full'
+                          onClick={() =>
+                            handleSelectAnalysis(recentView.id as string)
+                          }
+                        >
+                          <span className='line-clamp-1 pr-8 w-full'>
+                            {recentView.title}
+                          </span>
+                        </DropdownMenuItem>
 
-                      <DropdownMenuItem className='p-0 absolute right-1.5'>
-                        <AnalysisActionsDropdown
-                          analysisId={recentView.id as string}
-                        />
-                      </DropdownMenuItem>
-                    </div>
-                  );
-                })}
-              </DropdownMenuGroup>
+                        <DropdownMenuItem className='p-0 absolute right-0'>
+                          <AnalysisActionsDropdown
+                            analysisId={recentView.id as string}
+                          />
+                        </DropdownMenuItem>
+                      </div>
+                    );
+                  })}
+                </DropdownMenuGroup>
+              </ScrollArea>
               <DropdownMenuSeparator />
             </>
           )}

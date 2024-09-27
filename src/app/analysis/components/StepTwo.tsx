@@ -67,6 +67,7 @@ const StepTwo: React.FC<StepTwoProps> = ({ setIsAiThinking }) => {
   const handleCreateNewAnalysis = () => {
     setIsFormCollapsed(true);
     setIsButtonGettingRecommendations(true);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
 
     setIsAiThinking(true);
 
@@ -101,7 +102,8 @@ const StepTwo: React.FC<StepTwoProps> = ({ setIsAiThinking }) => {
   const handleGetNewRecommendations = () => {
     setIsFormCollapsed(true);
     setIsButtonGettingRecommendations(true);
-    
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+
     setTimeout(() => {
       setIsAiThinking(true);
       const newRecommendations = {

@@ -30,7 +30,7 @@ const useTypingEffect = (
       currentPosition === 0 && (await sleep(delay));
 
       for (let i = currentPosition; i < items.length; i++) {
-        if (!isMounted.current) return;
+        if (!isMounted.current && text?.length) return;
         await sleep(100);
         setCurrentPosition((prevPosition) => prevPosition + 1);
       }
@@ -44,7 +44,7 @@ const useTypingEffect = (
 
   useEffect(() => {
     const timeoutId = setTimeout(() => {
-      if (isMounted.current) {
+      if (isMounted.current && text?.length) {
         setCurrentPosition(Infinity);
       }
     }, delay + 600);
