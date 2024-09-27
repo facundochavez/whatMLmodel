@@ -63,38 +63,28 @@ const StepTwo: React.FC<StepTwoProps> = ({ setIsAiThinking }) => {
     }
   }, [isUserEditingInfo]);
 
-  // SIMULACIÓN DE AI: GENERACIÓN DE RECOMENDACIONES
-  const handleGetRecommendations = () => {
+  // SIMULACIÓN DE AI: CREACIÓN DE NUEVO ANÁLISIS
+  const handleCreateNewAnalysis = () => {
     setIsFormCollapsed(true);
     setIsButtonGettingRecommendations(true);
 
     setIsAiThinking(true);
 
     setTimeout(() => {
-      if (!currentAnalysis.id) {
-        const id = generateRandomUUID();
-        const newAnalysis = {
-          ...currentAnalysis,
-          id: id,
-          createdAt: auxiliarAnalysis.createdAt,
-          updatedAt: auxiliarAnalysis.updatedAt,
-          isFavorite: auxiliarAnalysis.isFavorite,
-          icon: auxiliarAnalysis.icon,
-          link: auxiliarAnalysis.link,
-          recommendations: auxiliarAnalysis.recommendations,
-        };
-        setCurrentAnalysis({ ...newAnalysis });
-        setIsUserCreatingNewAnalysis(true);
-      } else {
-        const newRecommendations = {
-          recommendations: auxiliarAnalysisTwo.recommendations,
-        };
-        setCurrentAnalysis({
-          ...currentAnalysis,
-          ...newRecommendations,
-        });
-        setIsUserUpdatingRecommendations(true);
-      }
+      const id = generateRandomUUID();
+      const newAnalysis = {
+        ...currentAnalysis,
+        id: id,
+        createdAt: auxiliarAnalysis.createdAt,
+        updatedAt: auxiliarAnalysis.updatedAt,
+        isFavorite: auxiliarAnalysis.isFavorite,
+        icon: auxiliarAnalysis.icon,
+        link: auxiliarAnalysis.link,
+        recommendations: auxiliarAnalysis.recommendations,
+      };
+      setCurrentAnalysis({ ...newAnalysis });
+      setIsUserCreatingNewAnalysis(true);
+
       setIsButtonGettingRecommendations(false);
       setIsUserEditingInfo(false);
       setIsFormBlocked(false);
@@ -106,6 +96,27 @@ const StepTwo: React.FC<StepTwoProps> = ({ setIsAiThinking }) => {
       setIsUserCreatingNewAnalysis(false);
     }
   }, [isUseCreatingNewAnalysis]);
+
+  // SIMULACIÓN DE AI: RENOVAR RECOMENDACIONES
+  const handleGetNewRecommendations = () => {
+    setIsFormCollapsed(true);
+    setIsButtonGettingRecommendations(true);
+    
+    setTimeout(() => {
+      setIsAiThinking(true);
+      const newRecommendations = {
+        recommendations: auxiliarAnalysisTwo.recommendations,
+      };
+      setCurrentAnalysis({
+        ...currentAnalysis,
+        ...newRecommendations,
+      });
+      setIsUserUpdatingRecommendations(true);
+      setIsButtonGettingRecommendations(false);
+      setIsUserEditingInfo(false);
+      setIsFormBlocked(false);
+    }, 1000);
+  };
   useEffect(() => {
     if (isUserUpdatingRecommendations) {
       currentAnalysis.id && handleUpdateRecommendations();
@@ -151,7 +162,7 @@ const StepTwo: React.FC<StepTwoProps> = ({ setIsAiThinking }) => {
                     </TransitionLink>
                     <Button
                       type='submit'
-                      onClick={handleGetRecommendations}
+                      onClick={handleCreateNewAnalysis}
                       className='flex items-center'
                     >
                       <AiStarsIcon className='mr-1.5 h-[18px] w-[18px]' />
@@ -181,7 +192,7 @@ const StepTwo: React.FC<StepTwoProps> = ({ setIsAiThinking }) => {
                     </Button>
                     <Button
                       type='submit'
-                      onClick={handleGetRecommendations}
+                      onClick={handleGetNewRecommendations}
                       className='flex items-center'
                     >
                       Apply changes
@@ -215,7 +226,12 @@ const StepTwo: React.FC<StepTwoProps> = ({ setIsAiThinking }) => {
                   </>
                 )}
               </Button>
-              <Button onClick={() => setIsUserEditingInfo(true)}>
+              <Button
+                onClick={() => {
+                  setIsUserEditingInfo(true);
+                  window.scrollTo({ top: 0, behavior: 'smooth' });
+                }}
+              >
                 <PenLine className='w-4 h-4 mr-2' /> Edit info
               </Button>
             </>
