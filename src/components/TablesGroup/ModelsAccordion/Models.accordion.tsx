@@ -37,7 +37,7 @@ const ModelsAccordion: React.FC = () => {
             iconNumber: model.icon,
           }) as React.FC;
           return (
-            <AccordionItem key={index} value={model.alias}>
+            <AccordionItem key={index} value={model.alias} className={`${index === models.length - 1 && 'border-b-0' }`}>
               <AccordionTrigger className='flex items-center gap-5 overflow-hidden'>
                 <div>
                   <ModelIcon />

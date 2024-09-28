@@ -12,6 +12,7 @@ import AnalysisActionsDropdown from '@/components/ActionButtons/AnalysisDropdown
 import { SheetClose } from '@/components/ui/sheet';
 import { useGlobalContext } from '@/context/global.context';
 import { useAnalyzesContext } from '@/context/analyzes.context';
+import { TransitionLink } from '@/components/TransitionLink/TransitionLink';
 
 const UserSheetContent = () => {
   const pathname = usePathname();
@@ -23,12 +24,14 @@ const UserSheetContent = () => {
     <div className='flex flex-col gap-4 h-full overflow-y-hidden w-full'>
       {pathname === '/analysis' && (
         <header className='flex flex-col gap-2 w-full -mb-2'>
-          <SheetClose asChild>
-            <Button variant='secondary'>
-              <CirclePlus className='mr-2 h-4 w-4' />
-              <span>New analysis</span>
-            </Button>
-          </SheetClose>
+          <TransitionLink href='/'>
+            <SheetClose asChild className='w-full'>
+              <Button variant='secondary'>
+                <CirclePlus className='mr-2 h-4 w-4' />
+                <span>New analysis</span>
+              </Button>
+            </SheetClose>
+          </TransitionLink>
         </header>
       )}
 

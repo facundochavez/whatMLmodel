@@ -24,6 +24,7 @@ import { useGlobalContext } from '@/context/global.context';
 import { useAnalyzesContext } from '@/context/analyzes.context';
 import { usePathname } from 'next/navigation';
 import { ScrollArea } from '@/components/ui/scroll-area';
+import { TransitionLink } from '@/components/TransitionLink/TransitionLink';
 
 const UserDropdown: React.FC = () => {
   const pathname = usePathname();
@@ -43,11 +44,13 @@ const UserDropdown: React.FC = () => {
       <DropdownMenuContent align='end' className='min-w-36 z-[150]' loop>
         {pathname === '/analysis' && (
           <>
-            <DropdownMenuItem className='font-semibold md:hidden'>
-              <CirclePlus className='mr-2 h-4 w-4' />
-              <span>New analysis</span>
-            </DropdownMenuItem>
-            <DropdownMenuSeparator className='md:hidden' />
+            <TransitionLink href='/'>
+              <DropdownMenuItem className='font-semibold md:hidden'>
+                <CirclePlus className='mr-2 h-4 w-4' />
+                <span>New analysis</span>
+              </DropdownMenuItem>
+              <DropdownMenuSeparator className='md:hidden' />
+            </TransitionLink>
           </>
         )}
 
