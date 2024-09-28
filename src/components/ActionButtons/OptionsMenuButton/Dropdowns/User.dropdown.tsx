@@ -28,7 +28,7 @@ import { ScrollArea } from '@/components/ui/scroll-area';
 const UserDropdown: React.FC = () => {
   const pathname = usePathname();
   const { setShowAccountSettingsDialog } = useGlobalContext();
-  const { recentsView, favoritesView, handleSelectAnalysis } =
+  const { analyzesView, recentsView, favoritesView, handleSelectAnalysis } =
     useAnalyzesContext();
 
   return (
@@ -61,8 +61,11 @@ const UserDropdown: React.FC = () => {
               <ScrollArea
                 style={{
                   height: `${
-                    (favoritesView.length <= 5 ? favoritesView.length : 4.6) *
-                    32
+                    (analyzesView.length <= 10
+                      ? favoritesView.length
+                      : favoritesView.length <= 5
+                      ? favoritesView.length
+                      : 4.6) * 32
                   }px`,
                 }}
               >
@@ -108,7 +111,11 @@ const UserDropdown: React.FC = () => {
               <ScrollArea
                 style={{
                   height: `${
-                    (recentsView.length <= 5 ? recentsView.length : 4.6) * 32
+                    (analyzesView.length <= 10
+                      ? recentsView.length
+                      : recentsView.length <= 5
+                      ? recentsView.length
+                      : 4.6) * 32
                   }px`,
                 }}
               >
