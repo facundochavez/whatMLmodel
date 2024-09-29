@@ -11,6 +11,7 @@ const Header = () => {
   const [showHeader, setShowHeader] = useState<boolean>(true);
   const [lastScrollY, setLastScrollY] = useState(0);
   const [isScrollOnTop, setIsScrollOnTop] = useState(true);
+  const [showFChLogo, setShowFChLogo] = useState<boolean>(true);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -34,6 +35,12 @@ const Header = () => {
     };
   }, [lastScrollY]);
 
+  useEffect(() => {
+    setTimeout(() => {
+      setShowFChLogo(isScrollOnTop);
+    }, 100);
+  }, [isScrollOnTop]);
+
   return (
     <header
       className={`z-[100] w-screen px-[5%] flex justify-center fixed transition-transform ${
@@ -49,21 +56,21 @@ const Header = () => {
         <aside className='flex items-center max-h-10'>
           {/* FCH LOGO + DOT */}
           <div className={`flex items-center justify-end overflow-hidden h-12`}>
-            <div className={`opacity-65 flex items-center duration-200 -ml-16 cubic-bezier(0,.78,.58,1.02) ${pathname === '/' && '!-ml-0'}`}>
+            <div className={`flex items-center duration-200 -ml-16 cubic-bezier(0,.78,.58,1.02) ${pathname === '/' && showFChLogo && '!-ml-0'}`}>
               <a
                 href='https://www.facundochavez.com'
                 target='_blank'
-                className={`cursor-pointer pr-2 sm:pr-2.5 hover:opacity-70`}
+                className={`cursor-pointer pr-1.5 xs:pr-2.5 hover:opacity-70`}
               >
                 <Image
-                  src='/fch-logo-dark_1.svg'
+                  src='/fch-logo-dark.svg'
                   alt='logo'
                   width={10}
                   height={10}
                   className='hidden dark:flex w-full max-h-[28px]'
                 />
                 <Image
-                  src='/fch-logo-light_1.svg'
+                  src='/fch-logo-light.svg'
                   alt='logo'
                   width={10}
                   height={10}
@@ -85,14 +92,14 @@ const Header = () => {
                 alt='logo'
                 width={1}
                 height={1}
-                className='hidden dark:flex w-full h-[50px] sm:h-[54px]'
+                className='hidden dark:flex w-full h-[48px] sm:h-[54px]'
               />
               <Image
                 src='/wMLm-logo-light.svg'
                 alt='logo'
                 width={1}
                 height={1}
-                className='flex dark:hidden w-full h-[50px] sm:h-[54px]'
+                className='flex dark:hidden w-full h-[48px] sm:h-[54px]'
               />
             </TransitionLink>
           </div>
