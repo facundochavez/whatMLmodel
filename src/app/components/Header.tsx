@@ -85,14 +85,14 @@ const Header = () => {
                 alt='logo'
                 width={1}
                 height={1}
-                className='hidden dark:flex w-full h-[50px] sm:h-[52px]'
+                className='hidden dark:flex w-full h-[50px] sm:h-[54px]'
               />
               <Image
                 src='/wMLm-logo-light.svg'
                 alt='logo'
                 width={1}
                 height={1}
-                className='flex dark:hidden w-full h-[50px] sm:h-[52px]'
+                className='flex dark:hidden w-full h-[50px] sm:h-[54px]'
               />
             </TransitionLink>
           </div>
