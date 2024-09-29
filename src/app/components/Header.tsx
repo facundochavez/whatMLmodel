@@ -49,28 +49,28 @@ const Header = () => {
         <aside className='flex items-center max-h-10'>
           {/* FCH LOGO + DOT */}
           <div className={`flex items-center justify-end overflow-hidden h-12`}>
-            <div className={`opacity-65 flex items-center duration-200 -ml-20 cubic-bezier(0,.78,.58,1.02) ${pathname === '/' && '!-ml-0'}`}>
+            <div className={`opacity-65 flex items-center duration-200 -ml-16 cubic-bezier(0,.78,.58,1.02) ${pathname === '/' && '!-ml-0'}`}>
               <a
                 href='https://www.facundochavez.com'
                 target='_blank'
-                className={`cursor-pointer hover:opacity-70`}
+                className={`cursor-pointer pr-2 sm:pr-2.5 hover:opacity-70`}
               >
                 <Image
-                  src='/fch-logo-dark.svg'
+                  src='/fch-logo-dark_1.svg'
                   alt='logo'
                   width={10}
                   height={10}
-                  className='hidden dark:flex w-full max-h-[40px] sm:max-h-[44px]'
+                  className='hidden dark:flex w-full max-h-[28px]'
                 />
                 <Image
-                  src='/fch-logo-light.svg'
+                  src='/fch-logo-light_1.svg'
                   alt='logo'
                   width={10}
                   height={10}
-                  className='dark:hidden w-full max-h-[40px] sm:max-h-[44px]'
+                  className='dark:hidden w-full max-h-[28px]'
                 />
               </a>
-              <span className='mx-1.5 xs:mx-2'>/</span>
+              {/* <span className='text-xl mx-2'>/</span> */}
             </div>
           </div>
 

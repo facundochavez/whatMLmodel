@@ -69,9 +69,9 @@ const StepTwo: React.FC<StepTwoProps> = ({ setIsAiThinking }) => {
     setIsButtonGettingRecommendations(true);
     window.scrollTo({ top: 0, behavior: 'smooth' });
 
-    setIsAiThinking(true);
-
+    
     setTimeout(() => {
+      setIsAiThinking(true);
       const id = generateRandomUUID();
       const newAnalysis = {
         ...currentAnalysis,
