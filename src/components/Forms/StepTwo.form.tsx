@@ -110,7 +110,7 @@ const StepTwoForm: React.FC<StepTwoFormProps> = ({
           onCollapseChange={onCollapseChange}
         >
           <div
-            className={`w-full flex flex-col gap-4 border rounded-md px-[5%] py-8 bg-muted/30 ${
+            className={`w-full flex flex-col gap-4 border rounded-md px-[5%] pt-4 pb-8 bg-muted/30 ${
               currentAnalysis?.recommendations &&
               isUserEditingInfo &&
               'border-2 border-foreground group'

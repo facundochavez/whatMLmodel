@@ -160,14 +160,14 @@ const UserDropdown: React.FC = () => {
           className='font-semibold'
           onClick={() => setShowAccountSettingsDialog(true)}
         >
-          <UserRound className='mr-2 h-4 w-4' />
+          <UserRound className='mr-2 h-4 w-4 stroke-[2.3]' />
           <span>Account settings</span>
         </DropdownMenuItem>
         <DropdownMenuSeparator />
 
         <AlertDialogTrigger asChild>
           <DropdownMenuItem className='font-semibold'>
-            <LogOut className='mr-2 h-4 w-4' />
+            <LogOut className='mr-2 h-4 w-4 stroke-[2.3]' />
             <span>Log out</span>
           </DropdownMenuItem>
         </AlertDialogTrigger>

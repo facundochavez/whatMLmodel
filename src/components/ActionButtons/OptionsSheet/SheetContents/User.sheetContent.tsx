@@ -123,7 +123,7 @@ const UserSheetContent = () => {
             className='w-full'
             onClick={() => setShowAccountSettingsDialog(true)}
           >
-            <UserRound className='mr-2 h-4 w-4' />
+            <UserRound className='mr-2 h-4 w-4 stroke-[2.3]' />
             <span>Account settings</span>
           </Button>
         </SheetClose>
@@ -135,7 +135,7 @@ const UserSheetContent = () => {
         >
           <SheetClose asChild>
             <Button variant='outline'>
-              <LogOut className='mr-2 h-4 w-4' />
+              <LogOut className='mr-2 h-4 w-4 stroke-[2.3]' />
               <span>Log out</span>
             </Button>
           </SheetClose>
