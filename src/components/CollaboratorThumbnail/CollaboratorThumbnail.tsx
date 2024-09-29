@@ -10,11 +10,13 @@ const CollaboratorThumbnail = ({
   const [isHovered, setIsHovered] = React.useState(false);
 
   return (
-    <div
-      className='flex flex-col items-center cursor-pointer'
+    <a
+      href={collaborator.url}
+      title={collaborator.name}
+      target='_blank'
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
-      onClick={() => window.open(collaborator.url, '_blank')}
+      className='flex flex-col items-center cursor-default'
     >
       <div
         className={`relative w-20 h-20 mb-2 overflow-hidden rounded-full border-2 border-muted-foreground ${
@@ -34,7 +36,7 @@ const CollaboratorThumbnail = ({
       >
         @{collaborator.nick}
       </span>
-    </div>
+    </a>
   );
 };
 

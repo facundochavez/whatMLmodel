@@ -188,6 +188,7 @@ const StepTwo: React.FC<StepTwoProps> = ({ setIsAiThinking }) => {
                         setIsUserEditingInfo(false);
                         setIsFormCollapsed(true);
                         setIsFormBlocked(false);
+                        window.scrollTo({ top: 0, behavior: 'smooth' });
                       }}
                     >
                       Cancel
