@@ -129,7 +129,7 @@ const StepTwoForm: React.FC<StepTwoFormProps> = ({
                   <FormLabel>Problem description:</FormLabel>
                   <FormControl>
                     <Textarea
-                      className='h-36 sm:h-28 resize-none'
+                      className='h-40 sm:h-28 resize-none'
                       placeholder='Your problem description here...'
                       maxLength={300}
                       currentLength={field.value?.length || 0}

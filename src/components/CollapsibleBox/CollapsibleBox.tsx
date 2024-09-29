@@ -10,8 +10,8 @@ interface CollapsibleBoxProps {
   arrowButton?: boolean;
   isButtonHighlighted?: boolean;
   blocked?: boolean;
-  externalIsCollapsed?: boolean; 
-  onCollapseChange?: (collapsed: boolean) => void; 
+  externalIsCollapsed?: boolean;
+  onCollapseChange?: (collapsed: boolean) => void;
 }
 
 export const CollapsibleBox = ({
@@ -20,7 +20,7 @@ export const CollapsibleBox = ({
   arrowButton = false,
   isButtonHighlighted = false,
   blocked = false,
-  externalIsCollapsed=false,
+  externalIsCollapsed = false,
   onCollapseChange,
 }: CollapsibleBoxProps) => {
   const { isMobile } = useGlobalContext();
@@ -97,7 +97,7 @@ export const CollapsibleBox = ({
         </div>
         {isCollapsed && (
           <div
-          className={`absolute bottom-0 w-full`}
+            className={`absolute bottom-0 w-full`}
             style={{ height: isMobile ? '190px' : '225px' }}
           ></div>
         )}
@@ -117,7 +117,10 @@ export const CollapsibleBox = ({
           size='icon'
           id='arrow-button'
           variant='outline'
-          onClick={toggleCollapse}
+          onClick={() => {
+            toggleCollapse();
+            if (!isCollapsed) window.scrollTo({ top: 0, behavior: 'smooth' });
+          }}
           disabled={blocked}
           className={`!opacity-100 z-[1] -mt-12 duration-0 ${
             isButtonHighlighted && 'border-2 border-foreground'
