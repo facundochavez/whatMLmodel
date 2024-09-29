@@ -49,11 +49,11 @@ const Header = () => {
         <aside className='flex items-center max-h-10'>
           {/* FCH LOGO + DOT */}
           <div className={`flex items-center justify-end overflow-hidden h-12`}>
-            <div className={`flex items-center duration-200 -ml-20 cubic-bezier(0,.78,.58,1.02) ${pathname === '/' && '!-ml-0'}`}>
+            <div className={`opacity-65 flex items-center duration-200 -ml-20 cubic-bezier(0,.78,.58,1.02) ${pathname === '/' && '!-ml-0'}`}>
               <a
                 href='https://www.facundochavez.com'
                 target='_blank'
-                className={`cursor-pointer opacity-75 hover:opacity-60`}
+                className={`cursor-pointer hover:opacity-70`}
               >
                 <Image
                   src='/fch-logo-dark.svg'
@@ -75,24 +75,24 @@ const Header = () => {
           </div>
 
           {/* WMLM LOGO */}
-          <div className='flex items-center h-10'>
+          <div className='flex items-center max-h-10'>
             <TransitionLink
               href='/'
-              className='hover:opacity-70 cursor-pointer'
+              className='flex items-center hover:opacity-70 cursor-pointer max-h-10'
             >
               <Image
                 src='/wMLm-logo-dark.svg'
                 alt='logo'
                 width={1}
                 height={1}
-                className='hidden dark:flex w-full h-[50px] sm:h-[54px]'
+                className='hidden dark:flex w-full h-[50px] sm:h-[52px]'
               />
               <Image
                 src='/wMLm-logo-light.svg'
                 alt='logo'
                 width={1}
                 height={1}
-                className='flex dark:hidden w-full h-[50px] sm:h-[54px]'
+                className='flex dark:hidden w-full h-[50px] sm:h-[52px]'
               />
             </TransitionLink>
           </div>
