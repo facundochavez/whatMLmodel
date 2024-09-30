@@ -68,7 +68,7 @@ const UserDropdown: React.FC = () => {
                       ? favoritesView.length
                       : favoritesView.length <= 5
                       ? favoritesView.length
-                      : 4.6) * 32
+                      : 4.6 + 5 - Math.min(recentsView.length, 5)) * 32
                   }px`,
                 }}
               >
@@ -118,7 +118,7 @@ const UserDropdown: React.FC = () => {
                       ? recentsView.length
                       : recentsView.length <= 5
                       ? recentsView.length
-                      : 4.6) * 32
+                      : 4.6 + 5 - Math.min(favoritesView.length, 5)) * 32
                   }px`,
                 }}
               >
