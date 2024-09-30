@@ -90,7 +90,7 @@ const Header = () => {
           <div className='flex items-center max-h-10'>
             <TransitionLink
               href='/'
-              className='flex items-center hover:opacity-70 cursor-pointer max-h-10'
+              className='flex items-center hover:opacity-70 cursor-auto max-h-10'
             >
               <Image
                 src='/wMLm-logo-dark.svg'

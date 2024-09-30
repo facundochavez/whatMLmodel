@@ -39,7 +39,7 @@ const StepThree: React.FC<StepThreeProps> = ({ isAiThinking }) => {
             )}
             <div
               className={`w-full ${isAiThinking && 'opacity-0 animate-slide-up [animation-fill-mode:forwards]'}`}
-              style={{ animationDelay: `${ index * 800 + 700}ms` }}
+              style={{ animationDelay: `${ index * 800 + 900}ms` }}
             >
               <TablesGroup
                 type={recommendation.type}
