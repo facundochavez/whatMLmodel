@@ -16,7 +16,7 @@ const CollaboratorThumbnail = ({
       target='_blank'
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
-      className='flex flex-col items-center cursor-default'
+      className='flex flex-col items-center'
     >
       <div
         className={`relative w-20 h-20 mb-2 overflow-hidden rounded-full border-2 border-muted-foreground ${

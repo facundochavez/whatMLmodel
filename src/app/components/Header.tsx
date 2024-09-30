@@ -64,7 +64,7 @@ const Header = () => {
               <a
                 href='https://www.facundochavez.com'
                 target='_blank'
-                className={`cursor-auto pr-1.5 xs:pr-2.5 hover:opacity-70`}
+                className={`pr-1.5 xs:pr-2.5 hover:opacity-85`}
                 title='Facundo Chavez'
               >
                 <Image
@@ -90,7 +90,7 @@ const Header = () => {
           <div className='flex items-center max-h-10'>
             <TransitionLink
               href='/'
-              className='flex items-center hover:opacity-70 cursor-auto max-h-10'
+              className='flex items-center hover:opacity-85 max-h-10'
             >
               <Image
                 src='/wMLm-logo-dark.svg'
