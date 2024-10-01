@@ -1,5 +1,6 @@
 import { useEffect, useState, useRef } from 'react';
 import sleep from '@/utils/sleep';
+import { useAnalyzesContext } from '@/context/analyzes.context';
 
 const useTypingEffect = (
   text: string = '',
@@ -8,6 +9,8 @@ const useTypingEffect = (
   disabled: boolean = false
 ) => {
   if (disabled) return text;
+  const { isPageTransitioning } = useAnalyzesContext();
+  if (isPageTransitioning) return text;
 
   const [currentPosition, setCurrentPosition] = useState(0);
   const words = text.split(' ');

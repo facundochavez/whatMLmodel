@@ -71,7 +71,6 @@ const StepTwo: React.FC<StepTwoProps> = ({ setIsAiThinking }) => {
 
     
     setTimeout(() => {
-      setIsAiThinking(true);
       const id = generateRandomUUID();
       const newAnalysis = {
         ...currentAnalysis,
@@ -83,6 +82,7 @@ const StepTwo: React.FC<StepTwoProps> = ({ setIsAiThinking }) => {
         link: auxiliarAnalysis.link,
         recommendations: auxiliarAnalysis.recommendations,
       };
+      setIsAiThinking(true);
       setCurrentAnalysis({ ...newAnalysis });
       setIsUserCreatingNewAnalysis(true);
 
@@ -105,10 +105,10 @@ const StepTwo: React.FC<StepTwoProps> = ({ setIsAiThinking }) => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
 
     setTimeout(() => {
-      setIsAiThinking(true);
       const newRecommendations = {
         recommendations: auxiliarAnalysisTwo.recommendations,
       };
+      setIsAiThinking(true);
       setCurrentAnalysis({
         ...currentAnalysis,
         ...newRecommendations,

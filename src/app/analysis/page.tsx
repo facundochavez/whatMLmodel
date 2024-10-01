@@ -14,10 +14,14 @@ const AnalysisPage: React.FC = () => {
     if (isAiThinking) {
       setTimeout(() => {
         setIsAiThinking(false);
-      }, 3000);
+      }, 5000);
     }
   }, [isAiThinking]);
-
+  
+  useEffect(() => {
+    setIsAiThinking(false);
+  }, [isPageTransitioning]);
+  
   useEffect(() => {
     const handleRoute = () => {
       if (!currentAnalysis?.info) {
@@ -26,13 +30,7 @@ const AnalysisPage: React.FC = () => {
     };
     handleRoute();
   }, [currentAnalysis]);
-
-  useEffect(() => {
-    if (!isPageTransitioning) {
-      setIsAiThinking(false);
-    }
-  }, [isPageTransitioning]);
-
+  
   return (
     <>
       <StepTwo setIsAiThinking={setIsAiThinking} />
