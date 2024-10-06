@@ -64,7 +64,7 @@ const Header = () => {
               <a
                 href='https://www.facundochavez.com'
                 target='_blank'
-                className={`pr-2 xs:pr-2.5 hover:opacity-85`}
+                className={`pr-1.5 sm:pr-2 hover:opacity-85`}
                 title='Facundo Chavez'
               >
                 <Image
@@ -72,14 +72,14 @@ const Header = () => {
                   alt='logo'
                   width={10}
                   height={10}
-                  className='hidden dark:flex w-full max-h-[25px]'
+                  className='hidden dark:flex w-full max-h-[20px] sm:max-h-[26px]'
                 />
                 <Image
                   src='/fch-logo-light.svg'
                   alt='logo'
                   width={10}
                   height={10}
-                  className='dark:hidden w-full max-h-[25px]'
+                  className='dark:hidden w-full max-h-[20px] sm:max-h-[26px]'
                 />
               </a>
               {/* <span className='text-xl mx-2'>/</span> */}
