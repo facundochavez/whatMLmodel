@@ -7,11 +7,13 @@ import columnsRegression from './SimilarDatasetsTable/columnsRegression';
 import columnsClassification from './SimilarDatasetsTable/columnsClassification';
 import columnsClustering from './SimilarDatasetsTable/columnsClustering';
 import columnsDimensionalityReduction from './SimilarDatasetsTable/columnsDimensionalityReduction';
+import getPipelineByAlias from '@/utils/getPipelineByAlias';
+import { useAnalyzesContext } from '@/context/analyzes.context';
 
 interface TablesGroupContextProps {
   type: ProblemType;
-  selectedDataset: string;
-  setSelectedDataset: React.Dispatch<React.SetStateAction<string>>;
+  selectedDatasetIndex: string;
+  setSelectedDatasetIndex: React.Dispatch<React.SetStateAction<string>>;
   models: Model[];
   similarDatasets: SimilarDataset[];
   performanceMetrics: any;
@@ -26,8 +28,12 @@ interface TablesGroupProviderProps extends TablesProps {
   children: JSX.Element | JSX.Element[];
 }
 
-export const TablesGroupProvider = ({ children, type, tables }: TablesGroupProviderProps) => {
-  const [selectedDataset, setSelectedDataset] = useState<string>('0');
+export const TablesGroupProvider = ({
+  children,
+  type,
+  tables,
+}: TablesGroupProviderProps) => {
+  const [selectedDatasetIndex, setSelectedDatasetIndex] = useState<string>('0');
 
   const models: Model[] = getModels({
     type: type,
@@ -41,7 +47,7 @@ export const TablesGroupProvider = ({ children, type, tables }: TablesGroupProvi
   const performanceMetrics = getPerformanceMetrics({
     type: type,
     modelsAliases: tables.modelsAliases,
-    datasetAlias: tables.similarDatasetsAliases[Number(selectedDataset)],
+    datasetAlias: tables.similarDatasetsAliases[Number(selectedDatasetIndex)],
   });
 
   const columnsPerformanceMetrics: Record<string, any> = {
@@ -55,8 +61,8 @@ export const TablesGroupProvider = ({ children, type, tables }: TablesGroupProvi
     <TablesGroupContext.Provider
       value={{
         type,
-        selectedDataset,
-        setSelectedDataset,
+        selectedDatasetIndex,
+        setSelectedDatasetIndex,
         models,
         similarDatasets,
         performanceMetrics,

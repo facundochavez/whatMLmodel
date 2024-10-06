@@ -10,10 +10,13 @@ import {
 import ViewButton from './ViewButton/ViewButton';
 import { useGlobalContext } from '@/context/global.context';
 import { useTablesGroupContext } from '../tablesGroup.context';
+import { useAnalyzesContext } from '@/context/analyzes.context';
+import getPipelineByAlias from '@/utils/getPipelineByAlias';
 
 const DatasetSelector: React.FC = () => {
   const { isMobile } = useGlobalContext();
-  const { similarDatasets, setSelectedDataset, selectedDataset } = useTablesGroupContext();
+  const { similarDatasets, setSelectedDatasetIndex, selectedDatasetIndex } =
+    useTablesGroupContext();
 
   return (
     <header
@@ -26,8 +29,8 @@ const DatasetSelector: React.FC = () => {
       <div className='flex gap-2 sm:gap-3 items-center w-full'>
         <Select
           defaultValue='0'
-          value={`${selectedDataset}`}
-          onValueChange={(value) => setSelectedDataset(value)}
+          value={`${selectedDatasetIndex}`}
+          onValueChange={(value) => setSelectedDatasetIndex(value)}
         >
           <SelectTrigger className='w-full md:w-52 bg-muted/30 sm:bg-background text-sm sm:text-base'>
             <SelectValue placeholder='Select a datset' />
@@ -35,7 +38,11 @@ const DatasetSelector: React.FC = () => {
           <SelectContent className='bg-primary-foreground sm:bg-background'>
             <SelectGroup>
               {similarDatasets.map((dataset, index) => (
-                <SelectItem key={index} value={`${index}`} className='text-sm sm:text-base'>
+                <SelectItem
+                  key={index}
+                  value={`${index}`}
+                  className='text-sm sm:text-base'
+                >
                   {dataset.name}
                 </SelectItem>
               ))}

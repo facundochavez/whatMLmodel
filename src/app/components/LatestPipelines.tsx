@@ -8,6 +8,7 @@ import { Dialog } from '@radix-ui/react-dialog';
 import PipelineDialogContent from '@/components/DialogContents/Pipeline.dialogContent';
 import { CollapsibleBox } from '@/components/CollapsibleBox/CollapsibleBox';
 import { useGlobalContext } from '@/context/global.context';
+import { useAnalyzesContext } from '@/context/analyzes.context';
 
 // VALIDACIÓN DE DATOS (BORRAR LUEGO)
 const validateModelResponses = (data: any[]): Pipeline[] => {
@@ -20,9 +21,12 @@ const validateModelResponses = (data: any[]): Pipeline[] => {
 const LatestPipelines = () => {
   const [isBoxCollapsed, setIsBoxCollapsed] = useState(true);
   const { isMobile } = useGlobalContext();
+  // SE CARGA DATOS LOCALES DE MANERA AUXILIAR
   const modelsResponsesData: Pipeline[] = validateModelResponses(
     modelsResponsesDataRaw
   );
+  // EL PIPELINE SELECCIONADO DEBERÍA HACER UN GET PARA REQUERIR INFORMACIÓN MÁS DETALLADA
+  const { setSelectedPipeline } = useAnalyzesContext();
 
   return (
     <Dialog>
@@ -36,7 +40,7 @@ const LatestPipelines = () => {
           <ul className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4'>
             {modelsResponsesData.map((response, index) => {
               return (
-                <li key={index}>
+                <li key={index} onClick={() => setSelectedPipeline(response)}>
                   <PipelineCard dataset={response} />
                 </li>
               );
