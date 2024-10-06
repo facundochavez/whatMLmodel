@@ -2,10 +2,10 @@
 
 import React, { useState } from 'react';
 import modelsResponsesDataRaw from '@/prompts/modelsResponses.data.json';
-import DatasetCard from '@/components/DatasetCard/DatasetCard';
+import PipelineCard from '@/components/PipelineCard/PipelineCard';
 import { Pipeline } from '@/types';
 import { Dialog } from '@radix-ui/react-dialog';
-import SimilarDatasetDialogContent from '@/components/DialogContents/SimilarDataset.dialogContent';
+import PipelineDialogContent from '@/components/DialogContents/Pipeline.dialogContent';
 import { CollapsibleBox } from '@/components/CollapsibleBox/CollapsibleBox';
 import { useGlobalContext } from '@/context/global.context';
 
@@ -37,14 +37,14 @@ const LatestPipelines = () => {
             {modelsResponsesData.map((response, index) => {
               return (
                 <li key={index}>
-                  <DatasetCard dataset={response} />
+                  <PipelineCard dataset={response} />
                 </li>
               );
             })}
           </ul>
         </CollapsibleBox>
       </section>
-      <SimilarDatasetDialogContent />
+      <PipelineDialogContent />
     </Dialog>
   );
 };

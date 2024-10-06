@@ -58,7 +58,8 @@ const StepTwoForm: React.FC<StepTwoFormProps> = ({
   children,
 }) => {
   const { currentAnalysis } = useAnalyzesContext();
-  const [showTooltip, setShowTooltip] = useState(false);
+  const [showProblemTooltip, setShowProblemTooltip] = useState(false);
+  const [showComplexDataTooltip, setShowComplexDataTooltip] = useState(false);
   const [formLabel, setLabel] = useState('');
 
   useEffect(() => {
@@ -110,7 +111,7 @@ const StepTwoForm: React.FC<StepTwoFormProps> = ({
           onCollapseChange={onCollapseChange}
         >
           <div
-            className={`w-full flex flex-col gap-4 border rounded-md px-[5%] pt-4 pb-8 bg-muted/30 ${
+            className={`w-full flex flex-col gap-4 border rounded-md px-[5%] pt-6 pb-8 bg-muted/30 ${
               currentAnalysis?.recommendations &&
               isUserEditingInfo &&
               'border-2 border-foreground group'
@@ -126,7 +127,26 @@ const StepTwoForm: React.FC<StepTwoFormProps> = ({
               name='problemDescription'
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Problem description:</FormLabel>
+                  <FormLabel>
+                    Problem description and special specs:
+                    <TooltipProvider delayDuration={0}>
+                      <Tooltip open={showProblemTooltip}>
+                        <TooltipTrigger
+                          asChild
+                          className='text-muted-foreground inline-block -translate-y-0.5'
+                          onMouseEnter={() => setShowProblemTooltip(true)}
+                          onMouseLeave={() => setShowProblemTooltip(false)}
+                        >
+                          <CircleHelp className='inline w-4 h-4 ml-1 mt-0.5' />
+                        </TooltipTrigger>
+                        <TooltipContent className='text-center text-muted-foreground max-w-[min(280px,80vw)] mx-8'>
+                          <p>
+                            You can provide any specific details about your dataset in this field.
+                          </p>
+                        </TooltipContent>
+                      </Tooltip>
+                    </TooltipProvider>{' '}
+                  </FormLabel>
                   <FormControl>
                     <Textarea
                       className='h-44 sm:h-28 resize-none'
@@ -183,19 +203,19 @@ const StepTwoForm: React.FC<StepTwoFormProps> = ({
                 name='hasComplexData'
                 render={({ field }) => (
                   <FormItem className='w-full'>
-                    <FormLabel className='flex items-center'>
+                    <FormLabel>
                       Complex data:{' '}
                       <TooltipProvider delayDuration={0}>
-                        <Tooltip open={showTooltip}>
+                        <Tooltip open={showComplexDataTooltip}>
                           <TooltipTrigger
                             asChild
-                            className='text-muted-foreground'
-                            onMouseEnter={() => setShowTooltip(true)}
-                            onMouseLeave={() => setShowTooltip(false)}
+                            className='text-muted-foreground inline-block -translate-y-0.5'
+                            onMouseEnter={() => setShowComplexDataTooltip(true)}
+                            onMouseLeave={() => setShowComplexDataTooltip(false)}
                           >
                             <CircleHelp className='inline w-4 h-4 ml-1 mt-0.5' />
                           </TooltipTrigger>
-                          <TooltipContent className='text-center text-muted-foreground max-w-[min(280px,80vw)]'>
+                          <TooltipContent className='text-center text-muted-foreground max-w-[min(280px,80vw)] mx-8'>
                             <p>
                               Some features handle complex data as long texts,
                               images, videos, high-dimensional data, etc.

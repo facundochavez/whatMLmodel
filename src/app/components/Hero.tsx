@@ -1,8 +1,11 @@
 import tryExamplesData from '@/data/try-examples.data.json';
 import { Badge } from '@/components/ui/badge';
 import { tryingExampleService } from '@/services/tryingExampleService';
+import { useAnalyzesContext } from '@/context/analyzes.context';
 
 const Hero = () => {
+  const { setAuxiliarAnalysisIndex } = useAnalyzesContext();
+
   return (
     <section
       className={`w-full flex flex-col items-center max-w-[700px] pt-6 sm:pt-16 lg:pt-20`}
@@ -12,12 +15,15 @@ const Hero = () => {
       </h2>
       <div className='w-full flex gap-2 items-center flex-wrap justify-center mt-6'>
         <p className='text-[13px]'>Try with:</p>
-        {tryExamplesData.map((example) => (
+        {tryExamplesData.map((example, index) => (
           <Badge
-            key={example.id}
+            key={index}
             variant='secondary'
             className='cursor-pointer'
-            onClick={() => tryingExampleService.setSubject(example.value)}
+            onClick={() => {
+              tryingExampleService.setSubject(example.value);
+              setAuxiliarAnalysisIndex(index);
+            }}
           >
             {`"${example.name}..."`}
           </Badge>

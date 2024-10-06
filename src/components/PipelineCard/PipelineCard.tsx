@@ -14,7 +14,7 @@ import { Badge } from '@/components/ui/badge';
 import { useGlobalContext } from '@/context/global.context';
 import { DialogTrigger } from '@radix-ui/react-dialog';
 
-const DatasetCard = ({ dataset }: { dataset: Pipeline }) => {
+const PipelineCard = ({ dataset }: { dataset: Pipeline }) => {
   const DatasetIcon = getModelIcon({
     iconNumber: dataset.icon as number,
   }) as React.FC;
@@ -123,4 +123,4 @@ const DatasetLayerCard = ({
   );
 };
 
-export default DatasetCard;
+export default PipelineCard;

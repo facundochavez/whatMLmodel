@@ -14,8 +14,13 @@ interface AnalyzesContextProps {
   setCurrentAnalysis: React.Dispatch<React.SetStateAction<Pipeline>>;
   selectedAnalysisId: string;
   setSelectedAnalysisId: React.Dispatch<React.SetStateAction<string>>;
+
+  selectedPipeline: Pipeline;
+  setSelectedPipeline: React.Dispatch<React.SetStateAction<Pipeline>>;
+
   auxiliarAnalysis: Pipeline;
   auxiliarAnalysisTwo: Pipeline;
+  setAuxiliarAnalysisIndex: React.Dispatch<React.SetStateAction<number>>;
 
   isPageTransitioning: boolean;
 
@@ -40,11 +45,12 @@ export const AnalyzesProvider = ({ children }: AnalyzesProviderProps) => {
     modelsResponsesDataRaw as Pipeline[]
   );
   // ESTAS SON VARIABLES AUXILIARES PARA SIMULAR LA GENERACIÓN DE UN NUEVO ANÁLISIS MEDIANTE AI.
-  const auxiliarAnalysis = modelsResponsesDataRaw[0] as Pipeline;
-  const auxiliarAnalysisTwo = modelsResponsesDataRaw[1] as Pipeline;
+  const [auxiliarAnalysisIndex, setAuxiliarAnalysisIndex] = useState<number>(0);
+  const auxiliarAnalysis = modelsResponsesDataRaw[auxiliarAnalysisIndex] as Pipeline;
+  const auxiliarAnalysisTwo = modelsResponsesDataRaw[4] as Pipeline;
   // ANALYZES, RECENTS Y FAVORITES SON DE TIPO PIPELINE[] PERO SOLO CONTIENE: ID, TITLE, ISFAVORITE
   const [analyzesView, setAnalyzesView] = useState<View[]>(
-    analyzes.map(({ id, title, isFavorite }) => ({
+    analyzes.slice(3).map(({ id, title, isFavorite }) => ({
       id,
       title,
       isFavorite,
@@ -63,10 +69,11 @@ export const AnalyzesProvider = ({ children }: AnalyzesProviderProps) => {
   // auxiliarAnalysis, PERO TENER CUIDADO QUE AMBAS MANEJAN ESTADOS QUE PERMITE A LOS BOTONES REACCIONAR A "IS GENERATIN INFO" E "IS GETTING RECOMMENDATIONS" (AMBAS FUNCIONES
   // DEL GLOBAL CONTEXT) Y MOSTRAR ASÍ UN SPINNER DE CARGA
 
+  // EK SIGUIENTE ES UN ESTADO APRA VER LOS LATEST PIPELINES
+  const [selectedPipeline, setSelectedPipeline] = useState<Pipeline>(auxiliarAnalysis);
+
   //
-  //
-  //
-  // LAS SIGUIENTES FUNCIONES TIENEN UN APROACH DE "OPTIMISTIC UI UPDATE"-> FRONTEND / BACKEND / FRONTEND
+  // LAS SIGUIENTES FUNCIONES TIENEN UN APPROACH DE "OPTIMISTIC UI UPDATE"-> FRONTEND / BACKEND / FRONTEND
   // AQUÍ SE DEBE HACER LA ACTUALIZACIÓN DEL BACKEND Y SI DA ERROR, SE DEBE REVERTIR LAS SIGUIENTES FUNCIONES.
   // IMPORTANTE: EL ANÁLISIS MODIFICADO DEBE QUEDAR SIEMPRE EN LA PRIMERA POSICIÓN EN EL BACKEND -> ACTUALIZAR SU FECHA "UpdatedAt" Y SIEMPRE DEVOLVER LOS
   // RESULTADOS EN ORDEN CRONOLÓGICO SEGÚN SU "CreatedAt" Y SU "UpdatedAt", LO QUE SEA MÁS RECIENTE.
@@ -240,8 +247,12 @@ export const AnalyzesProvider = ({ children }: AnalyzesProviderProps) => {
         setCurrentAnalysis,
         selectedAnalysisId,
         setSelectedAnalysisId,
+
+        selectedPipeline,
+        setSelectedPipeline,
         auxiliarAnalysis,
         auxiliarAnalysisTwo,
+        setAuxiliarAnalysisIndex,
 
         isPageTransitioning,
 

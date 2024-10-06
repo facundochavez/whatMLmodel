@@ -3,7 +3,7 @@ import React from 'react'; // Asegúrate de importar React si estás usando JSX
 import { Dialog, DialogTrigger } from '@/components/ui/dialog';
 import { Button, ButtonProps } from '@/components/ui/button';
 import { Eye } from 'lucide-react';
-import SimilarDatasetDialogContent from '@/components/DialogContents/SimilarDataset.dialogContent';
+import PipelineDialogContent from '@/components/DialogContents/Pipeline.dialogContent';
 
 // Usa ButtonProps o cualquier otro tipo de props que quieras aceptar
 const ViewButton: React.FC<ButtonProps> = () => {
@@ -15,7 +15,7 @@ const ViewButton: React.FC<ButtonProps> = () => {
           <span className='hidden xs:flex sm:hidden ml-2 md:flex'>View</span>
         </Button>
       </DialogTrigger>
-      <SimilarDatasetDialogContent />
+      <PipelineDialogContent />
     </Dialog>
   );
 };

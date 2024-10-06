@@ -10,8 +10,8 @@ import { Button } from '@/components/ui/button';
 import { CodeXml } from 'lucide-react';
 import { Dialog, DialogTrigger } from '@/components/ui/dialog';
 import GenerateCodeDialogContent from '@/components/DialogContents/GenerateCode.dialogContent';
-import SimilarDatasetDialogContent from '@/components/DialogContents/SimilarDataset.dialogContent';
-import kebabToTitleCase from '@/utils/kebabToTitleCase';
+import PipelineDialogContent from '@/components/DialogContents/Pipeline.dialogContent';
+import camelToTitleCase from '@/utils/camelToTitleCase';
 import { Separator } from '@/components/ui/separator';
 import getModelIcon from '@/utils/getModelIcon';
 import { AiStarsIcon } from '@/icons/AiStarsIcon';
@@ -27,7 +27,7 @@ const ModelsAccordion: React.FC = () => {
     <Card>
       <Accordion type='single' collapsible>
         <header className='w-full h-14 p-4 flex items-center text-sm text-muted-foreground bg-muted/30 border-b'>
-          <h3 className='text-left ml-1'>{kebabToTitleCase(type)} Models</h3>
+          <h3 className='text-left ml-1'>{camelToTitleCase(type)} Models</h3>
         </header>
         {models.map((model, index) => {
           const modelPerformanceMetrics = performanceMetrics.find(
@@ -99,7 +99,7 @@ const ModelsAccordion: React.FC = () => {
                         <span>Similar dataset code</span>
                       </Button>
                     </DialogTrigger>
-                    <SimilarDatasetDialogContent />
+                    <PipelineDialogContent />
                   </Dialog>
                   <Dialog>
                     <DialogTrigger asChild>

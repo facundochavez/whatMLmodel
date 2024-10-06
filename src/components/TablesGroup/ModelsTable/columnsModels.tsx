@@ -1,6 +1,4 @@
 import { ColumnDef } from '@tanstack/react-table';
-import Image from 'next/image';
-import { useTheme } from 'next-themes';
 import { Model, ProblemType } from '../types';
 import {
   DropdownMenu,
@@ -18,10 +16,10 @@ import {
   TooltipTrigger,
 } from '@/components/ui/tooltip';
 import { Dialog, DialogTrigger } from '@/components/ui/dialog';
-import SimilarDatasetDialogContent from '@/components/DialogContents/SimilarDataset.dialogContent';
+import PipelineDialogContent from '@/components/DialogContents/Pipeline.dialogContent';
 import { useState } from 'react';
 import GenerateCodeDialogContent from '@/components/DialogContents/GenerateCode.dialogContent';
-import kebabToTitleCase from '@/utils/kebabToTitleCase';
+import camelToTitleCase from '@/utils/camelToTitleCase';
 import getModelIcon from '@/utils/getModelIcon';
 import { AiStarsIcon } from '@/icons/AiStarsIcon';
 
@@ -30,7 +28,7 @@ const columnsModels = (type: ProblemType): ColumnDef<Model>[] => [
     accessorKey: 'name',
     header: () => {
       return (
-        <h3 className='text-left ml-1'>{kebabToTitleCase(type)} Models</h3>
+        <h3 className='text-left ml-1'>{camelToTitleCase(type)} Models</h3>
       );
     },
     cell: ({ row }) => {
@@ -115,7 +113,7 @@ const columnsModels = (type: ProblemType): ColumnDef<Model>[] => [
           {isGenerating ? (
             <GenerateCodeDialogContent />
           ) : (
-            <SimilarDatasetDialogContent />
+            <PipelineDialogContent />
           )}
         </Dialog>
       );
