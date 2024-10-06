@@ -19,9 +19,9 @@ Necesito armar una serie de párrafos y tablas que que den recomendaciones de mo
 
 {
   "alias": [String: mismo alias del input],
-  "title": [String: Título general que dirá "Recommended models for..." y el resto será basado en el problemDescription],
   "recommendations": [
     {
+      "title": [String: Título general que dirá "Recommended models for..." y el resto será basado en el problemDescription],
       // LITERAL DE DIMENSIONALITY REDUCTION: Existirá únicamente si hasComplexData es true, de lo contrario saltéate este literal.
       "type": "dimensionalityReduction",
       "paragraph": [String: Un análisis de los datos complejos que se pueden estar manejando y cuáles serían los 3 mejores modelos de "dimensionalityReduction"

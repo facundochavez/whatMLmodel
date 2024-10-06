@@ -20,25 +20,14 @@ const useTypingEffect = (
     items.push(words.slice(i, i + wordsInterval).join(' '));
   }
 
-  const isMounted = useRef(true);
-  useEffect(() => {
-    isMounted.current = true;
-    return () => {
-      isMounted.current = false;
-    };
-  }, []);
-
   useEffect(() => {
     const startAnimation = async () => {
       currentPosition === 0 && (await sleep(delay));
-
       for (let i = currentPosition; i < items.length; i++) {
-        if (!isMounted.current && text?.length) return;
         await sleep(100);
         setCurrentPosition((prevPosition) => prevPosition + 1);
       }
     };
-
     startAnimation();
     return () => {
       setCurrentPosition(0);
@@ -47,11 +36,10 @@ const useTypingEffect = (
 
   useEffect(() => {
     const timeoutId = setTimeout(() => {
-      if (isMounted.current && text?.length) {
+      if (text?.length) {
         setCurrentPosition(Infinity);
       }
     }, delay + 600);
-
     return () => clearTimeout(timeoutId);
   }, [delay, text]);
 

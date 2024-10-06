@@ -97,17 +97,16 @@ const columnsModels = (type: ProblemType): ColumnDef<Model>[] => [
               </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent align='center' className='text-base'>
-              <DialogTrigger asChild onClick={() => setIsGenerating(false)}>
-                <DropdownMenuItem>
-                  <CodeXml className='mr-2 h-[18px] w-[18px]' />
-                  <span className='text-base pr-1'>Similar dataset code</span>
-                </DropdownMenuItem>
-              </DialogTrigger>
-
               <DialogTrigger asChild onClick={() => setIsGenerating(true)}>
                 <DropdownMenuItem>
                   <AiStarsIcon className='ml-0.5 mr-2 h-[16px] w-[16px]' />
                   <span className='text-base'>Generate code</span>
+                </DropdownMenuItem>
+              </DialogTrigger>
+              <DialogTrigger asChild onClick={() => setIsGenerating(false)}>
+                <DropdownMenuItem>
+                  <CodeXml className='mr-2 h-[18px] w-[18px]' />
+                  <span className='text-base pr-1'>Similar dataset code</span>
                 </DropdownMenuItem>
               </DialogTrigger>
             </DropdownMenuContent>

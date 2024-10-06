@@ -12,7 +12,7 @@ const GenerateCodeDialogContent: React.FC = () => {
   return (
     <DialogContent>
       <DialogHeader>
-        <DialogTitle>Generate code</DialogTitle>
+        <DialogTitle>Generate code for my problem</DialogTitle>
         <DialogDescription>This is the codign generator.</DialogDescription>
       </DialogHeader>
     </DialogContent>
