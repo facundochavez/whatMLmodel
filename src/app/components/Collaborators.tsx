@@ -1,6 +1,6 @@
 import { Button } from '@/components/ui/button';
 import React from 'react';
-import CollaboratorsDaraRaw from '@/data/Collaborators.data.json';
+import CollaboratorsDaraRaw from '@/data/collaborators.data.json';
 import CollaboratorThumbnail from '@/components/CollaboratorThumbnail/CollaboratorThumbnail';
 import { Collaborator } from '@/types';
 import { Code2 } from 'lucide-react';
