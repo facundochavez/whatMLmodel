@@ -19,7 +19,7 @@ const StillDevelopingCard = () => {
         />
 
         <p className='font-semibold text-muted-foreground text-center'>
-          We're still developing this...
+          We&apos;re still developing this...
         </p>
       </Card>
     </a>
