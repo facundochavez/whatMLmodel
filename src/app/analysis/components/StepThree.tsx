@@ -1,3 +1,4 @@
+'use client';
 import TablesGroup from '@/components/TablesGroup/TablesGroup';
 import { useAnalyzesContext } from '@/context/analyzes.context';
 import useTypingEffect from '@/hooks/useTypingEffect';
