@@ -1,3 +1,4 @@
+'use client';
 import { useEffect, useState, useRef } from 'react';
 import sleep from '@/utils/sleep';
 import { useAnalyzesContext } from '@/context/analyzes.context';
