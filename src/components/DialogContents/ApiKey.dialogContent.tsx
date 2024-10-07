@@ -15,7 +15,7 @@ const ApiKeyDialogContent: React.FC = () => {
         <DialogTitle>Gemini API key</DialogTitle>
         <DialogDescription>
           Your free tokens are over, but you can continue using whatMLmodel by
-          entering your Gemini API key. Don't worry, getting one is also free.
+          entering your Gemini API key. Don&apos;t worry, getting one is also free.
         </DialogDescription>
       </DialogHeader>
       <h2>How to get it:</h2>
@@ -32,11 +32,11 @@ const ApiKeyDialogContent: React.FC = () => {
           .
         </li>
         <li>
-          2. Go to your profile and select "Account Settings," then navigate to
-          "API" settings.
+          2. Go to your profile and select &quot;Account Settings,&quot; then navigate to
+          &quot;API&quot; settings.
         </li>
         <li>
-          3. Click "Create API Key," set the permissions, and enable two-factor
+          3. Click &quot;Create API Key,&quot; set the permissions, and enable two-factor
           authentication (if needed).
         </li>
         <li>

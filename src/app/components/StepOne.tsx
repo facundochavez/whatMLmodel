@@ -104,7 +104,7 @@ const StepOne: React.FC = () => {
                 ) : (
                   <>
                     <AiStarsIcon className='mr-1.5 h-[18px] w-[18px]' />
-                    Let's go
+                    Let&apos;s go
                   </>
                 )}
               </Button>

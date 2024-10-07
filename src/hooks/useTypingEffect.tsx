@@ -9,10 +9,6 @@ const useTypingEffect = (
   delay: number = 0,
   disabled: boolean = false
 ) => {
-  if (disabled) return text;
-  const { isPageTransitioning } = useAnalyzesContext();
-  if (isPageTransitioning) return text;
-
   const [currentPosition, setCurrentPosition] = useState(0);
   const words = text.split(' ');
   const items: string[] = [];
@@ -44,6 +40,8 @@ const useTypingEffect = (
     return () => clearTimeout(timeoutId);
   }, [delay, text]);
 
+  const { isPageTransitioning } = useAnalyzesContext();
+  if (disabled || isPageTransitioning) return text;
   return items.slice(0, currentPosition).join(' ');
 };
 

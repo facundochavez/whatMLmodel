@@ -12,7 +12,7 @@ const TypingText: React.FC<TypingTextProps> = ({
   text,
   wordsInterval,
   delay,
-  disabled,
+  disabled = false,
   className,
 }) => {
   const typedText = useTypingEffect(text, wordsInterval, delay, disabled);
