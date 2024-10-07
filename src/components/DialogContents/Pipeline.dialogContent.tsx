@@ -18,7 +18,7 @@ const PipelineDialogContent: React.FC = () => {
       <DialogHeader>
         <DialogTitle>{selectedPipeline?.title}</DialogTitle>
         <DialogDescription className='text-left'>
-          {selectedPipeline?.datasetDescription}
+          {selectedPipeline?.info?.problemDescription}
         </DialogDescription>
       </DialogHeader>
       <h3 className='text-lg font-semibold'>Pipeline code:</h3>
