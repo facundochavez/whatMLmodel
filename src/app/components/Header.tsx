@@ -54,8 +54,8 @@ const Header = () => {
         }`}
       >
         <aside className='flex items-center max-h-10'>
-          {/* FCH LOGO + DOT */}
-          <div className={`flex items-center justify-end overflow-hidden h-12`}>
+          {/* FCH LOGO */}
+          <div className={`hidden items-center justify-end overflow-hidden h-12`}>
             <div
               className={`flex items-center duration-200 -ml-16 cubic-bezier(0,.78,.58,1.02) ${
                 pathname === '/' && showFChLogo && '!-ml-0'
