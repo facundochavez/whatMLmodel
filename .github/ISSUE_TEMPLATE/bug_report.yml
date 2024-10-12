@@ -1,0 +1,35 @@
+name: "🐛 Bug Report"
+description: "Reporta un error encontrado en el proyecto."
+title: "[Bug] Breve descripción del error"
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: "## Descripción\nDescribe claramente el error encontrado."
+
+  - type: textarea
+    id: steps
+    attributes:
+      label: "Pasos para reproducir"
+      description: "Enumera los pasos para reproducir el problema."
+      placeholder: "1. Ir a '...'\n2. Hacer clic en '...'\n3. Ver el error"
+
+  - type: input
+    id: expected
+    attributes:
+      label: "Comportamiento esperado"
+      placeholder: "¿Qué esperabas que sucediera?"
+
+  - type: textarea
+    id: environment
+    attributes:
+      label: "Información del entorno"
+      description: "Especifica el sistema operativo, navegador y versión del proyecto."
+      placeholder: "- SO: Windows/macOS\n- Navegador: Chrome/Firefox\n- Versión: v1.0.0"
+
+  - type: textarea
+    id: additional_info
+    attributes:
+      label: "Información adicional"
+      description: "Cualquier otro dato relevante."
+      placeholder: "Notas o enlaces útiles."

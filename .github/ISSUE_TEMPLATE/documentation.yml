@@ -1,0 +1,26 @@
+name: "📚 Documentation Issue"
+description: "Informa sobre problemas o mejoras en la documentación."
+title: "[Docs] Breve descripción del problema"
+labels: ["documentation"]
+body:
+  - type: markdown
+    attributes:
+      value: "## Descripción del problema\nDescribe el problema encontrado en la documentación."
+
+  - type: input
+    id: affected_section
+    attributes:
+      label: "Sección afectada"
+      placeholder: "Especifica la página o archivo relevante."
+
+  - type: textarea
+    id: suggested_improvement
+    attributes:
+      label: "Sugerencia de mejora"
+      placeholder: "Describe cómo se podría mejorar la documentación."
+
+  - type: textarea
+    id: additional_info
+    attributes:
+      label: "Información adicional"
+      placeholder: "Enlaces o comentarios relevantes."

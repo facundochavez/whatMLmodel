@@ -1,0 +1,26 @@
+name: "✨ Feature Request"
+description: "Sugiere una nueva característica o funcionalidad para el proyecto."
+title: "[Feature] Breve descripción de la funcionalidad"
+labels: ["enhancement"]
+body:
+  - type: markdown
+    attributes:
+      value: "## Descripción\nDescribe la nueva funcionalidad y por qué es útil."
+
+  - type: input
+    id: expected_behavior
+    attributes:
+      label: "Comportamiento esperado"
+      placeholder: "Describe cómo debería funcionar la nueva funcionalidad."
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: "Alternativas consideradas"
+      placeholder: "Explica si has considerado alguna otra opción."
+
+  - type: textarea
+    id: additional_info
+    attributes:
+      label: "Información adicional"
+      description: "Comentarios o enlaces adicionales."

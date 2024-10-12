@@ -1,0 +1,23 @@
+name: "❓ Question"
+description: "Formula preguntas o busca aclaraciones sobre el proyecto."
+title: "[Question] Breve descripción de la pregunta"
+labels: ["question"]
+body:
+  - type: input
+    id: question
+    attributes:
+      label: "Pregunta"
+      placeholder: "¿Qué necesitas saber?"
+
+  - type: textarea
+    id: context
+    attributes:
+      label: "Contexto"
+      description: "Provee contexto adicional para entender mejor la pregunta."
+      placeholder: "Explica el contexto de la pregunta."
+
+  - type: textarea
+    id: additional_info
+    attributes:
+      label: "Información adicional"
+      placeholder: "Comentarios o enlaces útiles."
