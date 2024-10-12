@@ -1,9 +1,8 @@
+---
 name: "🐛 Bug Report"
 about: Reporta un problema que encontraste en el proyecto
 title: "[Bug] Descripción breve del error"
 labels: bug
-assignees: ''
-
 ---
 
 **Descripción**

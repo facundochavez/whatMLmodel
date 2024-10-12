@@ -1,9 +1,8 @@
+---
 name: "❓ Question"
 about: Formula preguntas o busca aclaraciones sobre el proyecto
 title: "[Question] Descripción breve de la pregunta"
 labels: question
-assignees: ''
-
 ---
 
 **Pregunta**

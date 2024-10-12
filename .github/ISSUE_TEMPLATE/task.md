@@ -1,9 +1,8 @@
+---
 name: "🛠️ Task"
 about: Documenta tareas específicas que se necesitan realizar
 title: "[Task] Descripción breve de la tarea"
 labels: task
-assignees: ''
-
 ---
 
 **Descripción**

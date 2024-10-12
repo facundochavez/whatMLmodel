@@ -1,9 +1,8 @@
+---
 name: "✨ Feature Request"
 about: Sugiere una nueva característica o funcionalidad
 title: "[Feature] Descripción breve de la funcionalidad"
 labels: enhancement
-assignees: ''
-
 ---
 
 **Descripción**

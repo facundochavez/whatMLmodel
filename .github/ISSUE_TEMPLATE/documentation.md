@@ -1,9 +1,8 @@
+---
 name: "📚 Documentation Issue"
 about: Informa sobre problemas o mejoras en la documentación
 title: "[Docs] Descripción breve del problema"
 labels: documentation
-assignees: ''
-
 ---
 
 **Descripción del problema**
