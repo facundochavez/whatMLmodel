@@ -21,7 +21,7 @@ import { Button } from '@/components/ui/button';
 import { AlertDialog, AlertDialogTrigger } from '@/components/ui/alert-dialog';
 import AnalysisActionsDropdown from '@/components/ActionButtons/AnalysisDropdown/AnalysisActions.dropdown';
 import { useGlobalContext } from '@/context/global.context';
-import { useAnalyzesContext } from '@/context/analyzes.context';
+import { useAnalysesContext } from '@/context/analyses.context';
 import { usePathname } from 'next/navigation';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { TransitionLink } from '@/components/TransitionLink/TransitionLink';
@@ -29,8 +29,8 @@ import { TransitionLink } from '@/components/TransitionLink/TransitionLink';
 const UserDropdown: React.FC = () => {
   const pathname = usePathname();
   const { setShowAccountSettingsDialog } = useGlobalContext();
-  const { analyzesView, recentsView, favoritesView, handleSelectAnalysis } =
-    useAnalyzesContext();
+  const { analysesView, recentsView, favoritesView, handleSelectAnalysis } =
+    useAnalysesContext();
 
   return (
     <DropdownMenu>
@@ -64,7 +64,7 @@ const UserDropdown: React.FC = () => {
               <ScrollArea
                 style={{
                   height: `${
-                    (analyzesView.length <= 10
+                    (analysesView.length <= 10
                       ? favoritesView.length
                       : favoritesView.length <= 5
                       ? favoritesView.length
@@ -114,7 +114,7 @@ const UserDropdown: React.FC = () => {
               <ScrollArea
                 style={{
                   height: `${
-                    (analyzesView.length <= 10
+                    (analysesView.length <= 10
                       ? recentsView.length
                       : recentsView.length <= 5
                       ? recentsView.length

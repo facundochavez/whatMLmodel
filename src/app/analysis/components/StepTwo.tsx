@@ -15,7 +15,7 @@ import useTextReveal from '@/hooks/useTextReveal';
 import { TransitionLink } from '@/components/TransitionLink/TransitionLink';
 import StepTwoForm from '@/components/Forms/StepTwo.form';
 import { useEffect, useState } from 'react';
-import { useAnalyzesContext } from '@/context/analyzes.context';
+import { useAnalysesContext } from '@/context/analyses.context';
 import generateRandomUUID from '@/utils/generateRandomUUID';
 
 interface StepTwoProps extends React.PropsWithChildren {
@@ -31,7 +31,7 @@ const StepTwo: React.FC<StepTwoProps> = ({ setIsAiThinking }) => {
     auxiliarAnalysisTwo,
     handleAddAnalysis,
     handleUpdateRecommendations,
-  } = useAnalyzesContext();
+  } = useAnalysesContext();
 
   const [isUserEditingInfo, setIsUserEditingInfo] = useState<boolean>(false);
   const [isFormCollapsed, setIsFormCollapsed] = useState(true);

@@ -1,10 +1,10 @@
 import tryExamplesData from '@/data/try-examples.data.json';
 import { Badge } from '@/components/ui/badge';
 import { tryingExampleService } from '@/services/tryingExampleService';
-import { useAnalyzesContext } from '@/context/analyzes.context';
+import { useAnalysesContext } from '@/context/analyses.context';
 
 const Hero = () => {
-  const { setAuxiliarAnalysisIndex } = useAnalyzesContext();
+  const { setAuxiliarAnalysisIndex } = useAnalysesContext();
 
   return (
     <section

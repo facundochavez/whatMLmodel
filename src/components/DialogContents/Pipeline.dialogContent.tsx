@@ -5,13 +5,13 @@ import {
   DialogHeader,
   DialogTitle,
 } from '@/components/ui/dialog';
-import { useAnalyzesContext } from '@/context/analyzes.context';
+import { useAnalysesContext } from '@/context/analyses.context';
 import Image from 'next/image';
 import { Card } from '../ui/card';
 import StillDevelopingCard from '@/components/StillDevelopingCard/StillDevelopingCard';
 
 const PipelineDialogContent: React.FC = () => {
-  const { selectedPipeline } = useAnalyzesContext();
+  const { selectedPipeline } = useAnalysesContext();
 
   return (
     <DialogContent>

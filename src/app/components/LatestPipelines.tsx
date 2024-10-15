@@ -8,7 +8,7 @@ import { Dialog } from '@radix-ui/react-dialog';
 import PipelineDialogContent from '@/components/DialogContents/Pipeline.dialogContent';
 import { CollapsibleBox } from '@/components/CollapsibleBox/CollapsibleBox';
 import { useGlobalContext } from '@/context/global.context';
-import { useAnalyzesContext } from '@/context/analyzes.context';
+import { useAnalysesContext } from '@/context/analyses.context';
 
 // VALIDACIÓN DE DATOS (BORRAR LUEGO)
 const validateModelResponses = (data: any[]): Pipeline[] => {
@@ -26,7 +26,7 @@ const LatestPipelines = () => {
     modelsResponsesDataRaw
   );
   // EL PIPELINE SELECCIONADO DEBERÍA HACER UN GET PARA REQUERIR INFORMACIÓN MÁS DETALLADA
-  const { setSelectedPipeline } = useAnalyzesContext();
+  const { setSelectedPipeline } = useAnalysesContext();
 
   return (
     <Dialog>

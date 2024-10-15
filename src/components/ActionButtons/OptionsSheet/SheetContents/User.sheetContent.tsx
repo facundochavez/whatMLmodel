@@ -11,14 +11,14 @@ import AnalysisActionsDropdown from '@/components/ActionButtons/AnalysisDropdown
 
 import { SheetClose } from '@/components/ui/sheet';
 import { useGlobalContext } from '@/context/global.context';
-import { useAnalyzesContext } from '@/context/analyzes.context';
+import { useAnalysesContext } from '@/context/analyses.context';
 import { TransitionLink } from '@/components/TransitionLink/TransitionLink';
 
 const UserSheetContent = () => {
   const pathname = usePathname();
   const { setShowAccountSettingsDialog } = useGlobalContext();
   const { recentsView, favoritesView, handleSelectAnalysis } =
-    useAnalyzesContext();
+    useAnalysesContext();
 
   return (
     <div className='flex flex-col gap-4 h-full overflow-y-hidden w-full'>
