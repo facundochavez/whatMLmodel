@@ -1,6 +1,6 @@
 # whatMLmodel
 
-*whatMLmodel* lets you use AI to find machine learning models from a quick description of your dataset. You'll get a recommendation thread for each problem, and you can save these analyses by logging in. It's an open-source project aiming to become the top library for students learning the basics and pros who need organization to experiment with new models. If you're a developer or have technical/theoretical knowledge of ML, join us! Find the repo link on the app's page.
+*whatMLmodel* lets you use AI to find machine learning models from a quick description of your dataset. You'll get a recommendation thread for each problem, and you can save these analyses by logging in. It's an open-source project aiming to become the top library for students learning the basics and pros who need organization to experiment with new models. If you're a developer or have technical/theoretical knowledge of ML, join us!
 
 ![wMLm capture](https://github.com/user-attachments/assets/95484d21-3e30-47a2-b7f5-9f8938feb26d)
 
