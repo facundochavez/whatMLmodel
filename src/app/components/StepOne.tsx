@@ -21,7 +21,7 @@ import { tryingExampleService } from '@/services/tryingExampleService';
 import { AiStarsIcon } from '@/icons/AiStarsIcon';
 import { TransitionLink } from '@/components/TransitionLink/TransitionLink';
 import { LoaderCircle } from 'lucide-react';
-import { useAnalyzesContext } from '@/context/analyzes.context';
+import { useAnalysesContext } from '@/context/analyses.context';
 
 // Esquema de validación con zod
 const stepOneSchema = z.object({
@@ -30,7 +30,7 @@ const stepOneSchema = z.object({
 
 const StepOne: React.FC = () => {
   const [isAiGeneratingInfo, setIsAiGeneratingInfo] = useState<boolean>(false);
-  const { setCurrentAnalysis, auxiliarAnalysis } = useAnalyzesContext();
+  const { setCurrentAnalysis, auxiliarAnalysis } = useAnalysesContext();
   const form = useForm<z.infer<typeof stepOneSchema>>({
     resolver: zodResolver(stepOneSchema),
     defaultValues: {

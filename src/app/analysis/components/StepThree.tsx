@@ -1,7 +1,7 @@
 'use client';
 import TablesGroup from '@/components/TablesGroup/TablesGroup';
 import TypingText from '@/components/TypingText/TypingText';
-import { useAnalyzesContext } from '@/context/analyzes.context';
+import { useAnalysesContext } from '@/context/analyses.context';
 import generateRandomUUID from '@/utils/generateRandomUUID';
 
 interface StepThreeProps extends React.PropsWithChildren {
@@ -9,7 +9,7 @@ interface StepThreeProps extends React.PropsWithChildren {
 }
 
 const StepThree: React.FC<StepThreeProps> = ({ isAiThinking }) => {
-  const { currentAnalysis } = useAnalyzesContext();
+  const { currentAnalysis } = useAnalysesContext();
 
   return (
     <section className='w-full max-w-[1050px] flex flex-col gap-8'>

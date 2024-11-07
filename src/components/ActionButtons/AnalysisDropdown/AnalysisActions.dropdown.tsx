@@ -7,7 +7,7 @@ import {
 import { AlertDialogTrigger } from '@/components/ui/alert-dialog';
 import { Button } from '@/components/ui/button';
 import { Trash, Ellipsis, Star, StarOff } from 'lucide-react';
-import { useAnalyzesContext } from '@/context/analyzes.context';
+import { useAnalysesContext } from '@/context/analyses.context';
 
 type AnalysisActionsDropdownProps = {
   analysisId: string;
@@ -18,7 +18,7 @@ const AnalysisActionsDropdown: React.FC<AnalysisActionsDropdownProps> = ({
   analysisId,
   isFavorite = false,
 }) => {
-  const { handleToggleFavorite, setSelectedAnalysisId } = useAnalyzesContext();
+  const { handleToggleFavorite, setSelectedAnalysisId } = useAnalysesContext();
 
   return (
     <DropdownMenu>

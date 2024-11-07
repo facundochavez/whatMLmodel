@@ -31,7 +31,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from '../ui/select';
-import { useAnalyzesContext } from '@/context/analyzes.context';
+import { useAnalysesContext } from '@/context/analyses.context';
 
 // Esquema de validación con zod
 const stepTwoSchema = z.object({
@@ -57,7 +57,7 @@ const StepTwoForm: React.FC<StepTwoFormProps> = ({
   onCollapseChange,
   children,
 }) => {
-  const { currentAnalysis } = useAnalyzesContext();
+  const { currentAnalysis } = useAnalysesContext();
   const [showProblemTooltip, setShowProblemTooltip] = useState(false);
   const [showComplexDataTooltip, setShowComplexDataTooltip] = useState(false);
   const [formLabel, setLabel] = useState('');

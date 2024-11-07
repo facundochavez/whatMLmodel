@@ -7,10 +7,10 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
 } from '@/components/ui/alert-dialog';
-import { useAnalyzesContext } from '@/context/analyzes.context';
+import { useAnalysesContext } from '@/context/analyses.context';
 
 const ConfirmDeleteDialogContent: React.FC = () => {
-  const { selectedAnalysisId, handleDeleteAnalysis } = useAnalyzesContext();
+  const { selectedAnalysisId, handleDeleteAnalysis } = useAnalysesContext();
 
   return (
     <AlertDialogContent>

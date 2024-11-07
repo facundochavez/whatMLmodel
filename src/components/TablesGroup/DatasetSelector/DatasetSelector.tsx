@@ -10,7 +10,7 @@ import {
 import ViewButton from './ViewButton/ViewButton';
 import { useGlobalContext } from '@/context/global.context';
 import { useTablesGroupContext } from '../tablesGroup.context';
-import { useAnalyzesContext } from '@/context/analyzes.context';
+import { useAnalysesContext } from '@/context/analyses.context';
 import getPipelineByAlias from '@/utils/getPipelineByAlias';
 
 const DatasetSelector: React.FC = () => {

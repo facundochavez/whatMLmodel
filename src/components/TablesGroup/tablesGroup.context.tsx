@@ -8,7 +8,7 @@ import columnsClassification from './SimilarDatasetsTable/columnsClassification'
 import columnsClustering from './SimilarDatasetsTable/columnsClustering';
 import columnsDimensionalityReduction from './SimilarDatasetsTable/columnsDimensionalityReduction';
 import getPipelineByAlias from '@/utils/getPipelineByAlias';
-import { useAnalyzesContext } from '@/context/analyzes.context';
+import { useAnalysesContext } from '@/context/analyses.context';
 
 interface TablesGroupContextProps {
   type: ProblemType;

@@ -3,10 +3,10 @@ import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import StepThree from '@/app/analysis/components/StepThree';
 import StepTwo from '@/app/analysis/components/StepTwo';
-import { useAnalyzesContext } from '@/context/analyzes.context';
+import { useAnalysesContext } from '@/context/analyses.context';
 
 const AnalysisPage: React.FC = () => {
-  const { currentAnalysis, isPageTransitioning } = useAnalyzesContext();
+  const { currentAnalysis, isPageTransitioning } = useAnalysesContext();
   const router = useRouter();
   const [isAiThinking, setIsAiThinking] = useState(true);
 

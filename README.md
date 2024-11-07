@@ -1,8 +1,8 @@
 # whatMLmodel
 
-*whatMLmodel* is a web application designed to help data scientists and machine learning developers explore and experiment with machine learning models. It provides an easy way to analyze datasets and get recommendations for appropriate models based on your input. Whether you're studying machine learning or exploring new models, *whatMLmodel* offers a dashboard to document and analyze problems effectively.
+*whatMLmodel* lets you use AI to find machine learning models from a quick description of your dataset. You'll get a recommendation thread for each problem, and you can save these analyses by logging in. It's an open-source project aiming to become the top library for students learning the basics and pros who need some organization to experiment with new models. If you're a developer or have technical/theoretical knowledge of ML, join us!
 
-![wMLm capture](https://github.com/user-attachments/assets/95484d21-3e30-47a2-b7f5-9f8938feb26d)
+[video-wmlm-desktop.webm](https://github.com/user-attachments/assets/d1e09e7c-9d0b-4e85-9c06-5b613a481b89)
 
 ## Technologies Used
 
