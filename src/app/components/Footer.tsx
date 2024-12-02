@@ -11,7 +11,7 @@ export const Footer = () => {
           <a
             href='https://www.facundochavez.com'
             target='_blank'
-            className='underline hover:text-foreground'
+            className='hover:underline hover:text-foreground'
           >
             Facundo Chavez
           </a>{' '}
