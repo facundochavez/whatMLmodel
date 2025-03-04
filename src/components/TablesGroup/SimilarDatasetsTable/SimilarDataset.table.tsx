@@ -13,11 +13,10 @@ import {
   TableHeader,
   TableRow,
 } from '@/components/ui/table';
-import { DataTableProps } from '../types';
-import { useTablesGroupContext } from '../tablesGroup.context';
+import { useTablesGroupStore } from '@/store/tablesGroup.store';
 
 const SimilarDatasetTable = <TData, TValue>() => {
-  const { type, columnsPerformanceMetrics, performanceMetrics } = useTablesGroupContext();
+  const { type, columnsPerformanceMetrics, performanceMetrics } = useTablesGroupStore();
 
   const columns = columnsPerformanceMetrics[type];
 
@@ -33,28 +32,21 @@ const SimilarDatasetTable = <TData, TValue>() => {
         <TableHeader>
           {table.getHeaderGroups().map((headerGroup) => (
             <TableRow key={headerGroup.id} className='h-16 bg-muted/30'>
-              {headerGroup.headers.map((header) => {
-                return (
-                  <TableHead key={header.id} className='text-center'>
-                    {header.isPlaceholder
-                      ? null
-                      : flexRender(
-                          header.column.columnDef.header,
-                          header.getContext()
-                        )}
-                  </TableHead>
-                );
-              })}
+              {headerGroup.headers.map((header) => (
+                <TableHead key={header.id} className='text-center'>
+                  {header.isPlaceholder ? null : flexRender(
+                    header.column.columnDef.header,
+                    header.getContext()
+                  )}
+                </TableHead>
+              ))}
             </TableRow>
           ))}
         </TableHeader>
         <TableBody>
           {table.getRowModel().rows?.length ? (
             table.getRowModel().rows.map((row) => (
-              <TableRow
-                key={row.id}
-                data-state={row.getIsSelected() && 'selected'}
-              >
+              <TableRow key={row.id} data-state={row.getIsSelected() && 'selected'}>
                 {row.getVisibleCells().map((cell) => (
                   <TableCell key={cell.id} className='text-center py-0 h-16'>
                     {flexRender(cell.column.columnDef.cell, cell.getContext())}

@@ -1,11 +1,11 @@
 name: "✨ Feature Request"
-description: "Sugiere una nueva característica o funcionalidad para el proyecto."
-title: "[Feature] Breve descripción de la funcionalidad"
-labels: ["enhancement"]
+description: "Suggest a new idea for the project."
+title: "✨ Feat: Brief description of the feature"
+labels: ["feature"]
 body:
   - type: markdown
     attributes:
-      value: "## Descripción\nDescribe la nueva funcionalidad y por qué es útil."
+      value: "## Description\nDescribe the new functionality and why it is useful."
 
   - type: input
     id: expected_behavior
