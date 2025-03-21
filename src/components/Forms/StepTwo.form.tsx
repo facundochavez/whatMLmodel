@@ -32,6 +32,8 @@ import {
   SelectValue,
 } from '../ui/select';
 import { useAnalysesContext } from '@/context/analyses.context';
+import { useRecommendationsStore } from '@/store/recommendations.store';
+import { useAnalysisStore } from '@/store/analysis.store';
 
 // Esquema de validación con zod
 const stepTwoSchema = z.object({
@@ -57,14 +59,15 @@ const StepTwoForm: React.FC<StepTwoFormProps> = ({
   onCollapseChange,
   children,
 }) => {
-  const { currentAnalysis } = useAnalysesContext();
+  const { recommendations } = useRecommendationsStore();
+  const { analysis } = useAnalysisStore();
   const [showProblemTooltip, setShowProblemTooltip] = useState(false);
   const [showComplexDataTooltip, setShowComplexDataTooltip] = useState(false);
   const [formLabel, setLabel] = useState('');
 
   useEffect(() => {
     const handleFormLabel = () => {
-      if (!currentAnalysis?.recommendations) {
+      if (!recommendations) {
         setLabel('Check the information and correct it before moving forward:');
       } else if (isUserEditingInfo) {
         setLabel('Edit the information to get new recommendations:');
@@ -74,19 +77,11 @@ const StepTwoForm: React.FC<StepTwoFormProps> = ({
     };
 
     handleFormLabel();
-  }, [currentAnalysis, isUserEditingInfo]);
+  }, [recommendations, isUserEditingInfo]);
 
   // 1. Define tu formulario.
   const form = useForm<z.infer<typeof stepTwoSchema>>({
     resolver: zodResolver(stepTwoSchema),
-    defaultValues: {
-      problemDescription: currentAnalysis?.info?.problemDescription,
-      mainFeatures: currentAnalysis?.info?.mainFeatures,
-      targetVariable: currentAnalysis?.info?.targetVariable,
-      hasComplexData: currentAnalysis?.info?.hasComplexData,
-      numberOfFeatures: currentAnalysis?.info?.numberOfFeatures,
-      datasetSize: currentAnalysis?.info?.datasetSize,
-    },
   });
 
   // 2. Define un manejador de envío.
@@ -104,7 +99,7 @@ const StepTwoForm: React.FC<StepTwoFormProps> = ({
         <CollapsibleBox
           arrowButton
           isButtonHighlighted={
-            currentAnalysis?.recommendations && isUserEditingInfo
+            recommendations! && isUserEditingInfo
           }
           blocked={isFormBlocked}
           externalIsCollapsed={isFormCollapsed}
@@ -112,7 +107,7 @@ const StepTwoForm: React.FC<StepTwoFormProps> = ({
         >
           <div
             className={`w-full flex flex-col gap-4 border rounded-md px-[5%] pt-6 pb-8 bg-muted/30 ${
-              currentAnalysis?.recommendations &&
+              recommendations! &&
               isUserEditingInfo &&
               'border-2 border-foreground group'
             } ${!isUserEditingInfo && 'select-none pointer-events-none'}`}
@@ -153,7 +148,7 @@ const StepTwoForm: React.FC<StepTwoFormProps> = ({
                       placeholder='Your problem description here...'
                       maxLength={300}
                       currentLength={field.value?.length || 0}
-                      {...field}
+                      defaultValue={analysis?.info?.problemDescription}
                     />
                   </FormControl>
                   <FormMessage />
@@ -171,7 +166,7 @@ const StepTwoForm: React.FC<StepTwoFormProps> = ({
                     <Input
                       placeholder='Your features here...'
                       maxLength={100}
-                      {...field}
+                      defaultValue={analysis?.info?.mainFeatures}
                     />
                   </FormControl>
                   <FormMessage />
@@ -189,7 +184,7 @@ const StepTwoForm: React.FC<StepTwoFormProps> = ({
                     <Input
                       placeholder='Your target variable here...'
                       maxLength={35}
-                      {...field}
+                      defaultValue={analysis?.info?.targetVariable}
                     />
                   </FormControl>
                   <FormMessage />
@@ -256,7 +251,7 @@ const StepTwoForm: React.FC<StepTwoFormProps> = ({
                         className='pr-20'
                         type='number'
                         min={1}
-                        {...field}
+                        defaultValue={analysis?.info?.numberOfFeatures}
                       />
                     </FormControl>
                     <FormDescription className='absolute top-8 right-4'>
@@ -278,7 +273,7 @@ const StepTwoForm: React.FC<StepTwoFormProps> = ({
                         className='pr-14'
                         type='number'
                         min={1}
-                        {...field}
+                        defaultValue={analysis?.info?.datasetSize}
                       />
                     </FormControl>
                     <FormDescription className='absolute top-8 right-4'>

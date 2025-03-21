@@ -5,43 +5,40 @@ import {
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from '@/components/ui/select';
+} from "@/components/ui/select";
 
-import ViewButton from './ViewButton/ViewButton';
-import { useGlobalContext } from '@/context/global.context';
-import { useTablesGroupContext } from '../tablesGroup.context';
-import { useAnalysesContext } from '@/context/analyses.context';
-import getPipelineByAlias from '@/utils/getPipelineByAlias';
+import ViewButton from "./ViewButton/ViewButton";
+import { useGlobalStore } from "@/store/globals.store"; // ✅ Cambio de `useGlobalContext` a Zustand
+import { useTablesGroupStore } from "@/store/tablesGroup.store"; // ✅ Usamos Zustand en lugar de contexto
 
 const DatasetSelector: React.FC = () => {
-  const { isMobile } = useGlobalContext();
-  const { similarDatasets, setSelectedDatasetIndex, selectedDatasetIndex } =
-    useTablesGroupContext();
+  const isMobile = useGlobalStore((state) => state.isMobile);
+  const { similarDatasets, selectedDatasetIndex, setSelectedDatasetIndex } =
+    useTablesGroupStore();
 
   return (
     <header
-      className={
-        `flex flex-col gap-x-3 gap-y-1 lg:flex-row lg:items-center` +
-        (isMobile ? '' : ' pl-[370px]')
-      }
+      className={`flex flex-col gap-x-3 gap-y-1 lg:flex-row lg:items-center ${
+        isMobile ? "" : " pl-[370px]"
+      }`}
     >
-      <h2 className='min-w-max text-base'>Similar dataset:</h2>
-      <div className='flex gap-2 sm:gap-3 items-center w-full'>
+      <h2 className="min-w-max text-base">Similar dataset:</h2>
+      <div className="flex gap-2 sm:gap-3 items-center w-full">
         <Select
-          defaultValue='0'
-          value={`${selectedDatasetIndex}`}
-          onValueChange={(value) => setSelectedDatasetIndex(value)}
+          defaultValue="0"
+          value={selectedDatasetIndex}
+          onValueChange={setSelectedDatasetIndex}
         >
-          <SelectTrigger className='w-full md:w-52 bg-muted/30 sm:bg-background text-sm sm:text-base'>
-            <SelectValue placeholder='Select a datset' />
+          <SelectTrigger className="w-full md:w-52 bg-muted/30 sm:bg-background text-sm sm:text-base">
+            <SelectValue placeholder="Select a dataset" />
           </SelectTrigger>
-          <SelectContent className='bg-primary-foreground sm:bg-background'>
+          <SelectContent className="bg-primary-foreground sm:bg-background">
             <SelectGroup>
               {similarDatasets.map((dataset, index) => (
                 <SelectItem
                   key={index}
                   value={`${index}`}
-                  className='text-sm sm:text-base'
+                  className="text-sm sm:text-base"
                 >
                   {dataset.name}
                 </SelectItem>

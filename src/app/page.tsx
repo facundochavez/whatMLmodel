@@ -1,8 +1,8 @@
 'use client';
-import StepOne from './components/StepOne';
-import Hero from './components/Hero';
-import LatestPipelines from './components/LatestPipelines';
-import Collaborators from './components/Collaborators';
+import StepOne from '../components/Steps/StepOne';
+import Hero from '../components/Hero';
+import LatestPipelines from '../components/LatestPipelines';
+import Collaborators from '../components/Collaborators';
 import { useRouter } from 'next/navigation';
 import { useEffect } from 'react';
 

@@ -13,15 +13,13 @@ import {
   TableHeader,
   TableRow,
 } from '@/components/ui/table';
-import { DataTableProps } from '../types';
-import { useTablesGroupContext } from '../tablesGroup.context';
+import { useTablesGroupStore } from '@/store/tablesGroup.store';
 import columnsModels from './columnsModels';
 
 const ModelsTable = <TData, TValue>() => {
-  const { type, models } = useTablesGroupContext();
+  const { type, models } = useTablesGroupStore();
 
   const columns = columnsModels(type);
-
   const table = useReactTable({
     data: models as TData[],
     columns: columns as ColumnDef<TData, TValue>[],
@@ -31,36 +29,26 @@ const ModelsTable = <TData, TValue>() => {
   return (
     <div className='rounded-md border bg-background'>
       <Table>
-        <TableHeader className=''>
+        <TableHeader>
           {table.getHeaderGroups().map((headerGroup) => (
             <TableRow key={headerGroup.id} className='h-16 bg-muted/30'>
-              {headerGroup.headers.map((header) => {
-                return (
-                  <TableHead key={header.id} className='text-center'>
-                    {header.isPlaceholder
-                      ? null
-                      : flexRender(
-                          header.column.columnDef.header,
-                          header.getContext()
-                        )}
-                  </TableHead>
-                );
-              })}
+              {headerGroup.headers.map((header) => (
+                <TableHead key={header.id} className='text-center'>
+                  {header.isPlaceholder ? null : flexRender(
+                    header.column.columnDef.header,
+                    header.getContext()
+                  )}
+                </TableHead>
+              ))}
             </TableRow>
           ))}
         </TableHeader>
         <TableBody>
           {table.getRowModel().rows?.length ? (
             table.getRowModel().rows.map((row) => (
-              <TableRow
-                key={row.id}
-                data-state={row.getIsSelected() && 'selected'}
-              >
+              <TableRow key={row.id} data-state={row.getIsSelected() && 'selected'}>
                 {row.getVisibleCells().map((cell) => (
-                  <TableCell
-                    key={cell.id}
-                    className='text-center py-0 px-0 h-16'
-                  >
+                  <TableCell key={cell.id} className='text-center py-0 h-16'>
                     {flexRender(cell.column.columnDef.cell, cell.getContext())}
                   </TableCell>
                 ))}
@@ -68,7 +56,7 @@ const ModelsTable = <TData, TValue>() => {
             ))
           ) : (
             <TableRow>
-              <TableCell colSpan={columns.length} className='h-24 text-center'>
+              <TableCell colSpan={table.getAllColumns().length} className='h-24 text-center'>
                 No results.
               </TableCell>
             </TableRow>
