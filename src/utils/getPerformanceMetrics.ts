@@ -12,11 +12,11 @@ const similarDatasetsData: SimilarDatasetsData =
 
 export default function getPerformanceMetrics({
   type,
-  modelsAliases,
+  modelsAlias,
   datasetAlias,
 }: {
   type: ProblemType;
-  modelsAliases: string[];
+  modelsAlias: string[];
   datasetAlias: string;
 }): PerformanceMetrics {
   const performanceMetricsList: PerformanceMetricsList = {
@@ -63,7 +63,7 @@ export default function getPerformanceMetrics({
   );
   const performanceMetrics: any[] = [];
 
-  modelsAliases.forEach((modelAlias) => {
+  modelsAlias.forEach((modelAlias) => {
     const metricsToPush = { modelAlias: modelAlias };
 
     const foundMetrics: any = similarDataset?.performance?.[type]?.find(

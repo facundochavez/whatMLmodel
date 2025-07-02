@@ -1,8 +1,6 @@
 'use client';
-import { useGlobalContext } from '@/context/global.context';
 import Link, { LinkProps } from 'next/link';
 import { useRouter, usePathname } from 'next/navigation';
-import { useEffect } from 'react';
 import sleep from '@/utils/sleep';
 
 interface TransitionLinkProps extends LinkProps {

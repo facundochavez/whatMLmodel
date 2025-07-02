@@ -1,24 +1,15 @@
-Basándote en un input que describe un dataset y su variable objetivo, genera el output siguiente en formato JSON:
+Basándote en un datasetDescription que describe un dataset y su variable objetivo, genera el output siguiente en formato JSON, los keys deben ser siempre en inglés y camelCase, miestras que los values deben respetar el idioma del datasetDescription:
+
 {
-  "name": [String: nombre genérico sin mencionar el tipo de problema (no decir si es clasifiación, regresión u otro)],
-  "alias": [String: mismo nombre en kebab-case]
-  "datasetDescription": [String: descripción sencilla del dataset, nombrando algunos features, y la variable objetivo. Es una idea clara del input, adecuándolo si es necesario],
-  "language": [String: idioma que reconoces del input. Debe ser su código de idioma estándar (ISO 639-1): "en", "es", "fr", etc.]
+  "title": [String: nombre genérico sin mencionar el tipo de problema (no decir si es clasifiación, regresión u otro)],
+  "userDatasetDescription": [String: el mismo datasetDescription que se ingresó pero con la ortografía y signos de puntuación corregidos],
+  "language": [String: idioma que reconoces del datasetDescription. Debe ser su código de idioma estándar (ISO 639-1): "en", "es", "fr", etc.]
   "info":{
-    "problemDescription": [String: descripción del problema (sin mencionar los features), y el objetivo de una forma clara y precisa],
+    "problemDescription": [String: descripción del problema mencionando las features y el objetivo de una forma clara y precisa],
     "mainFeatures": [String: hasta siete features principales del dataset que consideres lógicos, incluyendo al final la variable objetivo, separados por comas y escritos en PascalCase],
     "targetVariable": [String: La variable objetivo dicha de forma simple y directa en Title Case],
-    "numberOfFeatures": [Number: Cantidad de columnas que contiene el dataset. Si el datasetDescription no lo especifica, inventa un valor razonable según el tipo de problema]
-    "datasetSize": [Number: Cantidad de filas que contiene el dataset. Si el datasetDescription no lo especifica, inventa un valor razonable según el tipo de problema],
-    "hasComplexData": [Boolean: un booleano que describe si el dataset maneja o no data compleja como texto, imágenes, audio, video, grafos, datos de alta dimensión, etc. Debe ser algo lógico según el tipo de problema]
+    "columns": [Number: Cantidad de columnas que contiene el dataset. Si el datasetDescription no lo especifica, inventa un valor razonable según el tipo de problema]
+    "rows": [Number: Cantidad de filas que contiene el dataset. Si el datasetDescription no lo especifica, inventa un valor razonable según el tipo de problema],
+    "needsDimensionalityReduction": [Boolean: es true si se necesitará reducción de dimensionalidad, esto es: si existen muchas features, si hay redundancia, ruido o correlación entre ellas; o bien si se manejan datos complejos como fotografías, audios, textos, etc; sino es false]
   }
 }
-
-Nota: puedes basarte en datasets de internet para ayudarte a completar los campos (sobre todo numberOfFeatures y datasetSize) si se tratan de problemas típicos y conocidos de machine learning.
-      Los keys se escribirán siempre en inglés y en camelCase, pero los valores serán escritos en el idioma que indique "lenguage".
-
-EJEMPLOS:
-
-infoResponses.data.json
-
-

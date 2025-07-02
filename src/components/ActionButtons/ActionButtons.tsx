@@ -16,7 +16,7 @@ import ChangePasswordDialogContent from '../DialogContents/ChangePassword.dialog
 import { Button } from '@/components/ui/button';
 import { CirclePlus } from 'lucide-react';
 import { usePathname } from 'next/navigation';
-import { TransitionLink } from '../TransitionLink/TransitionLink';
+import { TransitionLink } from '../TransitionLink';
 
 const ActionButtons: React.FC = () => {
   const pathname = usePathname();

@@ -5,7 +5,7 @@ import {
   DialogHeader,
   DialogTitle,
 } from '@/components/ui/dialog';
-import StillDevelopingCard from '@/components/StillDevelopingCard/StillDevelopingCard';
+import StillDevelopingCard from '@/components/StillDevelopingCard';
 
 const GenerateCodeDialogContent: React.FC = () => {
   return (

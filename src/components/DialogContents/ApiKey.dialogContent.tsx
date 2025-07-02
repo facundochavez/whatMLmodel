@@ -25,7 +25,7 @@ const ApiKeyDialogContent: React.FC = () => {
           <a
             href='https://gemini.google.com/'
             target='_blank'
-            className='underline'
+            className='underline hover:text-primary'
           >
             Gemini website
           </a>

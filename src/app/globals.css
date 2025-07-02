@@ -116,3 +116,15 @@ main {
   flex-direction: column;
   align-items: center;
 }
+
+.cm-editor {
+  color: #c4c4c4 !important;
+  font-size: 0.875rem !important;
+  background-color: transparent !important;
+  height: 100%;
+  max-width: 100%;
+}
+
+.cm-gutters {
+  display: none !important;
+}

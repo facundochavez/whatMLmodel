@@ -1,6 +1,6 @@
 import React from 'react';
 import Image from 'next/image';
-import { Collaborator } from '@/types';
+import { Collaborator } from '@/types/common.types';
 
 const CollaboratorThumbnail = ({
   collaborator,

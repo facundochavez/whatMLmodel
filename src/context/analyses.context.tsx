@@ -1,7 +1,8 @@
 'use client';
 import React, { createContext, useContext, useState, useEffect } from 'react';
-import modelsResponsesDataRaw from '@/prompts/modelsResponses.data.json';
-import { Pipeline, View } from '@/types';
+import { analysesMock } from '@/mocks/analyses.mock';
+import { View } from '@/types/common.types';
+import { Analysis } from '@/types/analysis.types';
 import { useRouter, usePathname } from 'next/navigation';
 import sleep from '@/utils/sleep';
 
@@ -10,16 +11,13 @@ interface AnalysesContextProps {
   recentsView: View[];
   favoritesView: View[];
 
-  currentAnalysis: Pipeline;
-  setCurrentAnalysis: React.Dispatch<React.SetStateAction<Pipeline>>;
-  selectedAnalysisId: string;
+  currentAnalysis: Analysis | null;
+  setCurrentAnalysis: React.Dispatch<React.SetStateAction<Analysis | null>>;
+  selectedAnalysisId: string | null;
   setSelectedAnalysisId: React.Dispatch<React.SetStateAction<string>>;
 
-  selectedPipeline: Pipeline;
-  setSelectedPipeline: React.Dispatch<React.SetStateAction<Pipeline>>;
-
-  auxiliarAnalysis: Pipeline;
-  auxiliarAnalysisTwo: Pipeline;
+  auxiliarAnalysis: Analysis;
+  auxiliarAnalysisTwo: Analysis;
   setAuxiliarAnalysisIndex: React.Dispatch<React.SetStateAction<number>>;
 
   isPageTransitioning: boolean;
@@ -31,9 +29,7 @@ interface AnalysesContextProps {
   handleSelectAnalysis: (id: string) => void;
 }
 
-const AnalysesContext = createContext<AnalysesContextProps | undefined>(
-  undefined
-);
+const AnalysesContext = createContext<AnalysesContextProps | undefined>(undefined);
 
 interface AnalysesProviderProps {
   children: React.ReactNode;
@@ -41,14 +37,12 @@ interface AnalysesProviderProps {
 
 export const AnalysesProvider = ({ children }: AnalysesProviderProps) => {
   // ESTE ARRAY SIMULA LA BASE DE DATOS
-  const [analyses, setAnalyses] = useState<Pipeline[]>(
-    modelsResponsesDataRaw as Pipeline[]
-  );
+  const [analyses, setAnalyses] = useState<Analysis[]>(analysesMock);
   // ESTAS SON VARIABLES AUXILIARES PARA SIMULAR LA GENERACIÓN DE UN NUEVO ANÁLISIS MEDIANTE AI.
   const [auxiliarAnalysisIndex, setAuxiliarAnalysisIndex] = useState<number>(0);
-  const auxiliarAnalysis = modelsResponsesDataRaw[auxiliarAnalysisIndex] as Pipeline;
-  const auxiliarAnalysisTwo = modelsResponsesDataRaw[4] as Pipeline;
-  // ANALYSES, RECENTS Y FAVORITES SON DE TIPO PIPELINE[] PERO SOLO CONTIENE: ID, TITLE, ISFAVORITE
+  const auxiliarAnalysis = analysesMock[auxiliarAnalysisIndex];
+  const auxiliarAnalysisTwo = analysesMock[4];
+  // ANALYSES, RECENTS Y FAVORITES SON DE TIPO ANALYSIS[] PERO SOLO CONTIENE: ID, TITLE, ISFAVORITE
   const [analysesView, setAnalysesView] = useState<View[]>(
     analyses.slice(3).map(({ id, title, isFavorite }) => ({
       id,
@@ -56,21 +50,14 @@ export const AnalysesProvider = ({ children }: AnalysesProviderProps) => {
       isFavorite,
     }))
   );
-  const recentsView: View[] = analysesView.filter(
-    (analysisView) => !analysisView.isFavorite
-  );
-  const favoritesView: View[] = analysesView.filter(
-    (analysisView) => analysisView.isFavorite
-  );
-  // CURRENT ANÁLISIS ES DE TIPO PIPELINE[] Y PUEDE CONTENER TODO HASTA RECOMMENDATIONS -> SE SINCRONIZA CON EL BACKEND (modelsResponsesData EN ESTE CASO)
-  const [currentAnalysis, setCurrentAnalysis] = useState<Pipeline>({});
+  const recentsView: View[] = analysesView.filter((analysisView) => !analysisView.isFavorite);
+  const favoritesView: View[] = analysesView.filter((analysisView) => analysisView.isFavorite);
+  // CURRENT ANÁLISIS ES DE TIPO ANALYSIS[] Y PUEDE CONTENER TODO HASTA RECOMMENDATIONS -> SE SINCRONIZA CON EL BACKEND (modelsResponsesData EN ESTE CASO)
+  const [currentAnalysis, setCurrentAnalysis] = useState<Analysis | null>(null);
   const [selectedAnalysisId, setSelectedAnalysisId] = useState<string>('');
   // CURRENT ANÁLISIS SE COMPLETA EN LOS COMPONENTES: STEP ONE (HANDLE GENERATE INFO) Y STEP TWO (HANLDE GET RECOMMENDATIONS) AMBAS FUNCIONES SON UNA SIMULACIÓN QUE LLAMAN A
   // auxiliarAnalysis, PERO TENER CUIDADO QUE AMBAS MANEJAN ESTADOS QUE PERMITE A LOS BOTONES REACCIONAR A "IS GENERATIN INFO" E "IS GETTING RECOMMENDATIONS" (AMBAS FUNCIONES
   // DEL GLOBAL CONTEXT) Y MOSTRAR ASÍ UN SPINNER DE CARGA
-
-  // EK SIGUIENTE ES UN ESTADO APRA VER LOS LATEST PIPELINES
-  const [selectedPipeline, setSelectedPipeline] = useState<Pipeline>(auxiliarAnalysis);
 
   //
   // LAS SIGUIENTES FUNCIONES TIENEN UN APPROACH DE "OPTIMISTIC UI UPDATE"-> FRONTEND / BACKEND / FRONTEND
@@ -80,23 +67,12 @@ export const AnalysesProvider = ({ children }: AnalysesProviderProps) => {
   // AL FRONTEND NO LE PREOCUPA ESTE CAMBIO PORQUE YA PONE EN PRIMERA POSICIÓN LO QUE SEA MODIFICADO
 
   const handleToggleFavorite = async (analysisId: string) => {
-    console.log(
-      analysisId,
-      typeof analysisId,
-      currentAnalysis.id,
-      typeof currentAnalysis.id
-    );
     // SE ACTUALIZA EL CURRENT ANALYSIS, CAMBIANDO EL VALOR DE "ISFAVORITE"
-    if (currentAnalysis.id === analysisId) {
-      setCurrentAnalysis((prevAnalysis) => ({
-        ...prevAnalysis,
-        isFavorite: !prevAnalysis.isFavorite,
-      }));
+    if (currentAnalysis?.id === analysisId) {
+      setCurrentAnalysis({ ...currentAnalysis, isFavorite: !currentAnalysis.isFavorite });
     }
     // SE ACTUALIZA EL ARRAY ANALYSESVIEW, CAMBIANDO EL VALOR DE "ISFAVORITE" Y ENVIANDO A LA PRIMERA POSICIÓN
-    const analysisViewIndex = analysesView.findIndex(
-      (analysisView) => analysisView.id === analysisId
-    );
+    const analysisViewIndex = analysesView.findIndex((analysisView) => analysisView.id === analysisId);
     if (analysisViewIndex === -1) return;
     const analysisViewToToggle = {
       ...analysesView[analysisViewIndex],
@@ -107,9 +83,7 @@ export const AnalysesProvider = ({ children }: AnalysesProviderProps) => {
     setAnalysesView([analysisViewToToggle, ...updatedAnalysesView]);
 
     // SIMULACIÓN DE ACTUALIZACIÓN DEL BACKEND:
-    const analysisIndex = analyses.findIndex(
-      (analysis) => analysis.id === analysisId
-    );
+    const analysisIndex = analyses.findIndex((analysis) => analysis.id === analysisId);
     if (analysisIndex === -1) return;
     const analysisToToggle = {
       ...analyses[analysisIndex],
@@ -118,15 +92,6 @@ export const AnalysesProvider = ({ children }: AnalysesProviderProps) => {
     const updatedAnalyses = [...analyses];
     updatedAnalyses.splice(analysisIndex, 1);
     setAnalyses([analysisToToggle, ...updatedAnalyses]);
-
-    // EJENMPLO DE CÓMO SE PUEDE ACTUALIZAR EL BACKEND Y REVERTIR:
-    /* try {
-      await updateFavoriteStatusOnBackend(analysisId); // Aquí llamas a tu API backend
-    } catch (error) {
-      // Si hay un error, revertir el cambio en el frontend
-      // REVERTIR AQUÍ
-      console.error("Error al actualizar favorito en el backend", error);
-    } */
   };
 
   // HANDLE DELETE ANALYSIS
@@ -134,14 +99,10 @@ export const AnalysesProvider = ({ children }: AnalysesProviderProps) => {
   const pathname = usePathname();
 
   const handleDeleteAnalysis = async (analysisId: string) => {
-    const updatedAnalysesView = analysesView.filter(
-      (analysisView) => analysisView.id !== analysisId
-    );
+    const updatedAnalysesView = analysesView.filter((analysisView) => analysisView.id !== analysisId);
     setAnalysesView(updatedAnalysesView);
 
-    const updatedAnalyses = analyses.filter(
-      (analysis) => analysis.id !== analysisId
-    );
+    const updatedAnalyses = analyses.filter((analysis) => analysis.id !== analysisId);
     setAnalyses(updatedAnalyses);
 
     if (currentAnalysis?.id === analysisId) {
@@ -150,7 +111,7 @@ export const AnalysesProvider = ({ children }: AnalysesProviderProps) => {
       main.classList.add('page-transition');
       await sleep(300);
       router.push('/');
-      setCurrentAnalysis({});
+      setCurrentAnalysis(null);
     }
   };
 
@@ -177,9 +138,7 @@ export const AnalysesProvider = ({ children }: AnalysesProviderProps) => {
   const handleUpdateRecommendations = () => {
     if (!currentAnalysis || !currentAnalysis.id) return;
 
-    const analysisIndex = analyses.findIndex(
-      (analysis) => analysis.id === currentAnalysis.id
-    );
+    const analysisIndex = analyses.findIndex((analysis) => analysis.id === currentAnalysis.id);
 
     if (analysisIndex !== -1) {
       const updatedAnalysis = {
@@ -191,9 +150,7 @@ export const AnalysesProvider = ({ children }: AnalysesProviderProps) => {
       setAnalyses([updatedAnalysis, ...updatedAnalyses]);
     }
 
-    const analysisViewIndex = analysesView.findIndex(
-      (analysisView) => analysisView.id === currentAnalysis.id
-    );
+    const analysisViewIndex = analysesView.findIndex((analysisView) => analysisView.id === currentAnalysis.id);
 
     if (analysisViewIndex !== -1) {
       const updatedAnalysisView = {
@@ -216,9 +173,10 @@ export const AnalysesProvider = ({ children }: AnalysesProviderProps) => {
 
     const analysis = analyses.find((analysis) => analysis.id === analysisId);
     await sleep(200);
-    setCurrentAnalysis({
-      ...analysis,
-    });
+
+    if (analysis) {
+      setCurrentAnalysis({ ...analysis });
+    }
 
     if (pathname === '/analysis') {
       setIsPageTransitioning(true);
@@ -248,8 +206,6 @@ export const AnalysesProvider = ({ children }: AnalysesProviderProps) => {
         selectedAnalysisId,
         setSelectedAnalysisId,
 
-        selectedPipeline,
-        setSelectedPipeline,
         auxiliarAnalysis,
         auxiliarAnalysisTwo,
         setAuxiliarAnalysisIndex,
@@ -271,9 +227,7 @@ export const AnalysesProvider = ({ children }: AnalysesProviderProps) => {
 export const useAnalysesContext = () => {
   const context = useContext(AnalysesContext);
   if (!context) {
-    throw new Error(
-      'useAnalysesContext must be used within a AnalysesProvider'
-    );
+    throw new Error('useAnalysesContext must be used within a AnalysesProvider');
   }
   return context;
 };

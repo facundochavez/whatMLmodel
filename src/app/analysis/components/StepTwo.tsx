@@ -12,7 +12,7 @@ import {
 import { DialogFooter } from '@/components/ui/dialog';
 import { AiStarsIcon } from '@/icons/AiStarsIcon';
 import useTextReveal from '@/hooks/useTextReveal';
-import { TransitionLink } from '@/components/TransitionLink/TransitionLink';
+import { TransitionLink } from '@/components/TransitionLink';
 import StepTwoForm from '@/components/Forms/StepTwo.form';
 import { useEffect, useState } from 'react';
 import { useAnalysesContext } from '@/context/analyses.context';
@@ -128,7 +128,7 @@ const StepTwo: React.FC<StepTwoProps> = ({ setIsAiThinking }) => {
 
   return (
     <section className='w-full flex flex-col items-center gap-6'>
-      <header className='w-full flex items-center justify-center max-w-[1050px] relative pl-14 pr-8 md:pr-14'>
+      <header className='w-full flex items-center justify-center max-w-[70rem] relative pl-14 pr-8 md:pr-14'>
         <TransitionLink
           href='/'
           className='absolute left-0 opacity-0 animate-fade-in [animation-fill-mode:forwards]'

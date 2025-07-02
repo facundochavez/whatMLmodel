@@ -10,7 +10,7 @@ const Hero = () => {
     <section
       className={`w-full flex flex-col items-center max-w-[700px] pt-6 sm:pt-16 lg:pt-20`}
     >
-      <h2 className='text-3xl text-center text-muted-foreground font-semibold sm:text-4xl'>
+      <h2 className='text-3xl text-center text-muted-foreground font-semibold sm:text-4xl duration-200 delay-100'>
         Use AI to find the machine learning model that best fits your data
       </h2>
       <div className='w-full flex gap-2 items-center flex-wrap justify-center mt-6'>

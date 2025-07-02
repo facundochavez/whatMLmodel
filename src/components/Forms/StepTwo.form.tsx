@@ -15,7 +15,7 @@ import {
 import { Input } from '@/components/ui/input';
 import { CircleHelp } from 'lucide-react';
 import { useEffect, useRef, useState } from 'react';
-import { CollapsibleBox } from '../CollapsibleBox/CollapsibleBox';
+import { CollapsibleBox } from '../CollapsibleBox';
 import { useGlobalContext } from '@/context/global.context';
 import { Textarea } from '../ui/textarea';
 import {

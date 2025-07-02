@@ -1,8 +1,8 @@
 import { Button } from '@/components/ui/button';
 import React from 'react';
 import CollaboratorsDaraRaw from '@/data/collaborators.data.json';
-import CollaboratorThumbnail from '@/components/CollaboratorThumbnail/CollaboratorThumbnail';
-import { Collaborator } from '@/types';
+import CollaboratorThumbnail from '@/components/CollaboratorThumbnail';
+import { Collaborator } from '@/types/common.types';
 import { Code2 } from 'lucide-react';
 
 const Collaborators: React.FC = () => {
@@ -11,8 +11,8 @@ const Collaborators: React.FC = () => {
   return (
     <div className='w-screen relative flex flex-col items-center px-[5%] mt-4 -mb-10'>
       <div className='absolute w-full h-full bg-muted/30 -z-10' />
-      <section className='w-full max-w-[1050px] py-24 flex flex-col items-center gap-10'>
-        <h2 className='text-2xl text-center font-semibold max-w-[600px]'>
+      <section className='w-full max-w-[70rem] py-24 flex flex-col items-center gap-10'>
+        <h2 className='text-2xl text-center font-semibold max-w-[38rem]'>
           This is an Open Source project, and we’re planning some cool new
           features. Want to join?
         </h2>

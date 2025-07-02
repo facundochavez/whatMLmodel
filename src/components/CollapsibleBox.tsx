@@ -1,7 +1,6 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { Button } from '@/components/ui/button';
 import { ChevronUp } from 'lucide-react';
-import { clear } from 'console';
 import { useGlobalContext } from '@/context/global.context';
 
 interface CollapsibleBoxProps {

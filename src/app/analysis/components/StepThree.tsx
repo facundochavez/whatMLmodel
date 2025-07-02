@@ -1,6 +1,6 @@
 'use client';
 import TablesGroup from '@/components/TablesGroup/TablesGroup';
-import TypingText from '@/components/TypingText/TypingText';
+import TypingText from '@/components/TypingText';
 import { useAnalysesContext } from '@/context/analyses.context';
 import generateRandomUUID from '@/utils/generateRandomUUID';
 
@@ -12,7 +12,7 @@ const StepThree: React.FC<StepThreeProps> = ({ isAiThinking }) => {
   const { currentAnalysis } = useAnalysesContext();
 
   return (
-    <section className='w-full max-w-[1050px] flex flex-col gap-8'>
+    <section className='w-full max-w-[70rem] flex flex-col gap-8'>
       {currentAnalysis?.recommendations?.map((recommendation, index) => (
         <section key={generateRandomUUID()} className='flex flex-col gap-8 sm:gap-4'>
           {recommendation.title && (

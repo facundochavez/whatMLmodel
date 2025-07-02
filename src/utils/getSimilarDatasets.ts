@@ -6,14 +6,14 @@ const similarDatasetsData: SimilarDatasetsData =
   similarDatasetsDataRaw as SimilarDatasetsData;
 
 export default function getSimilarDatasets({
-  similarDatasetAliases,
+  similarDatasetAlias,
 }: {
-  similarDatasetAliases: string[];
+  similarDatasetAlias: string[];
 }): SimilarDatasetsData {
 
   const similarDatasets: SimilarDatasetsData = [];
 
-  for (const alias of similarDatasetAliases) {
+  for (const alias of similarDatasetAlias) {
     const similarDataset = similarDatasetsData.find(
       (similarDataset) => similarDataset.alias === alias
     );

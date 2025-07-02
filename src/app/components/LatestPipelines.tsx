@@ -1,50 +1,35 @@
 'use client';
 
-import React, { useState } from 'react';
-import modelsResponsesDataRaw from '@/prompts/modelsResponses.data.json';
-import PipelineCard from '@/components/PipelineCard/PipelineCard';
-import { Pipeline } from '@/types';
+import React, { useEffect, useState } from 'react';
+import PipelineCard from '@/components/PipelineCard';
+import { Pipeline } from '@/types/pipeline.types';
 import { Dialog } from '@radix-ui/react-dialog';
 import PipelineDialogContent from '@/components/DialogContents/Pipeline.dialogContent';
-import { CollapsibleBox } from '@/components/CollapsibleBox/CollapsibleBox';
+import { CollapsibleBox } from '@/components/CollapsibleBox';
 import { useGlobalContext } from '@/context/global.context';
-import { useAnalysesContext } from '@/context/analyses.context';
-
-// VALIDACIÓN DE DATOS (BORRAR LUEGO)
-const validateModelResponses = (data: any[]): Pipeline[] => {
-  return data.filter((item) => {
-    if (typeof item !== 'object' || !item) return false;
-    return true;
-  }) as Pipeline[];
-};
+import { getLatestPublicPipelines } from '@/utils/getLatestPublicPipelines';
 
 const LatestPipelines = () => {
   const [isBoxCollapsed, setIsBoxCollapsed] = useState(true);
-  const { isMobile } = useGlobalContext();
-  // SE CARGA DATOS LOCALES DE MANERA AUXILIAR
-  const modelsResponsesData: Pipeline[] = validateModelResponses(
-    modelsResponsesDataRaw
-  );
-  // EL PIPELINE SELECCIONADO DEBERÍA HACER UN GET PARA REQUERIR INFORMACIÓN MÁS DETALLADA
-  const { setSelectedPipeline } = useAnalysesContext();
+  const { isMobile, setSelectedPipelineModelIndex } = useGlobalContext();
+  const { setSelectedPipeline } = useGlobalContext();
+  const [latestPipelines, setLatestPipelines] = useState<Pipeline[]>([]);
+
+  useEffect(() => {
+    getLatestPublicPipelines().then(setLatestPipelines);
+  }, []);
 
   return (
-    <Dialog>
-      <section className={`w-full flex flex-col max-w-[1050px] mt-4 gap-5`}>
-        <h3 className='text-2xl font-semibold'>Latest pipelines added</h3>
-        <CollapsibleBox
-          collapsedHeight={isMobile ? 750 : 380}
-          externalIsCollapsed={isBoxCollapsed}
-          onCollapseChange={setIsBoxCollapsed}
-        >
-          <ul className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4'>
-            {modelsResponsesData.map((response, index) => {
-              return (
-                <li key={index} onClick={() => setSelectedPipeline(response)}>
-                  <PipelineCard dataset={response} />
-                </li>
-              );
-            })}
+    <Dialog onOpenChange={() => setSelectedPipelineModelIndex('0')}>
+      <section className="w-full flex flex-col max-w-[70rem] mt-4 gap-5">
+        <h3 className="text-2xl font-semibold duration-300 delay-75">Latest added pipelines</h3>
+        <CollapsibleBox collapsedHeight={isMobile ? 750 : 380} externalIsCollapsed={isBoxCollapsed} onCollapseChange={setIsBoxCollapsed}>
+          <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            {latestPipelines.map((pipeline) => (
+              <li key={pipeline.alias} onClick={() => setSelectedPipeline(pipeline)}>
+                <PipelineCard pipeline={pipeline} />
+              </li>
+            ))}
           </ul>
         </CollapsibleBox>
       </section>

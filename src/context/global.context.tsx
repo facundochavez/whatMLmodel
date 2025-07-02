@@ -1,6 +1,6 @@
 'use client';
 import React, { createContext, useContext, useState, useEffect } from 'react';
-import { Pipeline } from '@/types';
+import { Pipeline } from '@/types/pipeline.types';
 
 interface GlobalContextProps {
   isUserLoggedIn: boolean;
@@ -20,6 +20,11 @@ interface GlobalContextProps {
   setShowApiKeyDialog: React.Dispatch<React.SetStateAction<boolean>>;
   showResetPasswordDialog: boolean;
   setShowResetPasswordDialog: React.Dispatch<React.SetStateAction<boolean>>;
+
+  selectedPipeline: Pipeline | null;
+  setSelectedPipeline: React.Dispatch<React.SetStateAction<Pipeline | null>>;
+  selectedPipelineModelIndex: string;
+  setSelectedPipelineModelIndex: React.Dispatch<React.SetStateAction<string>>;  
 }
 
 const GlobalContext = createContext<GlobalContextProps | undefined>(undefined);
@@ -33,21 +38,20 @@ export const GlobalProvider = ({ children }: GlobalProviderProps) => {
   const [isUserLoggedIn, setIsUserLoggedIn] = useState<boolean>(true);
   const userEmail = 'your_email@gmail.com';
 
-
-
   // BASICS
   const [isMobile, setIsMobile] = useState<boolean>(false);
   const [isUserRegistering, setIsUserRegistering] = useState<boolean>(false);
 
   // DIALOGS STATES
   const [showAuthDialog, setShowAuthDialog] = useState<boolean>(false);
-  const [showAccountSettingsDialog, setShowAccountSettingsDialog] =
-    useState<boolean>(false);
-  const [showChangePasswordDialog, setShowChangePasswordDialog] =
-    useState<boolean>(false);
+  const [showAccountSettingsDialog, setShowAccountSettingsDialog] = useState<boolean>(false);
+  const [showChangePasswordDialog, setShowChangePasswordDialog] = useState<boolean>(false);
   const [showApiKeyDialog, setShowApiKeyDialog] = useState<boolean>(false);
-  const [showResetPasswordDialog, setShowResetPasswordDialog] =
-    useState<boolean>(false);
+  const [showResetPasswordDialog, setShowResetPasswordDialog] = useState<boolean>(false);
+
+  // SELECTED PIPELINE
+  const [selectedPipeline, setSelectedPipeline] = useState<Pipeline | null>(null);
+  const [selectedPipelineModelIndex, setSelectedPipelineModelIndex] = useState<string>('0');
 
   useEffect(() => {
     const handleResize = () => {
@@ -79,6 +83,10 @@ export const GlobalProvider = ({ children }: GlobalProviderProps) => {
         setShowApiKeyDialog,
         showResetPasswordDialog,
         setShowResetPasswordDialog,
+        selectedPipeline,
+        setSelectedPipeline,
+        selectedPipelineModelIndex,
+        setSelectedPipelineModelIndex,
       }}
     >
       {children}

@@ -39,9 +39,7 @@ export default function RootLayout({
       <body className='relative' lang='en'>
         <ThemeProvider
           attribute='class'
-          defaultTheme='system'
-          enableSystem
-          disableTransitionOnChange
+          defaultTheme='dark'
         >
           <GlobalProvider>
             <AnalysesProvider>

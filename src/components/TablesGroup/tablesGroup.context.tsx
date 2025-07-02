@@ -1,13 +1,13 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import { Model, ProblemType, SimilarDataset, TablesProps } from './types';
-import getModels from '@/utils/getModel';
+import getModelsByAlias from '@/utils/getModelsByAlias';
 import getSimilarDatasets from '@/utils/getSimilarDatasets';
 import getPerformanceMetrics from '@/utils/getPerformanceMetrics';
 import columnsRegression from './SimilarDatasetsTable/columnsRegression';
 import columnsClassification from './SimilarDatasetsTable/columnsClassification';
 import columnsClustering from './SimilarDatasetsTable/columnsClustering';
 import columnsDimensionalityReduction from './SimilarDatasetsTable/columnsDimensionalityReduction';
-import getPipelineByAlias from '@/utils/getPipelineByAlias';
+import getPuclicPipelineByAlias from '@/utils/getPublicPipelineByAlias';
 import { useAnalysesContext } from '@/context/analyses.context';
 
 interface TablesGroupContextProps {
@@ -35,19 +35,19 @@ export const TablesGroupProvider = ({
 }: TablesGroupProviderProps) => {
   const [selectedDatasetIndex, setSelectedDatasetIndex] = useState<string>('0');
 
-  const models: Model[] = getModels({
+  const models: Model[] = getModelsByAlias({
     type: type,
-    modelsAliases: tables.modelsAliases,
+    modelsAlias: tables.modelsAlias,
   });
 
   const similarDatasets: SimilarDataset[] = getSimilarDatasets({
-    similarDatasetAliases: tables.similarDatasetsAliases,
+    similarDatasetAlias: tables.similarDatasetsAlias,
   });
 
   const performanceMetrics = getPerformanceMetrics({
     type: type,
-    modelsAliases: tables.modelsAliases,
-    datasetAlias: tables.similarDatasetsAliases[Number(selectedDatasetIndex)],
+    modelsAlias: tables.modelsAlias,
+    datasetAlias: tables.similarDatasetsAlias[Number(selectedDatasetIndex)],
   });
 
   const columnsPerformanceMetrics: Record<string, any> = {

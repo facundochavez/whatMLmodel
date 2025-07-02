@@ -11,8 +11,8 @@ export type ProblemType =
 export interface TablesProps {
   type: ProblemType;
   tables: {
-    modelsAliases: string[];
-    similarDatasetsAliases: string[];
+    modelsAlias: string[];
+    similarDatasetsAlias: string[];
   };
 }
 

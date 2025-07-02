@@ -19,7 +19,7 @@ import { DialogFooter } from '@/components/ui/dialog';
 import { useEffect, useState } from 'react';
 import { tryingExampleService } from '@/services/tryingExampleService';
 import { AiStarsIcon } from '@/icons/AiStarsIcon';
-import { TransitionLink } from '@/components/TransitionLink/TransitionLink';
+import { TransitionLink } from '@/components/TransitionLink';
 import { LoaderCircle } from 'lucide-react';
 import { useAnalysesContext } from '@/context/analyses.context';
 
@@ -72,7 +72,7 @@ const StepOne: React.FC = () => {
             name='datasetDescription'
             render={({ field }) => (
               <FormItem>
-                <FormLabel>
+                <FormLabel className='duration-300 delay-75'>
                   Make a simple description of your dataset and target variable:
                 </FormLabel>
                 <FormControl>

@@ -54,6 +54,11 @@
   ],
   "clustering": [
     {
+      "name": "Inertia",
+      "shortName": "Inertia",
+      "key": "inertia"
+    },
+    {
       "name": "Silhouette Score",
       "shortName": "SS",
       "key": "silhouetteScore"
@@ -62,6 +67,11 @@
       "name": "Davies-Bouldin Index",
       "shortName": "DBI",
       "key": "daviesBouldinIndex"
+    },
+        {
+      "name": "Calinski-Harabasz Index",
+      "shortName": "CHI",
+      "key": "calinskiHarabaszIndex"
     },
     {
       "name": "Adjusted Rand Index",
@@ -72,6 +82,11 @@
       "name": "Normalized Mutual Information",
       "shortName": "NMI",
       "key": "normalizedMutualInformation"
+    },
+    {
+      "name": "Fowlkes-Mallows Index",
+      "shortName": "FMI",
+      "key": "fowlkesMallowsScore"
     },
     {
       "name": "Homogeneity",

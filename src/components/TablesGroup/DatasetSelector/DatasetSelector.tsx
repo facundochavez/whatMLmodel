@@ -11,7 +11,7 @@ import ViewButton from './ViewButton/ViewButton';
 import { useGlobalContext } from '@/context/global.context';
 import { useTablesGroupContext } from '../tablesGroup.context';
 import { useAnalysesContext } from '@/context/analyses.context';
-import getPipelineByAlias from '@/utils/getPipelineByAlias';
+import getPuclicPipelineByAlias from '@/utils/getPublicPipelineByAlias';
 
 const DatasetSelector: React.FC = () => {
   const { isMobile } = useGlobalContext();
