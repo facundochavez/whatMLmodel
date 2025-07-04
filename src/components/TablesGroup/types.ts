@@ -12,7 +12,7 @@ export interface TablesProps {
   type: ProblemType;
   tables: {
     modelsAlias: string[];
-    similarDatasetsAlias: string[];
+    similarPipelinesAlias: string[];
   };
 }
 

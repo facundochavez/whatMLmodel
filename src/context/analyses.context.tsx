@@ -38,23 +38,22 @@ interface AnalysesProviderProps {
 export const AnalysesProvider = ({ children }: AnalysesProviderProps) => {
   // ESTE ARRAY SIMULA LA BASE DE DATOS
   const [analyses, setAnalyses] = useState<Analysis[]>(analysesMock);
+
   // ESTAS SON VARIABLES AUXILIARES PARA SIMULAR LA GENERACIÓN DE UN NUEVO ANÁLISIS MEDIANTE AI.
   const [auxiliarAnalysisIndex, setAuxiliarAnalysisIndex] = useState<number>(0);
   const auxiliarAnalysis = analysesMock[auxiliarAnalysisIndex];
   const auxiliarAnalysisTwo = analysesMock[4];
+
   // ANALYSES, RECENTS Y FAVORITES SON DE TIPO ANALYSIS[] PERO SOLO CONTIENE: ID, TITLE, ISFAVORITE
-  const [analysesView, setAnalysesView] = useState<View[]>(
-    analyses.slice(3).map(({ id, title, isFavorite }) => ({
-      id,
-      title,
-      isFavorite,
-    }))
-  );
+  const [analysesView, setAnalysesView] = useState<View[]>(analyses.slice(3).map(({ id, title, isFavorite }) => ({ id, title, isFavorite })));
+
   const recentsView: View[] = analysesView.filter((analysisView) => !analysisView.isFavorite);
   const favoritesView: View[] = analysesView.filter((analysisView) => analysisView.isFavorite);
+
   // CURRENT ANÁLISIS ES DE TIPO ANALYSIS[] Y PUEDE CONTENER TODO HASTA RECOMMENDATIONS -> SE SINCRONIZA CON EL BACKEND (modelsResponsesData EN ESTE CASO)
   const [currentAnalysis, setCurrentAnalysis] = useState<Analysis | null>(null);
   const [selectedAnalysisId, setSelectedAnalysisId] = useState<string>('');
+  
   // CURRENT ANÁLISIS SE COMPLETA EN LOS COMPONENTES: STEP ONE (HANDLE GENERATE INFO) Y STEP TWO (HANLDE GET RECOMMENDATIONS) AMBAS FUNCIONES SON UNA SIMULACIÓN QUE LLAMAN A
   // auxiliarAnalysis, PERO TENER CUIDADO QUE AMBAS MANEJAN ESTADOS QUE PERMITE A LOS BOTONES REACCIONAR A "IS GENERATIN INFO" E "IS GETTING RECOMMENDATIONS" (AMBAS FUNCIONES
   // DEL GLOBAL CONTEXT) Y MOSTRAR ASÍ UN SPINNER DE CARGA

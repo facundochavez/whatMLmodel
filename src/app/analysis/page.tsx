@@ -34,7 +34,7 @@ const AnalysisPage: React.FC = () => {
   return (
     <>
       <StepTwo setIsAiThinking={setIsAiThinking} />
-      {currentAnalysis.recommendations && (
+      {currentAnalysis?.recommendations && (
         <StepThree isAiThinking={isAiThinking} />
       )}
     </>

@@ -41,13 +41,13 @@ export const TablesGroupProvider = ({
   });
 
   const similarDatasets: SimilarDataset[] = getSimilarDatasets({
-    similarDatasetAlias: tables.similarDatasetsAlias,
+    similarDatasetAlias: tables.similarPipelinesAlias,
   });
 
   const performanceMetrics = getPerformanceMetrics({
     type: type,
     modelsAlias: tables.modelsAlias,
-    datasetAlias: tables.similarDatasetsAlias[Number(selectedDatasetIndex)],
+    datasetAlias: tables.similarPipelinesAlias[Number(selectedDatasetIndex)],
   });
 
   const columnsPerformanceMetrics: Record<string, any> = {

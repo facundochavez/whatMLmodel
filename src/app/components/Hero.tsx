@@ -1,6 +1,6 @@
-import tryExamplesData from '@/data/try-examples.data.json';
+import { sampleDescriptions } from '@/data/sample-descriptions.data';
 import { Badge } from '@/components/ui/badge';
-import { tryingExampleService } from '@/services/tryingExampleService';
+import { sampleDescriptionsService } from '@/services/sampleDescriptionsService';
 import { useAnalysesContext } from '@/context/analyses.context';
 
 const Hero = () => {
@@ -15,17 +15,17 @@ const Hero = () => {
       </h2>
       <div className='w-full flex gap-2 items-center flex-wrap justify-center mt-6'>
         <p className='text-[13px]'>Try with:</p>
-        {tryExamplesData.map((example, index) => (
+        {sampleDescriptions.map((sample, index) => (
           <Badge
             key={index}
             variant='secondary'
             className='cursor-pointer'
             onClick={() => {
-              tryingExampleService.setSubject(example.value);
+              sampleDescriptionsService.setSubject(sample.value);
               setAuxiliarAnalysisIndex(index);
             }}
           >
-            {`"${example.name}..."`}
+            {`"${sample.name}..."`}
           </Badge>
         ))}
       </div>

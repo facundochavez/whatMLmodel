@@ -15,10 +15,10 @@ const StepThree: React.FC<StepThreeProps> = ({ isAiThinking }) => {
     <section className='w-full max-w-[70rem] flex flex-col gap-8'>
       {currentAnalysis?.recommendations?.map((recommendation, index) => (
         <section key={generateRandomUUID()} className='flex flex-col gap-8 sm:gap-4'>
-          {recommendation.title && (
+          {currentAnalysis?.recommendationsTitle && (
             <TypingText
               key={generateRandomUUID()}
-              text={recommendation.title}
+              text={currentAnalysis.recommendationsTitle}
               wordsInterval={2}
               delay={0}
               disabled={!isAiThinking}

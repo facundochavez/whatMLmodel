@@ -2,13 +2,7 @@
 
 import { Button } from '@/components/ui/button';
 
-import {
-  ArrowLeft,
-  LoaderCircle,
-  PenLine,
-  RefreshCcw,
-  Star,
-} from 'lucide-react';
+import { ArrowLeft, LoaderCircle, PenLine, RefreshCcw, Star } from 'lucide-react';
 import { DialogFooter } from '@/components/ui/dialog';
 import { AiStarsIcon } from '@/icons/AiStarsIcon';
 import useTextReveal from '@/hooks/useTextReveal';
@@ -36,16 +30,13 @@ const StepTwo: React.FC<StepTwoProps> = ({ setIsAiThinking }) => {
   const [isUserEditingInfo, setIsUserEditingInfo] = useState<boolean>(false);
   const [isFormCollapsed, setIsFormCollapsed] = useState(true);
   const [isFormBlocked, setIsFormBlocked] = useState(false);
-  const [isButtonGettingRecommendations, setIsButtonGettingRecommendations] =
-    useState<boolean>(false);
+  const [isButtonGettingRecommendations, setIsButtonGettingRecommendations] = useState<boolean>(false);
 
-  const [isUseCreatingNewAnalysis, setIsUserCreatingNewAnalysis] =
-    useState(false);
-  const [isUserUpdatingRecommendations, setIsUserUpdatingRecommendations] =
-    useState(false);
+  const [isUseCreatingNewAnalysis, setIsUserCreatingNewAnalysis] = useState(false);
+  const [isUserUpdatingRecommendations, setIsUserUpdatingRecommendations] = useState(false);
 
   useEffect(() => {
-    if (!currentAnalysis.recommendations) {
+    if (!currentAnalysis?.recommendations) {
       setIsUserEditingInfo(true);
       setIsFormCollapsed(false);
       setIsFormBlocked(true);
@@ -54,7 +45,7 @@ const StepTwo: React.FC<StepTwoProps> = ({ setIsAiThinking }) => {
       setIsFormCollapsed(true);
       setIsFormBlocked(false);
     }
-  }, [currentAnalysis.recommendations]);
+  }, [currentAnalysis?.recommendations]);
 
   useEffect(() => {
     if (isUserEditingInfo) {
@@ -69,21 +60,9 @@ const StepTwo: React.FC<StepTwoProps> = ({ setIsAiThinking }) => {
     setIsButtonGettingRecommendations(true);
     window.scrollTo({ top: 0, behavior: 'smooth' });
 
-    
     setTimeout(() => {
-      const id = generateRandomUUID();
-      const newAnalysis = {
-        ...currentAnalysis,
-        id: id,
-        createdAt: auxiliarAnalysis.createdAt,
-        updatedAt: auxiliarAnalysis.updatedAt,
-        isFavorite: auxiliarAnalysis.isFavorite,
-        icon: auxiliarAnalysis.icon,
-        link: auxiliarAnalysis.link,
-        recommendations: auxiliarAnalysis.recommendations,
-      };
       setIsAiThinking(true);
-      setCurrentAnalysis({ ...newAnalysis });
+      setCurrentAnalysis({ ...auxiliarAnalysis });
       setIsUserCreatingNewAnalysis(true);
 
       setIsButtonGettingRecommendations(false);
@@ -91,9 +70,10 @@ const StepTwo: React.FC<StepTwoProps> = ({ setIsAiThinking }) => {
       setIsFormBlocked(false);
     }, 1000);
   };
+
   useEffect(() => {
     if (isUseCreatingNewAnalysis) {
-      currentAnalysis.id && handleAddAnalysis();
+      currentAnalysis?.id && handleAddAnalysis();
       setIsUserCreatingNewAnalysis(false);
     }
   }, [isUseCreatingNewAnalysis]);
@@ -105,13 +85,10 @@ const StepTwo: React.FC<StepTwoProps> = ({ setIsAiThinking }) => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
 
     setTimeout(() => {
-      const newRecommendations = {
-        recommendations: auxiliarAnalysisTwo.recommendations,
-      };
       setIsAiThinking(true);
       setCurrentAnalysis({
-        ...currentAnalysis,
-        ...newRecommendations,
+        ...auxiliarAnalysis,
+        ...auxiliarAnalysisTwo.recommendations,
       });
       setIsUserUpdatingRecommendations(true);
       setIsButtonGettingRecommendations(false);
@@ -121,23 +98,20 @@ const StepTwo: React.FC<StepTwoProps> = ({ setIsAiThinking }) => {
   };
   useEffect(() => {
     if (isUserUpdatingRecommendations) {
-      currentAnalysis.id && handleUpdateRecommendations();
+      currentAnalysis?.id && handleUpdateRecommendations();
       setIsUserUpdatingRecommendations(false);
     }
   }, [isUserUpdatingRecommendations]);
 
   return (
-    <section className='w-full flex flex-col items-center gap-6'>
-      <header className='w-full flex items-center justify-center max-w-[70rem] relative pl-14 pr-8 md:pr-14'>
-        <TransitionLink
-          href='/'
-          className='absolute left-0 opacity-0 animate-fade-in [animation-fill-mode:forwards]'
-        >
-          <Button variant='outline' size='icon'>
-            <ArrowLeft className='h-5 w-5' />
+    <section className="w-full flex flex-col items-center gap-6">
+      <header className="w-full flex items-center justify-center max-w-[70rem] relative pl-14 pr-8 md:pr-14">
+        <TransitionLink href="/" className="absolute left-0 opacity-0 animate-fade-in [animation-fill-mode:forwards]">
+          <Button variant="outline" size="icon">
+            <ArrowLeft className="h-5 w-5" />
           </Button>
         </TransitionLink>
-        {useTextReveal(currentAnalysis.title || '')}
+        {useTextReveal(currentAnalysis?.title || '')}
       </header>
 
       <StepTwoForm
@@ -146,34 +120,26 @@ const StepTwo: React.FC<StepTwoProps> = ({ setIsAiThinking }) => {
         isUserEditingInfo={isUserEditingInfo}
         onCollapseChange={(collapsed) => setIsFormCollapsed(collapsed)}
       >
-        <DialogFooter className='mt-4 md:mt-0'>
+        <DialogFooter className="mt-4 md:mt-0">
           {isUserEditingInfo ? (
             !currentAnalysis?.recommendations ? (
               <>
                 {!isButtonGettingRecommendations ? (
                   <>
-                    <TransitionLink href='/'>
-                      <Button
-                        type='button'
-                        variant='outline'
-                        className='w-full'
-                      >
-                        <RefreshCcw className='w-4 h-4 mr-2' />
+                    <TransitionLink href="/">
+                      <Button type="button" variant="outline" className="w-full">
+                        <RefreshCcw className="w-4 h-4 mr-2" />
                         Cancel and retry
                       </Button>
                     </TransitionLink>
-                    <Button
-                      type='submit'
-                      onClick={handleCreateNewAnalysis}
-                      className='flex items-center'
-                    >
-                      <AiStarsIcon className='mr-1.5 h-[18px] w-[18px]' />
+                    <Button type="submit" onClick={handleCreateNewAnalysis} className="flex items-center">
+                      <AiStarsIcon className="mr-1.5 h-[18px] w-[18px]" />
                       Get models
                     </Button>
                   </>
                 ) : (
-                  <Button type='button' disabled className='flex items-center'>
-                    <LoaderCircle className='h-4 w-4 mr-2 animate-spin' />
+                  <Button type="button" disabled className="flex items-center">
+                    <LoaderCircle className="h-4 w-4 mr-2 animate-spin" />
                     Getting models
                   </Button>
                 )}
@@ -183,7 +149,7 @@ const StepTwo: React.FC<StepTwoProps> = ({ setIsAiThinking }) => {
                 {!isButtonGettingRecommendations ? (
                   <>
                     <Button
-                      variant='outline'
+                      variant="outline"
                       onClick={() => {
                         setIsUserEditingInfo(false);
                         setIsFormCollapsed(true);
@@ -193,17 +159,13 @@ const StepTwo: React.FC<StepTwoProps> = ({ setIsAiThinking }) => {
                     >
                       Cancel
                     </Button>
-                    <Button
-                      type='submit'
-                      onClick={handleGetNewRecommendations}
-                      className='flex items-center'
-                    >
+                    <Button type="submit" onClick={handleGetNewRecommendations} className="flex items-center">
                       Apply changes
                     </Button>
                   </>
                 ) : (
-                  <Button type='button' disabled className='flex items-center'>
-                    <LoaderCircle className='h-4 w-4 mr-2 animate-spin' />
+                  <Button type="button" disabled className="flex items-center">
+                    <LoaderCircle className="h-4 w-4 mr-2 animate-spin" />
                     Getting models
                   </Button>
                 )}
@@ -212,19 +174,19 @@ const StepTwo: React.FC<StepTwoProps> = ({ setIsAiThinking }) => {
           ) : (
             <>
               <Button
-                variant='outline'
+                variant="outline"
                 onClick={() => {
-                  handleToggleFavorite(currentAnalysis.id as string);
+                  handleToggleFavorite(currentAnalysis?.id as string);
                 }}
               >
                 {!currentAnalysis?.isFavorite ? (
                   <>
-                    <Star className='w-4 h-4 mr-2' />
+                    <Star className="w-4 h-4 mr-2" />
                     Favorite
                   </>
                 ) : (
                   <>
-                    <Star className='w-4 h-4 mr-2 fill-foreground' />
+                    <Star className="w-4 h-4 mr-2 fill-foreground" />
                     In favorites
                   </>
                 )}
@@ -235,7 +197,7 @@ const StepTwo: React.FC<StepTwoProps> = ({ setIsAiThinking }) => {
                   window.scrollTo({ top: 0, behavior: 'smooth' });
                 }}
               >
-                <PenLine className='w-4 h-4 mr-2' /> Edit info
+                <PenLine className="w-4 h-4 mr-2" /> Edit info
               </Button>
             </>
           )}

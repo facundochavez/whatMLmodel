@@ -1,4 +1,4 @@
-[
+export const sampleDescriptions = [
   {
     "id": 1,
     "name": "Titanic",

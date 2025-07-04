@@ -42,7 +42,7 @@ const PipelineDialogContent: React.FC = () => {
         <DialogDescription className="text-left [&>ul]:list-disc [&>ul]:list-inside [&>ul]:pl-4 [&>ul]:mb-4 [&>ul]:-mt-2 [&>p]:mb-4 [&>p>code]:bg-muted [&>p>code]:rounded [&>p>code]:px-1.5 [&>p>code]:pb-0.5">
           <Markdown>{selectedPipeline?.problemDescription}</Markdown>
         </DialogDescription>
-        <h3 className="text-lg font-semibold mb-3">Data preprocessing:</h3>
+        <h3 className="text-lg font-semibold mb-3">Preprocessing:</h3>
         <Card className="w-full bg-muted/30 mb-4">
           <MyCodeMirror value={selectedPipeline?.notebook.preprocessingCode || ''} />
         </Card>

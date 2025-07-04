@@ -1,4 +1,4 @@
-import { Analysis } from "../types/analysis.types";
+import { Analysis } from "@/types/analysis.types";
 
 export const analysesMock: Analysis[] = [
   {

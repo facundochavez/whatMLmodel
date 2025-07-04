@@ -17,15 +17,16 @@ import {
 import { Textarea } from '@/components/ui/textarea';
 import { DialogFooter } from '@/components/ui/dialog';
 import { useEffect, useState } from 'react';
-import { tryingExampleService } from '@/services/tryingExampleService';
+import { sampleDescriptionsService } from '@/services/sampleDescriptionsService';
 import { AiStarsIcon } from '@/icons/AiStarsIcon';
 import { TransitionLink } from '@/components/TransitionLink';
 import { LoaderCircle } from 'lucide-react';
 import { useAnalysesContext } from '@/context/analyses.context';
+import generateRandomUUID from '@/utils/generateRandomUUID';
 
 // Esquema de validación con zod
 const stepOneSchema = z.object({
-  datasetDescription: z.string(),
+  userDatasetDescription: z.string(),
 });
 
 const StepOne: React.FC = () => {
@@ -34,7 +35,7 @@ const StepOne: React.FC = () => {
   const form = useForm<z.infer<typeof stepOneSchema>>({
     resolver: zodResolver(stepOneSchema),
     defaultValues: {
-      datasetDescription: '',
+      userDatasetDescription: '',
     },
   });
 
@@ -42,22 +43,26 @@ const StepOne: React.FC = () => {
   const handleGenerateInfo = () => {
     setIsAiGeneratingInfo(true);
     setCurrentAnalysis({
+      id: generateRandomUUID(),
+      createdAt: String(new Date()),
+      isFavorite: false,
       title: auxiliarAnalysis.title,
-      datasetDescription: auxiliarAnalysis.datasetDescription,
+      alias: auxiliarAnalysis.alias,
+      userDatasetDescription: auxiliarAnalysis.userDatasetDescription,
       language: auxiliarAnalysis.language,
       info: auxiliarAnalysis.info,
     });
   };
   
   // TRYEXAMPLES SERVICE
-  const tryExampleSubscription$ = tryingExampleService.getSubject();
+  const sampleDescriptionSubscription$ = sampleDescriptionsService.getSubject();
   useEffect(() => {
-    const tryExampleSubscription = tryExampleSubscription$.subscribe((data) => {
-      form.setValue('datasetDescription', data);
+    const sampleDescriptionSubscription = sampleDescriptionSubscription$.subscribe((data) => {
+      form.setValue('userDatasetDescription', data);
     });
 
-    return () => tryExampleSubscription.unsubscribe();
-  }, [tryExampleSubscription$, form]);
+    return () => sampleDescriptionSubscription.unsubscribe();
+  }, [sampleDescriptionSubscription$, form]);
 
   function onSubmit(values: z.infer<typeof stepOneSchema>) {
     // Manejar el envío del formulario
@@ -69,7 +74,7 @@ const StepOne: React.FC = () => {
         <form onSubmit={form.handleSubmit(onSubmit)} className='w-full'>
           <FormField
             control={form.control}
-            name='datasetDescription'
+            name='userDatasetDescription'
             render={({ field }) => (
               <FormItem>
                 <FormLabel className='duration-300 delay-75'>
@@ -81,7 +86,7 @@ const StepOne: React.FC = () => {
                     placeholder='Your dataset description here...'
                     spellCheck={false}
                     maxLength={300}
-                    currentLength={form.watch('datasetDescription').length || 0}
+                    currentLength={form.watch('userDatasetDescription').length || 0}
                     {...field}
                   />
                 </FormControl>
