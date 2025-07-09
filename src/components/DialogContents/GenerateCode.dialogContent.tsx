@@ -6,11 +6,11 @@ const GenerateCodeDialogContent: React.FC = () => {
   return (
     <DialogContent>
       <DialogHeader>
-        <DialogTitle>Generate code for my problem</DialogTitle>
-        <DialogDescription>This is the codign generator.</DialogDescription>
+        <DialogTitle className="text-2xl">Generate code</DialogTitle>
       </DialogHeader>
-      <h3 className="text-lg font-semibold">Generated code:</h3>
-      <StillDevelopingCard />
+      <div className="my-10">
+        <StillDevelopingCard />
+      </div>
     </DialogContent>
   );
 };
