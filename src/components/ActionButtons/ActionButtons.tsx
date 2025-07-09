@@ -47,18 +47,16 @@ const ActionButtons: React.FC = () => {
       {isMobile ? (
         <OptionsSheet />
       ) : (
-        <aside className='flex gap-2'>
-          <GitHubLink variant='secondary' />
-          <ShareButton variant='secondary' />
-          <ModeToggle />
+        <aside className="flex gap-2">
+          <GitHubLink variant="secondary" />
+          <ShareButton variant="secondary" />
+          {/* <ModeToggle /> */}
           <div
-            className={`-ml-2 w-0 overflow-hidden duration-200 cubic-bezier(0,.78,.58,1.02) ${
-              pathname === '/analysis' && 'md:w-[138px] md:ml-0'
-            }`}
+            className={`-ml-2 w-0 overflow-hidden duration-200 cubic-bezier(0,.78,.58,1.02) ${pathname === '/analysis' && 'md:w-[138px] md:ml-0'}`}
           >
-            <TransitionLink href='/'>
-              <Button className='hidden md:flex' variant='secondary'>
-                <CirclePlus className='mr-2 h-4 w-4' />
+            <TransitionLink href="/">
+              <Button className="hidden md:flex" variant="secondary">
+                <CirclePlus className="mr-2 h-4 w-4" />
                 <span>New analysis</span>
               </Button>
             </TransitionLink>
@@ -71,25 +69,16 @@ const ActionButtons: React.FC = () => {
   );
 
   return (
-    <Dialog
-      open={showResetPasswordDialog}
-      onOpenChange={setShowResetPasswordDialog}
-    >
+    <Dialog open={showResetPasswordDialog} onOpenChange={setShowResetPasswordDialog}>
       <Dialog open={showApiKeyDialog} onOpenChange={setShowApiKeyDialog}>
-        <Dialog
-          open={showChangePasswordDialog}
-          onOpenChange={setShowChangePasswordDialog}
-        >
+        <Dialog open={showChangePasswordDialog} onOpenChange={setShowChangePasswordDialog}>
           {!isUserLoggedIn ? (
             <Dialog open={showAuthDialog} onOpenChange={setShowAuthDialog}>
               {OptionButtons}
               <AuthDialogContent />
             </Dialog>
           ) : (
-            <Dialog
-              open={showAccountSettingsDialog}
-              onOpenChange={setShowAccountSettingsDialog}
-            >
+            <Dialog open={showAccountSettingsDialog} onOpenChange={setShowAccountSettingsDialog}>
               {OptionButtons}
               <AccountSettingsDialogContent />
             </Dialog>

@@ -527,8 +527,8 @@ export const modelsData: ModelsData = {
     },
     {
       id: "DR-008",
-      alias: "locally-linear-embedding",
-      name: "Locally Linear Embedding (LLE)",
+      alias: "local-linear-embedding",
+      name: "Local Linear Embedding (LLE)",
       icon: 25,
       metrics: {
         trainingTime: "Long",

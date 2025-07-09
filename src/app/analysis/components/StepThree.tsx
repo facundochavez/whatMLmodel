@@ -1,4 +1,3 @@
-'use client';
 import TablesGroup from '@/components/TablesGroup/TablesGroup';
 import TypingText from '@/components/TypingText';
 import { useAnalysesContext } from '@/context/analyses.context';
@@ -12,48 +11,43 @@ const StepThree: React.FC<StepThreeProps> = ({ isAiThinking }) => {
   const { currentAnalysis } = useAnalysesContext();
 
   return (
-    <section className='w-full max-w-[70rem] flex flex-col gap-8'>
+    <section className="w-full max-w-[70rem] flex flex-col gap-8 sm:gap-4">
+      {currentAnalysis?.recommendationsTitle && (
+        <TypingText
+          key={generateRandomUUID()}
+          text={currentAnalysis.recommendationsTitle}
+          wordsInterval={2}
+          delay={0}
+          disabled={!isAiThinking}
+          className="text-2xl font-semibold sm:pb-4"
+          type="h2"
+        />
+      )}
       {currentAnalysis?.recommendations?.map((recommendation, index) => (
-        <section key={generateRandomUUID()} className='flex flex-col gap-8 sm:gap-4'>
-          {currentAnalysis?.recommendationsTitle && (
-            <TypingText
-              key={generateRandomUUID()}
-              text={currentAnalysis.recommendationsTitle}
-              wordsInterval={2}
-              delay={0}
-              disabled={!isAiThinking}
-              className='text-2xl font-semibold sm:pb-4'
-            />
-          )}
+        <section key={generateRandomUUID()} className="flex flex-col gap-8 sm:gap-4">
           <TypingText
             key={generateRandomUUID()}
-            text={recommendation.paragraph}
+            text={recommendation?.paragraph}
             wordsInterval={8}
             delay={index * 800 + 200}
             disabled={!isAiThinking}
-            className='text-muted-foreground'
+            className="text-muted-foreground"
           />
           {index === 0 && (
             <TypingText
               key={generateRandomUUID()}
-              text='Here is a list of the best models you can apply and their performance metrics for datasets similar to yours:'
+              text="Here is a list of the best models you can apply and their performance metrics for datasets similar to yours:"
               wordsInterval={8}
               delay={index * 800 + 600}
               disabled={!isAiThinking}
-              className='text-muted-foreground'
+              className="text-muted-foreground"
             />
           )}
           <div
-            className={`w-full ${
-              isAiThinking &&
-              'opacity-0 animate-slide-up [animation-fill-mode:forwards]'
-            }`}
+            className={`w-full ${isAiThinking && 'opacity-0 animate-slide-up [animation-fill-mode:forwards]'}`}
             style={{ animationDelay: `${(index + 1) * 800}ms` }}
           >
-            <TablesGroup
-              type={recommendation.type}
-              tables={recommendation.tables}
-            />
+            <TablesGroup type={recommendation?.type} tables={recommendation?.tables} />
           </div>
         </section>
       ))}

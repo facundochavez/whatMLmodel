@@ -15,7 +15,7 @@ export const pipeline: Pipeline = {
   notebook: {
     preprocessingCode:
       "import tensorflow as tf\nimport tensorflow_datasets as tfds\n\n# Load the Cats vs Dogs dataset with metadata and supervised labels (image, label)\ndata, metadata = tfds.load('cats_vs_dogs', with_info=True, as_supervised=True)\n\nimport cv2\nIMAGE_SIZE=100\ndata_train = []\n\n# Resize images to 100x100, convert to grayscale, and reshape to (100,100,1)\nfor i, (image, label) in enumerate(data['train']):\n    image = cv2.resize(image.numpy(), (IMAGE_SIZE, IMAGE_SIZE))\n    image = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)\n    image = image.reshape(IMAGE_SIZE, IMAGE_SIZE, 1)\n    data_train.append([image, label])\n\n# Separate images and labels into X and y\nX = []\ny = []\nfor image, label in data_train:\n    X.append(image)\n    y.append(label)\n\nimport numpy as np\n\n# Convert X and y to numpy arrays and normalize pixel values to [0, 1]\nX = np.array(X).astype(float) / 255\ny = np.array(y)",
-    dimensionalityReduction: [
+    dRTraining: [
       {
         modelAlias: "principal-component-analysis",
         performance: {

@@ -14,8 +14,7 @@ const ConfirmLogoutDialogContent: React.FC = () => {
       <AlertDialogHeader>
         <AlertDialogTitle>Are you sure you want to log out?</AlertDialogTitle>
         <AlertDialogDescription>
-          You will be signed out of your account. Any unsaved changes may be
-          lost. Please confirm if you want to proceed with logging out.
+          You will be signed out of your account. Any unsaved changes may be lost. Please confirm if you want to proceed with logging out.
         </AlertDialogDescription>
       </AlertDialogHeader>
       <AlertDialogFooter>

@@ -1,23 +1,13 @@
-"use client";
-import { Button } from "@/components/ui/button";
-import {
-  Dialog,
-  DialogContent,
-  DialogFooter,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "@/components/ui/dialog";
-import { DialogClose } from "@/components/ui/dialog";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import ApiKeyDialogContent from "@/components/DialogContents/ApiKey.dialogContent";
-import ChangePasswordDialogContent from "@/components/DialogContents/ChangePassword.dialogContent";
-import { useGlobalContext } from "@/context/global.context";
+'use client';
+import { Button } from '@/components/ui/button';
+import { Dialog, DialogContent, DialogFooter, DialogHeader, DialogTitle } from '@/components/ui/dialog';
+import { DialogClose } from '@/components/ui/dialog';
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
+import { useGlobalContext } from '@/context/global.context';
 
 const AccountSettingsDialogContent: React.FC = () => {
-  const { userEmail, setShowChangePasswordDialog, setShowApiKeyDialog } =
-    useGlobalContext();
+  const { userEmail, setShowChangePasswordDialog, setShowApiKeyDialog } = useGlobalContext();
 
   return (
     <DialogContent>
@@ -33,14 +23,9 @@ const AccountSettingsDialogContent: React.FC = () => {
 
         <li>
           <Label>Password</Label>
-          <Input type="password" disabled value={"********"} />
+          <Input type="password" disabled value={'********'} />
           <DialogClose asChild>
-            <Button
-              onClick={() => setShowChangePasswordDialog(true)}
-              variant="link"
-              size="sm"
-              className="absolute right-0 top-8 pt-1"
-            >
+            <Button onClick={() => setShowChangePasswordDialog(true)} variant="link" size="sm" className="absolute right-0 top-8 pt-1">
               Change password
             </Button>
           </DialogClose>
@@ -48,14 +33,9 @@ const AccountSettingsDialogContent: React.FC = () => {
 
         <li>
           <Label>Gemini API key</Label>
-          <Input type="password" disabled value={"********"} />
+          <Input type="password" disabled value={'********'} />
           <DialogClose asChild>
-            <Button
-              onClick={() => setShowApiKeyDialog(true)}
-              variant="link"
-              size="sm"
-              className="absolute right-0 top-8 pt-1"
-            >
+            <Button onClick={() => setShowApiKeyDialog(true)} variant="link" size="sm" className="absolute right-0 top-8 pt-1">
               Change API key
             </Button>
           </DialogClose>

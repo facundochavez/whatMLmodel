@@ -1,7 +1,7 @@
 import { pipelinesIndex } from "@/data/pipelines-index";
 import { Pipeline } from "@/types/pipeline.types";
 
-export const getLatestPublicPipelines = async (): Promise<Pipeline[]> => {
+export const getLatestPipelines = async (): Promise<Pipeline[]> => {
   const results: Pipeline[] = [];
 
   for (const alias of pipelinesIndex) {

@@ -1,7 +1,11 @@
+import { RegressionMetrics } from '@/types/performanceMetrics.types';
 import { ColumnDef } from '@tanstack/react-table';
-import { RegressionMetrics } from '../types';
 
-const columnsRegression: ColumnDef<RegressionMetrics>[] = [
+type StrictRegressionColumn = ColumnDef<RegressionMetrics> & {
+  accessorKey: keyof RegressionMetrics;
+};
+
+const columnsRegression: StrictRegressionColumn[] = [
   {
     accessorKey: 'meanAbsoluteError',
     header: 'Mean Absolute\u00A0Error',

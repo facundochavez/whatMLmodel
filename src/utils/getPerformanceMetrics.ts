@@ -1,83 +1,40 @@
-import {
-  SimilarDatasetsData,
-  PerformanceMetrics,
-  ProblemType,
-  PerformanceMetricsList,
-} from '@/components/TablesGroup/types';
-// Aquí y en getSimilarDatasets se está llamando al siguiente JSON completo pero aquí sólo se necesita la performance metrics de un dataset para una serie de modelos dados.
-import similarDatasetsDataRaw from '@/data/similar-datasets.data.json';
-
-const similarDatasetsData: SimilarDatasetsData =
-  similarDatasetsDataRaw as SimilarDatasetsData;
+import { Pipeline } from '@/types/pipeline.types';
+import { PerformanceMetrics } from '@/types/performanceMetrics.types';
+import { ProblemType } from '@/types/common.types';
 
 export default function getPerformanceMetrics({
   type,
   modelsAlias,
-  datasetAlias,
+  pipeline,
+  columns,
 }: {
   type: ProblemType;
   modelsAlias: string[];
-  datasetAlias: string;
+  pipeline: Pipeline;
+  columns: any[];
 }): PerformanceMetrics {
-  const performanceMetricsList: PerformanceMetricsList = {
-    regression: [
-      'modelAlias',
-      'meanSquaredError',
-      'meanAbsoluteError',
-      'rootMeanSquaredError',
-      'rSquared',
-      'adjustedRSquared',
-    ],
-    classification: [
-      'modelAlias',
-      'accuracy',
-      'precision',
-      'recall',
-      'f1Score',
-      'rocAuc',
-      'crossEntropy',
-    ],
-    clustering: [
-      'modelAlias',
-      'silhouetteScore',
-      'daviesBouldinScore',
-      'adjustedRandIndex',
-      'normalizedMutualInformation',
-      'homogeneity',
-      'completeness',
-      'vMeasure',
-    ],
-    dimensionalityReduction: [
-      'modelAlias',
-      'explainedVarianceRatio',
-      'reconstructionError',
-      'perplexity',
-      'coherenceScore',
-      'isolationForestAnomalyDetection',
-    ],
-  };
+  const metrics: string[] = columns.map((column) => column.accessorKey);
 
-  const metrics = performanceMetricsList[type];
-  const similarDataset = similarDatasetsData.find(
-    (similarDataset) => similarDataset.alias === datasetAlias
-  );
-  const performanceMetrics: any[] = [];
+  const performanceMetrics: any[] = modelsAlias.map((modelAlias) => {
+    const metricsToPush: any = { modelAlias };
+    let foundTraining = null;
 
-  modelsAlias.forEach((modelAlias) => {
-    const metricsToPush = { modelAlias: modelAlias };
-
-    const foundMetrics: any = similarDataset?.performance?.[type]?.find(
-      (metric) => metric.modelAlias === modelAlias
-    );
+    if (type === 'dimensionalityReduction') {
+      foundTraining = pipeline?.notebook?.dRTraining?.find(
+        (train) => train.modelAlias === modelAlias
+      );
+    } else {
+      foundTraining = pipeline?.notebook?.training?.find(
+        (train) => train.modelAlias === modelAlias
+      );
+    }
 
     metrics.forEach((metric) => {
-      (metricsToPush as any)[metric] = foundMetrics?.[metric] || '-';
+      metricsToPush[metric] = (foundTraining?.performance as any)?.[metric] ?? '-';
     });
 
-    performanceMetrics.push(metricsToPush);
+    return metricsToPush;
   });
-
-
 
   return performanceMetrics;
 }

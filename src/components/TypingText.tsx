@@ -1,4 +1,4 @@
-import useTypingEffect from "@/hooks/useTypingEffect";
+import useTypingEffect from '@/hooks/useTypingEffect';
 
 interface TypingTextProps {
   text: string;
@@ -6,17 +6,12 @@ interface TypingTextProps {
   delay: number;
   disabled: boolean;
   className?: string;
+  type?: string;
 }
 
-const TypingText: React.FC<TypingTextProps> = ({
-  text,
-  wordsInterval,
-  delay,
-  disabled = false,
-  className,
-}) => {
+const TypingText: React.FC<TypingTextProps> = ({ text, wordsInterval, delay, disabled = false, className, type = 'p' }) => {
   const typedText = useTypingEffect(text, wordsInterval, delay, disabled);
-  return <p className={className}>{typedText}</p>;
+  return type === 'h2' ? <h2 className={className}>{typedText}</h2> : <p className={className}>{typedText}</p>;
 };
 
 export default TypingText;

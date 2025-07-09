@@ -16,7 +16,7 @@ export default function getModelsByAlias({
   const models: Model[] = [];
   const selectedModels = modelsData[type];
 
-  if (selectedModels ) {
+  if (selectedModels) {
     modelsAlias.forEach((alias) => {
       selectedModels.forEach((model) => {
         if (model.alias === alias) {

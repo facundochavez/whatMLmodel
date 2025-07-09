@@ -9,10 +9,9 @@ const ModeToggle: React.FC = () => {
   const { theme, setTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
 
-  // Esperar a que el componente se monte para evitar errores de hydration
   useEffect(() => {
     setMounted(true);
-    setTheme('dark'); // Forzar dark como default
+    setTheme('dark');
   }, [setTheme]);
 
   if (!mounted) return null;
@@ -22,17 +21,8 @@ const ModeToggle: React.FC = () => {
   const toggleTheme = () => setTheme(isDark ? 'light' : 'dark');
 
   return (
-    <Button
-      variant="secondary"
-      size="icon"
-      onClick={toggleTheme}
-      aria-label="Toggle theme"
-    >
-      {isDark ? (
-        <Moon className="h-5 w-5" strokeWidth={1.8} />
-      ) : (
-        <Sun className="h-5 w-5" strokeWidth={1.8} />
-      )}
+    <Button variant="secondary" size="icon" onClick={toggleTheme} aria-label="Toggle theme">
+      {isDark ? <Moon className="h-5 w-5" strokeWidth={1.8} /> : <Sun className="h-5 w-5" strokeWidth={1.8} />}
     </Button>
   );
 };

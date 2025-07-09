@@ -152,7 +152,7 @@ export const analysesMock: Analysis[] = [
         paragraph: "For classifying the images into categories such as benign, malignant, or uncertain, Convolutional Neural Networks (CNN) are highly recommended due to their ability to handle high-dimensional image data and learn complex patterns. Additionally, models like Gradient Boosting (C) and Random Forest (C) can provide strong performance when used on features derived from dimensionality reduction techniques.",
         tables: {
           modelsAlias: ["convolutional-neural-networks-classification", "gradient-boosting-classification", "random-forest-classification"],
-          similarPipelinesAlias: ["cancer-diagnosis", "tumor-classification", "medical-image-analysis"]
+          similarPipelinesAlias: ["digit-recognizer", "cats-vs-dogs"]
         }
       }
     ]
@@ -203,7 +203,7 @@ export const analysesMock: Analysis[] = [
         paragraph: "Clustering could also be applied as an exploratory step to identify patterns or segments within the data, which may refine your classification models. Models such as K-Means and Hierarchical Clustering could be considered for this purpose.",
         tables: {
           modelsAlias: ["k-means-clustering", "hierarchical-clustering", "dbscan-clustering"],
-          similarPipelinesAlias: ["california-housing-marketing", "mall-customers-segmentation"]
+          similarPipelinesAlias: ["california-housing-marketing", "mall-customer-segmentation"]
         }
       }
     ]
@@ -334,7 +334,7 @@ export const analysesMock: Analysis[] = [
         paragraph: "Segmenting customers based on purchasing behavior involves clustering, where the goal is to group customers with similar characteristics together. K-Means Clustering is a simple yet powerful method for this task, allowing clear segmentation based on distance metrics. Hierarchical Clustering provides insights into the natural hierarchy within the data, while DBSCAN is effective for identifying outliers and non-linear groupings. Gaussian Mixture Models (GMM) add flexibility by assuming that the data is generated from a mixture of several Gaussian distributions. Spectral Clustering can also be used to identify clusters that are not necessarily convex in shape.",
         tables: {
           modelsAlias: ["k-means-clustering", "hierarchical-clustering", "dbscan-clustering", "spectral-clustering"],
-          similarPipelinesAlias: ["mall-customers-segmentation", "california-housing-marketing"]
+          similarPipelinesAlias: ["mall-customer-segmentation", "california-housing-marketing"]
         }
       },
       {
@@ -377,7 +377,7 @@ export const analysesMock: Analysis[] = [
         paragraph: "Clustering residential properties into different segments based on their features such as location, size, and type can help identify distinct groups with similar characteristics. K-Means Clustering is effective for partitioning the dataset into well-defined clusters. Hierarchical Clustering provides a detailed hierarchical view of clusters, useful for understanding relationships between different property segments. DBSCAN is suitable for detecting outliers and finding clusters of varying shapes and sizes. Mean Shift can adapt to the number of clusters dynamically, and Affinity Propagation is beneficial for finding clusters based on similarity measures.",
         tables: {
           modelsAlias: ["k-means-clustering", "hierarchical-clustering", "dbscan-clustering", "mean-shift-clustering", "spectral-clustering"],
-          similarPipelinesAlias: ["california-housing-marketing", "mall-customers-segmentation"]
+          similarPipelinesAlias: ["california-housing-marketing", "mall-customer-segmentation"]
         }
       },
       {

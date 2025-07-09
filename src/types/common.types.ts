@@ -4,12 +4,6 @@ export interface View {
   isFavorite?: boolean;
 }
 
-export interface Collaborator {
-  name: string;
-  nick: string;
-  url: string;
-};
-
 export type ProblemType =
   | 'regression'
   | 'classification'

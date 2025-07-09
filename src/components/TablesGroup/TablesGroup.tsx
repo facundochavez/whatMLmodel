@@ -1,28 +1,31 @@
 import ModelsTable from './ModelsTable/Models.table';
-import SimilarDatasetTable from './SimilarDatasetsTable/SimilarDataset.table';
-import { TablesProps } from './types';
-import DatasetSelector from './DatasetSelector/DatasetSelector';
+import SimilarPipelineTable from './SimilarPipelinesTable/SimilarPipeline.table';
+import PipelineSelector from './PipelineSelector/PipelineSelector';
 import { useGlobalContext } from '@/context/global.context';
 import ModelsAccordion from './ModelsAccordion/Models.accordion';
-import TablesGroupProvider from './tablesGroup.context';
+import TablesGroupProvider, { TablesGroupProps } from './tablesGroup.context';
+import { Dialog } from '@/components/ui/dialog';
 
-const TablesGroup: React.FC<TablesProps> = ({ type, tables }) => {
+const TablesGroup: React.FC<TablesGroupProps> = ({ type, tables }) => {
   const { isMobile } = useGlobalContext();
+  const { setSelectedPipelineModelIndex } = useGlobalContext();
 
   return (
-    <TablesGroupProvider type={type} tables={tables}>
-      {isMobile ? (
-        <ModelsAccordion />
-      ) : (
-        <div className='flex flex-col gap-3 my-8'>
-          <DatasetSelector />
-          <div className='flex gap-4'>
-            <ModelsTable />
-            <SimilarDatasetTable />
+    <Dialog onOpenChange={() => setSelectedPipelineModelIndex('0')}>
+      <TablesGroupProvider type={type} tables={tables}>
+        {isMobile ? (
+          <ModelsAccordion />
+        ) : (
+          <div className="flex flex-col gap-3 my-8">
+            <PipelineSelector />
+            <div className="flex gap-4">
+              <ModelsTable />
+              <SimilarPipelineTable />
+            </div>
           </div>
-        </div>
-      )}
-    </TablesGroupProvider>
+        )}
+      </TablesGroupProvider>
+    </Dialog>
   );
 };
 

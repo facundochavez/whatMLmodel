@@ -7,12 +7,12 @@ const useTextReveal = (text: string) => {
   const [overflow, setOverflow] = useState('hidden');
   const { isPageTransitioning } = useAnalysesContext();
 
-useEffect(() => {
+  useEffect(() => {
     let timeoutId: NodeJS.Timeout | null = null;
     if (isPageTransitioning) {
       setOverflow('hidden');
       if (timeoutId) {
-        clearTimeout(timeoutId); 
+        clearTimeout(timeoutId);
       }
     } else {
       timeoutId = setTimeout(() => {
@@ -33,17 +33,14 @@ useEffect(() => {
   }, [text]);
 
   return (
-    <h2
-      key={uniqueKey}
-      className={`flex flex-wrap text-3xl leading-7 md:text-4xl font-semibold text-center justify-center overflow-${overflow}`}
-    >
+    <h2 key={uniqueKey} className={`flex flex-wrap text-3xl leading-7 md:text-4xl font-semibold text-center justify-center overflow-${overflow}`}>
       {words.map((word, wordIndex) => (
         <span key={`word-${wordIndex}`} className={`flex overflow-${overflow}`}>
           {word.split('').map((char) => {
             count++;
             return (
               <span
-                className='animate-text-reveal [animation-fill-mode:backwards]'
+                className="animate-text-reveal [animation-fill-mode:backwards]"
                 key={`letter-${count}`}
                 style={{
                   animationDelay: `${count * 0.02}s`,
@@ -53,9 +50,7 @@ useEffect(() => {
               </span>
             );
           })}
-          {wordIndex < words.length - 1 && (
-            <span className="after:content-['\00A0']" />
-          )}
+          {wordIndex < words.length - 1 && <span className="after:content-['\00A0']" />}
         </span>
       ))}
     </h2>

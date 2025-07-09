@@ -5,14 +5,7 @@ import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 
 import { Button } from '@/components/ui/button';
-import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from '@/components/ui/form';
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
 
 import { Textarea } from '@/components/ui/textarea';
 import { DialogFooter } from '@/components/ui/dialog';
@@ -53,7 +46,7 @@ const StepOne: React.FC = () => {
       info: auxiliarAnalysis.info,
     });
   };
-  
+
   // TRYEXAMPLES SERVICE
   const sampleDescriptionSubscription$ = sampleDescriptionsService.getSubject();
   useEffect(() => {
@@ -69,21 +62,19 @@ const StepOne: React.FC = () => {
   }
 
   return (
-    <section className='w-full max-w-[700px]'>
+    <section className="w-full max-w-[700px]">
       <Form {...form}>
-        <form onSubmit={form.handleSubmit(onSubmit)} className='w-full'>
+        <form onSubmit={form.handleSubmit(onSubmit)} className="w-full">
           <FormField
             control={form.control}
-            name='userDatasetDescription'
+            name="userDatasetDescription"
             render={({ field }) => (
               <FormItem>
-                <FormLabel className='duration-300 delay-75'>
-                  Make a simple description of your dataset and target variable:
-                </FormLabel>
+                <FormLabel className="duration-300 delay-75">Make a simple description of your dataset and target variable:</FormLabel>
                 <FormControl>
                   <Textarea
-                    className='resize-none h-44 sm:h-44'
-                    placeholder='Your dataset description here...'
+                    className="resize-none h-44 sm:h-44"
+                    placeholder="Your dataset description here..."
                     spellCheck={false}
                     maxLength={300}
                     currentLength={form.watch('userDatasetDescription').length || 0}
@@ -94,21 +85,17 @@ const StepOne: React.FC = () => {
               </FormItem>
             )}
           />
-          <TransitionLink href='/analysis' sleepTime={1500}>
-            <DialogFooter className='mt-4'>
-              <Button
-                type='submit'
-                disabled={isAiGeneratingInfo}
-                onClick={handleGenerateInfo}
-              >
+          <TransitionLink href="/analysis" sleepTime={1500}>
+            <DialogFooter className="mt-4">
+              <Button type="submit" disabled={isAiGeneratingInfo} onClick={handleGenerateInfo}>
                 {isAiGeneratingInfo ? (
                   <>
-                    <LoaderCircle className='h-4 w-4 mr-2 animate-spin' />
+                    <LoaderCircle className="h-4 w-4 mr-2 animate-spin" />
                     Generating info
                   </>
                 ) : (
                   <>
-                    <AiStarsIcon className='mr-1.5 h-[18px] w-[18px]' />
+                    <AiStarsIcon className="mr-1.5 h-[18px] w-[18px]" />
                     Let&apos;s go
                   </>
                 )}

@@ -4,22 +4,8 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 
-import {
-  DialogClose,
-  DialogContent,
-  DialogDescription,
-  DialogFooter,
-  DialogHeader,
-  DialogTitle,
-} from '@/components/ui/dialog';
-import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from '@/components/ui/form';
+import { DialogClose, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle } from '@/components/ui/dialog';
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
 import { Input } from '../ui/input';
 import { Button } from '../ui/button';
 import { useGlobalContext } from '@/context/global.context';
@@ -60,25 +46,16 @@ const ResetPasswordDialogContent: React.FC = () => {
       </DialogHeader>
       <DialogFooter>
         <Form {...form}>
-          <form
-            onSubmit={form.handleSubmit(handleAPIkey)}
-            className='flex flex-col gap-2 w-full'
-          >
+          <form onSubmit={form.handleSubmit(handleAPIkey)} className="flex flex-col gap-2 w-full">
             <FormField
               control={form.control}
-              name='email'
+              name="email"
               render={({ field }) => (
-                <FormItem className='relative'>
+                <FormItem className="relative">
                   <FormLabel>Email</FormLabel>
                   <FormControl>
                     <>
-                      <Input
-                        type='email'
-                        placeholder='your_email@example.com'
-                        className='pr-10'
-                        disabled={isUserLoggedIn}
-                        {...field}
-                      />
+                      <Input type="email" placeholder="your_email@example.com" className="pr-10" disabled={isUserLoggedIn} {...field} />
                     </>
                   </FormControl>
                   <FormMessage />
@@ -86,14 +63,14 @@ const ResetPasswordDialogContent: React.FC = () => {
               )}
             />
 
-            <DialogFooter className='pt-2'>
+            <DialogFooter className="pt-2">
               <DialogClose asChild>
-                <Button variant='outline' type='button'>
+                <Button variant="outline" type="button">
                   Cancel
                 </Button>
               </DialogClose>
               <DialogClose asChild>
-                <Button type='submit'>Send email</Button>
+                <Button type="submit">Send email</Button>
               </DialogClose>
             </DialogFooter>
           </form>

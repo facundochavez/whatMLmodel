@@ -1,11 +1,6 @@
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from '@/components/ui/accordion';
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 import { Card } from '@/components/ui/card';
-import DatasetSelector from '../DatasetSelector/DatasetSelector';
+import PipelineSelector from '../PipelineSelector/PipelineSelector';
 import { Button } from '@/components/ui/button';
 import { CodeXml } from 'lucide-react';
 import { Dialog, DialogTrigger } from '@/components/ui/dialog';
@@ -16,61 +11,56 @@ import { Separator } from '@/components/ui/separator';
 import getModelIcon from '@/utils/getModelIcon';
 import { AiStarsIcon } from '@/icons/AiStarsIcon';
 import { useTablesGroupContext } from '../tablesGroup.context';
+import { useGlobalContext } from '@/context/global.context';
 
 const ModelsAccordion: React.FC = () => {
-  const { models, type, performanceMetrics, columnsPerformanceMetrics } =
-    useTablesGroupContext();
-
-  const columns = columnsPerformanceMetrics[type];
+  const { models, type, performanceMetrics, columnsPerformanceMetrics, similarPipelines, selectedSimilarPipelineIndex } = useTablesGroupContext();
+  const { setSelectedPipeline, setSelectedPipelineModelIndex } = useGlobalContext();
 
   return (
     <Card>
-      <Accordion type='single' collapsible>
-        <header className='w-full h-14 p-4 flex items-center text-sm text-muted-foreground bg-muted/30 border-b'>
-          <h3 className='text-left ml-1'>{camelToTitleCase(type)} Models</h3>
+      <Accordion type="single" collapsible>
+        <header className="w-full h-14 p-4 flex items-center text-sm text-muted-foreground bg-muted/30 border-b">
+          <h3 className="text-left ml-1">{camelToTitleCase(type)} Models</h3>
         </header>
         {models.map((model, index) => {
-          const modelPerformanceMetrics = performanceMetrics.find(
-            (metric: any) => metric.modelAlias === model.alias
-          );
+          const modelPerformanceMetrics = performanceMetrics.find((metric: any) => metric.modelAlias === model.alias);
           const ModelIcon = getModelIcon({
             iconNumber: model.icon,
           }) as React.FC;
           return (
-            <AccordionItem key={index} value={model.alias} className={`${index === models.length - 1 && 'border-b-0' }`}>
-              <AccordionTrigger className='flex items-center gap-5 overflow-hidden'>
+            <AccordionItem key={index} value={model.alias} className={`${index === models.length - 1 && 'border-b-0'}`}>
+              <AccordionTrigger className="flex items-center gap-5 overflow-hidden">
                 <div>
                   <ModelIcon />
                 </div>
-                <h2 className='w-full text-left text-base truncate'>
-                  {model.name}
-                </h2>
+                <h2 className="w-full text-left text-base truncate">{model.name}</h2>
               </AccordionTrigger>
-              <AccordionContent className='flex flex-col gap-2'>
-                <header className='p-4 rounded border'>
-                  <ul className='w-full [&>li]:w-full [&>li]:text-left [&>li]:flex [&>li]:justify-between [&>li]:items-center [&>li]:gap-3 [&>li>label]:text-muted-foreground'>
+              <AccordionContent className="flex flex-col gap-2">
+                <header className="p-4 rounded border">
+                  <ul className="w-full [&>li]:w-full [&>li]:text-left [&>li]:flex [&>li]:justify-between [&>li]:items-center [&>li]:gap-3 [&>li>label]:text-muted-foreground">
                     <li>
                       <label>Training time</label>
-                      <Separator className='hidden xs:flex flex-grow w-0'></Separator>
+                      <Separator className="hidden xs:flex flex-grow w-0"></Separator>
                       <span>{model.metrics.trainingTime}</span>
                     </li>
                     <li>
                       <label>Prediction speed</label>
-                      <Separator className='hidden xs:flex flex-grow w-0'></Separator>
+                      <Separator className="hidden xs:flex flex-grow w-0"></Separator>
 
                       <span>{model.metrics.predictionSpeed}</span>
                     </li>
                     <li>
                       <label>Memory usage</label>
-                      <Separator className='hidden xs:flex flex-grow w-0'></Separator>
+                      <Separator className="hidden xs:flex flex-grow w-0"></Separator>
                       <span>{model.metrics.memoryUsage}</span>
                     </li>
                   </ul>
                 </header>
-                <div className='flex flex-col gap-2'>
-                  <DatasetSelector />
-                  <ul className='w-full p-4 bg-muted/30 rounded border [&>li]:w-full [&>li]:text-left [&>li]:flex [&>li]:justify-between [&>li]:items-center [&>li]:gap-3 [&>li>label]:text-muted-foreground'>
-                    {columns.map(
+                <div className="flex flex-col gap-2">
+                  <PipelineSelector />
+                  <ul className="w-full p-4 bg-muted/30 rounded border [&>li]:w-full [&>li]:text-left [&>li]:flex [&>li]:justify-between [&>li]:items-center [&>li]:gap-3 [&>li>label]:text-muted-foreground">
+                    {columnsPerformanceMetrics.map(
                       (
                         metric: {
                           header: string;
@@ -78,12 +68,11 @@ const ModelsAccordion: React.FC = () => {
                         },
                         index: number
                       ) => {
-                        const value =
-                          modelPerformanceMetrics?.[metric.accessorKey] ?? '-';
+                        const value = modelPerformanceMetrics?.[metric.accessorKey] ?? '-';
                         return (
                           <li key={index}>
                             <label>{metric.header}</label>
-                            <Separator className='hidden xs:flex flex-grow w-0'></Separator>
+                            <Separator className="hidden xs:flex flex-grow w-0"></Separator>
                             <span>{value}</span>
                           </li>
                         );
@@ -91,11 +80,15 @@ const ModelsAccordion: React.FC = () => {
                     )}
                   </ul>
                 </div>
-                <footer className='flex flex-col gap-2 mt-0.5'>
-                  <Dialog>
+                <footer className="flex flex-col gap-2 mt-0.5">
+                  <Dialog onOpenChange={() => setSelectedPipelineModelIndex('0')}>
                     <DialogTrigger asChild>
-                      <Button variant='secondary' className='border'>
-                        <CodeXml className='mr-2 h-[18px] w-[18px]' />
+                      <Button
+                        variant="secondary"
+                        className="border"
+                        onClick={() => setSelectedPipeline(similarPipelines[Number(selectedSimilarPipelineIndex)])}
+                      >
+                        <CodeXml className="mr-2 h-[18px] w-[18px]" />
                         <span>Similar dataset code</span>
                       </Button>
                     </DialogTrigger>
@@ -104,7 +97,7 @@ const ModelsAccordion: React.FC = () => {
                   <Dialog>
                     <DialogTrigger asChild>
                       <Button>
-                        <AiStarsIcon className='mr-1.5 h-[18px] w-[18px]' />
+                        <AiStarsIcon className="mr-1.5 h-[18px] w-[18px]" />
                         <span>Generate code</span>
                       </Button>
                     </DialogTrigger>

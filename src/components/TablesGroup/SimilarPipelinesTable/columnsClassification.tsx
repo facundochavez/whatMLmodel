@@ -1,7 +1,11 @@
+import { ClassificationMetrics } from '@/types/performanceMetrics.types';
 import { ColumnDef } from '@tanstack/react-table';
-import { ClassificationMetrics } from '../types';
 
-const columnsClassification: ColumnDef<ClassificationMetrics>[] = [
+type StrictClassificationColumn = ColumnDef<ClassificationMetrics> & {
+  accessorKey: keyof ClassificationMetrics;
+};
+
+const columnsClassification: StrictClassificationColumn[] = [
   {
     accessorKey: 'accuracy',
     header: 'Accuracy',

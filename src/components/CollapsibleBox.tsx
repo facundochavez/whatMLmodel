@@ -23,9 +23,7 @@ export const CollapsibleBox = ({
   onCollapseChange,
 }: CollapsibleBoxProps) => {
   const { isMobile } = useGlobalContext();
-  const [isCollapsed, setIsCollapsed] = useState(
-    externalIsCollapsed !== undefined ? externalIsCollapsed : true
-  );
+  const [isCollapsed, setIsCollapsed] = useState(externalIsCollapsed !== undefined ? externalIsCollapsed : true);
   const [maskHeight, setMaskHeight] = useState(150);
   const [expandedHeight, setExpandedHeight] = useState(collapsedHeight);
 
@@ -83,53 +81,36 @@ export const CollapsibleBox = ({
   };
 
   return (
-    <div className='w-full flex flex-col items-center gap-8 relative'>
+    <div className="w-full flex flex-col items-center gap-8 relative">
       <div
-        className={`w-full duration-500 ease-in-out overflow-hidden`}
+        className={'w-full duration-500 ease-in-out overflow-hidden'}
         style={{
           height: isCollapsed ? `${collapsedHeight}px` : `${expandedHeight}px`,
           maskImage: `linear-gradient(to bottom, black calc(100% - ${maskHeight}px), transparent)`,
         }}
       >
-        <div className='w-full' ref={contentRef}>
+        <div className="w-full" ref={contentRef}>
           {children}
         </div>
-        {isCollapsed && (
-          <div
-            className={`absolute bottom-0 w-full`}
-            style={{ height: isMobile ? '190px' : '225px' }}
-          ></div>
-        )}
+        {isCollapsed && <div className={`absolute bottom-0 w-full`} style={{ height: isMobile ? '190px' : '225px' }}></div>}
       </div>
       {!arrowButton ? (
-        <Button
-          size='sm'
-          variant='secondary'
-          onClick={toggleCollapse}
-          disabled={blocked}
-          className='opacity-100'
-        >
+        <Button size="sm" variant="secondary" onClick={toggleCollapse} disabled={blocked} className="opacity-100">
           {isCollapsed ? 'View more' : 'View less'}
         </Button>
       ) : (
         <Button
-          size='icon'
-          id='arrow-button'
-          variant='outline'
+          size="icon"
+          id="arrow-button"
+          variant="outline"
           onClick={() => {
             toggleCollapse();
             if (!isCollapsed) window.scrollTo({ top: 0, behavior: 'smooth' });
           }}
           disabled={blocked}
-          className={`!opacity-100 z-[1] -mt-12 duration-0 ${
-            isButtonHighlighted && 'border-2 border-foreground'
-          }`}
+          className={`!opacity-100 z-[1] -mt-12 duration-0 ${isButtonHighlighted && 'border-2 border-foreground'}`}
         >
-          <ChevronUp
-            className={`h-5 w-5 shrink-0 transition-transform duration-200 ${
-              isCollapsed ? 'rotate-180' : 'rotate-0'
-            }`}
-          />
+          <ChevronUp className={`h-5 w-5 shrink-0 transition-transform duration-200 ${isCollapsed ? 'rotate-180' : 'rotate-0'}`} />
         </Button>
       )}
     </div>

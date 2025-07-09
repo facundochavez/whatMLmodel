@@ -4,15 +4,7 @@ import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
-import {
-  Form,
-  FormControl,
-  FormDescription,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from '@/components/ui/form';
+import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 import { Eye, EyeOff } from 'lucide-react';
 import { Dialog, DialogClose, DialogFooter } from '@/components/ui/dialog';
@@ -69,36 +61,24 @@ const ChangePasswordForm: React.FC = () => {
 
   return (
     <Form {...form}>
-      <form
-        onSubmit={form.handleSubmit(handlePasswordChange)}
-        className='flex flex-col gap-4'
-      >
+      <form onSubmit={form.handleSubmit(handlePasswordChange)} className="flex flex-col gap-4">
         <FormField
           control={form.control}
-          name='currentPassword'
+          name="currentPassword"
           render={({ field }) => (
-            <FormItem className='relative'>
+            <FormItem className="relative">
               <FormLabel>Current Password</FormLabel>
               <FormControl>
                 <>
-                  <Input
-                    type={showCurrentPassword ? 'text' : 'password'}
-                    placeholder='•••••'
-                    className='pr-10'
-                    {...field}
-                  />
+                  <Input type={showCurrentPassword ? 'text' : 'password'} placeholder="•••••" className="pr-10" {...field} />
                   <Button
-                    variant='link'
-                    className='absolute right-0 top-6'
-                    size='icon'
-                    type='button'
+                    variant="link"
+                    className="absolute right-0 top-6"
+                    size="icon"
+                    type="button"
                     onClick={() => setShowCurrentPassword(!showCurrentPassword)}
                   >
-                    {showCurrentPassword ? (
-                      <EyeOff className='h-5 w-5' strokeWidth={1.8} />
-                    ) : (
-                      <Eye className='h-5 w-5' strokeWidth={1.8} />
-                    )}
+                    {showCurrentPassword ? <EyeOff className="h-5 w-5" strokeWidth={1.8} /> : <Eye className="h-5 w-5" strokeWidth={1.8} />}
                   </Button>
                 </>
               </FormControl>
@@ -108,43 +88,28 @@ const ChangePasswordForm: React.FC = () => {
         />
 
         <DialogClose asChild>
-          <Button
-            onClick={() => setShowResetPasswordDialog(true)}
-            type='button'
-            variant='link'
-            size='sm'
-            className='self-end px-1 -my-3'
-          >
+          <Button onClick={() => setShowResetPasswordDialog(true)} type="button" variant="link" size="sm" className="self-end px-1 -my-3">
             Forgot password?
           </Button>
         </DialogClose>
 
         <FormField
           control={form.control}
-          name='newPassword'
+          name="newPassword"
           render={({ field }) => (
-            <FormItem className='relative'>
+            <FormItem className="relative">
               <FormLabel>New Password</FormLabel>
               <FormControl>
                 <>
-                  <Input
-                    type={showNewPassword ? 'text' : 'password'}
-                    placeholder='•••••'
-                    className='pr-10'
-                    {...field}
-                  />
+                  <Input type={showNewPassword ? 'text' : 'password'} placeholder="•••••" className="pr-10" {...field} />
                   <Button
-                    variant='link'
-                    className='absolute right-0 top-6'
-                    size='icon'
-                    type='button'
+                    variant="link"
+                    className="absolute right-0 top-6"
+                    size="icon"
+                    type="button"
                     onClick={() => setShowNewPassword(!showNewPassword)}
                   >
-                    {showNewPassword ? (
-                      <EyeOff className='h-5 w-5' strokeWidth={1.8} />
-                    ) : (
-                      <Eye className='h-5 w-5' strokeWidth={1.8} />
-                    )}
+                    {showNewPassword ? <EyeOff className="h-5 w-5" strokeWidth={1.8} /> : <Eye className="h-5 w-5" strokeWidth={1.8} />}
                   </Button>
                 </>
               </FormControl>
@@ -155,50 +120,40 @@ const ChangePasswordForm: React.FC = () => {
 
         <FormField
           control={form.control}
-          name='confirmNewPassword'
+          name="confirmNewPassword"
           render={({ field }) => (
-            <FormItem className='relative'>
+            <FormItem className="relative">
               <FormLabel>Confirm New Password</FormLabel>
               <FormControl>
                 <>
-                  <Input
-                    type={showConfirmPassword ? 'text' : 'password'}
-                    placeholder='•••••'
-                    className='pr-10'
-                    {...field}
-                  />
+                  <Input type={showConfirmPassword ? 'text' : 'password'} placeholder="•••••" className="pr-10" {...field} />
                   <Button
-                    variant='link'
-                    className='absolute right-0 top-6'
-                    size='icon'
-                    type='button'
+                    variant="link"
+                    className="absolute right-0 top-6"
+                    size="icon"
+                    type="button"
                     onClick={() => setShowConfirmPassword(!showConfirmPassword)}
                   >
-                    {showConfirmPassword ? (
-                      <EyeOff className='h-5 w-5' strokeWidth={1.8} />
-                    ) : (
-                      <Eye className='h-5 w-5' strokeWidth={1.8} />
-                    )}
+                    {showConfirmPassword ? <EyeOff className="h-5 w-5" strokeWidth={1.8} /> : <Eye className="h-5 w-5" strokeWidth={1.8} />}
                   </Button>
                 </>
               </FormControl>
               <FormMessage />
               <FormDescription>
-                Must be at least 8 characters and include a mix of uppercase,
-                lowercase, numbers, and special characters.
+                Must be at least 8 characters and include a mix of uppercase, lowercase, numbers, and special characters.
               </FormDescription>
             </FormItem>
           )}
         />
 
-        <DialogFooter className='pt-2'>
+        <DialogFooter className="pt-2">
           <DialogClose asChild>
-            <Button variant='outline' type='button'>
+            <Button variant="outline" type="button">
               Cancel
             </Button>
           </DialogClose>
           <DialogClose asChild>
-            <Button type='submit'>Save</Button>
+            <Button type="submit">Save</Button>
           </DialogClose>
         </DialogFooter>
       </form>

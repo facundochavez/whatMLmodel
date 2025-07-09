@@ -1,9 +1,4 @@
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from '@/components/ui/dropdown-menu';
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
 import { AlertDialogTrigger } from '@/components/ui/alert-dialog';
 import { Button } from '@/components/ui/button';
 import { Trash, Ellipsis, Star, StarOff } from 'lucide-react';
@@ -14,21 +9,13 @@ type AnalysisActionsDropdownProps = {
   isFavorite?: boolean;
 };
 
-const AnalysisActionsDropdown: React.FC<AnalysisActionsDropdownProps> = ({
-  analysisId,
-  isFavorite = false,
-}) => {
+const AnalysisActionsDropdown: React.FC<AnalysisActionsDropdownProps> = ({ analysisId, isFavorite = false }) => {
   const { handleToggleFavorite, setSelectedAnalysisId } = useAnalysesContext();
 
   return (
     <DropdownMenu>
       <DropdownMenuTrigger>
-        <Button
-          asChild
-          size='icon'
-          variant='ghost'
-          className='h-[32px] w-8 p-2 flex opacity-50 hover:opacity-100 hover:bg-transparent'
-        >
+        <Button asChild size="icon" variant="ghost" className="h-[32px] w-8 p-2 flex opacity-50 hover:opacity-100 hover:bg-transparent">
           <Ellipsis />
         </Button>
       </DropdownMenuTrigger>
@@ -38,18 +25,18 @@ const AnalysisActionsDropdown: React.FC<AnalysisActionsDropdownProps> = ({
           e.stopPropagation();
         }}
         loop
-        align='end'
-        className='z-[200]'
+        align="end"
+        className="z-[200]"
       >
         <DropdownMenuItem onClick={() => handleToggleFavorite(analysisId)}>
           {!isFavorite ? (
             <>
-              <Star className='mr-2.5 h-3.5 w-3.5' />
+              <Star className="mr-2.5 h-3.5 w-3.5" />
               <span>Favorite</span>
             </>
           ) : (
             <>
-              <StarOff className='mr-2.5 h-3.5 w-3.5' />
+              <StarOff className="mr-2.5 h-3.5 w-3.5" />
               <span>Unfavorite</span>
             </>
           )}
@@ -63,7 +50,7 @@ const AnalysisActionsDropdown: React.FC<AnalysisActionsDropdownProps> = ({
           }}
         >
           <DropdownMenuItem>
-            <Trash className='mr-2.5 h-3.5 w-3.5' />
+            <Trash className="mr-2.5 h-3.5 w-3.5" />
             <span>Delete</span>
           </DropdownMenuItem>
         </AlertDialogTrigger>

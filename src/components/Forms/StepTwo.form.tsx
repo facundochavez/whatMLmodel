@@ -3,44 +3,24 @@
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
-import {
-  Form,
-  FormControl,
-  FormDescription,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from '@/components/ui/form';
+import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 import { CircleHelp } from 'lucide-react';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { CollapsibleBox } from '../CollapsibleBox';
-import { useGlobalContext } from '@/context/global.context';
 import { Textarea } from '../ui/textarea';
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipProvider,
-  TooltipTrigger,
-} from '../ui/tooltip';
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from '../ui/select';
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '../ui/tooltip';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '../ui/select';
 import { useAnalysesContext } from '@/context/analyses.context';
 
-// Esquema de validación con zod
+// Esquema de validación con Zod
 const stepTwoSchema = z.object({
-  problemDescription: z.string(),
-  mainFeatures: z.string(),
-  targetVariable: z.string(),
-  numberOfFeatures: z.number(),
-  datasetSize: z.number(),
-  hasComplexData: z.boolean(),
+  problemDescription: z.string().min(100, 'Must be at least 100 characters'),
+  mainFeatures: z.string().min(1, 'This field is required'),
+  targetVariable: z.string().min(1, 'This field is required'),
+  columns: z.coerce.number().positive('Must be a positive number'),
+  rows: z.coerce.number().positive('Must be a positive number'),
+  needsDimensionalityReduction: z.enum(['Yes', 'No']),
 });
 
 interface StepTwoFormProps extends React.PropsWithChildren {
@@ -50,13 +30,7 @@ interface StepTwoFormProps extends React.PropsWithChildren {
   onCollapseChange: (collapsed: boolean) => void;
 }
 
-const StepTwoForm: React.FC<StepTwoFormProps> = ({
-  isFormCollapsed,
-  isFormBlocked,
-  isUserEditingInfo,
-  onCollapseChange,
-  children,
-}) => {
+const StepTwoForm: React.FC<StepTwoFormProps> = ({ isFormCollapsed, isFormBlocked, isUserEditingInfo, onCollapseChange, children }) => {
   const { currentAnalysis } = useAnalysesContext();
   const [showProblemTooltip, setShowProblemTooltip] = useState(false);
   const [showComplexDataTooltip, setShowComplexDataTooltip] = useState(false);
@@ -76,55 +50,48 @@ const StepTwoForm: React.FC<StepTwoFormProps> = ({
     handleFormLabel();
   }, [currentAnalysis, isUserEditingInfo]);
 
-  // 1. Define tu formulario.
   const form = useForm<z.infer<typeof stepTwoSchema>>({
     resolver: zodResolver(stepTwoSchema),
     defaultValues: {
-      problemDescription: currentAnalysis?.info?.problemDescription,
-      mainFeatures: currentAnalysis?.info?.mainFeatures,
-      targetVariable: currentAnalysis?.info?.targetVariable,
-      hasComplexData: currentAnalysis?.info?.hasComplexData,
-      numberOfFeatures: currentAnalysis?.info?.numberOfFeatures,
-      datasetSize: currentAnalysis?.info?.datasetSize,
+      problemDescription: currentAnalysis?.info?.problemDescription || '',
+      mainFeatures: currentAnalysis?.info?.mainFeatures || '',
+      targetVariable: currentAnalysis?.info?.targetVariable || '',
+      columns: currentAnalysis?.info?.columns || 0,
+      rows: currentAnalysis?.info?.rows || 0,
+      needsDimensionalityReduction: currentAnalysis?.info?.needsDimensionalityReduction ? 'Yes' : 'No',
     },
   });
 
-  // 2. Define un manejador de envío.
   function onSubmit(values: z.infer<typeof stepTwoSchema>) {
-    // Haz algo con los valores del formulario.
-    // ✅ Esto será seguro en cuanto a tipos y validado.
+    const payload = {
+      ...values,
+      needsDimensionalityReduction: values.needsDimensionalityReduction === 'Yes',
+    };
+
+    console.log(payload);
+    // o enviar a backend, etc.
   }
 
   return (
     <Form {...form}>
-      <form
-        onSubmit={form.handleSubmit(onSubmit)}
-        className='w-full max-w-[700px]'
-      >
+      <form onSubmit={form.handleSubmit(onSubmit)} className="w-full max-w-[700px]">
         <CollapsibleBox
           arrowButton
-          isButtonHighlighted={
-            currentAnalysis?.recommendations && isUserEditingInfo
-          }
+          isButtonHighlighted={currentAnalysis?.recommendations && isUserEditingInfo}
           blocked={isFormBlocked}
           externalIsCollapsed={isFormCollapsed}
           onCollapseChange={onCollapseChange}
         >
           <div
             className={`w-full flex flex-col gap-4 border rounded-md px-[5%] pt-6 pb-8 bg-muted/30 ${
-              currentAnalysis?.recommendations &&
-              isUserEditingInfo &&
-              'border-2 border-foreground group'
+              currentAnalysis?.recommendations && isUserEditingInfo && 'border-2 border-foreground group'
             } ${!isUserEditingInfo && 'select-none pointer-events-none'}`}
           >
-            {formLabel && (
-              <FormLabel className='block text-lg text-center self-center mb-2'>
-                {formLabel}
-              </FormLabel>
-            )}
+            {formLabel && <FormLabel className="block text-lg text-center self-center mb-2">{formLabel}</FormLabel>}
+
             <FormField
               control={form.control}
-              name='problemDescription'
+              name="problemDescription"
               render={({ field }) => (
                 <FormItem>
                   <FormLabel>
@@ -133,24 +100,22 @@ const StepTwoForm: React.FC<StepTwoFormProps> = ({
                       <Tooltip open={showProblemTooltip}>
                         <TooltipTrigger
                           asChild
-                          className='text-muted-foreground inline-block -translate-y-0.5'
+                          className="text-muted-foreground inline-block -translate-y-0.5"
                           onMouseEnter={() => setShowProblemTooltip(true)}
                           onMouseLeave={() => setShowProblemTooltip(false)}
                         >
-                          <CircleHelp className='inline w-4 h-4 ml-1 mt-0.5' />
+                          <CircleHelp className="inline w-4 h-4 ml-1 mt-0.5" />
                         </TooltipTrigger>
-                        <TooltipContent className='text-center text-muted-foreground max-w-[min(280px,80vw)] mx-8'>
-                          <p>
-                            You can provide any specific details about your dataset in this field.
-                          </p>
+                        <TooltipContent className="text-muted-foreground max-w-[min(280px,80vw)] mx-8">
+                          <p>You can provide any specific details about your dataset in this field.</p>
                         </TooltipContent>
                       </Tooltip>
                     </TooltipProvider>{' '}
                   </FormLabel>
                   <FormControl>
                     <Textarea
-                      className='h-44 sm:h-28 resize-none'
-                      placeholder='Your problem description here...'
+                      className="h-44 sm:h-28 resize-none"
+                      placeholder="Your problem description here..."
                       maxLength={300}
                       currentLength={field.value?.length || 0}
                       {...field}
@@ -163,16 +128,12 @@ const StepTwoForm: React.FC<StepTwoFormProps> = ({
 
             <FormField
               control={form.control}
-              name='mainFeatures'
+              name="mainFeatures"
               render={({ field }) => (
-                <FormItem className='grow'>
+                <FormItem className="grow">
                   <FormLabel>Main features:</FormLabel>
                   <FormControl>
-                    <Input
-                      placeholder='Your features here...'
-                      maxLength={100}
-                      {...field}
-                    />
+                    <Input placeholder="Your features here..." maxLength={100} {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -181,110 +142,88 @@ const StepTwoForm: React.FC<StepTwoFormProps> = ({
 
             <FormField
               control={form.control}
-              name='targetVariable'
+              name="targetVariable"
               render={({ field }) => (
-                <FormItem className='w-full '>
+                <FormItem className="w-full">
                   <FormLabel>Target variable:</FormLabel>
                   <FormControl>
-                    <Input
-                      placeholder='Your target variable here...'
-                      maxLength={35}
-                      {...field}
-                    />
+                    <Input placeholder="Your target variable here..." maxLength={35} {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
               )}
             />
 
-            <div className='flex flex-col gap-4 sm:flex-row'>
+            <div className="flex flex-col gap-4 sm:flex-row">
               <FormField
                 control={form.control}
-                name='hasComplexData'
+                name="columns"
                 render={({ field }) => (
-                  <FormItem className='w-full'>
+                  <FormItem className="w-full relative">
+                    <FormLabel>Number of features:</FormLabel>
+                    <FormControl>
+                      <Input className="pr-20" type="number" min={1} inputMode="numeric" pattern="[0-9]*" {...field} />
+                    </FormControl>
+                    <FormDescription className="absolute top-8 right-4">columns</FormDescription>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+
+              <FormField
+                control={form.control}
+                name="rows"
+                render={({ field }) => (
+                  <FormItem className="w-full relative">
+                    <FormLabel>Dataset size:</FormLabel>
+                    <FormControl>
+                      <Input className="pr-14" type="number" min={1} inputMode="numeric" pattern="[0-9]*" {...field} />
+                    </FormControl>
+                    <FormDescription className="absolute top-8 right-4">rows</FormDescription>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+
+              <FormField
+                control={form.control}
+                name="needsDimensionalityReduction"
+                render={({ field }) => (
+                  <FormItem className="w-full min-w-[35%] md:min-w-[unset]">
                     <FormLabel>
-                      Complex data:{' '}
+                      Dimens. Reduction:{' '}
                       <TooltipProvider delayDuration={0}>
                         <Tooltip open={showComplexDataTooltip}>
                           <TooltipTrigger
                             asChild
-                            className='text-muted-foreground inline-block -translate-y-0.5'
+                            className="text-muted-foreground inline-block -translate-y-0.5"
                             onMouseEnter={() => setShowComplexDataTooltip(true)}
                             onMouseLeave={() => setShowComplexDataTooltip(false)}
                           >
-                            <CircleHelp className='inline w-4 h-4 ml-1 mt-0.5' />
+                            <CircleHelp className="inline w-4 h-4 ml-1 mt-0.5" />
                           </TooltipTrigger>
-                          <TooltipContent className='text-center text-muted-foreground max-w-[min(280px,80vw)] mx-8'>
+                          <TooltipContent className="text-muted-foreground max-w-[min(260px,80vw)] sm:mr-[10vw] lg:mr-[8rem]">
                             <p>
-                              Some features handle complex data as long texts,
-                              images, videos, high-dimensional data, etc.
+                              Dataset will require Dimensionality Reduction, either because it has too many noisy features or because it involves
+                              complex data such as long texts, images, videos, etc.
                             </p>
                           </TooltipContent>
                         </Tooltip>
-                      </TooltipProvider>{' '}
+                      </TooltipProvider>
                     </FormLabel>
 
-                    <Select
-                      onValueChange={field.onChange}
-                      defaultValue={field.value ? 'Yes' : 'No'}
-                    >
+                    <Select onValueChange={field.onChange} defaultValue={field.value}>
                       <FormControl>
                         <SelectTrigger>
-                          <SelectValue placeholder='Select an option' />
+                          <SelectValue placeholder="Select an option" />
                         </SelectTrigger>
                       </FormControl>
-                      <SelectContent>
-                        <SelectItem value='No'>No</SelectItem>
-                        <SelectItem value='Yes'>Yes</SelectItem>
+                      <SelectContent className="bg-background rounded-lg border">
+                        <SelectItem value="No">No</SelectItem>
+                        <SelectItem value="Yes">Yes</SelectItem>
                       </SelectContent>
-
                       <FormMessage />
                     </Select>
-                  </FormItem>
-                )}
-              />
-
-              <FormField
-                control={form.control}
-                name='numberOfFeatures'
-                render={({ field }) => (
-                  <FormItem className='w-full relative'>
-                    <FormLabel>Number of features:</FormLabel>
-                    <FormControl>
-                      <Input
-                        className='pr-20'
-                        type='number'
-                        min={1}
-                        {...field}
-                      />
-                    </FormControl>
-                    <FormDescription className='absolute top-8 right-4'>
-                      columns
-                    </FormDescription>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-
-              <FormField
-                control={form.control}
-                name='datasetSize'
-                render={({ field }) => (
-                  <FormItem className='w-full relative'>
-                    <FormLabel className='relative'>Dataset size:</FormLabel>
-                    <FormControl className='relative'>
-                      <Input
-                        className='pr-14'
-                        type='number'
-                        min={1}
-                        {...field}
-                      />
-                    </FormControl>
-                    <FormDescription className='absolute top-8 right-4'>
-                      rows
-                    </FormDescription>
-                    <FormMessage />
                   </FormItem>
                 )}
               />

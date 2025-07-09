@@ -1,10 +1,5 @@
 import { Button } from '@/components/ui/button';
-import {
-  Sheet,
-  SheetTrigger,
-  SheetContent,
-  SheetHeader,
-} from '@/components/ui/sheet';
+import { Sheet, SheetTrigger, SheetContent, SheetHeader } from '@/components/ui/sheet';
 
 import { Menu } from 'lucide-react';
 import GitHubLink from '../GitHubLink/GitHubLink';
@@ -19,17 +14,17 @@ const OptionsSheet: React.FC = () => {
   return (
     <Sheet>
       <SheetTrigger>
-        <Button variant='outline' size='icon' className='bg-transparent'>
-          <Menu className='h-5 w-5' />
-          <span className='sr-only'>Open menu</span>
+        <Button variant="outline" size="icon" className="bg-transparent">
+          <Menu className="h-5 w-5" />
+          <span className="sr-only">Open menu</span>
         </Button>
       </SheetTrigger>
-      <SheetContent className='flex flex-col h-full max-w-[350px] z-[150]'>
+      <SheetContent className="flex flex-col h-full max-w-[350px] z-[150]">
         <SheetHeader>
-          <div className='flex gap-2 justify-end flex-shrink-0'>
-            <GitHubLink variant='secondary' />
-            <ShareButton variant='secondary' />
-            <ModeToggle />
+          <div className="flex gap-2 justify-end flex-shrink-0">
+            <GitHubLink variant="secondary" />
+            <ShareButton variant="secondary" />
+            {/* <ModeToggle /> */}
           </div>
         </SheetHeader>
         {!isUserLoggedIn ? <AuthSheetContent /> : <UserSheetContent />}

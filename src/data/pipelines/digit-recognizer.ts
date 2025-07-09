@@ -14,7 +14,7 @@ export const pipeline: Pipeline =
   problemDescription: "The MNIST dataset is a widely recognized benchmark in the field of computer vision and machine learning, consisting of 70,000 images of handwritten digits from 0 to 9.\n\nEach image is a 28x28 pixel grayscale representation of a single digit, collected from a diverse set of writers. This consistent format allows researchers and practitioners to focus on model development without the need for complex preprocessing.\n\nThe dataset is divided into two subsets:\n\n- 60,000 training samples  \n- 10,000 test samples\n\nThis structure supports both the training and evaluation of digit recognition models under controlled and comparable conditions.\n\nThe goal is to accurately classify each image into one of the ten digit classes (`0` through `9`), making it a canonical example for supervised learning tasks involving image data.\n\nDue to its simplicity, standardization, and accessibility, MNIST has become a foundational resource for testing and benchmarking image classification algorithms—especially those based on neural networks and convolutional architectures.\n\nIt serves as a practical starting point for understanding key concepts in image processing, pattern recognition, and deep learning model evaluation.",
   notebook: {
     preprocessingCode: "import tensorflow as tf\nimport tensorflow_datasets as tfds\n\n# Load the MNIST dataset with metadata, as supervised (image, label) pairs\ndata, metadata = tfds.load('mnist', with_info=True, as_supervised=True)\n\n# Split the dataset into training and test sets\ndata_train, data_test = data['train'], data['test']\n\n# Extract the names of the label classes (digits 0-9)\nnames = metadata.features['label'].names\n\n# Define a function to normalize images from uint8 [0, 255] to float32 [0.0, 1.0]\ndef normalize_img(image, label):\n    image = tf.cast(image, tf.float32) / 255.0\n    return image, label\n\n# Apply the normalization to training and test datasets using map()\ndata_train = data_train.map(normalize_img)\ndata_test = data_test.map(normalize_img)\n\n# Cache the datasets to improve performance during training\ndata_train = data_train.cache()\ndata_test = data_test.cache()",
-    dimensionalityReduction: [
+    dRTraining: [
       {
         modelAlias: "principal-component-analysis",
         performance: {
@@ -86,6 +86,18 @@ export const pipeline: Pipeline =
           f1Score: 0.842,
           rocAuc: 0.972,
           crossEntropy: 0.390,
+        },
+      },
+      {
+        modelAlias: "bayesian-networks-classification",
+        trainingCode: "from sklearn.naive_bayes import BernoulliNB\n\nmodel = BernoulliNB()\nmodel.fit(X_train, y_train)\npredictions = model.predict(X_test)\nprobabilities = model.predict_proba(X_test)",
+        performance: {
+          accuracy: 0.78,
+          precision: 0.780,
+          recall: 0.780,
+          f1Score: 0.780,
+          rocAuc: 0.948,
+          crossEntropy: 0.480,
         },
       },
       {

@@ -1,14 +1,26 @@
+import { ClusteringMetrics } from '@/types/performanceMetrics.types';
 import { ColumnDef } from '@tanstack/react-table';
-import { ClusteringMetrics } from '../types';
 
-const columnsClustering: ColumnDef<ClusteringMetrics>[] = [
+type StrictClusteringColumn = ColumnDef<ClusteringMetrics> & {
+  accessorKey: keyof ClusteringMetrics;
+};
+
+const columnsClustering: StrictClusteringColumn[] = [
+  {
+    accessorKey: 'inertia',
+    header: 'Inertia',
+  },
   {
     accessorKey: 'silhouetteScore',
     header: 'Silhouette Score',
   },
   {
-    accessorKey: 'daviesBouldinScore',
-    header: 'Davies Bouldin\u00A0Score',
+    accessorKey: 'daviesBouldinIndex',
+    header: 'Davies Bouldin\u00A0Index',
+  },
+  {
+    accessorKey: 'calinskiHarabaszIndex',
+    header: 'Calinski Harabasz\u00A0Index',
   },
   {
     accessorKey: 'adjustedRandIndex',
@@ -17,6 +29,10 @@ const columnsClustering: ColumnDef<ClusteringMetrics>[] = [
   {
     accessorKey: 'normalizedMutualInformation',
     header: 'Normalized Mutual\u00A0Information',
+  },
+  {
+    accessorKey: 'fowlkesMallowsScore',
+    header: 'Fowlkes Mallows\u00A0Score',
   },
   {
     accessorKey: 'homogeneity',

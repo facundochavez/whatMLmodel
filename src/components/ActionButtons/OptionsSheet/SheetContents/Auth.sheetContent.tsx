@@ -8,37 +8,35 @@ const AuthSheetContent: React.FC = () => {
   const { setShowAuthDialog, setIsUserRegistering } = useGlobalContext();
 
   return (
-    <div className='h-full flex flex-col justify-center gap-2 items-center text-center'>
-      <h2 className='text-lg font-semibold'>Get Started</h2>
-      <span className='flex items-center text-muted-foreground text-sm mb-6'>
-        Please log in or register to access the AI features.
-      </span>
+    <div className="h-full flex flex-col justify-center gap-2 items-center text-center">
+      <h2 className="text-lg font-semibold">Get Started</h2>
+      <span className="flex items-center text-muted-foreground text-sm mb-6">Please log in or register to access the AI features.</span>
 
-      <footer className='w-full flex flex-col gap-2'>
-        <SheetClose className='w-full' asChild>
+      <footer className="w-full flex flex-col gap-2">
+        <SheetClose className="w-full" asChild>
           <Button
-            className='w-full'
+            className="w-full"
             onClick={() => {
               setIsUserRegistering(false);
               setShowAuthDialog(true);
             }}
           >
-            <LogIn className='mr-2 h-4 w-4' />
+            <LogIn className="mr-2 h-4 w-4" />
             <span>Log in</span>
           </Button>
         </SheetClose>
 
-        <DialogTrigger className='w-full' asChild>
+        <DialogTrigger className="w-full" asChild>
           <Button
-            className='w-full'
-            variant='outline'
-            type='button'
+            className="w-full"
+            variant="outline"
+            type="button"
             onClick={() => {
               setIsUserRegistering(true);
               setShowAuthDialog(true);
             }}
           >
-            <UserRoundPlus className='mr-2 h-4 w-4' />
+            <UserRoundPlus className="mr-2 h-4 w-4" />
             <span>Register</span>
           </Button>
         </DialogTrigger>

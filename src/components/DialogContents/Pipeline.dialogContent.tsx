@@ -7,7 +7,7 @@ import camelToTitleCase from '@/utils/camelToTitleCase';
 import { Card } from '../ui/card';
 import MyCodeMirror from '../MyCodeMirror';
 import { Select, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import getModelNameByAlias from '@/utils/getModeNameByAlias';
+import getModelNameByAlias from '@/utils/getModelNameByAlias';
 import getPerformanceMetricNameByAlias from '@/utils/getPerformanceMetricNameByAlias';
 
 const PipelineDialogContent: React.FC = () => {
@@ -49,10 +49,10 @@ const PipelineDialogContent: React.FC = () => {
         <div className="flex mb-4 gap-4 justify-between">
           <h3 className="text-lg font-semibold mt-1 min-w-fit">Training:</h3>
           <Select defaultValue="0" value={`${selectedPipelineModelIndex}`} onValueChange={(value) => setSelectedPipelineModelIndex(value)}>
-            <SelectTrigger className="w-full sm:w-fit bg-muted/30 [&>svg]:ml-2 hover:bg-muted/50">
+            <SelectTrigger className="w-full sm:w-fit [&>svg]:ml-2 bg-muted/30 hover:bg-muted/50">
               <SelectValue />
             </SelectTrigger>
-            <SelectContent noPortal align='end' className="bg-primary-foreground sm:bg-background max-h-[40vh] border rounded-lg">
+            <SelectContent noPortal align="end" className="bg-primary-foreground sm:bg-background max-h-[40vh] border rounded-lg">
               <SelectGroup>
                 {selectedPipeline?.notebook.training.map((train, index) => (
                   <SelectItem key={index} value={`${index}`} className="text-sm sm:text-base">
@@ -67,7 +67,7 @@ const PipelineDialogContent: React.FC = () => {
           </Select>
         </div>
         <Card className="w-full bg-muted/30 mb-4">
-          <MyCodeMirror value={selectedPipeline?.notebook.training[Number(selectedPipelineModelIndex)].trainingCode || ''} />
+          <MyCodeMirror value={selectedPipeline?.notebook?.training[Number(selectedPipelineModelIndex)]?.trainingCode || ''} />
         </Card>
         <h3 className="text-lg font-semibold mb-2">Performance:</h3>
         <ul className="text-muted-foreground text-sm leading-4">

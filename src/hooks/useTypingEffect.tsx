@@ -3,12 +3,7 @@ import { useEffect, useState, useRef } from 'react';
 import sleep from '@/utils/sleep';
 import { useAnalysesContext } from '@/context/analyses.context';
 
-const useTypingEffect = (
-  text: string = '',
-  wordsInterval: number = 10,
-  delay: number = 0,
-  disabled: boolean = false
-) => {
+const useTypingEffect = (text: string = '', wordsInterval: number = 10, delay: number = 0, disabled: boolean = false) => {
   const [currentPosition, setCurrentPosition] = useState(0);
   const words = text.split(' ');
   const items: string[] = [];

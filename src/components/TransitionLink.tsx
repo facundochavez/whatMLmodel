@@ -10,19 +10,11 @@ interface TransitionLinkProps extends LinkProps {
   className?: string;
 }
 
-export const TransitionLink = ({
-  children,
-  href,
-  sleepTime = 0,
-  className,
-  ...props
-}: TransitionLinkProps) => {
+export const TransitionLink = ({ children, href, sleepTime = 0, className, ...props }: TransitionLinkProps) => {
   const router = useRouter();
   const pathname = usePathname();
 
-  const handleTransition = async (
-    e: React.MouseEvent<HTMLAnchorElement, MouseEvent>
-  ) => {
+  const handleTransition = async (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
     e.preventDefault();
 
     if (pathname !== href) {
@@ -37,12 +29,7 @@ export const TransitionLink = ({
   };
 
   return (
-    <Link
-      onClick={handleTransition}
-      href={href}
-      {...props}
-      className={className}
-    >
+    <Link onClick={handleTransition} href={href} {...props} className={className}>
       {children}
     </Link>
   );

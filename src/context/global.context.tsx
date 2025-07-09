@@ -24,7 +24,7 @@ interface GlobalContextProps {
   selectedPipeline: Pipeline | null;
   setSelectedPipeline: React.Dispatch<React.SetStateAction<Pipeline | null>>;
   selectedPipelineModelIndex: string;
-  setSelectedPipelineModelIndex: React.Dispatch<React.SetStateAction<string>>;  
+  setSelectedPipelineModelIndex: React.Dispatch<React.SetStateAction<string>>;
 }
 
 const GlobalContext = createContext<GlobalContextProps | undefined>(undefined);

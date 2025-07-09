@@ -3,7 +3,6 @@ const extractBlockWithBraces = (str: string) => {
   let startIndex = -1;
   let endIndex = -1;
 
-  // Recorremos el string carácter por carácter
   for (let i = 0; i < str.length; i++) {
     if (str[i] === "{") {
       if (openBraces === 0) {
@@ -22,7 +21,7 @@ const extractBlockWithBraces = (str: string) => {
   if (startIndex !== -1 && endIndex !== -1) {
     return str.slice(startIndex, endIndex + 1);
   }
-  
+
   return null;
 };
 

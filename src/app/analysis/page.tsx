@@ -17,11 +17,11 @@ const AnalysisPage: React.FC = () => {
       }, 5000);
     }
   }, [isAiThinking]);
-  
+
   useEffect(() => {
     setIsAiThinking(false);
   }, [isPageTransitioning]);
-  
+
   useEffect(() => {
     const handleRoute = () => {
       if (!currentAnalysis?.info) {
@@ -30,13 +30,11 @@ const AnalysisPage: React.FC = () => {
     };
     handleRoute();
   }, [currentAnalysis]);
-  
+
   return (
     <>
       <StepTwo setIsAiThinking={setIsAiThinking} />
-      {currentAnalysis?.recommendations && (
-        <StepThree isAiThinking={isAiThinking} />
-      )}
+      {currentAnalysis?.recommendations && <StepThree isAiThinking={isAiThinking} />}
     </>
   );
 };

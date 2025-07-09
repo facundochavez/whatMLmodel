@@ -5,15 +5,7 @@ import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 
 import { Button } from '@/components/ui/button';
-import {
-  Form,
-  FormControl,
-  FormDescription,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from '@/components/ui/form';
+import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 import { useState } from 'react';
 import { DialogClose, DialogFooter } from '@/components/ui/dialog';
@@ -74,18 +66,15 @@ const RegisterForm: React.FC = () => {
 
   return (
     <Form {...form}>
-      <form
-        onSubmit={form.handleSubmit(onSubmit)}
-        className='flex flex-col gap-2'
-      >
+      <form onSubmit={form.handleSubmit(onSubmit)} className="flex flex-col gap-2">
         <FormField
           control={form.control}
-          name='email'
+          name="email"
           render={({ field }) => (
             <FormItem>
               <FormLabel>Email</FormLabel>
               <FormControl>
-                <Input type='email' placeholder='you@example.com' {...field} />
+                <Input type="email" placeholder="you@example.com" {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -94,30 +83,15 @@ const RegisterForm: React.FC = () => {
 
         <FormField
           control={form.control}
-          name='password'
+          name="password"
           render={({ field }) => (
-            <FormItem className='relative'>
+            <FormItem className="relative">
               <FormLabel>Password</FormLabel>
               <FormControl>
                 <>
-                  <Input
-                    type={showPassword ? 'text' : 'password'}
-                    placeholder='•••••'
-                    className='pr-10'
-                    {...field}
-                  />
-                  <Button
-                    variant='link'
-                    className='absolute right-0 top-6'
-                    size='icon'
-                    type='button'
-                    onClick={() => setShowPassword(!showPassword)}
-                  >
-                    {showPassword ? (
-                      <EyeOff className='h-5 w-5' strokeWidth={1.8} />
-                    ) : (
-                      <Eye className='h-5 w-5' strokeWidth={1.8} />
-                    )}
+                  <Input type={showPassword ? 'text' : 'password'} placeholder="•••••" className="pr-10" {...field} />
+                  <Button variant="link" className="absolute right-0 top-6" size="icon" type="button" onClick={() => setShowPassword(!showPassword)}>
+                    {showPassword ? <EyeOff className="h-5 w-5" strokeWidth={1.8} /> : <Eye className="h-5 w-5" strokeWidth={1.8} />}
                   </Button>
                 </>
               </FormControl>
@@ -129,37 +103,27 @@ const RegisterForm: React.FC = () => {
 
         <FormField
           control={form.control}
-          name='confirmPassword'
+          name="confirmPassword"
           render={({ field }) => (
-            <FormItem className='relative'>
+            <FormItem className="relative">
               <FormLabel>Confirm Password</FormLabel>
               <FormControl>
                 <>
-                  <Input
-                    type={showConfirmPassword ? 'text' : 'password'}
-                    placeholder='•••••'
-                    className='pr-10'
-                    {...field}
-                  />
+                  <Input type={showConfirmPassword ? 'text' : 'password'} placeholder="•••••" className="pr-10" {...field} />
                   <Button
-                    variant='link'
-                    className='absolute right-0 top-6'
-                    size='icon'
-                    type='button'
+                    variant="link"
+                    className="absolute right-0 top-6"
+                    size="icon"
+                    type="button"
                     onClick={() => setShowConfirmPassword(!showConfirmPassword)}
                   >
-                    {showConfirmPassword ? (
-                      <EyeOff className='h-5 w-5' strokeWidth={1.8} />
-                    ) : (
-                      <Eye className='h-5 w-5' strokeWidth={1.8} />
-                    )}
+                    {showConfirmPassword ? <EyeOff className="h-5 w-5" strokeWidth={1.8} /> : <Eye className="h-5 w-5" strokeWidth={1.8} />}
                   </Button>
                 </>
               </FormControl>
               <FormMessage />
               <FormDescription>
-                Must be at least 8 characters and include a mix of uppercase,
-                lowercase, numbers, and special characters.
+                Must be at least 8 characters and include a mix of uppercase, lowercase, numbers, and special characters.
               </FormDescription>
             </FormItem>
           )}
@@ -167,15 +131,15 @@ const RegisterForm: React.FC = () => {
 
         <FormField
           control={form.control}
-          name='termsAndConditions'
+          name="termsAndConditions"
           render={({ field }) => (
-            <FormItem className='flex items-center space-y-0 gap-2'>
+            <FormItem className="flex items-center space-y-0 gap-2">
               <FormControl>
                 <Checkbox></Checkbox>
               </FormControl>
-              <FormLabel className='text-base text-muted-foreground'>
+              <FormLabel className="text-base text-muted-foreground">
                 I agree to the{' '}
-                <a href='#' className='underline hover:text-foreground'>
+                <a href="#" className="underline hover:text-foreground">
                   Terms and Conditions.
                 </a>
               </FormLabel>
@@ -186,12 +150,12 @@ const RegisterForm: React.FC = () => {
 
         <DialogFooter>
           <DialogClose asChild>
-            <Button variant='outline' type='button'>
+            <Button variant="outline" type="button">
               Cancel
             </Button>
           </DialogClose>
           <DialogClose asChild>
-            <Button type='submit'>Register</Button>
+            <Button type="submit">Register</Button>
           </DialogClose>
 
           {/*  <Button variant='outline' type='button'>

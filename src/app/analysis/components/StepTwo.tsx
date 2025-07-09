@@ -1,7 +1,5 @@
 'use client';
-
 import { Button } from '@/components/ui/button';
-
 import { ArrowLeft, LoaderCircle, PenLine, RefreshCcw, Star } from 'lucide-react';
 import { DialogFooter } from '@/components/ui/dialog';
 import { AiStarsIcon } from '@/icons/AiStarsIcon';
@@ -10,7 +8,6 @@ import { TransitionLink } from '@/components/TransitionLink';
 import StepTwoForm from '@/components/Forms/StepTwo.form';
 import { useEffect, useState } from 'react';
 import { useAnalysesContext } from '@/context/analyses.context';
-import generateRandomUUID from '@/utils/generateRandomUUID';
 
 interface StepTwoProps extends React.PropsWithChildren {
   setIsAiThinking: React.Dispatch<React.SetStateAction<boolean>>;
@@ -102,6 +99,12 @@ const StepTwo: React.FC<StepTwoProps> = ({ setIsAiThinking }) => {
       setIsUserUpdatingRecommendations(false);
     }
   }, [isUserUpdatingRecommendations]);
+
+  const cancelEditingInfo = () => {
+    setIsUserEditingInfo(false);
+    setIsFormCollapsed(true);
+    setIsFormBlocked(false);
+  };
 
   return (
     <section className="w-full flex flex-col items-center gap-6">

@@ -1,4 +1,5 @@
 import { ClassificationModelAlias, ClusteringModelAlias, DimensionalityReductionModelAlias, RegressionModelAlias } from "./models.types";
+import { ClassificationMetrics, ClusteringMetrics, DimensionalityReductionMetrics, RegressionMetrics } from "./performanceMetrics.types";
 import { ProblemType } from "./common.types";
 
 
@@ -15,7 +16,7 @@ export interface Pipeline {
   problemDescription: string;
   notebook: {
     preprocessingCode: string;
-    dimensionalityReduction?: DimensionalityReductionTraining[];
+    dRTraining?: DimensionalityReductionTraining[];
     training:
     | RegressionTraining[]
     | ClassificationTraining[]
@@ -23,69 +24,25 @@ export interface Pipeline {
   }
 }
 
-// TRAINING TYPES
-
 type RegressionTraining = {
   modelAlias: RegressionModelAlias;
   trainingCode: string;
-  performance: RegressionPerformances;
+  performance: RegressionMetrics;
 };
-
 
 type ClassificationTraining = {
   modelAlias: ClassificationModelAlias;
   trainingCode: string;
-  performance: ClassificationPerformances;
+  performance: ClassificationMetrics;
 };
 
 type ClusteringTraining = {
   modelAlias: ClusteringModelAlias;
   trainingCode: string;
-  performance: ClusteringPerformances;
+  performance: ClusteringMetrics;
 };
 
 type DimensionalityReductionTraining = {
   modelAlias: DimensionalityReductionModelAlias;
-  performance: DimensionalityReductionPerformances;
-};
-
-
-// PERFORMANCES TYPES
-
-type RegressionPerformances = {
-  meanAbsoluteError?: number;
-  meanSquaredError?: number;
-  rootMeanSquaredError?: number;
-  rSquared?: number;
-  adjustedRSquared?: number;
-};
-
-type ClassificationPerformances = {
-  accuracy?: number;
-  precision?: number;
-  recall?: number;
-  f1Score?: number;
-  rocAuc?: number;
-  crossEntropy?: number;
-};
-
-type ClusteringPerformances = {
-  inertia?: number;
-  silhouetteScore?: number;
-  daviesBouldinIndex?: number;
-  calinskiHarabaszIndex?: number;
-  adjustedRandIndex?: number;
-  normalizedMutualInformation?: number;
-  fowlkesMallowsScore?: number;
-  homogeneity?: number;
-  completeness?: number;
-  vMeasure?: number;
-};
-
-type DimensionalityReductionPerformances = {
-  explainedVarianceRatio?: number;
-  reconstructionError?: number;
-  perplexity?: number;
-  coherenceScore?: number;
-  isolationForestAnomalyDetection?: number;
+  performance: DimensionalityReductionMetrics;
 };

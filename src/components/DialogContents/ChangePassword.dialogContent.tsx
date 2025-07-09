@@ -1,10 +1,5 @@
 'use client';
-import {
-  DialogContent,
-  DialogFooter,
-  DialogHeader,
-  DialogTitle,
-} from '@/components/ui/dialog';
+import { DialogContent, DialogFooter, DialogHeader, DialogTitle } from '@/components/ui/dialog';
 
 import ChangePasswordForm from '@/components/Forms/ChangePassword.form';
 

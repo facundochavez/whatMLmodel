@@ -5,10 +5,8 @@ import getModelIcon from '@/utils/getModelIcon';
 import { Button } from '@/components/ui/button';
 import { ArrowRight } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
-import { useGlobalContext } from '@/context/global.context';
 import { DialogTrigger } from '@radix-ui/react-dialog';
 import camelToTitleCase from '@/utils/camelToTitleCase';
-import Markdown from 'react-markdown';
 
 const PipelineCard = ({ pipeline }: { pipeline: Pipeline }) => {
   const Icon = getModelIcon({
@@ -37,8 +35,6 @@ const DatasetLayerCard = ({
   isTopLayer?: boolean;
   isHovered?: boolean;
 }) => {
-  const { isMobile } = useGlobalContext();
-
   return (
     <Card
       className={`w-full ${isTopLayer && 'absolute top-0 left-0 bg-foreground'}`}

@@ -2,7 +2,7 @@ export const sampleDescriptions = [
   {
     "id": 1,
     "name": "Titanic",
-    "value": "Based on the features of Titanic passengers (such as sex, age and socio-economic class), the goal is to determine which types of people were more likely to survive."
+    "value": "Based on the features of Titanic passengers (such as age, sex and socio-economic class), the goal is to determine which types of people were more likely to survive."
   },
   {
     "id": 2,

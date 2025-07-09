@@ -7,7 +7,7 @@ import { Dialog } from '@radix-ui/react-dialog';
 import PipelineDialogContent from '@/components/DialogContents/Pipeline.dialogContent';
 import { CollapsibleBox } from '@/components/CollapsibleBox';
 import { useGlobalContext } from '@/context/global.context';
-import { getLatestPublicPipelines } from '@/utils/getLatestPublicPipelines';
+import { getLatestPipelines } from '@/utils/getLatestPipelines';
 
 const LatestPipelines = () => {
   const [isBoxCollapsed, setIsBoxCollapsed] = useState(true);
@@ -16,7 +16,7 @@ const LatestPipelines = () => {
   const [latestPipelines, setLatestPipelines] = useState<Pipeline[]>([]);
 
   useEffect(() => {
-    getLatestPublicPipelines().then(setLatestPipelines);
+    getLatestPipelines().then(setLatestPipelines);
   }, []);
 
   return (
