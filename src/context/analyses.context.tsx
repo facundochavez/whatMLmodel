@@ -44,7 +44,7 @@ export const AnalysesProvider = ({ children }: AnalysesProviderProps) => {
   const auxiliarAnalysis = analysesMock[auxiliarAnalysisIndex];
   const auxiliarAnalysisTwo = analysesMock[4];
 
-  // ANALYSES, RECENTS Y FAVORITES SON DE TIPO ANALYSIS[] PERO SOLO CONTIENE: ID, TITLE, ISFAVORITE
+  // ANALYSESVIEWS, RECENTSVIEWS Y FAVORITESVIEWS SOLO CONTIENE: ID, TITLE, ISFAVORITE
   const [analysesView, setAnalysesView] = useState<View[]>(analyses.slice(3).map(({ id, title, isFavorite }) => ({ id, title, isFavorite })));
 
   const recentsView: View[] = analysesView.filter((analysisView) => !analysisView.isFavorite);
@@ -61,7 +61,8 @@ export const AnalysesProvider = ({ children }: AnalysesProviderProps) => {
   //
   // LAS SIGUIENTES FUNCIONES TIENEN UN APPROACH DE "OPTIMISTIC UI UPDATE"-> FRONTEND / BACKEND / FRONTEND
   // AQUÍ SE DEBE HACER LA ACTUALIZACIÓN DEL BACKEND Y SI DA ERROR, SE DEBE REVERTIR LAS SIGUIENTES FUNCIONES.
-  // IMPORTANTE: EL ANÁLISIS MODIFICADO DEBE QUEDAR SIEMPRE EN LA PRIMERA POSICIÓN EN EL BACKEND -> ACTUALIZAR SU FECHA "UpdatedAt" Y SIEMPRE DEVOLVER LOS
+  // IMPORTANTE: EL ANÁLISIS MODIFICADO (YA SEA PORQUE SE PUSO/QUITO DE FAVORITOS O SE OBTUVO NUEVAS RECOMENDACIONES)
+  // DEBE QUEDAR SIEMPRE EN LA PRIMERA POSICIÓN EN EL BACKEND -> ACTUALIZAR SU FECHA "UpdatedAt" Y SIEMPRE DEVOLVER LOS
   // RESULTADOS EN ORDEN CRONOLÓGICO SEGÚN SU "CreatedAt" Y SU "UpdatedAt", LO QUE SEA MÁS RECIENTE.
   // AL FRONTEND NO LE PREOCUPA ESTE CAMBIO PORQUE YA PONE EN PRIMERA POSICIÓN LO QUE SEA MODIFICADO
 

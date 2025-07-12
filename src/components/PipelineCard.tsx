@@ -26,7 +26,7 @@ const PipelineCard = ({ pipeline }: { pipeline: Pipeline }) => {
 };
 
 const DatasetLayerCard = ({
-  pipeline: pipeline,
+  pipeline,
   Icon,
   isTopLayer = false,
   isHovered = false,

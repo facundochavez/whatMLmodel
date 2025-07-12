@@ -5,9 +5,9 @@ export default async function getPipelinesByAlias(aliases: string[]): Promise<Pi
 
   for (const alias of aliases) {
     try {
-      const module = await import(`@/data/pipelines/${alias}`);
-      if (module.pipeline) {
-        results.push(module.pipeline as Pipeline);
+      const mod = await import(`@/data/pipelines/${alias}`);
+      if (mod.pipeline) {
+        results.push(mod.pipeline as Pipeline);
       }
     } catch (error) {
       console.warn(`No se pudo cargar el pipeline para ${alias}:`, error);

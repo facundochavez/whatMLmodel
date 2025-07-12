@@ -8,9 +8,9 @@ export const getLatestPipelines = async (): Promise<Pipeline[]> => {
     if (results.length >= 12) break;
 
     try {
-      const module = await import(`@/data/pipelines/${alias}`);
-      if (module.pipeline) {
-        results.push(module.pipeline as Pipeline);
+      const mod = await import(`@/data/pipelines/${alias}`);
+      if (mod.pipeline) {
+        results.push(mod.pipeline as Pipeline);
       }
     } catch (error) {
       console.warn(`No se pudo cargar el pipeline para ${alias}:`, error);

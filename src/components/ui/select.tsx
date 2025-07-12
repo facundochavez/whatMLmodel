@@ -97,6 +97,8 @@ const SelectContent = React.forwardRef<
   return noPortal ? content : <SelectPrimitive.Portal>{content}</SelectPrimitive.Portal>;
 });
 
+SelectContent.displayName = SelectPrimitive.Content.displayName;
+
 const SelectLabel = React.forwardRef<
   React.ElementRef<typeof SelectPrimitive.Label>,
   React.ComponentPropsWithoutRef<typeof SelectPrimitive.Label>
