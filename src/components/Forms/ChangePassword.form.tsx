@@ -7,10 +7,8 @@ import { Button } from '@/components/ui/button';
 import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 import { Eye, EyeOff } from 'lucide-react';
-import { Dialog, DialogClose, DialogFooter } from '@/components/ui/dialog';
-import { DialogTrigger } from '@radix-ui/react-dialog';
-import ResetPasswordDialogContent from '../DialogContents/ResetPassword.dialogContent';
-import { useGlobalContext } from '@/context/global.context';
+import { DialogClose, DialogFooter } from '@/components/ui/dialog';
+import { useGlobalStore } from '@/store/global.store';
 
 // Esquema de validación con Zod
 const changePasswordSchema = z
@@ -44,7 +42,7 @@ const ChangePasswordForm: React.FC = () => {
   const [showCurrentPassword, setShowCurrentPassword] = useState(false);
   const [showNewPassword, setShowNewPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
-  const { setShowResetPasswordDialog } = useGlobalContext();
+  const setShowResetPasswordDialog = useGlobalStore((state) => state.setShowResetPasswordDialog);
 
   const form = useForm<z.infer<typeof changePasswordSchema>>({
     resolver: zodResolver(changePasswordSchema),

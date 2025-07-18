@@ -7,30 +7,21 @@ import useTextReveal from '@/hooks/useTextReveal';
 import { TransitionLink } from '@/components/TransitionLink';
 import StepTwoForm from '@/components/Forms/StepTwo.form';
 import { useEffect, useState } from 'react';
-import { useAnalysesContext } from '@/context/analyses.context';
+import { useGlobalStore } from '@/store/global.store';
+import { useAnalysesStore } from '@/store/analyses.store';
+import { useCurrentAnalysisStore } from '@/store/currentAnalysis.store';
+import { AnalysisInfo } from '@/types/analysis.types';
 
-interface StepTwoProps extends React.PropsWithChildren {
-  setIsAiThinking: React.Dispatch<React.SetStateAction<boolean>>;
-}
-
-const StepTwo: React.FC<StepTwoProps> = ({ setIsAiThinking }) => {
-  const {
-    currentAnalysis,
-    setCurrentAnalysis,
-    handleToggleFavorite,
-    auxiliarAnalysis,
-    auxiliarAnalysisTwo,
-    handleAddAnalysis,
-    handleUpdateRecommendations,
-  } = useAnalysesContext();
+const StepTwo = () => {
+  const setIsAiThinking = useGlobalStore((state) => state.setIsAiThinking);
+  const currentAnalysis = useCurrentAnalysisStore((state) => state.currentAnalysis);
+  const handleToggleFavorite = useAnalysesStore((state) => state.toggleFavorite);
+  const getAnalysisRecommendations = useCurrentAnalysisStore((state) => state.getAnalysisRecommendations);
 
   const [isUserEditingInfo, setIsUserEditingInfo] = useState<boolean>(false);
   const [isFormCollapsed, setIsFormCollapsed] = useState(true);
   const [isFormBlocked, setIsFormBlocked] = useState(false);
   const [isButtonGettingRecommendations, setIsButtonGettingRecommendations] = useState<boolean>(false);
-
-  const [isUseCreatingNewAnalysis, setIsUserCreatingNewAnalysis] = useState(false);
-  const [isUserUpdatingRecommendations, setIsUserUpdatingRecommendations] = useState(false);
 
   useEffect(() => {
     if (!currentAnalysis?.recommendations) {
@@ -51,59 +42,26 @@ const StepTwo: React.FC<StepTwoProps> = ({ setIsAiThinking }) => {
     }
   }, [isUserEditingInfo]);
 
-  // SIMULACIÓN DE AI: CREACIÓN DE NUEVO ANÁLISIS
-  const handleCreateNewAnalysis = () => {
+  const handleGetRecommendations = () => {
     setIsFormCollapsed(true);
     setIsButtonGettingRecommendations(true);
     window.scrollTo({ top: 0, behavior: 'smooth' });
 
     setTimeout(() => {
       setIsAiThinking(true);
-      setCurrentAnalysis({ ...auxiliarAnalysis });
-      setIsUserCreatingNewAnalysis(true);
+      getAnalysisRecommendations(currentAnalysis?.info as AnalysisInfo);
 
       setIsButtonGettingRecommendations(false);
       setIsUserEditingInfo(false);
       setIsFormBlocked(false);
     }, 1000);
   };
-
-  useEffect(() => {
-    if (isUseCreatingNewAnalysis) {
-      currentAnalysis?.id && handleAddAnalysis();
-      setIsUserCreatingNewAnalysis(false);
-    }
-  }, [isUseCreatingNewAnalysis]);
-
-  // SIMULACIÓN DE AI: RENOVAR RECOMENDACIONES
-  const handleGetNewRecommendations = () => {
-    setIsFormCollapsed(true);
-    setIsButtonGettingRecommendations(true);
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-
-    setTimeout(() => {
-      setIsAiThinking(true);
-      setCurrentAnalysis({
-        ...auxiliarAnalysis,
-        ...auxiliarAnalysisTwo.recommendations,
-      });
-      setIsUserUpdatingRecommendations(true);
-      setIsButtonGettingRecommendations(false);
-      setIsUserEditingInfo(false);
-      setIsFormBlocked(false);
-    }, 1000);
-  };
-  useEffect(() => {
-    if (isUserUpdatingRecommendations) {
-      currentAnalysis?.id && handleUpdateRecommendations();
-      setIsUserUpdatingRecommendations(false);
-    }
-  }, [isUserUpdatingRecommendations]);
 
   const cancelEditingInfo = () => {
     setIsUserEditingInfo(false);
     setIsFormCollapsed(true);
     setIsFormBlocked(false);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   return (
@@ -135,7 +93,7 @@ const StepTwo: React.FC<StepTwoProps> = ({ setIsAiThinking }) => {
                         Cancel and retry
                       </Button>
                     </TransitionLink>
-                    <Button type="submit" onClick={handleCreateNewAnalysis} className="flex items-center">
+                    <Button type="submit" onClick={handleGetRecommendations} className="flex items-center">
                       <AiStarsIcon className="mr-1.5 h-[18px] w-[18px]" />
                       Get models
                     </Button>
@@ -151,18 +109,10 @@ const StepTwo: React.FC<StepTwoProps> = ({ setIsAiThinking }) => {
               <>
                 {!isButtonGettingRecommendations ? (
                   <>
-                    <Button
-                      variant="outline"
-                      onClick={() => {
-                        setIsUserEditingInfo(false);
-                        setIsFormCollapsed(true);
-                        setIsFormBlocked(false);
-                        window.scrollTo({ top: 0, behavior: 'smooth' });
-                      }}
-                    >
+                    <Button variant="outline" onClick={cancelEditingInfo}>
                       Cancel
                     </Button>
-                    <Button type="submit" onClick={handleGetNewRecommendations} className="flex items-center">
+                    <Button type="submit" onClick={handleGetRecommendations} className="flex items-center">
                       Apply changes
                     </Button>
                   </>

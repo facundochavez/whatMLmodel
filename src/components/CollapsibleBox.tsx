@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { Button } from '@/components/ui/button';
 import { ChevronUp } from 'lucide-react';
-import { useGlobalContext } from '@/context/global.context';
+import { useGlobalStore } from '@/store/global.store';
 
 interface CollapsibleBoxProps {
   children: React.ReactNode;
@@ -22,7 +22,7 @@ export const CollapsibleBox = ({
   externalIsCollapsed = false,
   onCollapseChange,
 }: CollapsibleBoxProps) => {
-  const { isMobile } = useGlobalContext();
+  const isMobile  = useGlobalStore((state) => state.isMobile);
   const [isCollapsed, setIsCollapsed] = useState(externalIsCollapsed !== undefined ? externalIsCollapsed : true);
   const [maskHeight, setMaskHeight] = useState(150);
   const [expandedHeight, setExpandedHeight] = useState(collapsedHeight);

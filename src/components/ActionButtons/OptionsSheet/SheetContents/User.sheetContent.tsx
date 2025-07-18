@@ -1,23 +1,23 @@
-import { Star, LogOut, History, CirclePlus, UserRound, Settings } from 'lucide-react';
+import { Star, History, CirclePlus, UserRound, Settings } from 'lucide-react';
 import ConfirmDeleteDialogContent from '@/components/DialogContents/ConfirmDelete.dialogContent';
 import { usePathname } from 'next/navigation';
 
 import { Button } from '@/components/ui/button';
-import { AlertDialog, AlertDialogTrigger } from '@/components/ui/alert-dialog';
+import { AlertDialog } from '@/components/ui/alert-dialog';
 
 import { Label } from '@/components/ui/label';
 import { Separator } from '@/components/ui/separator';
 import AnalysisActionsDropdown from '@/components/ActionButtons/AnalysisDropdown/AnalysisActions.dropdown';
 
 import { SheetClose } from '@/components/ui/sheet';
-import { useGlobalContext } from '@/context/global.context';
-import { useAnalysesContext } from '@/context/analyses.context';
 import { TransitionLink } from '@/components/TransitionLink';
+import { useGlobalStore } from '@/store/global.store';
+import { useAnalysesView } from '@/hooks/useAnalysesView';
 
 const UserSheetContent = () => {
   const pathname = usePathname();
-  const { setShowAccountSettingsDialog, setShowApiKeyDialog } = useGlobalContext();
-  const { recentsView, favoritesView, handleSelectAnalysis } = useAnalysesContext();
+  const setShowApiKeyDialog = useGlobalStore((state) => state.setShowApiKeyDialog);
+  const { recentsView, favoritesView, handleSelectAnalysis } = useAnalysesView();
 
   return (
     <div className="flex flex-col gap-4 h-full overflow-y-hidden w-full">
@@ -51,12 +51,12 @@ const UserSheetContent = () => {
                         <Button
                           variant="ghost"
                           className="flex w-full text-left h-full px-0 pr-8 font-normal"
-                          onClick={() => handleSelectAnalysis(favoriteView.id as string)}
+                          onClick={() => handleSelectAnalysis(favoriteView.id)}
                         >
                           <span className="w-full overflow-hidden text-ellipsis whitespace-nowrap">{favoriteView.title}</span>
                         </Button>
                         <div className="absolute right-0 top-0">
-                          <AnalysisActionsDropdown analysisId={favoriteView.id as string} isFavorite />
+                          <AnalysisActionsDropdown analysisId={favoriteView.id} isFavorite />
                         </div>
                       </li>
                     </SheetClose>
@@ -83,12 +83,12 @@ const UserSheetContent = () => {
                         <Button
                           variant="ghost"
                           className="flex w-full text-left h-full px-0 pr-8 font-normal"
-                          onClick={() => handleSelectAnalysis(recentView.id as string)}
+                          onClick={() => handleSelectAnalysis(recentView.id)}
                         >
                           <span className="w-full overflow-hidden text-ellipsis whitespace-nowrap">{recentView.title}</span>
                         </Button>
                         <div className="absolute right-0 top-0">
-                          <AnalysisActionsDropdown analysisId={recentView.id as string} />
+                          <AnalysisActionsDropdown analysisId={recentView.id} />
                         </div>
                       </li>
                     </SheetClose>

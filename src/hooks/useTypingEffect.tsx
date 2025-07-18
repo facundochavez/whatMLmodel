@@ -1,7 +1,6 @@
 'use client';
 import { useEffect, useState, useRef } from 'react';
 import sleep from '@/utils/sleep';
-import { useAnalysesContext } from '@/context/analyses.context';
 
 const useTypingEffect = (text: string = '', wordsInterval: number = 10, delay: number = 0, disabled: boolean = false) => {
   const [currentPosition, setCurrentPosition] = useState(0);
@@ -35,8 +34,7 @@ const useTypingEffect = (text: string = '', wordsInterval: number = 10, delay: n
     return () => clearTimeout(timeoutId);
   }, [delay, text]);
 
-  const { isPageTransitioning } = useAnalysesContext();
-  if (disabled || isPageTransitioning) return text;
+  if (disabled) return text;
   return items.slice(0, currentPosition).join(' ');
 };
 

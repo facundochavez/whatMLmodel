@@ -2,7 +2,7 @@ import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigge
 import { AlertDialogTrigger } from '@/components/ui/alert-dialog';
 import { Button } from '@/components/ui/button';
 import { Trash, Ellipsis, Star, StarOff } from 'lucide-react';
-import { useAnalysesContext } from '@/context/analyses.context';
+import { useAnalysesStore } from '@/store/analyses.store';
 
 type AnalysisActionsDropdownProps = {
   analysisId: string;
@@ -10,7 +10,8 @@ type AnalysisActionsDropdownProps = {
 };
 
 const AnalysisActionsDropdown: React.FC<AnalysisActionsDropdownProps> = ({ analysisId, isFavorite = false }) => {
-  const { handleToggleFavorite, setSelectedAnalysisId } = useAnalysesContext();
+  const toggleFavorite = useAnalysesStore((state) => state.toggleFavorite);
+  const setMarkedAnalysisId = useAnalysesStore((state) => state.setMarkedAnalysisId);
 
   return (
     <DropdownMenu>
@@ -28,7 +29,7 @@ const AnalysisActionsDropdown: React.FC<AnalysisActionsDropdownProps> = ({ analy
         align="end"
         className="z-[200]"
       >
-        <DropdownMenuItem onClick={() => handleToggleFavorite(analysisId)}>
+        <DropdownMenuItem onClick={() => toggleFavorite(analysisId)}>
           {!isFavorite ? (
             <>
               <Star className="mr-2.5 h-3.5 w-3.5" />
@@ -46,7 +47,7 @@ const AnalysisActionsDropdown: React.FC<AnalysisActionsDropdownProps> = ({ analy
           asChild
           onClick={(e) => {
             e.stopPropagation();
-            setSelectedAnalysisId(analysisId as string);
+            setMarkedAnalysisId(analysisId);
           }}
         >
           <DropdownMenuItem>

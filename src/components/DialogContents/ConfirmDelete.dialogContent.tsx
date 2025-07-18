@@ -7,10 +7,11 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
 } from '@/components/ui/alert-dialog';
-import { useAnalysesContext } from '@/context/analyses.context';
+import { useAnalysesStore } from '@/store/analyses.store';
 
 const ConfirmDeleteDialogContent: React.FC = () => {
-  const { selectedAnalysisId, handleDeleteAnalysis } = useAnalysesContext();
+  const markedAnalysisId = useAnalysesStore((state) => state.markedAnalysisId);
+  const deleteAnalysis = useAnalysesStore((state) => state.deleteAnalysis);
 
   return (
     <AlertDialogContent>
@@ -22,7 +23,7 @@ const ConfirmDeleteDialogContent: React.FC = () => {
       </AlertDialogHeader>
       <AlertDialogFooter>
         <AlertDialogCancel>Cancel</AlertDialogCancel>
-        <AlertDialogAction onClick={() => handleDeleteAnalysis(selectedAnalysisId as string)}>Delete</AlertDialogAction>
+        <AlertDialogAction onClick={() => deleteAnalysis(markedAnalysisId)}>Delete</AlertDialogAction>
       </AlertDialogFooter>
     </AlertDialogContent>
   );

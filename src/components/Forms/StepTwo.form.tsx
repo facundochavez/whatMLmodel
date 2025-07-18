@@ -11,7 +11,7 @@ import { CollapsibleBox } from '../CollapsibleBox';
 import { Textarea } from '../ui/textarea';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '../ui/tooltip';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '../ui/select';
-import { useAnalysesContext } from '@/context/analyses.context';
+import { useCurrentAnalysisStore } from '@/store/currentAnalysis.store';
 
 // Esquema de validación con Zod
 const stepTwoSchema = z.object({
@@ -31,7 +31,7 @@ interface StepTwoFormProps extends React.PropsWithChildren {
 }
 
 const StepTwoForm: React.FC<StepTwoFormProps> = ({ isFormCollapsed, isFormBlocked, isUserEditingInfo, onCollapseChange, children }) => {
-  const { currentAnalysis } = useAnalysesContext();
+  const currentAnalysis = useCurrentAnalysisStore((state) => state.currentAnalysis);
   const [showProblemTooltip, setShowProblemTooltip] = useState(false);
   const [showComplexDataTooltip, setShowComplexDataTooltip] = useState(false);
   const [formLabel, setLabel] = useState('');

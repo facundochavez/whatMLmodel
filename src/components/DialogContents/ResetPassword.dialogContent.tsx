@@ -8,7 +8,7 @@ import { DialogClose, DialogContent, DialogDescription, DialogFooter, DialogHead
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
 import { Input } from '../ui/input';
 import { Button } from '../ui/button';
-import { useGlobalContext } from '@/context/global.context';
+import { useGlobalStore } from '@/store/global.store';
 
 // Esquema de validación con zod
 const resetPasswordSchema = z.object({
@@ -18,7 +18,8 @@ const resetPasswordSchema = z.object({
 });
 
 const ResetPasswordDialogContent: React.FC = () => {
-  const { isUserLoggedIn, userEmail } = useGlobalContext();
+  const isUserLoggedIn = useGlobalStore((state) => state.isUserLoggedIn);
+  const userEmail = useGlobalStore((state) => state.userEmail);
 
   // Definir el formulario
   const form = useForm<z.infer<typeof resetPasswordSchema>>({

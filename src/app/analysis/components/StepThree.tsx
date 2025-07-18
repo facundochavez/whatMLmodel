@@ -1,14 +1,14 @@
 import TablesGroup from '@/components/TablesGroup/TablesGroup';
 import TypingText from '@/components/TypingText';
-import { useAnalysesContext } from '@/context/analyses.context';
+import { useCurrentAnalysisStore } from '@/store/currentAnalysis.store';
+import { useGlobalStore } from '@/store/global.store';
 import generateRandomUUID from '@/utils/generateRandomUUID';
 
-interface StepThreeProps extends React.PropsWithChildren {
-  isAiThinking: boolean;
-}
 
-const StepThree: React.FC<StepThreeProps> = ({ isAiThinking }) => {
-  const { currentAnalysis } = useAnalysesContext();
+
+const StepThree = () => {
+  const isAiThinking = useGlobalStore((state) => state.isAiThinking);
+  const currentAnalysis = useCurrentAnalysisStore((state) => state.currentAnalysis);
 
   return (
     <section className="w-full max-w-[70rem] flex flex-col gap-8 sm:gap-4">

@@ -7,10 +7,11 @@ import RegisterForm from '@/components/Forms/Register.form';
 import Image from 'next/image';
 import { Separator } from '@/components/ui/separator';
 import { DialogClose } from '@/components/ui/dialog';
-import { useGlobalContext } from '@/context/global.context';
+import { useGlobalStore } from '@/store/global.store';
 
 const AuthDialogContent: React.FC = () => {
-  const { isUserRegistering, setIsUserRegistering } = useGlobalContext();
+  const isUserRegistering = useGlobalStore((state) => state.isUserRegistering);
+  const setIsUserRegistering = useGlobalStore((state) => state.setIsUserRegistering);
 
   return (
     <DialogContent>

@@ -1,17 +1,17 @@
 import ModelsTable from './ModelsTable/Models.table';
 import SimilarPipelineTable from './SimilarPipelinesTable/SimilarPipeline.table';
 import PipelineSelector from './PipelineSelector/PipelineSelector';
-import { useGlobalContext } from '@/context/global.context';
 import ModelsAccordion from './ModelsAccordion/Models.accordion';
 import TablesGroupProvider, { TablesGroupProps } from './tablesGroup.context';
 import { Dialog } from '@/components/ui/dialog';
+import { useGlobalStore } from '@/store/global.store';
 
 const TablesGroup: React.FC<TablesGroupProps> = ({ type, tables }) => {
-  const { isMobile } = useGlobalContext();
-  const { setSelectedPipelineModelIndex } = useGlobalContext();
+  const isMobile = useGlobalStore((state) => state.isMobile);
+  const onOpenChangePipelineDialog = useGlobalStore((state) => state.onOpenChangePipelineDialog);
 
   return (
-    <Dialog onOpenChange={() => setSelectedPipelineModelIndex('0')}>
+    <Dialog onOpenChange={onOpenChangePipelineDialog}>
       <TablesGroupProvider type={type} tables={tables}>
         {isMobile ? (
           <ModelsAccordion />

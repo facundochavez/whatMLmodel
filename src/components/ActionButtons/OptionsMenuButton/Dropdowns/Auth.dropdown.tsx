@@ -1,10 +1,11 @@
 import { DropdownMenu, DropdownMenuContent, DropdownMenuGroup, DropdownMenuItem, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
 import { LogIn, UserRound, UserRoundPlus } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { useGlobalContext } from '@/context/global.context';
+import { useGlobalStore } from '@/store/global.store';
 
 const AuthDropdown: React.FC = () => {
-  const { setIsUserRegistering, setShowAuthDialog } = useGlobalContext();
+  const setIsUserRegistering = useGlobalStore((state) => state.setIsUserRegistering);
+  const setShowAuthDialog = useGlobalStore((state) => state.setShowAuthDialog);
 
   return (
     <DropdownMenu>

@@ -1,6 +1,6 @@
 import { ClassificationModelAlias, ClusteringModelAlias, DimensionalityReductionModelAlias, RegressionModelAlias } from "./models.types";
 import { ClassificationMetrics, ClusteringMetrics, DimensionalityReductionMetrics, RegressionMetrics } from "./performanceMetrics.types";
-import { ProblemType } from "./common.types";
+import { ProblemType } from "./analysis.types";
 
 
 export interface Pipeline {

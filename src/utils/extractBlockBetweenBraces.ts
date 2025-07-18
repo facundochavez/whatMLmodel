@@ -1,4 +1,4 @@
-const extractBlockWithBraces = (str: string) => {
+const extractBlockBetweenBraces = (str: string) => {
   let openBraces = 0;
   let startIndex = -1;
   let endIndex = -1;
@@ -25,4 +25,4 @@ const extractBlockWithBraces = (str: string) => {
   return null;
 };
 
-export default extractBlockWithBraces;
+export default extractBlockBetweenBraces;

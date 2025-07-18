@@ -1,5 +1,3 @@
-import { ProblemType } from "./common.types";
-
 export interface Model {
   id: string;
   alias: string;

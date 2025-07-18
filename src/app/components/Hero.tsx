@@ -1,11 +1,8 @@
 import { sampleDescriptions } from '@/data/sample-descriptions.data';
 import { Badge } from '@/components/ui/badge';
 import { sampleDescriptionsService } from '@/services/sampleDescriptionsService';
-import { useAnalysesContext } from '@/context/analyses.context';
 
 const Hero = () => {
-  const { setAuxiliarAnalysisIndex } = useAnalysesContext();
-
   return (
     <section className={`w-full flex flex-col items-center max-w-[700px] pt-6 sm:pt-16 lg:pt-20`}>
       <h2 className="text-3xl text-center text-muted-foreground font-semibold sm:text-4xl duration-200 delay-100">
@@ -20,7 +17,6 @@ const Hero = () => {
             className="cursor-pointer"
             onClick={() => {
               sampleDescriptionsService.setSubject(sample.value);
-              setAuxiliarAnalysisIndex(index);
             }}
           >
             {`"${sample.name}..."`}

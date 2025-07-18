@@ -1,3 +1,4 @@
+'use client';
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -13,16 +14,16 @@ import ConfirmDeleteDialogContent from '@/components/DialogContents/ConfirmDelet
 import { Button } from '@/components/ui/button';
 import { AlertDialog, AlertDialogTrigger } from '@/components/ui/alert-dialog';
 import AnalysisActionsDropdown from '@/components/ActionButtons/AnalysisDropdown/AnalysisActions.dropdown';
-import { useGlobalContext } from '@/context/global.context';
-import { useAnalysesContext } from '@/context/analyses.context';
 import { usePathname } from 'next/navigation';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { TransitionLink } from '@/components/TransitionLink';
+import { useGlobalStore } from '@/store/global.store';
+import { useAnalysesView } from '@/hooks/useAnalysesView';
 
 const UserDropdown: React.FC = () => {
   const pathname = usePathname();
-  const { setShowAccountSettingsDialog, setShowApiKeyDialog } = useGlobalContext();
-  const { analysesView, recentsView, favoritesView, handleSelectAnalysis } = useAnalysesContext();
+  const setShowApiKeyDialog = useGlobalStore((state) => state.setShowApiKeyDialog);
+  const { analysesView, recentsView, favoritesView, handleSelectAnalysis } = useAnalysesView();
 
   return (
     <DropdownMenu>
@@ -68,12 +69,12 @@ const UserDropdown: React.FC = () => {
                   {favoritesView.map((favoriteView) => {
                     return (
                       <div className="w-full flex justify-between relative" key={favoriteView.id}>
-                        <DropdownMenuItem className="w-full" onClick={() => handleSelectAnalysis(favoriteView.id as string)}>
+                        <DropdownMenuItem className="w-full" onClick={() => handleSelectAnalysis(favoriteView.id)}>
                           <span className="line-clamp-1 pr-8 w-full">{favoriteView.title}</span>
                         </DropdownMenuItem>
 
                         <DropdownMenuItem className="p-0 absolute right-0">
-                          <AnalysisActionsDropdown analysisId={favoriteView.id as string} isFavorite />
+                          <AnalysisActionsDropdown analysisId={favoriteView.id} isFavorite />
                         </DropdownMenuItem>
                       </div>
                     );
@@ -105,12 +106,12 @@ const UserDropdown: React.FC = () => {
                   {recentsView.map((recentView) => {
                     return (
                       <div className="w-full flex justify-between relative" key={recentView.id}>
-                        <DropdownMenuItem className="w-full" onClick={() => handleSelectAnalysis(recentView.id as string)}>
+                        <DropdownMenuItem className="w-full" onClick={() => handleSelectAnalysis(recentView.id)}>
                           <span className="line-clamp-1 pr-8 w-full">{recentView.title}</span>
                         </DropdownMenuItem>
 
                         <DropdownMenuItem className="p-0 absolute right-0">
-                          <AnalysisActionsDropdown analysisId={recentView.id as string} />
+                          <AnalysisActionsDropdown analysisId={recentView.id} />
                         </DropdownMenuItem>
                       </div>
                     );
@@ -127,7 +128,12 @@ const UserDropdown: React.FC = () => {
           <Settings className="mr-2 h-4 w-4 stroke-[2.3]" />
           <span>Gemini API Key</span>
         </DropdownMenuItem>
-        {/* <DropdownMenuSeparator />
+
+        {/* <DropdownMenuItem className="font-semibold" onClick={() => setShowAccountSettingsDialog(true)}>
+          <UserRound className="mr-2 h-4 w-4 stroke-[2.3]" />
+          <span>Account settings</span>
+        </DropdownMenuItem>
+        <DropdownMenuSeparator />
         <AlertDialogTrigger asChild>
           <DropdownMenuItem className="font-semibold">
             <LogOut className="mr-2 h-4 w-4 stroke-[2.3]" />

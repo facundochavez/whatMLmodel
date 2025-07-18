@@ -2,15 +2,16 @@ import { Dialog, DialogTrigger } from '@/components/ui/dialog';
 import { Button, ButtonProps } from '@/components/ui/button';
 import { Eye } from 'lucide-react';
 import PipelineDialogContent from '@/components/DialogContents/Pipeline.dialogContent';
-import { useGlobalContext } from '@/context/global.context';
 import { useTablesGroupContext } from '../../tablesGroup.context';
+import { useGlobalStore } from '@/store/global.store';
 
 const ViewButton: React.FC<ButtonProps> = () => {
-  const { setSelectedPipeline, setSelectedPipelineModelIndex } = useGlobalContext();
   const { similarPipelines, selectedSimilarPipelineIndex } = useTablesGroupContext();
+  const setSelectedPipeline = useGlobalStore((state) => state.setSelectedPipeline);
+  const onOpenChangePipelineDialog = useGlobalStore((state) => state.onOpenChangePipelineDialog);
 
   return (
-    <Dialog onOpenChange={() => setSelectedPipelineModelIndex('0')}>
+    <Dialog onOpenChange={onOpenChangePipelineDialog}>
       <DialogTrigger asChild>
         <Button
           variant="outline"

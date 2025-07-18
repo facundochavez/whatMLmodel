@@ -2,15 +2,15 @@ import { ColumnDef, flexRender, getCoreRowModel, useReactTable } from '@tanstack
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { useTablesGroupContext } from '../tablesGroup.context';
 import allColumnsModels from './columnsModels';
-import { useGlobalContext } from '@/context/global.context';
 import { Dialog } from '@/components/ui/dialog';
 import PipelineDialogContent from '@/components/DialogContents/Pipeline.dialogContent';
 import GenerateCodeDialogContent from '@/components/DialogContents/GenerateCode.dialogContent';
+import { useGlobalStore } from '@/store/global.store';
 
 const ModelsTable = <TData, TValue>() => {
-  const { type, models } = useTablesGroupContext();
-  const { setSelectedPipeline, setSelectedPipelineModelIndex } = useGlobalContext();
-  const { similarPipelines, selectedSimilarPipelineIndex, dialogType } = useTablesGroupContext();
+  const { type, models, similarPipelines, selectedSimilarPipelineIndex, dialogType } = useTablesGroupContext();
+  const setSelectedPipeline = useGlobalStore((state) => state.setSelectedPipeline);
+  const onOpenChangePipelineDialog = useGlobalStore((state) => state.onOpenChangePipelineDialog);
 
   const columnsModels = allColumnsModels(type);
 
@@ -22,7 +22,7 @@ const ModelsTable = <TData, TValue>() => {
 
   return (
     <div className="rounded-md border bg-background" onMouseEnter={() => setSelectedPipeline(similarPipelines[Number(selectedSimilarPipelineIndex)])}>
-      <Dialog onOpenChange={() => setSelectedPipelineModelIndex('0')}>
+      <Dialog onOpenChange={onOpenChangePipelineDialog}>
         <Table>
           <TableHeader className="">
             {table.getHeaderGroups().map((headerGroup) => (
