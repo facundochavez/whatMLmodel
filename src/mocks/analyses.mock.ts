@@ -137,7 +137,7 @@ export const analysesMock: Analysis[] = [
       problemDescription: "Given high-resolution images of tumor tissues, the goal is to classify these images into categories such as benign, malignant, or uncertain.",
       mainFeatures: "ImagePixels, TumorCategory",
       targetVariable: "Tumor Category",
-      columns: 10000,
+      columns: 2,
       rows: 2500,
       needsDimensionalityReduction: true
     },

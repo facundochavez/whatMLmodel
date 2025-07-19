@@ -1,5 +1,5 @@
 import { performanceMetrics } from '@/data/performance-metrics.data';
-import { ProblemType } from '@/types/analysis.types';
+import { ProblemType } from '@/types/pipeline.types';
 
 export default function getPerformanceMetricNameByAlias({
   type,

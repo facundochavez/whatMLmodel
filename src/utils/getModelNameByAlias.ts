@@ -1,5 +1,5 @@
 import { modelsData } from '@/data/models.data';
-import { ProblemType } from '@/types/analysis.types';
+import { ProblemType } from '@/types/pipeline.types';
 
 export default function getModelNameByAlias({
   type,

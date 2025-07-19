@@ -2,7 +2,6 @@ import { Pipeline } from "@/types/pipeline.types";
 
 export const pipeline: Pipeline =
 {
-  id: "3",
   alias: "digit-recognizer",
   title: "Digit Recognizer",
   problemType: "classification",

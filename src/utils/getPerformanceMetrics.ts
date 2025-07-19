@@ -1,6 +1,6 @@
 import { Pipeline } from '@/types/pipeline.types';
 import { PerformanceMetrics } from '@/types/performanceMetrics.types';
-import { ProblemType } from '@/types/analysis.types';
+import { ProblemType } from '@/types/pipeline.types';
 
 export default function getPerformanceMetrics({
   type,

@@ -1,7 +1,7 @@
 'use client';
 
 import React, { createContext, useContext, useState, useEffect } from 'react';
-import { ProblemType } from '@/types/analysis.types';
+import { ProblemType } from '@/types/pipeline.types';
 import { Pipeline } from '@/types/pipeline.types';
 import { Model } from '@/types/models.types';
 import getModelsByAlias from '@/utils/getModelsByAlias';

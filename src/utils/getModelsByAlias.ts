@@ -1,5 +1,5 @@
 import { Model } from '@/types/models.types';
-import { ProblemType } from '@/types/analysis.types';
+import { ProblemType } from '@/types/pipeline.types';
 import { modelsData } from '@/data/models.data';
 
 

@@ -1,7 +1,6 @@
 import { Pipeline } from "@/types/pipeline.types";
 
 export const pipeline: Pipeline = {
-  id: "9",
   alias: "iris-species-classification",
   title: "Iris Species Classification",
   problemType: "classification",

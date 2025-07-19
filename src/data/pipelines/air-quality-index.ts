@@ -1,7 +1,6 @@
 import { Pipeline } from "@/types/pipeline.types";
 
 export const pipeline: Pipeline = {
-  id: "11",
   alias: "air-quality-index",
   title: "Air Quality Index",
   problemType: "regression",
