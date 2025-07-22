@@ -1,7 +1,28 @@
 import { NextRequest, NextResponse } from "next/server";
 import { GoogleGenerativeAI } from "@google/generative-ai";
-import { promptContext, recommendationPrompt } from "@/prompts/promptContext";
+import { recommendationsPrompt } from "@/prompts/recommendationsPrompt";
+import { infoPrompt } from "@/prompts/infoPrompt";
 import extractBlockBetweenBraces from "@/utils/extractBlockBetweenBraces";
+
+async function tryWithFallback(apiKey: string, prompt: string) {
+  const genAI = new GoogleGenerativeAI(apiKey);
+
+  try {
+    const fastModel = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
+    const result = await fastModel.generateContent(prompt);
+    return result.response.text();
+  } catch (err) {
+    console.warn("Error with gemini-1.5-flash. Trying gemini-2.5-pro...");
+
+    try {
+      const fallbackModel = genAI.getGenerativeModel({ model: "gemini-2.5-pro" });
+      const result = await fallbackModel.generateContent(prompt);
+      return result.response.text();
+    } catch (err2) {
+      throw err2;
+    }
+  }
+}
 
 export async function POST(req: NextRequest) {
   try {
@@ -9,10 +30,6 @@ export async function POST(req: NextRequest) {
     const userApiKey = body.userGeminiApiKey;
     const apiKey = userApiKey || process.env.GEMINI_API_KEY;
 
-    const genAI = new GoogleGenerativeAI(apiKey);
-    const model = genAI.getGenerativeModel({ model: 'gemini-1.5-flash' });
-
-    // Si envía { type: "apiKeyCheck", userGeminiApiKey: "..." } => validamos la key
     if (body.type === "apiKeyCheck" && body.userGeminiApiKey) {
       try {
         const tempGenAI = new GoogleGenerativeAI(body.userGeminiApiKey);
@@ -28,21 +45,17 @@ export async function POST(req: NextRequest) {
       }
     }
 
-    // Si envía { type: "info", prompt: "..."} => llamamos a generateAnalysisInfo
-    if (body.type === "info" && body.prompt) {
-      const finalPrompt = promptContext + body.prompt.toString();
-      const result = await model.generateContent(finalPrompt);
-      const rawText = result.response.text();
+    if (body.type === "info" && body.datasetDescription) {
+      const finalPrompt = infoPrompt + body.datasetDescription.toString();
+      const rawText = await tryWithFallback(apiKey, finalPrompt);
       const formatData = extractBlockBetweenBraces(rawText);
       const finalResult = JSON.parse(formatData ?? "{}");
       return NextResponse.json(finalResult, { status: 200 });
     }
 
-    // Si envía { type: "recommendation", datasetDetails: {...} } => llamamos a generateAnalysisRecommendations
-    if (body.type === "recommendation" && body.datasetDetails) {
-      const formattedPrompt = recommendationPrompt + JSON.stringify(body.datasetDetails, null, 2);
-      const result = await model.generateContent(formattedPrompt);
-      const rawText = result.response.text();
+    if (body.type === "recommendations" && body.datasetInfo) {
+      const formattedPrompt = recommendationsPrompt + JSON.stringify(body.datasetInfo, null, 2);
+      const rawText = await tryWithFallback(apiKey, formattedPrompt);
       const formattedData = extractBlockBetweenBraces(rawText);
       const finalResult = JSON.parse(formattedData ?? "{}");
       return NextResponse.json(finalResult, { status: 200 });
@@ -51,7 +64,15 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: "Invalid request" }, { status: 400 });
 
   } catch (error) {
-    console.error("Gemini API error:", error);
+    if (error instanceof Error) {
+      console.error("Gemini API error:", {
+        message: error.message,
+        stack: error.stack,
+        name: error.name,
+      });
+    } else {
+      console.error("Gemini API unknown error:", error);
+    }
     return NextResponse.json({ error: "Server error" }, { status: 500 });
   }
 }

@@ -18,47 +18,80 @@ export const pipeline: Pipeline =
         modelAlias: "principal-component-analysis",
         performance: {
           explainedVarianceRatio: 0.85,
-          reconstructionError: 0.042
+          reconstructionError: 0.042,
+          perplexity: 35,
+          coherenceScore: 0.75,
+          outlierScoreMean: 0.1
         },
       },
       {
         modelAlias: "linear-discriminant-analysis",
         performance: {
-          explainedVarianceRatio: 0.85,
-          reconstructionError: 0.08
+          explainedVarianceRatio: 0.80,
+          reconstructionError: 0.05,
+          perplexity: 41,
+          coherenceScore: 0.70,
+          outlierScoreMean: 0.08
         },
       },
       {
         modelAlias: "t-distributed-stochastic-neighbor-embedding",
         performance: {
-          perplexity: 50
+          explainedVarianceRatio: 0.90,
+          reconstructionError: 0.03,
+          perplexity: 38,
+          coherenceScore: 0.80,
+          outlierScoreMean: 0.05
         },
       },
       {
         modelAlias: "isomap",
         performance: {
           explainedVarianceRatio: 0.40,
-          reconstructionError: 0.06
+          reconstructionError: 0.06,
+          perplexity: 30,
+          coherenceScore: 0.65,
+          outlierScoreMean: 0.1
+        },
+      },
+      {
+        modelAlias: "autoencoders",
+        performance: {
+          explainedVarianceRatio: 0.82,
+          reconstructionError: 0.04,
+          perplexity: 30,
+          coherenceScore: 0.72,
+          outlierScoreMean: 0.09
         },
       },
       {
         modelAlias: "umap",
         performance: {
           explainedVarianceRatio: 0.85,
-          reconstructionError: 0.02
+          reconstructionError: 0.02,
+          perplexity: 25,
+          coherenceScore: 0.75,
+          outlierScoreMean: 0.1
         }
       },
       {
         modelAlias: "independent-component-analysis",
         performance: {
           explainedVarianceRatio: 0.82,
-          reconstructionError: 0.03
+          reconstructionError: 0.03,
+          perplexity: 30,
+          coherenceScore: 0.75,
+          outlierScoreMean: 0.1
         }
       },
       {
         modelAlias: "local-linear-embedding",
         performance: {
-          perplexity: 35
+          explainedVarianceRatio: 0.80,
+          reconstructionError: 0.06,
+          perplexity: 40,
+          coherenceScore: 0.7,
+          outlierScoreMean: 0.1
         }
       }
     ],

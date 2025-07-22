@@ -12,10 +12,12 @@ import { Textarea } from '../ui/textarea';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '../ui/tooltip';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '../ui/select';
 import { useCurrentAnalysisStore } from '@/store/currentAnalysis.store';
+import { Analysis, RecommendationsResponse } from '@/types/analysis.types';
+import { useGlobalStore } from '@/store/global.store';
+import { useAnalysesStore } from '@/store/analyses.store';
 
-// Esquema de validación con Zod
 const stepTwoSchema = z.object({
-  problemDescription: z.string().min(100, 'Must be at least 100 characters'),
+  problemDescription: z.string().min(50, 'Description must be at least 50 characters long'),
   mainFeatures: z.string().min(1, 'This field is required'),
   targetVariable: z.string().min(1, 'This field is required'),
   columns: z.coerce.number().positive('Must be a positive number'),
@@ -23,32 +25,33 @@ const stepTwoSchema = z.object({
   needsDimensionalityReduction: z.enum(['Yes', 'No']),
 });
 
-interface StepTwoFormProps extends React.PropsWithChildren {
-  isFormCollapsed: boolean;
-  isFormBlocked: boolean;
-  isUserEditingInfo: boolean;
-  onCollapseChange: (collapsed: boolean) => void;
+function isRecommendationsResponse(data: any): data is RecommendationsResponse {
+  return typeof data === 'object' && typeof data.recommendationsTitle === 'string' && Array.isArray(data.recommendations);
 }
 
-const StepTwoForm: React.FC<StepTwoFormProps> = ({ isFormCollapsed, isFormBlocked, isUserEditingInfo, onCollapseChange, children }) => {
-  const currentAnalysis = useCurrentAnalysisStore((state) => state.currentAnalysis);
+interface StepTwoFormProps extends React.PropsWithChildren {
+  formState: any;
+}
+
+const StepTwoForm: React.FC<StepTwoFormProps> = ({ formState, children }) => {
   const [showProblemTooltip, setShowProblemTooltip] = useState(false);
   const [showComplexDataTooltip, setShowComplexDataTooltip] = useState(false);
   const [formLabel, setLabel] = useState('');
 
-  useEffect(() => {
-    const handleFormLabel = () => {
-      if (!currentAnalysis?.recommendations) {
-        setLabel('Check the information and correct it before moving forward:');
-      } else if (isUserEditingInfo) {
-        setLabel('Edit the information to get new recommendations:');
-      } else {
-        setLabel('');
-      }
-    };
+  const currentAnalysis = useCurrentAnalysisStore((state) => state.currentAnalysis);
+  const setIsAiThinking = useGlobalStore((state) => state.setIsAiThinking);
+  const setCurrentAnalysis = useCurrentAnalysisStore((state) => state.setCurrentAnalysis);
+  const analysesStore = useAnalysesStore.getState();
 
-    handleFormLabel();
-  }, [currentAnalysis, isUserEditingInfo]);
+  const { isUserEditingInfo, setIsUserEditingInfo, isFormCollapsed, setIsFormCollapsed, isFormBlocked, setIsAiGettingRecommendations } = formState;
+
+  useEffect(() => {
+    if (isUserEditingInfo) {
+      setLabel('Edit the information to get new recommendations:');
+    } else {
+      setLabel('Check the information and correct it before moving forward:');
+    }
+  }, [isUserEditingInfo]);
 
   const form = useForm<z.infer<typeof stepTwoSchema>>({
     resolver: zodResolver(stepTwoSchema),
@@ -62,25 +65,80 @@ const StepTwoForm: React.FC<StepTwoFormProps> = ({ isFormCollapsed, isFormBlocke
     },
   });
 
-  function onSubmit(values: z.infer<typeof stepTwoSchema>) {
-    const payload = {
-      ...values,
-      needsDimensionalityReduction: values.needsDimensionalityReduction === 'Yes',
-    };
+  const handleSubmit = async () => {
+    const isValid = await form.trigger();
 
-    console.log(payload);
-    // o enviar a backend, etc.
-  }
+    if (!isValid) return;
+    const datasetInfo = form.getValues();
+
+    try {
+      setIsAiGettingRecommendations(true);
+
+      const response = await fetch('/api/gemini', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          type: 'recommendations',
+          datasetInfo: datasetInfo,
+        }),
+      });
+
+      if (!response.ok) throw new Error('API error');
+      const data = await response.json();
+
+      if (!isRecommendationsResponse(data)) {
+        throw new Error('Invalid response format');
+      }
+
+      if (!currentAnalysis?.id || !currentAnalysis?.createdAt || currentAnalysis.isFavorite === undefined) {
+        throw new Error('currentAnalysis is missing required fields');
+      }
+
+      setIsAiThinking(true);
+      setIsFormCollapsed(true);
+
+      const newAnalysis: Analysis = {
+        ...currentAnalysis,
+        updatedAt: new Date(),
+        info: {
+          problemDescription: datasetInfo.problemDescription,
+          mainFeatures: datasetInfo.mainFeatures,
+          targetVariable: datasetInfo.targetVariable,
+          columns: datasetInfo.columns,
+          rows: datasetInfo.rows,
+          needsDimensionalityReduction: datasetInfo.needsDimensionalityReduction === 'Yes',
+        },
+        recommendationsTitle: data.recommendationsTitle,
+        recommendations: data.recommendations,
+      };
+
+      setCurrentAnalysis(newAnalysis);
+      setIsUserEditingInfo(false);
+
+      const existsInStore = analysesStore.analyses.some((a) => a.id === newAnalysis.id);
+
+      if (existsInStore) {
+        analysesStore.updateRecommendations(newAnalysis);
+      } else {
+        analysesStore.addAnalysis(newAnalysis);
+      }
+    } catch (error) {
+      setIsFormCollapsed(false);
+      console.error('Error generating recommendations:', error);
+    } finally {
+      setIsAiGettingRecommendations(false);
+    }
+  };
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="w-full max-w-[700px]">
+      <form className="w-full max-w-[44rem]" onSubmit={form.handleSubmit(handleSubmit)}>
         <CollapsibleBox
           arrowButton
           isButtonHighlighted={currentAnalysis?.recommendations && isUserEditingInfo}
           blocked={isFormBlocked}
           externalIsCollapsed={isFormCollapsed}
-          onCollapseChange={onCollapseChange}
+          onCollapseChange={() => setIsFormCollapsed(!isFormCollapsed)}
         >
           <div
             className={`w-full flex flex-col gap-4 border rounded-md px-[5%] pt-6 pb-8 bg-muted/30 ${
@@ -114,9 +172,10 @@ const StepTwoForm: React.FC<StepTwoFormProps> = ({ isFormCollapsed, isFormBlocke
                   </FormLabel>
                   <FormControl>
                     <Textarea
-                      className="h-44 sm:h-28 resize-none"
+                      className="h-44 sm:h-[7.5rem] resize-none"
                       placeholder="Your problem description here..."
-                      maxLength={300}
+                      maxLength={400}
+                      showMaxLength={false}
                       currentLength={field.value?.length || 0}
                       {...field}
                     />

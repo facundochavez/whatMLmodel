@@ -40,5 +40,5 @@ export interface DimensionalityReductionMetrics {
   reconstructionError?: number;
   perplexity?: number;
   coherenceScore?: number;
-  isolationForestAnomalyDetection?: number;
+  outlierScoreMean?: number;
 };

@@ -23,8 +23,8 @@ const columnsDimensionalityReduction: StrictDRColumn[] = [
     header: 'Coherence Score',
   },
   {
-    accessorKey: 'isolationForestAnomalyDetection',
-    header: 'Isolation\u00A0Forest Anomaly\u00A0Detection',
+    accessorKey: 'outlierScoreMean',
+    header: 'Outlier Score\u00A0Mean',
   },
 ];
 

@@ -6,11 +6,10 @@ import { analysesMock } from '@/mocks/analyses.mock';
 import { useAnalysesStore } from './analyses.store';
 import { useGlobalStore } from './global.store';
 
+
 interface CurrentAnalysisStore {
   currentAnalysis: Analysis | null;
   setCurrentAnalysis: (analysis: Analysis | null) => void;
-  getAnalysisInfo: (datasetDescription: string) => Promise<void>;
-  getAnalysisRecommendations: (info: AnalysisInfo) => Promise<void>;
   toggleCurrentFavorite: () => void;
   clearCurrentAnalysis: () => void;
 }
@@ -21,27 +20,7 @@ export const useCurrentAnalysisStore = create<CurrentAnalysisStore>()(
       currentAnalysis: null,
       setCurrentAnalysis: (analysis) => set({ currentAnalysis: analysis }),
 
-      getAnalysisInfo: async (datasetDescription: string) => {
-        const mock = analysesMock[0];
-        const current = get().currentAnalysis;
-        if (!current) return;
-
-        set({
-          currentAnalysis: {
-            id: generateRandomUUID(),
-            createdAt: new Date(),
-            updatedAt: new Date(),
-            isFavorite: false,
-            title: mock.title,
-            alias: mock.alias,
-            userDatasetDescription: mock.userDatasetDescription,
-            language: mock.language,
-            info: mock.info,
-          },
-        });
-      },
-
-      getAnalysisRecommendations: async (info: AnalysisInfo) => {
+/*       getAnalysisRecommendations: async (info: AnalysisInfo) => {
         const current = get().currentAnalysis;
         if (!current || !current.info) return;
 
@@ -63,7 +42,7 @@ export const useCurrentAnalysisStore = create<CurrentAnalysisStore>()(
         } else {
           analysesStore.addAnalysis(updatedAnalysis);
         }
-      },
+      }, */
 
       toggleCurrentFavorite: () => {
         const current = get().currentAnalysis;

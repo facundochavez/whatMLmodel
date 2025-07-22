@@ -13,6 +13,88 @@ export const pipeline: Pipeline = {
     "The Auto MPG dataset is a classic regression problem designed to predict automobile fuel efficiency (in miles per gallon) using various vehicle attributes. Each record in the dataset corresponds to a single car model and includes the following numerical and categorical variables:\n\n - Cylinders (number of engine cylinders)\n - Displacement (engine size in cubic inches)\n - Horsepower (engine power output)\n - Weight (vehicle weight in pounds)\n - Acceleration (0–60 mph time)\n - Model Year (year of manufacture)\n - Origin (categorical: USA, Europe, Asia)\n - MPG (miles per gallon) as the target variable\n\nThis dataset is often used to benchmark regression algorithms and explore relationships between engine characteristics and fuel efficiency. Key challenges include handling missing values (horsepower), mixed data types, and potential nonlinear dependencies between features. It's particularly useful for exercises in feature engineering, model selection, and evaluation of predictive accuracy in transport and environmental analytics.",
   notebook: {
     preprocessingCode: "import pandas as pd\nfrom tensorflow import keras\n\n# Download the dataset from the UCI ML repository\nurl = \"http://archive.ics.uci.edu/ml/machine-learning-databases/auto-mpg/auto-mpg.data\"\npath = keras.utils.get_file(\"auto-mpg.data\", url)\n\n# Define the column names\ncolumn_names = [\"mpg\", \"cylinders\", \"displacement\", \"horsepower\", \"weight\", \"acceleration\", \"model_year\", \"origin\", \"car_name\"]\n\n# Load the dataset\ndata = pd.read_csv(path, names=column_names, delim_whitespace=True, na_values=\"?\")\n\n# Drop rows with missing values\ndata.dropna(inplace=True)\n\n# Drop non-numeric column\ndata.drop(columns=[\"car_name\"], inplace=True)\n\n# Separate features and target\nX = data.drop(columns=[\"mpg\"])\ny = data[\"mpg\"]\n\n# Optional: Normalize features\nX_processed = (X - X.mean()) / X.std()\ny_processed = y.values.reshape(-1, 1)",
+    dRTraining: [
+      {
+        modelAlias: "principal-component-analysis",
+        performance: {
+          explainedVarianceRatio: 0.95,
+          reconstructionError: 0.030,
+          perplexity: 30,
+          coherenceScore: 0.82,
+          outlierScoreMean: 0.08
+        },
+      },
+      {
+        modelAlias: "linear-discriminant-analysis",
+        performance: {
+          explainedVarianceRatio: 0.82,
+          reconstructionError: 0.05,
+          perplexity: 40,
+          coherenceScore: 0.75,
+          outlierScoreMean: 0.09
+        },
+      },
+      {
+        modelAlias: "t-distributed-stochastic-neighbor-embedding",
+        performance: {
+          explainedVarianceRatio: 0.92,
+          reconstructionError: 0.02,
+          perplexity: 35,
+          coherenceScore: 0.80,
+          outlierScoreMean: 0.06
+        },
+      },
+      {
+        modelAlias: "isomap",
+        performance: {
+          explainedVarianceRatio: 0.88,
+          reconstructionError: 0.04,
+          perplexity: 32,
+          coherenceScore: 0.78,
+          outlierScoreMean: 0.07
+        },
+      },
+      {
+        modelAlias: "autoencoders",
+        performance: {
+          explainedVarianceRatio: 0.85,
+          reconstructionError: 0.03,
+          perplexity: 30,
+          coherenceScore: 0.76,
+          outlierScoreMean: 0.05
+        },
+      },
+      {
+        modelAlias: "umap",
+        performance: {
+          explainedVarianceRatio: 0.90,
+          reconstructionError: 0.03,
+          perplexity: 38,
+          coherenceScore: 0.85,
+          outlierScoreMean: 0.05
+        }
+      },
+      {
+        modelAlias: "independent-component-analysis",
+        performance: {
+          explainedVarianceRatio: 0.82,
+          reconstructionError: 0.04,
+          perplexity: 30,
+          coherenceScore: 0.75,
+          outlierScoreMean: 0.08
+        }
+      },
+      {
+        modelAlias: "local-linear-embedding",
+        performance: {
+          explainedVarianceRatio: 0.80,
+          reconstructionError: 0.05,
+          perplexity: 42,
+          coherenceScore: 0.72,
+          outlierScoreMean: 0.09
+        }
+      }
+    ],
     training: [
       {
         modelAlias: "linear-regression",

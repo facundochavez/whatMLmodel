@@ -1,27 +1,32 @@
 'use client';
 import { Button } from '@/components/ui/button';
 import { ArrowLeft, LoaderCircle, PenLine, RefreshCcw, Star } from 'lucide-react';
-import { DialogFooter } from '@/components/ui/dialog';
 import { AiStarsIcon } from '@/icons/AiStarsIcon';
 import useTextReveal from '@/hooks/useTextReveal';
 import { TransitionLink } from '@/components/TransitionLink';
 import StepTwoForm from '@/components/Forms/StepTwo.form';
 import { useEffect, useState } from 'react';
-import { useGlobalStore } from '@/store/global.store';
 import { useAnalysesStore } from '@/store/analyses.store';
 import { useCurrentAnalysisStore } from '@/store/currentAnalysis.store';
-import { AnalysisInfo } from '@/types/analysis.types';
 
 const StepTwo = () => {
-  const setIsAiThinking = useGlobalStore((state) => state.setIsAiThinking);
   const currentAnalysis = useCurrentAnalysisStore((state) => state.currentAnalysis);
   const handleToggleFavorite = useAnalysesStore((state) => state.toggleFavorite);
-  const getAnalysisRecommendations = useCurrentAnalysisStore((state) => state.getAnalysisRecommendations);
-
   const [isUserEditingInfo, setIsUserEditingInfo] = useState<boolean>(false);
   const [isFormCollapsed, setIsFormCollapsed] = useState(true);
   const [isFormBlocked, setIsFormBlocked] = useState(false);
-  const [isButtonGettingRecommendations, setIsButtonGettingRecommendations] = useState<boolean>(false);
+  const [isAiGettingRecommendations, setIsAiGettingRecommendations] = useState<boolean>(false);
+
+  const formState = {
+    isUserEditingInfo,
+    setIsUserEditingInfo,
+    isFormCollapsed,
+    setIsFormCollapsed,
+    isFormBlocked,
+    setIsFormBlocked,
+    isAiGettingRecommendations,
+    setIsAiGettingRecommendations,
+  };
 
   useEffect(() => {
     if (!currentAnalysis?.recommendations) {
@@ -33,28 +38,14 @@ const StepTwo = () => {
       setIsFormCollapsed(true);
       setIsFormBlocked(false);
     }
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   }, [currentAnalysis?.recommendations]);
 
-  useEffect(() => {
-    if (isUserEditingInfo) {
-      setIsFormCollapsed(false);
-      setIsFormBlocked(true);
-    }
-  }, [isUserEditingInfo]);
-
-  const handleGetRecommendations = () => {
-    setIsFormCollapsed(true);
-    setIsButtonGettingRecommendations(true);
+  const handleEditInfo = () => {
+    setIsUserEditingInfo(true);
+    setIsFormCollapsed(false);
+    setIsFormBlocked(true);
     window.scrollTo({ top: 0, behavior: 'smooth' });
-
-    setTimeout(() => {
-      setIsAiThinking(true);
-      getAnalysisRecommendations(currentAnalysis?.info as AnalysisInfo);
-
-      setIsButtonGettingRecommendations(false);
-      setIsUserEditingInfo(false);
-      setIsFormBlocked(false);
-    }, 1000);
   };
 
   const cancelEditingInfo = () => {
@@ -75,17 +66,12 @@ const StepTwo = () => {
         {useTextReveal(currentAnalysis?.title || '')}
       </header>
 
-      <StepTwoForm
-        isFormCollapsed={isFormCollapsed}
-        isFormBlocked={isFormBlocked}
-        isUserEditingInfo={isUserEditingInfo}
-        onCollapseChange={(collapsed) => setIsFormCollapsed(collapsed)}
-      >
-        <DialogFooter className="mt-4 md:mt-0">
+      <StepTwoForm formState={formState} key={currentAnalysis?.id}>
+        <footer className="mt-4 md:mt-0 flex flex-col-reverse gap-2 sm:flex-row sm:justify-end">
           {isUserEditingInfo ? (
             !currentAnalysis?.recommendations ? (
               <>
-                {!isButtonGettingRecommendations ? (
+                {!isAiGettingRecommendations ? (
                   <>
                     <TransitionLink href="/">
                       <Button type="button" variant="outline" className="w-full">
@@ -93,7 +79,7 @@ const StepTwo = () => {
                         Cancel and retry
                       </Button>
                     </TransitionLink>
-                    <Button type="submit" onClick={handleGetRecommendations} className="flex items-center">
+                    <Button type="submit" className="flex items-center">
                       <AiStarsIcon className="mr-1.5 h-[18px] w-[18px]" />
                       Get models
                     </Button>
@@ -107,12 +93,12 @@ const StepTwo = () => {
               </>
             ) : (
               <>
-                {!isButtonGettingRecommendations ? (
+                {!isAiGettingRecommendations ? (
                   <>
-                    <Button variant="outline" onClick={cancelEditingInfo}>
+                    <Button type="reset" variant="outline" onClick={cancelEditingInfo}>
                       Cancel
                     </Button>
-                    <Button type="submit" onClick={handleGetRecommendations} className="flex items-center">
+                    <Button type="submit" className="flex items-center">
                       Apply changes
                     </Button>
                   </>
@@ -128,6 +114,7 @@ const StepTwo = () => {
             <>
               <Button
                 variant="outline"
+                type="button"
                 onClick={() => {
                   handleToggleFavorite(currentAnalysis?.id as string);
                 }}
@@ -144,17 +131,12 @@ const StepTwo = () => {
                   </>
                 )}
               </Button>
-              <Button
-                onClick={() => {
-                  setIsUserEditingInfo(true);
-                  window.scrollTo({ top: 0, behavior: 'smooth' });
-                }}
-              >
+              <Button type="button" onClick={handleEditInfo}>
                 <PenLine className="w-4 h-4 mr-2" /> Edit info
               </Button>
             </>
           )}
-        </DialogFooter>
+        </footer>
       </StepTwoForm>
     </section>
   );

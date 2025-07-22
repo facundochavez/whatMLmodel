@@ -32,3 +32,16 @@ export interface AnalysisRecommendation {
     similarPipelinesAlias: string[];
   };
 }
+
+export interface RecommendationsResponse {
+  recommendationsTitle: string;
+  recommendations: AnalysisRecommendation[];
+}
+
+export interface InfoResponse {
+  title: string;
+  alias: string;
+  userDatasetDescription: string;
+  language: string;
+  info: AnalysisInfo;
+}

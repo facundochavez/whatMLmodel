@@ -45,7 +45,7 @@ export const useGlobalStore = create<GlobalStore>()(
   persist(
     (set, get) => ({
       // Importants
-      availableFreeAnalyses: 5,
+      availableFreeAnalyses: 3,
       userGeminiApiKey: '',
       isUserLoggedIn: true,
       userEmail: '',

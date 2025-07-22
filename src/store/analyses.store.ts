@@ -59,8 +59,9 @@ export const useAnalysesStore = create<AnalysesStore>()(
           a.id === analysis.id
             ? {
               ...a,
-              recommendations: analysis.recommendations,
+              info: analysis.info,
               recommendationsTitle: analysis.recommendationsTitle,
+              recommendations: analysis.recommendations,
               updatedAt: new Date(),
             }
             : a

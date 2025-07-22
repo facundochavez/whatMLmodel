@@ -43,7 +43,7 @@ export const pipelinesList: PipelinesList[] = [
     alias: "auto-mpg",
     briefDescription: "Dataset with car records (year, displacement, weight, acceleration, etc.) to predict fuel consumption (miles per gallon).",
     problemType: "regression",
-    needsDimensionalityReduction: false,
+    needsDimensionalityReduction: true,
   },
   {
     alias: "wine-clustering",

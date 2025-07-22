@@ -36,7 +36,7 @@ const StepThree = () => {
           {index === 0 && (
             <TypingText
               key={generateRandomUUID()}
-              text="Here is a list of the best models you can apply and their performance metrics for datasets similar to yours:"
+              text={currentAnalysis?.language === 'es' ? 'Aquí tienes una lista de los mejores modelos que puedes aplicar y sus métricas de rendimiento para datasets similares al tuyo:' : "Here is a list of the best models you can apply and their performance metrics for datasets similar to yours:"}
               wordsInterval={8}
               delay={index * 800 + 600}
               disabled={!isAiThinking}
