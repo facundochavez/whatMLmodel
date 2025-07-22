@@ -42,6 +42,11 @@ const StepTwoForm: React.FC<StepTwoFormProps> = ({ formState, children }) => {
   const setIsAiThinking = useGlobalStore((state) => state.setIsAiThinking);
   const setCurrentAnalysis = useCurrentAnalysisStore((state) => state.setCurrentAnalysis);
   const analysesStore = useAnalysesStore.getState();
+  const userGeminiApiKey = useGlobalStore((state) => state.userGeminiApiKey);
+  const setGeminiErrorOccurred = useGlobalStore((state) => state.setGeminiErrorOccurred);
+  const setShowApiKeyDialog = useGlobalStore((state) => state.setShowApiKeyDialog);
+  const decrementAvailableFreeAnalyses = useGlobalStore((state) => state.decrementAvailableFreeAnalyses);
+  const availableFreeAnalyses = useGlobalStore((state) => state.availableFreeAnalyses);
 
   const { isUserEditingInfo, setIsUserEditingInfo, isFormCollapsed, setIsFormCollapsed, isFormBlocked, setIsAiGettingRecommendations } = formState;
 
@@ -71,6 +76,11 @@ const StepTwoForm: React.FC<StepTwoFormProps> = ({ formState, children }) => {
     if (!isValid) return;
     const datasetInfo = form.getValues();
 
+    if (availableFreeAnalyses <= 0 && !userGeminiApiKey) {
+      setShowApiKeyDialog(true);
+      return;
+    }
+
     try {
       setIsAiGettingRecommendations(true);
 
@@ -80,10 +90,15 @@ const StepTwoForm: React.FC<StepTwoFormProps> = ({ formState, children }) => {
         body: JSON.stringify({
           type: 'recommendations',
           datasetInfo: datasetInfo,
+          userGeminiApiKey: userGeminiApiKey,
         }),
       });
 
-      if (!response.ok) throw new Error('API error');
+      if (!response.ok) {
+        setGeminiErrorOccurred(true);
+        setShowApiKeyDialog(true);
+        throw new Error('API error');
+      }
       const data = await response.json();
 
       if (!isRecommendationsResponse(data)) {
@@ -114,6 +129,7 @@ const StepTwoForm: React.FC<StepTwoFormProps> = ({ formState, children }) => {
 
       setCurrentAnalysis(newAnalysis);
       setIsUserEditingInfo(false);
+      decrementAvailableFreeAnalyses();
 
       const existsInStore = analysesStore.analyses.some((a) => a.id === newAnalysis.id);
 
@@ -124,6 +140,8 @@ const StepTwoForm: React.FC<StepTwoFormProps> = ({ formState, children }) => {
       }
     } catch (error) {
       setIsFormCollapsed(false);
+      setGeminiErrorOccurred(true);
+      setShowApiKeyDialog(true);
       console.error('Error generating recommendations:', error);
     } finally {
       setIsAiGettingRecommendations(false);

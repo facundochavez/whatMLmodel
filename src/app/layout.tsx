@@ -3,6 +3,7 @@ import ThemeProvider from '@/components/theme-provider';
 import Header from './components/Header';
 import { Footer } from './components/Footer';
 import ClientWrapper from '@/components/ClientWrapper';
+import { Toaster } from '@/components/ui/sonner';
 
 export const metadata = {
   title: 'whatMLmodel',
@@ -38,6 +39,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             {children}
           </main>
           <Footer />
+          <Toaster position='bottom-center' className='max-w-[80vw]' />
         </ThemeProvider>
       </body>
     </html>

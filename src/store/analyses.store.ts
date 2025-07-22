@@ -1,10 +1,7 @@
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
-import { analysesMock } from '@/mocks/analyses.mock';
 import { Analysis } from '@/types/analysis.types';
 import { useCurrentAnalysisStore } from './currentAnalysis.store';
-import { useGlobalStore } from './global.store';
-import sleep from '@/utils/sleep';
 
 interface AnalysesStore {
   analyses: Analysis[];
@@ -20,7 +17,7 @@ interface AnalysesStore {
 export const useAnalysesStore = create<AnalysesStore>()(
   persist(
     (set, get) => ({
-      analyses: analysesMock,
+      analyses: [],
 
       markedAnalysisId: '',
       setMarkedAnalysisId: (id: string) => set({ markedAnalysisId: id }),
@@ -44,8 +41,6 @@ export const useAnalysesStore = create<AnalysesStore>()(
 
         const current = useCurrentAnalysisStore.getState().currentAnalysis;
         if (current?.id === id) {
-          useGlobalStore.getState().toggleTransitionToHomePage();
-          sleep(300);
           useCurrentAnalysisStore.getState().clearCurrentAnalysis();
         }
       },

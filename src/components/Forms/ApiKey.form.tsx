@@ -8,10 +8,11 @@ import { Button } from '@/components/ui/button';
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 import { DialogClose, DialogFooter } from '@/components/ui/dialog';
-import { Eye, EyeOff } from 'lucide-react';
+import { Eye, EyeOff, LoaderCircle } from 'lucide-react';
 import { useState } from 'react';
+import { useGlobalStore } from '@/store/global.store';
+import { toast } from 'sonner';
 
-// Esquema de validación con zod
 const apiKeySchema = z.object({
   apiKey: z.string().min(1, {
     message: 'API key is required.',
@@ -20,24 +21,51 @@ const apiKeySchema = z.object({
 
 const ApiKeyForm: React.FC = () => {
   const [showAPIkey, setShowAPIkey] = useState(false);
+  const [isCheckingApiKey, setIsCheckingApiKey] = useState(false);
+  const userGeminiApiKey = useGlobalStore((state) => state.userGeminiApiKey);
+  const setUserGeminiApiKey = useGlobalStore((state) => state.setUserGeminiApiKey);
+  const setShowApiKeyDialog = useGlobalStore((state) => state.setShowApiKeyDialog);
 
-  // Definir el formulario
   const form = useForm<z.infer<typeof apiKeySchema>>({
     resolver: zodResolver(apiKeySchema),
     defaultValues: {
-      apiKey: '',
+      apiKey: userGeminiApiKey || '',
     },
   });
 
-  // Función de manejo del submit
-  function handleAPIkey(values: z.infer<typeof apiKeySchema>) {
-    // Mostrar el valor de la API key en la consola
-    /* console.log('API Key:', values.apiKey); */
-  }
+  const onSubmit = async (values: z.infer<typeof apiKeySchema>) => {
+    try {
+      setIsCheckingApiKey(true);
+      const response = await fetch('/api/gemini', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          type: 'apiKeyCheck',
+          userGeminiApiKey: values.apiKey,
+        }),
+      });
+
+      if (!response.ok) throw new Error('Invalid API key');
+
+      const result = await response.json();
+      if (result.valid) {
+        setUserGeminiApiKey(values.apiKey);
+        setShowApiKeyDialog(false);
+        toast(<span className='text-center text-base'>API key saved successfully!</span>);
+      } else {
+        console.log('Invalid API key');
+      }
+    } catch (error) {
+      console.log('API key validation error:', error);
+      toast(<span className='text-center text-base'>Invalid API key</span>);
+    } finally {
+      setIsCheckingApiKey(false);
+    }
+  };
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(handleAPIkey)} className="flex flex-col gap-2 w-full">
+      <form onSubmit={form.handleSubmit(onSubmit)} className="flex flex-col gap-2 w-full">
         <FormField
           control={form.control}
           name="apiKey"
@@ -63,9 +91,14 @@ const ApiKeyForm: React.FC = () => {
               Cancel
             </Button>
           </DialogClose>
-          <DialogClose asChild>
+          {isCheckingApiKey ? (
+            <Button type="button" disabled className="flex items-center">
+              <LoaderCircle className="h-4 w-4 mr-2 animate-spin" />
+              Checking
+            </Button>
+          ) : (
             <Button type="submit">Save</Button>
-          </DialogClose>
+          )}
         </DialogFooter>
       </form>
     </Form>

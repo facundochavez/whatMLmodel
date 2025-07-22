@@ -8,10 +8,12 @@ export interface GlobalStore {
   userGeminiApiKey: string;
   isUserLoggedIn: boolean;
   userEmail: string;
+  geminiErrorOccurred: boolean;
   decrementAvailableFreeAnalyses: () => void;
   setUserGeminiApiKey: (apiKey: string) => void;
   setIsUserLoggedIn: (value: boolean) => void;
   setUserEmail: (email: string) => void;
+  setGeminiErrorOccurred: (value: boolean) => void;
 
   // Basics
   isMobile: boolean;
@@ -23,7 +25,6 @@ export interface GlobalStore {
   setSelectedPipeline: (pipeline: Pipeline | null) => void;
   setSelectedPipelineModelIndex: (index: string) => void;
   setIsAiThinking: (value: boolean) => void;
-  toggleTransitionToHomePage: () => void;
   onOpenChangePipelineDialog: () => void;
 
   //Minors
@@ -49,6 +50,7 @@ export const useGlobalStore = create<GlobalStore>()(
       userGeminiApiKey: '',
       isUserLoggedIn: true,
       userEmail: '',
+      geminiErrorOccurred: false,
       decrementAvailableFreeAnalyses: () => {
         const current = get().availableFreeAnalyses;
         if (current > 0) {
@@ -58,6 +60,7 @@ export const useGlobalStore = create<GlobalStore>()(
       setUserGeminiApiKey: (apiKey: string) => set({ userGeminiApiKey: apiKey }),
       setIsUserLoggedIn: (value: boolean) => set({ isUserLoggedIn: value }),
       setUserEmail: (email: string) => set({ userEmail: email }),
+      setGeminiErrorOccurred: (value: boolean) => set({ geminiErrorOccurred: value }),
 
       // Basics
       isMobile: false,
@@ -69,7 +72,6 @@ export const useGlobalStore = create<GlobalStore>()(
       setSelectedPipeline: (pipeline: Pipeline | null) => set({ selectedPipeline: pipeline }),
       setSelectedPipelineModelIndex: (index: string) => set({ selectedPipelineModelIndex: index }),
       setIsAiThinking: (value: boolean) => set({ isAiThinking: value }),
-      toggleTransitionToHomePage: () => set((state) => ({ transitionToHomePage: !state.transitionToHomePage })),
       onOpenChangePipelineDialog: () => {
         const { setSelectedPipelineModelIndex } = get();
         setTimeout(() => setSelectedPipelineModelIndex('0'), 500);

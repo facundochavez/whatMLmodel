@@ -17,7 +17,7 @@ import { useCurrentAnalysisStore } from '@/store/currentAnalysis.store';
 import generateRandomUUID from '@/utils/generateRandomUUID';
 import { useRouter } from 'next/navigation';
 import sleep from '@/utils/sleep';
-import { InfoResponse } from '@/types/analysis.types';
+import { useGlobalStore } from '@/store/global.store';
 
 const stepOneSchema = z.object({
   datasetDescription: z.string().min(50, 'Description must be at least 50 characters long.'),
@@ -27,6 +27,10 @@ const StepOne: React.FC = () => {
   const router = useRouter();
   const [isAiGeneratingInfo, setIsAiGeneratingInfo] = useState(false);
   const setCurrentAnalysis = useCurrentAnalysisStore((state) => state.setCurrentAnalysis);
+  const userGeminiApiKey = useGlobalStore((state) => state.userGeminiApiKey);
+  const setGeminiErrorOccurred = useGlobalStore((state) => state.setGeminiErrorOccurred);
+  const setShowApiKeyDialog = useGlobalStore((state) => state.setShowApiKeyDialog);
+  const availableFreeAnalyses = useGlobalStore((state) => state.availableFreeAnalyses);
 
   const form = useForm<z.infer<typeof stepOneSchema>>({
     resolver: zodResolver(stepOneSchema),
@@ -43,6 +47,11 @@ const StepOne: React.FC = () => {
   }, [form]);
 
   const onSubmit = async (values: z.infer<typeof stepOneSchema>) => {
+    if (availableFreeAnalyses <= 0 && !userGeminiApiKey) {
+      setShowApiKeyDialog(true);
+      return;
+    }
+
     try {
       setIsAiGeneratingInfo(true);
 
@@ -52,10 +61,16 @@ const StepOne: React.FC = () => {
         body: JSON.stringify({
           type: 'info',
           datasetDescription: values.datasetDescription,
+          userGeminiApiKey: userGeminiApiKey,
         }),
       });
 
-      if (!response.ok) throw new Error('API error');
+      if (!response.ok) {
+        setGeminiErrorOccurred(true);
+        setShowApiKeyDialog(true);
+        throw new Error('API error');
+      }
+
       const data = await response.json();
 
       const newAnalysis = {
@@ -79,7 +94,10 @@ const StepOne: React.FC = () => {
       await sleep(300);
       router.push('/analysis');
     } catch (error) {
-      console.log(error);
+      setGeminiErrorOccurred(true);
+      setShowApiKeyDialog(true);
+      console.error('Error generating analysis info:', error);
+    } finally {
       setIsAiGeneratingInfo(false);
     }
   };
