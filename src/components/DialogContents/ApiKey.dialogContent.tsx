@@ -48,7 +48,7 @@ const ApiKeyDialogContent: React.FC = () => {
                 </a>
                 .
               </li>
-              <li>2. Click the "Get API Key" button at the top of the page, or open the menu and select "Get API Key".</li>
+              <li>2. Click the &quot;Get API Key&quot; button at the top of the page, or open the menu and select &quot;Get API Key&quot;.</li>
               <li>3. Copy the API key displayed in the table below and paste it into the following field:</li>
             </ul>
           </>
