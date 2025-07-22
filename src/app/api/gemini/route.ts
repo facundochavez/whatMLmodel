@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { GoogleGenerativeAI } from "@google/generative-ai";
-import { recommendationsPrompt } from "@/prompts/recommendationsPrompt";
-import { infoPrompt } from "@/prompts/infoPrompt";
+import { recommendationsPrompt } from "@/prompts/recommendations.prompt";
+import { infoPrompt } from "@/prompts/info.prompt";
 import extractBlockBetweenBraces from "@/utils/extractBlockBetweenBraces";
 
 async function tryWithFallback(apiKey: string, prompt: string) {
