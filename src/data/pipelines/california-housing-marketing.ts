@@ -2,7 +2,6 @@ import { Pipeline } from "@/types/pipeline.types";
 
 export const pipeline: Pipeline =
 {
-  id: "10",
   alias: "california-housing-marketing",
   title: "California Housing Marketing",
   problemType: "clustering",

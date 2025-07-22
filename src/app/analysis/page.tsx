@@ -3,28 +3,26 @@ import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import StepThree from '@/app/analysis/components/StepThree';
 import StepTwo from '@/app/analysis/components/StepTwo';
-import { useAnalysesContext } from '@/context/analyses.context';
+import sleep from '@/utils/sleep';
+import { useCurrentAnalysisStore } from '@/store/currentAnalysis.store';
+import { useGlobalStore } from '@/store/global.store';
 
 const AnalysisPage: React.FC = () => {
-  const { currentAnalysis, isPageTransitioning } = useAnalysesContext();
   const router = useRouter();
-  const [isAiThinking, setIsAiThinking] = useState(true);
+  const currentAnalysis = useCurrentAnalysisStore((state) => state.currentAnalysis);
+  const setGeminiErrorOccurred = useGlobalStore((state) => state.setGeminiErrorOccurred);
 
   useEffect(() => {
-    if (isAiThinking) {
-      setTimeout(() => {
-        setIsAiThinking(false);
-      }, 5000);
-    }
-  }, [isAiThinking]);
-
-  useEffect(() => {
-    setIsAiThinking(false);
-  }, [isPageTransitioning]);
+    setGeminiErrorOccurred(false);
+  }, []);
 
   useEffect(() => {
     const handleRoute = () => {
       if (!currentAnalysis?.info) {
+        const main = document.querySelector('main');
+        if (!main) return;
+        main.classList.add('page-transition');
+        sleep(300);
         router.push('/');
       }
     };
@@ -33,8 +31,8 @@ const AnalysisPage: React.FC = () => {
 
   return (
     <>
-      <StepTwo setIsAiThinking={setIsAiThinking} />
-      {currentAnalysis?.recommendations && <StepThree isAiThinking={isAiThinking} />}
+      <StepTwo />
+      {currentAnalysis?.recommendations && <StepThree />}
     </>
   );
 };

@@ -2,7 +2,6 @@ import { Pipeline } from "@/types/pipeline.types";
 
 export const pipeline: Pipeline =
 {
-  id: "1",
   alias: "titanic-survivors",
   title: "Titanic Survivors",
   problemType: "classification",

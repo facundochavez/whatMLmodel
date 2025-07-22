@@ -2,7 +2,6 @@ import { Pipeline } from "@/types/pipeline.types";
 
 export const pipeline: Pipeline =
 {
-  id: "2",
   alias: "california-housing-prices",
   title: "California Housing Prices",
   problemType: "regression",

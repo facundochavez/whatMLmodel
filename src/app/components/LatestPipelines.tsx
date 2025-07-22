@@ -6,13 +6,15 @@ import { Pipeline } from '@/types/pipeline.types';
 import { Dialog } from '@radix-ui/react-dialog';
 import PipelineDialogContent from '@/components/DialogContents/Pipeline.dialogContent';
 import { CollapsibleBox } from '@/components/CollapsibleBox';
-import { useGlobalContext } from '@/context/global.context';
 import { getLatestPipelines } from '@/utils/getLatestPipelines';
+import { useGlobalStore } from '@/store/global.store';
 
 const LatestPipelines = () => {
   const [isBoxCollapsed, setIsBoxCollapsed] = useState(true);
-  const { isMobile, setSelectedPipelineModelIndex } = useGlobalContext();
-  const { setSelectedPipeline } = useGlobalContext();
+  const isMobile = useGlobalStore((state) => state.isMobile);
+  const setSelectedPipeline = useGlobalStore((state) => state.setSelectedPipeline);
+  const onOpenChangePipelineDialog = useGlobalStore((state) => state.onOpenChangePipelineDialog);
+
   const [latestPipelines, setLatestPipelines] = useState<Pipeline[]>(new Array(6).fill(null));
 
   useEffect(() => {
@@ -20,7 +22,7 @@ const LatestPipelines = () => {
   }, []);
 
   return (
-    <Dialog onOpenChange={() => setSelectedPipelineModelIndex('0')}>
+    <Dialog onOpenChange={onOpenChangePipelineDialog}>
       <section className="w-full flex flex-col max-w-[70rem] mt-4 gap-5">
         <h3 className="text-2xl font-semibold duration-300 delay-75">Latest added pipelines</h3>
         <CollapsibleBox collapsedHeight={isMobile ? 750 : 380} externalIsCollapsed={isBoxCollapsed} onCollapseChange={setIsBoxCollapsed}>

@@ -1,13 +1,15 @@
 'use client';
 import { Button } from '@/components/ui/button';
-import { Dialog, DialogContent, DialogFooter, DialogHeader, DialogTitle } from '@/components/ui/dialog';
+import { DialogContent, DialogFooter, DialogHeader, DialogTitle } from '@/components/ui/dialog';
 import { DialogClose } from '@/components/ui/dialog';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
-import { useGlobalContext } from '@/context/global.context';
+import { useGlobalStore } from '@/store/global.store';
 
 const AccountSettingsDialogContent: React.FC = () => {
-  const { userEmail, setShowChangePasswordDialog, setShowApiKeyDialog } = useGlobalContext();
+  const userEmail = useGlobalStore((state) => state.userEmail);
+  const setShowApiKeyDialog = useGlobalStore((state) => state.setShowApiKeyDialog);
+  const setShowChangePasswordDialog = useGlobalStore((state) => state.setShowChangePasswordDialog);
 
   return (
     <DialogContent>

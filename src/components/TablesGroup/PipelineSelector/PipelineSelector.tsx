@@ -1,10 +1,10 @@
 import { Select, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import ViewButton from './ViewButton/ViewButton';
-import { useGlobalContext } from '@/context/global.context';
 import { useTablesGroupContext } from '../tablesGroup.context';
+import { useGlobalStore } from '@/store/global.store';
 
 const PipelineSelector: React.FC = () => {
-  const { isMobile } = useGlobalContext();
+  const isMobile = useGlobalStore((state) => state.isMobile);
   const { similarPipelines, selectedSimilarPipelineIndex, setSelectedSimilarPipelineIndex } = useTablesGroupContext();
 
   return (

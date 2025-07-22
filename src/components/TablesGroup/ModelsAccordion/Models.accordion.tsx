@@ -11,11 +11,12 @@ import { Separator } from '@/components/ui/separator';
 import getModelIcon from '@/utils/getModelIcon';
 import { AiStarsIcon } from '@/icons/AiStarsIcon';
 import { useTablesGroupContext } from '../tablesGroup.context';
-import { useGlobalContext } from '@/context/global.context';
+import { useGlobalStore } from '@/store/global.store';
 
 const ModelsAccordion: React.FC = () => {
   const { models, type, performanceMetrics, columnsPerformanceMetrics, similarPipelines, selectedSimilarPipelineIndex } = useTablesGroupContext();
-  const { setSelectedPipeline, setSelectedPipelineModelIndex } = useGlobalContext();
+  const setSelectedPipeline = useGlobalStore((state) => state.setSelectedPipeline);
+  const onOpenChangePipelineDialog = useGlobalStore((state) => state.onOpenChangePipelineDialog);
 
   return (
     <Card>
@@ -81,7 +82,7 @@ const ModelsAccordion: React.FC = () => {
                   </ul>
                 </div>
                 <footer className="flex flex-col gap-2 mt-0.5">
-                  <Dialog onOpenChange={() => setSelectedPipelineModelIndex('0')}>
+                  <Dialog onOpenChange={onOpenChangePipelineDialog}>
                     <DialogTrigger asChild>
                       <Button
                         variant="secondary"

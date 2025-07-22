@@ -1,7 +1,6 @@
 import { Pipeline } from "@/types/pipeline.types";
 
 export const pipeline: Pipeline = {
-  id: "5",
   alias: "cats-vs-dogs",
   title: "Cats vs Dogs",
   problemType: "classification",
@@ -19,48 +18,81 @@ export const pipeline: Pipeline = {
       {
         modelAlias: "principal-component-analysis",
         performance: {
-          explainedVarianceRatio: 0.8,
-          reconstructionError: 0.05
+          explainedVarianceRatio: 0.80,
+          reconstructionError: 0.05,
+          perplexity: 30,
+          coherenceScore: 0.7,
+          outlierScoreMean: 0.1
         }
       },
       {
         modelAlias: "linear-discriminant-analysis",
         performance: {
           explainedVarianceRatio: 0.75,
-          reconstructionError: 0.07
+          reconstructionError: 0.07,
+          perplexity: 30,
+          coherenceScore: 0.65,
+          outlierScoreMean: 0.1
         }
       },
       {
         modelAlias: "t-distributed-stochastic-neighbor-embedding",
         performance: {
-          perplexity: 30
+          explainedVarianceRatio: 0.9,
+          reconstructionError: 0.03,
+          perplexity: 30,
+          coherenceScore: 0.8,
+          outlierScoreMean: 0.05
         }
       },
       {
         modelAlias: "isomap",
         performance: {
           explainedVarianceRatio: 0.85,
-          reconstructionError: 0.04
+          reconstructionError: 0.04,
+          perplexity: 30,
+          coherenceScore: 0.75,
+          outlierScoreMean: 0.08
+        }
+      },
+      {
+        modelAlias: "autoencoders",
+        performance: {
+          explainedVarianceRatio: 0.8,
+          reconstructionError: 0.06,
+          perplexity: 30,
+          coherenceScore: 0.7,
+          outlierScoreMean: 0.1
         }
       },
       {
         modelAlias: "umap",
         performance: {
           explainedVarianceRatio: 0.9,
-          reconstructionError: 0.03
+          reconstructionError: 0.02,
+          perplexity: 30,
+          coherenceScore: 0.8,
+          outlierScoreMean: 0.05
         }
       },
       {
         modelAlias: "independent-component-analysis",
         performance: {
           explainedVarianceRatio: 0.95,
-          reconstructionError: 0.02
+          reconstructionError: 0.02,
+          perplexity: 30,
+          coherenceScore: 0.9,
+          outlierScoreMean: 0.05
         }
       },
       {
         modelAlias: "local-linear-embedding",
         performance: {
-          perplexity: 30
+          explainedVarianceRatio: 0.8,
+          reconstructionError: 0.06,
+          perplexity: 30,
+          coherenceScore: 0.7,
+          outlierScoreMean: 0.1
         }
       }
     ],

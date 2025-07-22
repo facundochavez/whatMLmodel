@@ -2,10 +2,11 @@ import { DialogTrigger } from '@/components/ui/dialog';
 import { Button } from '@/components/ui/button';
 import { LogIn, UserRoundPlus } from 'lucide-react';
 import { SheetClose } from '@/components/ui/sheet';
-import { useGlobalContext } from '@/context/global.context';
+import { useGlobalStore } from '@/store/global.store';
 
 const AuthSheetContent: React.FC = () => {
-  const { setShowAuthDialog, setIsUserRegistering } = useGlobalContext();
+  const setShowAuthDialog = useGlobalStore((state) => state.setShowAuthDialog);
+  const setIsUserRegistering = useGlobalStore((state) => state.setIsUserRegistering);
 
   return (
     <div className="h-full flex flex-col justify-center gap-2 items-center text-center">

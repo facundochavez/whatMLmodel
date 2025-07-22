@@ -1,30 +1,23 @@
-import { useAnalysesContext } from '@/context/analyses.context';
 import React, { useEffect, useState } from 'react';
 
 const useTextReveal = (text: string) => {
   const words = text.split(' ');
   let count = 0;
   const [overflow, setOverflow] = useState('hidden');
-  const { isPageTransitioning } = useAnalysesContext();
 
   useEffect(() => {
     let timeoutId: NodeJS.Timeout | null = null;
-    if (isPageTransitioning) {
-      setOverflow('hidden');
-      if (timeoutId) {
-        clearTimeout(timeoutId);
-      }
-    } else {
-      timeoutId = setTimeout(() => {
-        setOverflow('visible');
-      }, words.length * 305);
-    }
+
+    timeoutId = setTimeout(() => {
+      setOverflow('visible');
+    }, words.length * 310);
+
     return () => {
       if (timeoutId) {
         clearTimeout(timeoutId);
       }
     };
-  }, [isPageTransitioning]);
+  }, [text]);
 
   const [uniqueKey, setUniqueKey] = useState(0);
   useEffect(() => {

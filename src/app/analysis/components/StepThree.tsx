@@ -1,14 +1,14 @@
 import TablesGroup from '@/components/TablesGroup/TablesGroup';
 import TypingText from '@/components/TypingText';
-import { useAnalysesContext } from '@/context/analyses.context';
+import { useCurrentAnalysisStore } from '@/store/currentAnalysis.store';
+import { useGlobalStore } from '@/store/global.store';
 import generateRandomUUID from '@/utils/generateRandomUUID';
 
-interface StepThreeProps extends React.PropsWithChildren {
-  isAiThinking: boolean;
-}
 
-const StepThree: React.FC<StepThreeProps> = ({ isAiThinking }) => {
-  const { currentAnalysis } = useAnalysesContext();
+
+const StepThree = () => {
+  const isAiThinking = useGlobalStore((state) => state.isAiThinking);
+  const currentAnalysis = useCurrentAnalysisStore((state) => state.currentAnalysis);
 
   return (
     <section className="w-full max-w-[70rem] flex flex-col gap-8 sm:gap-4">
@@ -36,7 +36,7 @@ const StepThree: React.FC<StepThreeProps> = ({ isAiThinking }) => {
           {index === 0 && (
             <TypingText
               key={generateRandomUUID()}
-              text="Here is a list of the best models you can apply and their performance metrics for datasets similar to yours:"
+              text={currentAnalysis?.language === 'es' ? 'Aquí tienes una lista de los mejores modelos que puedes aplicar y sus métricas de rendimiento para datasets similares al tuyo:' : "Here is a list of the best models you can apply and their performance metrics for datasets similar to yours:"}
               wordsInterval={8}
               delay={index * 800 + 600}
               disabled={!isAiThinking}

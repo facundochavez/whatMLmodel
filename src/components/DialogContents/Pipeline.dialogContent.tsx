@@ -1,6 +1,5 @@
 'use client';
 import { DialogContent, DialogDescription, DialogHeader, DialogTitle } from '@/components/ui/dialog';
-import { useGlobalContext } from '@/context/global.context';
 import Markdown from 'react-markdown';
 import { Badge } from '../ui/badge';
 import camelToTitleCase from '@/utils/camelToTitleCase';
@@ -9,9 +8,12 @@ import MyCodeMirror from '../MyCodeMirror';
 import { Select, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import getModelNameByAlias from '@/utils/getModelNameByAlias';
 import getPerformanceMetricNameByAlias from '@/utils/getPerformanceMetricNameByAlias';
+import { useGlobalStore } from '@/store/global.store';
 
 const PipelineDialogContent: React.FC = () => {
-  const { selectedPipeline, selectedPipelineModelIndex, setSelectedPipelineModelIndex } = useGlobalContext();
+  const selectedPipeline = useGlobalStore((state) => state.selectedPipeline);
+  const selectedPipelineModelIndex = useGlobalStore((state) => state.selectedPipelineModelIndex);
+  const setSelectedPipelineModelIndex = useGlobalStore((state) => state.setSelectedPipelineModelIndex);
 
   return (
     <DialogContent

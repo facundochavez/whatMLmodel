@@ -1,6 +1,6 @@
 import { ColumnDef } from '@tanstack/react-table';
 import { Model } from '@/types/models.types';
-import { ProblemType } from '@/types/common.types';
+import { ProblemType } from '@/types/pipeline.types';
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
 import { Button } from '@/components/ui/button';
 import { CodeXml, MoreHorizontal } from 'lucide-react';

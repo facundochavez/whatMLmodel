@@ -3,7 +3,8 @@ import { Analysis } from "@/types/analysis.types";
 export const analysesMock: Analysis[] = [
   {
     id: "Analysis-001",
-    createdAt: "2023-08-01T10:00:00Z",
+    createdAt: new Date("2024-07-12T10:00:00Z"),
+    updatedAt: new Date("2024-07-12T10:00:00Z"),
     isFavorite: false,
     title: "Titanic Survivors",
     alias: "titanic-survivors",
@@ -45,7 +46,8 @@ export const analysesMock: Analysis[] = [
   },
   {
     id: "Analysis-002",
-    createdAt: "2023-08-01T10:00:00Z",
+    createdAt: new Date("2024-07-05T10:00:00Z"),
+    updatedAt: new Date("2024-07-05T10:00:00Z"),
     isFavorite: true,
     title: "House Prices",
     alias: "house-prices",
@@ -88,7 +90,8 @@ export const analysesMock: Analysis[] = [
   },
   {
     id: "Analysis-003",
-    createdAt: "2023-08-01T10:00:00Z",
+    createdAt: new Date("2024-06-28T10:00:00Z"),
+    updatedAt: new Date("2024-06-28T10:00:00Z"),
     isFavorite: false,
     title: "Digit Recognizer",
     alias: "digit-recognizer",
@@ -122,7 +125,8 @@ export const analysesMock: Analysis[] = [
   },
   {
     id: "Analysis-004",
-    createdAt: "2023-08-01T10:00:00Z",
+    createdAt: new Date("2024-06-21T10:00:00Z"),
+    updatedAt: new Date("2024-06-21T10:00:00Z"),
     title: "Tumor Tissues",
     isFavorite: false,
     alias: "tumor-tissues",
@@ -133,7 +137,7 @@ export const analysesMock: Analysis[] = [
       problemDescription: "Given high-resolution images of tumor tissues, the goal is to classify these images into categories such as benign, malignant, or uncertain.",
       mainFeatures: "ImagePixels, TumorCategory",
       targetVariable: "Tumor Category",
-      columns: 10000,
+      columns: 2,
       rows: 2500,
       needsDimensionalityReduction: true
     },
@@ -159,7 +163,8 @@ export const analysesMock: Analysis[] = [
   },
   {
     id: "Analysis-005",
-    createdAt: "2023-08-01T10:00:00Z",
+    createdAt: new Date("2024-06-14T10:00:00Z"),
+    updatedAt: new Date("2024-06-14T10:00:00Z"),
     title: "Medical Images",
     isFavorite: false,
     alias: "medical-images",
@@ -210,7 +215,8 @@ export const analysesMock: Analysis[] = [
   },
   {
     id: "Analysis-006",
-    createdAt: "2023-08-01T10:00:00Z",
+    createdAt: new Date("2024-06-07T10:00:00Z"),
+    updatedAt: new Date("2024-06-07T10:00:00Z"),
     title: "House Price",
     isFavorite: false,
     alias: "house-price",
@@ -261,7 +267,8 @@ export const analysesMock: Analysis[] = [
   },
   {
     id: "Analysis-007",
-    createdAt: "2023-08-01T10:00:00Z",
+    createdAt: new Date("2024-05-31T10:00:00Z"),
+    updatedAt: new Date("2024-05-31T10:00:00Z"),
     title: "Customer Review Satisfaction",
     isFavorite: true,
     alias: "customer-review-satisfaction",
@@ -313,7 +320,8 @@ export const analysesMock: Analysis[] = [
   },
   {
     id: "Analysis-008",
-    createdAt: "2023-08-01T10:00:00Z",
+    createdAt: new Date("2024-05-24T10:00:00Z"),
+    updatedAt: new Date("2024-05-24T10:00:00Z"),
     isFavorite: false,
     title: "Customer Transactions",
     alias: "customer-transactions",
@@ -355,7 +363,8 @@ export const analysesMock: Analysis[] = [
   },
   {
     id: "Analysis-009",
-    createdAt: "2023-08-01T10:00:00Z",
+    createdAt: new Date("2024-05-17T10:00:00Z"),
+    updatedAt: new Date("2024-05-17T10:00:00Z"),
     title: "Residential Property Pricing",
     isFavorite: false,
     alias: "residential-property-pricing",
@@ -399,7 +408,8 @@ export const analysesMock: Analysis[] = [
   },
   {
     id: "Analysis-010",
-    createdAt: "2023-08-01T10:00:00Z",
+    createdAt: new Date("2024-05-10T10:00:00Z"),
+    updatedAt: new Date("2024-05-10T10:00:00Z"),
     title: "Customer Products Review",
     isFavorite: true,
     alias: "customer-products-review",
@@ -443,7 +453,8 @@ export const analysesMock: Analysis[] = [
   },
   {
     id: "Analysis-011",
-    createdAt: "2023-08-01T10:00:00Z",
+    createdAt: new Date("2024-05-03T10:00:00Z"),
+    updatedAt: new Date("2024-05-03T10:00:00Z"),
     isFavorite: false,
     title: "Air-Quality Index",
     alias: "air-quality-index",

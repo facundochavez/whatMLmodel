@@ -7,10 +7,11 @@ import ShareButton from '../ShareButton/ShareButton';
 import ModeToggle from '../ModeToggle/ModeToggle';
 import AuthSheetContent from './SheetContents/Auth.sheetContent';
 import UserSheetContent from './SheetContents/User.sheetContent';
-import { useGlobalContext } from '@/context/global.context';
+import { useGlobalStore } from '@/store/global.store';
 
 const OptionsSheet: React.FC = () => {
-  const { isUserLoggedIn } = useGlobalContext();
+  const isUserLoggedIn = useGlobalStore((state) => state.isUserLoggedIn);
+
   return (
     <Sheet>
       <SheetTrigger>

@@ -1,7 +1,6 @@
 import { Pipeline } from "@/types/pipeline.types";
 
 export const pipeline: Pipeline = {
-  id: "8",
   alias: "mall-customer-segmentation",
   title: "Mall Customer Segmentation",
   problemType: "clustering",
