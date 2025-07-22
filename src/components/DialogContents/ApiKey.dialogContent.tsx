@@ -36,23 +36,22 @@ const ApiKeyDialogContent: React.FC = () => {
         <DialogTitle>Gemini API key</DialogTitle>
         <DialogDescription>{getDescription()}</DialogDescription>
       </DialogHeader>
-      {geminiErrorOccurred ||
-        (userGeminiApiKey.trim() === '' && (
-          <>
-            <h2>How to get one:</h2>
-            <ul className="flex flex-col gap-1 text-muted-foreground text-sm -mt-4">
-              <li>
-                1. Sign up or log in to{' '}
-                <a href="https://aistudio.google.com/" target="_blank" className="underline hover:text-primary">
-                  Google AI Studio
-                </a>
-                .
-              </li>
-              <li>2. Click the &quot;Get API Key&quot; button at the top of the page, or open the menu and select &quot;Get API Key&quot;.</li>
-              <li>3. Copy the API key displayed in the table below and paste it into the following field:</li>
-            </ul>
-          </>
-        ))}
+      {(userGeminiApiKey.trim() === '' || geminiErrorOccurred) && (
+        <>
+          <h2>How to get one:</h2>
+          <ul className="flex flex-col gap-1 text-muted-foreground text-sm -mt-4">
+            <li>
+              1. Sign up or log in to{' '}
+              <a href="https://aistudio.google.com/" target="_blank" className="underline hover:text-primary">
+                Google AI Studio
+              </a>
+              .
+            </li>
+            <li>2. Click the &quot;Get API Key&quot; button at the top of the page, or open the menu and select &quot;Get API Key&quot;.</li>
+            <li>3. Copy the API key displayed in the table below and paste it into the following field:</li>
+          </ul>
+        </>
+      )}
 
       {userGeminiApiKey.trim() !== '' && (
         <Button
@@ -61,7 +60,7 @@ const ApiKeyDialogContent: React.FC = () => {
           onClick={() => {
             setUserGeminiApiKey('');
             setShowApiKeyDialog(false);
-            toast(<span className='text-center text-base'>API key deleted successfully!</span>);
+            toast(<span className="text-center text-base">API key deleted successfully!</span>);
           }}
         >
           Delete API key from local storage
