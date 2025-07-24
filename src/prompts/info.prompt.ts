@@ -5,7 +5,7 @@ export const infoPrompt = `Based on an input describing a dataset and its target
   "userDatasetDescription": [String: same description from the input but in a formal way with a corrected grammar and spelling],
   "language": [String: language detected from the input. Must be its standard ISO 639-1 code: "en", "es", "fr", etc.],
   "info": {
-    "problemDescription": [String of up to 35 words: description of the problem (without mentioning features and problem type. Don’t be too specific if it is a classification, regression, or clustering problem), and the goal in a clear, concise and inpersonal way. It should clearly reflect the input, and if it was too short, this will be a description with more details and context. Avoid start by saying something like "This dataset contains...", be more original than that],
+    "problemDescription": [String of up to 40 words: description of the problem (without mentioning features and problem type. Don’t be too specific if it is a classification, regression, or clustering problem), and the goal in a clear, concise and inpersonal way. It should clearly reflect the input, and if it was too short, this will be a description with more details and context. Avoid start by saying something like "This dataset contains...", be more original than that],
     "mainFeatures": [String: up to 5 features from the dataset that make logical sense, separated by separated by commas and spaces, and written in PascalCase],
     "targetVariable": [String: the target variable stated simply and directly in Title Case],
     "columns": [Number: number of columns in the dataset. If the input doesn’t specify it, invent a reasonable value based on the type of problem],
