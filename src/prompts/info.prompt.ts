@@ -34,5 +34,34 @@ Output: {
 Note: You can rely on popular datasets to fill in the fields if you recognize it’s one of them. The keys will always be written in English and in camelCase, but the values will always be written in the language specified by "language".
 
 Now, the input to generate output is as follows:
-
 `;
+
+export const infoSchema = {
+  type: "object",
+  properties: {
+    title: { type: "string" },
+    alias: { type: "string" },
+    userDatasetDescription: { type: "string" },
+    language: { type: "string" },
+    info: {
+      type: "object",
+      properties: {
+        problemDescription: { type: "string" },
+        mainFeatures: { type: "string" },
+        targetVariable: { type: "string" },
+        columns: { type: "number" },
+        rows: { type: "number" },
+        needsDimensionalityReduction: { type: "boolean" },
+      },
+      required: [
+        "problemDescription",
+        "mainFeatures",
+        "targetVariable",
+        "columns",
+        "rows",
+        "needsDimensionalityReduction",
+      ],
+    },
+  },
+  required: ["title", "alias", "userDatasetDescription", "language", "info"],
+};

@@ -1,27 +1,31 @@
 import { NextRequest, NextResponse } from "next/server";
 import { GoogleGenerativeAI } from "@google/generative-ai";
-import { recommendationsPrompt } from "@/prompts/recommendations.prompt";
-import { infoPrompt } from "@/prompts/info.prompt";
+import { recommendationsPrompt, recommendationsSchema } from "@/prompts/recommendations.prompt";
+import { infoPrompt, infoSchema } from "@/prompts/info.prompt";
 import extractBlockBetweenBraces from "@/utils/extractBlockBetweenBraces";
 
-async function tryWithFallback(apiKey: string, prompt: string) {
+const MODELS = ["gemini-2.5-flash-lite", "gemini-2.5-flash", "gemini-1.5-flash", "gemini-1.5-pro"];
+
+async function tryWithFallback(apiKey: string, prompt: string, schema: any = null) {
   const genAI = new GoogleGenerativeAI(apiKey);
+  const config = {
+    responseMimeType: schema ? "application/json" : "text/plain",
+    ...(schema && { responseSchema: schema }),
+  };
+  let lastError;
 
-  try {
-    const fastModel = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
-    const result = await fastModel.generateContent(prompt);
-    return result.response.text();
-  } catch (err) {
-    console.warn("Error with gemini-1.5-flash. Trying gemini-2.5-pro...");
-
+  for (const modelName of MODELS) {
     try {
-      const fallbackModel = genAI.getGenerativeModel({ model: "gemini-2.5-pro" });
-      const result = await fallbackModel.generateContent(prompt);
+      /* console.log(`Trying with ${modelName}...`); */
+      const model = genAI.getGenerativeModel({ model: modelName });
+      const result = await model.generateContent(prompt, config);
       return result.response.text();
-    } catch (err2) {
-      throw err2;
+    } catch (err) {
+      console.warn(`Error with ${modelName}:`, err);
+      lastError = err;
     }
   }
+  throw lastError;
 }
 
 export async function POST(req: NextRequest) {
@@ -32,10 +36,7 @@ export async function POST(req: NextRequest) {
 
     if (body.type === "apiKeyCheck" && body.userGeminiApiKey) {
       try {
-        const tempGenAI = new GoogleGenerativeAI(body.userGeminiApiKey);
-        const tempModel = tempGenAI.getGenerativeModel({ model: 'gemini-1.5-flash' });
-        const result = await tempModel.generateContent("Say 'hello'");
-        const responseText = result.response.text();
+        const responseText = await tryWithFallback(body.userGeminiApiKey, "Say 'hello'");
         if (responseText.toLowerCase().includes("hello")) {
           return NextResponse.json({ valid: true }, { status: 200 });
         }
@@ -47,7 +48,7 @@ export async function POST(req: NextRequest) {
 
     if (body.type === "info" && body.datasetDescription) {
       const finalPrompt = infoPrompt + body.datasetDescription.toString();
-      const rawText = await tryWithFallback(apiKey, finalPrompt);
+      const rawText = await tryWithFallback(apiKey, finalPrompt, infoSchema);
       const formatData = extractBlockBetweenBraces(rawText);
       const finalResult = JSON.parse(formatData ?? "{}");
       return NextResponse.json(finalResult, { status: 200 });
@@ -55,7 +56,7 @@ export async function POST(req: NextRequest) {
 
     if (body.type === "recommendations" && body.datasetInfo) {
       const formattedPrompt = recommendationsPrompt + JSON.stringify(body.datasetInfo, null, 2);
-      const rawText = await tryWithFallback(apiKey, formattedPrompt);
+      const rawText = await tryWithFallback(apiKey, formattedPrompt, recommendationsSchema);
       const formattedData = extractBlockBetweenBraces(rawText);
       const finalResult = JSON.parse(formattedData ?? "{}");
       return NextResponse.json(finalResult, { status: 200 });

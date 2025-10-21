@@ -59,3 +59,38 @@ SIMILAR-PIPELINES-LIST: ${JSON.stringify(pipelinesList, null, 2)}
 
 Now, the datasetDescription to generate the JSON output is as follows:
 `;
+
+export const recommendationsSchema = {
+  type: "object",
+  properties: {
+    recommendationsTitle: { type: "string" },
+    recommendations: {
+      type: "array",
+      items: {
+        type: "object",
+        properties: {
+          type: { type: "string" },
+          paragraph: { type: "string" },
+          tables: {
+            type: "object",
+            properties: {
+              modelsAlias: {
+                type: "array",
+                items: { type: "string" }
+              },
+              similarPipelinesAlias: {
+                type: "array",
+                items: { type: "string" }
+              }
+            },
+            required: ["modelsAlias", "similarPipelinesAlias"]
+          }
+        },
+        required: ["type", "paragraph", "tables"]
+      }
+    }
+  },
+  required: ["recommendationsTitle", "recommendations"]
+};
+
+
