@@ -16,7 +16,7 @@ async function tryWithFallback(apiKey: string, prompt: string, schema: any = nul
 
   for (const modelName of MODELS) {
     try {
-      console.log(`Trying with ${modelName}...`);
+      /* console.log(`Trying with ${modelName}...`); */
       const model = genAI.getGenerativeModel({ model: modelName });
       const result = await model.generateContent(prompt, config);
       return result.response.text();

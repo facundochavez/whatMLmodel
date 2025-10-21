@@ -1,12 +1,7 @@
 const extractBlockBetweenBraces = (rawText: string) => {
   const start = rawText.indexOf('{');
   if (start === -1) return null;
-  let cleanedText = rawText.substring(start);
-  cleanedText = cleanedText
-    .replace(/```json\s*/g, '')
-    .replace(/\s*```\s*$/g, '')
-    .trim();
-  return cleanedText;
+  return rawText.substring(start).replace(/```json\s*/g, '').replace(/\s*```\s*$/g, '').trim();;
 }
 
 export default extractBlockBetweenBraces;
@@ -36,6 +31,5 @@ export default extractBlockBetweenBraces;
   }
 
   return null;
-};
+}; */
 
-export default extractBlockBetweenBraces; */
