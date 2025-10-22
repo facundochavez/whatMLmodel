@@ -41,14 +41,28 @@ const ApiKeyDialogContent: React.FC = () => {
           <h2>How to get one:</h2>
           <ul className="flex flex-col gap-1 text-muted-foreground text-sm -mt-4">
             <li>
-              1. Sign up or log in to{' '}
-              <a href="https://aistudio.google.com/" target="_blank" className="underline hover:text-primary">
+              1. Sign in or create an account on{' '}
+              <a
+                href="https://aistudio.google.com/"
+                target="_blank"
+                className="underline hover:text-primary"
+              >
                 Google AI Studio
               </a>
               .
             </li>
-            <li>2. Click the &quot;+ Create API Key&quot; button at the top of the page and accept the terms and conditions.</li>
-            <li>3. Copy the API key displayed in the table below and paste it into the following field:</li>
+            <li>
+              2. In the control panel, open <strong>Get API Key</strong> and accept the terms and conditions.
+            </li>
+            <li>
+              3. Click <strong>Create API Key</strong> in the top-right corner.
+            </li>
+            <li>
+              4. Choose a name, assign it to <strong>Default Gemini Project</strong>, then click <strong>Create key</strong>.
+            </li>
+            <li>
+              5. Copy the generated API key from the table and paste it into the field below.
+            </li>
           </ul>
         </>
       )}

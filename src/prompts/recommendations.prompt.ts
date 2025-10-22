@@ -1,7 +1,7 @@
 import { Schema, Type } from "@google/genai";
 import { pipelinesList } from "@/data/pipelines-list";
 
-export const recommendationsPrompt = `Based on an input called datasetDescription, I need to generate a series of paragraphs and tables that provide machine learning model recommendations for it. Return a JSON output with the following structure:
+export const recommendationsPrompt = `Based on an input called datasetDescription, I need to generate a series of paragraphs and tables that provide machine learning model recommendations for it. Return a JSON output with the following structure. Important: keep english for the keys but recognize the language of the InputDescription and use it for the values:
 
 {
   "recommendationsTitle": String: General title that will say "Recommended Models for..." and the rest will be based on the datasetDescription and the main problem type, e.g., "Recommended Models for Iris Species Segmentation",
@@ -44,8 +44,6 @@ export const recommendationsPrompt = `Based on an input called datasetDescriptio
     }
   ]
 }
-
-Note: The keys will always be written in English and in camelCase, but the values will always be written in the language you recognize from the datasetDescription values.
 
 Here are the MODELS-ALIAS-LIST and SIMILAR-PIPELINES-LIST to chose the aliases from:
 

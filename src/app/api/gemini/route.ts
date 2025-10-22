@@ -39,10 +39,10 @@ export async function POST(req: NextRequest) {
     if (body.type === "apiKeyCheck" && body.userGeminiApiKey) {
       try {
         const responseText = await tryWithFallback(body.userGeminiApiKey, "Say 'hello'");
-
         if (responseText?.toLowerCase().includes("hello")) {
           return NextResponse.json({ valid: true }, { status: 200 });
         }
+
         return NextResponse.json({ valid: false }, { status: 403 });
       } catch (err) {
         return NextResponse.json({ valid: false, error: "Invalid API key" }, { status: 403 });
@@ -53,6 +53,7 @@ export async function POST(req: NextRequest) {
       const finalPrompt = infoPrompt + body.datasetDescription.toString();
       const rawText = await tryWithFallback(apiKey, finalPrompt, infoSchema);
       const finalResult = JSON.parse(rawText || "{}");
+      console.log(finalResult);
 
       return NextResponse.json(finalResult, { status: 200 });
     }
