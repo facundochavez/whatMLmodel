@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { GoogleGenerativeAI } from "@google/generative-ai";
+import { GoogleGenAI } from "@google/genai";
 import { recommendationsPrompt, recommendationsSchema } from "@/prompts/recommendations.prompt";
 import { infoPrompt, infoSchema } from "@/prompts/info.prompt";
 import extractBlockBetweenBraces from "@/utils/extractBlockBetweenBraces";
@@ -7,19 +7,20 @@ import extractBlockBetweenBraces from "@/utils/extractBlockBetweenBraces";
 const MODELS = ["gemini-2.5-flash-lite", "gemini-2.5-flash", "gemini-1.5-flash", "gemini-1.5-pro"];
 
 async function tryWithFallback(apiKey: string, prompt: string, schema: any = null) {
-  const genAI = new GoogleGenerativeAI(apiKey);
+  const genAI = new GoogleGenAI({ apiKey });
   const config = {
     responseMimeType: schema ? "application/json" : "text/plain",
     ...(schema && { responseSchema: schema }),
   };
   let lastError;
-
   for (const modelName of MODELS) {
     try {
-      /* console.log(`Trying with ${modelName}...`); */
-      const model = genAI.getGenerativeModel({ model: modelName });
-      const result = await model.generateContent(prompt, config);
-      return result.response.text();
+      const result = await genAI.models.generateContent({
+        model: modelName,
+        contents: prompt,
+        config: config,
+      });
+      return result.text;
     } catch (err) {
       console.warn(`Error with ${modelName}:`, err);
       lastError = err;
@@ -37,7 +38,7 @@ export async function POST(req: NextRequest) {
     if (body.type === "apiKeyCheck" && body.userGeminiApiKey) {
       try {
         const responseText = await tryWithFallback(body.userGeminiApiKey, "Say 'hello'");
-        if (responseText.toLowerCase().includes("hello")) {
+        if (responseText?.toLowerCase().includes("hello")) {
           return NextResponse.json({ valid: true }, { status: 200 });
         }
         return NextResponse.json({ valid: false }, { status: 403 });
@@ -49,7 +50,7 @@ export async function POST(req: NextRequest) {
     if (body.type === "info" && body.datasetDescription) {
       const finalPrompt = infoPrompt + body.datasetDescription.toString();
       const rawText = await tryWithFallback(apiKey, finalPrompt, infoSchema);
-      const formatData = extractBlockBetweenBraces(rawText);
+      const formatData = extractBlockBetweenBraces(rawText ?? "{}");
       const finalResult = JSON.parse(formatData ?? "{}");
       return NextResponse.json(finalResult, { status: 200 });
     }
@@ -57,7 +58,7 @@ export async function POST(req: NextRequest) {
     if (body.type === "recommendations" && body.datasetInfo) {
       const formattedPrompt = recommendationsPrompt + JSON.stringify(body.datasetInfo, null, 2);
       const rawText = await tryWithFallback(apiKey, formattedPrompt, recommendationsSchema);
-      const formattedData = extractBlockBetweenBraces(rawText);
+      const formattedData = extractBlockBetweenBraces(rawText ?? "{}");
       const finalResult = JSON.parse(formattedData ?? "{}");
       return NextResponse.json(finalResult, { status: 200 });
     }
