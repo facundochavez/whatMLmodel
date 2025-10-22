@@ -12,6 +12,7 @@ import { Eye, EyeOff, LoaderCircle } from 'lucide-react';
 import { useState } from 'react';
 import { useGlobalStore } from '@/store/global.store';
 import { toast } from 'sonner';
+import { apiKeyCheckService } from '@/services/apiKeyCheck.service';
 
 const apiKeySchema = z.object({
   apiKey: z.string().min(1, {
@@ -36,19 +37,9 @@ const ApiKeyForm: React.FC = () => {
   const onSubmit = async (values: z.infer<typeof apiKeySchema>) => {
     try {
       setIsCheckingApiKey(true);
-      const response = await fetch('/api/gemini', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          type: 'apiKeyCheck',
-          userGeminiApiKey: values.apiKey,
-        }),
-      });
+      const isValid = await apiKeyCheckService(values.apiKey);
 
-      if (!response.ok) throw new Error('Invalid API key');
-
-      const result = await response.json();
-      if (result.valid) {
+      if (isValid) {
         setUserGeminiApiKey(values.apiKey);
         setShowApiKeyDialog(false);
         toast(<span className='text-center text-base'>API key saved successfully!</span>);

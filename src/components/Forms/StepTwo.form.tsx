@@ -15,6 +15,7 @@ import { useCurrentAnalysisStore } from '@/store/currentAnalysis.store';
 import { Analysis, RecommendationsResponse } from '@/types/analysis.types';
 import { useGlobalStore } from '@/store/global.store';
 import { useAnalysesStore } from '@/store/analyses.store';
+import { recommendationsService } from '@/services/recommendations.service';
 
 const stepTwoSchema = z.object({
   problemDescription: z.string().min(50, 'Description must be at least 50 characters long'),
@@ -83,23 +84,7 @@ const StepTwoForm: React.FC<StepTwoFormProps> = ({ formState, children }) => {
 
     try {
       setIsAiGettingRecommendations(true);
-
-      const response = await fetch('/api/gemini', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          type: 'recommendations',
-          datasetInfo: datasetInfo,
-          userGeminiApiKey: userGeminiApiKey,
-        }),
-      });
-
-      if (!response.ok) {
-        setGeminiErrorOccurred(true);
-        setShowApiKeyDialog(true);
-        throw new Error('API error');
-      }
-      const data = await response.json();
+      const data = await recommendationsService(datasetInfo, userGeminiApiKey);
 
       if (!isRecommendationsResponse(data)) {
         throw new Error('Invalid response format');

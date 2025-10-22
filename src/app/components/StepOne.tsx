@@ -18,6 +18,7 @@ import generateRandomUUID from '@/utils/generateRandomUUID';
 import { useRouter } from 'next/navigation';
 import sleep from '@/utils/sleep';
 import { useGlobalStore } from '@/store/global.store';
+import { infoService } from '@/services/info.service';
 
 const stepOneSchema = z.object({
   datasetDescription: z.string().min(50, 'Description must be at least 50 characters long.'),
@@ -54,25 +55,8 @@ const StepOne: React.FC = () => {
 
     try {
       setIsAiGeneratingInfo(true);
-
-      const response = await fetch('/api/gemini', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          type: 'info',
-          datasetDescription: values.datasetDescription,
-          userGeminiApiKey: userGeminiApiKey,
-        }),
-      });
-
-      if (!response.ok) {
-        setGeminiErrorOccurred(true);
-        setShowApiKeyDialog(true);
-        throw new Error('API error');
-      }
-
-      const data = await response.json();
-
+      const data = await infoService(values.datasetDescription, userGeminiApiKey);
+  
       const newAnalysis = {
         id: generateRandomUUID(),
         createdAt: new Date(),
@@ -84,13 +68,13 @@ const StepOne: React.FC = () => {
         language: data.language,
         info: data.info,
       };
-
+  
       setCurrentAnalysis(newAnalysis);
-
+  
       const main = document.querySelector('main');
       if (!main) return;
       main.classList.add('page-transition');
-
+  
       await sleep(300);
       router.push('/analysis');
     } catch (error) {
