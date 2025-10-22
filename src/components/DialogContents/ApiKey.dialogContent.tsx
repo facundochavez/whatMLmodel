@@ -58,7 +58,7 @@ const ApiKeyDialogContent: React.FC = () => {
               3. Click <strong>Create API Key</strong> in the top-right corner.
             </li>
             <li>
-              4. Choose a name, assign it to <strong>Default Gemini Project</strong>, then click <strong>Create key</strong>.
+              4. Enter a key name, select <strong>Create Project</strong>, name your project, and then click <strong>Create project</strong> and <strong>Create key</strong>.
             </li>
             <li>
               5. Copy the generated API key from the table and paste it into the field below:
