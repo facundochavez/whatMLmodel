@@ -1,3 +1,5 @@
+import { Schema, Type } from "@google/genai";
+
 export const infoPrompt = `Based on an input describing a dataset and its target variable, generate the next output in JSON format:
 {
   "title": String of at least 2 words: very generic title without mentioning the type of problem (do not say if it’s classification, regression, or other). It should be something like "Titanic Survivors", "Iris Species", "House Prices", etc.,
@@ -36,22 +38,22 @@ Note: You can rely on popular datasets to fill in the fields if you recognize it
 Now, the input to generate output is as follows:
 `;
 
-export const infoSchema = {
-  type: "object",
+export const infoSchema: Schema = {
+  type: Type.OBJECT,
   properties: {
-    title: { type: "string" },
-    alias: { type: "string" },
-    userDatasetDescription: { type: "string" },
-    language: { type: "string" },
+    title: { type: Type.STRING },
+    alias: { type: Type.STRING },
+    userDatasetDescription: { type: Type.STRING },
+    language: { type: Type.STRING },
     info: {
-      type: "object",
+      type: Type.OBJECT,
       properties: {
-        problemDescription: { type: "string" },
-        mainFeatures: { type: "string" },
-        targetVariable: { type: "string" },
-        columns: { type: "number" },
-        rows: { type: "number" },
-        needsDimensionalityReduction: { type: "boolean" },
+        problemDescription: { type: Type.STRING },
+        mainFeatures: { type: Type.STRING },
+        targetVariable: { type: Type.STRING },
+        columns: { type: Type.NUMBER },
+        rows: { type: Type.NUMBER },
+        needsDimensionalityReduction: { type: Type.BOOLEAN },
       },
       required: [
         "problemDescription",

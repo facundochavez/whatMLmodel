@@ -1,18 +1,18 @@
 import { NextRequest, NextResponse } from "next/server";
-import { GoogleGenAI } from "@google/genai";
+import { GoogleGenAI, Schema } from "@google/genai"; // ✅ Importación de GoogleGenAI y Schema
 import { recommendationsPrompt, recommendationsSchema } from "@/prompts/recommendations.prompt";
 import { infoPrompt, infoSchema } from "@/prompts/info.prompt";
-import extractBlockBetweenBraces from "@/utils/extractBlockBetweenBraces";
 
 const MODELS = ["gemini-2.5-flash-lite", "gemini-2.5-flash", "gemini-1.5-flash", "gemini-1.5-pro"];
 
-async function tryWithFallback(apiKey: string, prompt: string, schema: any = null) {
+async function tryWithFallback(apiKey: string, prompt: string, schema: Schema | null = null) {
   const genAI = new GoogleGenAI({ apiKey });
   const config = {
     responseMimeType: schema ? "application/json" : "text/plain",
     ...(schema && { responseSchema: schema }),
   };
   let lastError;
+
   for (const modelName of MODELS) {
     try {
       const result = await genAI.models.generateContent({
@@ -20,6 +20,7 @@ async function tryWithFallback(apiKey: string, prompt: string, schema: any = nul
         contents: prompt,
         config: config,
       });
+
       return result.text;
     } catch (err) {
       console.warn(`Error with ${modelName}:`, err);
@@ -38,6 +39,7 @@ export async function POST(req: NextRequest) {
     if (body.type === "apiKeyCheck" && body.userGeminiApiKey) {
       try {
         const responseText = await tryWithFallback(body.userGeminiApiKey, "Say 'hello'");
+
         if (responseText?.toLowerCase().includes("hello")) {
           return NextResponse.json({ valid: true }, { status: 200 });
         }
@@ -50,16 +52,16 @@ export async function POST(req: NextRequest) {
     if (body.type === "info" && body.datasetDescription) {
       const finalPrompt = infoPrompt + body.datasetDescription.toString();
       const rawText = await tryWithFallback(apiKey, finalPrompt, infoSchema);
-      const formatData = extractBlockBetweenBraces(rawText ?? "{}");
-      const finalResult = JSON.parse(formatData ?? "{}");
+      const finalResult = JSON.parse(rawText || "{}");
+
       return NextResponse.json(finalResult, { status: 200 });
     }
 
     if (body.type === "recommendations" && body.datasetInfo) {
       const formattedPrompt = recommendationsPrompt + JSON.stringify(body.datasetInfo, null, 2);
       const rawText = await tryWithFallback(apiKey, formattedPrompt, recommendationsSchema);
-      const formattedData = extractBlockBetweenBraces(rawText ?? "{}");
-      const finalResult = JSON.parse(formattedData ?? "{}");
+      const finalResult = JSON.parse(rawText || "{}");
+
       return NextResponse.json(finalResult, { status: 200 });
     }
 

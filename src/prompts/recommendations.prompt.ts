@@ -1,4 +1,5 @@
-import { pipelinesList as pipelinesList } from "@/data/pipelines-list";
+import { Schema, Type } from "@google/genai";
+import { pipelinesList } from "@/data/pipelines-list";
 
 export const recommendationsPrompt = `Based on an input called datasetDescription, I need to generate a series of paragraphs and tables that provide machine learning model recommendations for it. Return a JSON output with the following structure:
 
@@ -60,27 +61,27 @@ SIMILAR-PIPELINES-LIST: ${JSON.stringify(pipelinesList, null, 2)}
 Now, the datasetDescription to generate the JSON output is as follows:
 `;
 
-export const recommendationsSchema = {
-  type: "object",
+export const recommendationsSchema: Schema = {
+  type: Type.OBJECT,
   properties: {
-    recommendationsTitle: { type: "string" },
+    recommendationsTitle: { type: Type.STRING },
     recommendations: {
-      type: "array",
+      type: Type.ARRAY,
       items: {
-        type: "object",
+        type: Type.OBJECT,
         properties: {
-          type: { type: "string" },
-          paragraph: { type: "string" },
+          type: { type: Type.STRING },
+          paragraph: { type: Type.STRING },
           tables: {
-            type: "object",
+            type: Type.OBJECT,
             properties: {
               modelsAlias: {
-                type: "array",
-                items: { type: "string" }
+                type: Type.ARRAY,
+                items: { type: Type.STRING }
               },
               similarPipelinesAlias: {
-                type: "array",
-                items: { type: "string" }
+                type: Type.ARRAY,
+                items: { type: Type.STRING }
               }
             },
             required: ["modelsAlias", "similarPipelinesAlias"]
