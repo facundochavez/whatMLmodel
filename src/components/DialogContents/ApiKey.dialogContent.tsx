@@ -31,7 +31,7 @@ const ApiKeyDialogContent: React.FC = () => {
   };
 
   return (
-    <DialogContent>
+    <DialogContent className="max-w-[35rem]">
       <DialogHeader>
         <DialogTitle>Gemini API key</DialogTitle>
         <DialogDescription>{getDescription()}</DialogDescription>
@@ -61,7 +61,7 @@ const ApiKeyDialogContent: React.FC = () => {
               4. Choose a name, assign it to <strong>Default Gemini Project</strong>, then click <strong>Create key</strong>.
             </li>
             <li>
-              5. Copy the generated API key from the table and paste it into the field below.
+              5. Copy the generated API key from the table and paste it into the field below:
             </li>
           </ul>
         </>
