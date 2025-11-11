@@ -101,7 +101,7 @@ const StepOne: React.FC = () => {
                     className="resize-none h-44 sm:h-44"
                     placeholder="Your dataset description here..."
                     spellCheck={false}
-                    maxLength={300}
+                    maxLength={600}
                     currentLength={form.watch('datasetDescription').length || 0}
                     {...field}
                   />

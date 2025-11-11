@@ -53,7 +53,6 @@ export async function POST(req: NextRequest) {
       const finalPrompt = infoPrompt + body.datasetDescription.toString();
       const rawText = await tryWithFallback(apiKey, finalPrompt, infoSchema);
       const finalResult = JSON.parse(rawText || "{}");
-      console.log(finalResult);
 
       return NextResponse.json(finalResult, { status: 200 });
     }
