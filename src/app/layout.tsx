@@ -1,29 +1,29 @@
-import './globals.css';
-import ThemeProvider from '@/components/theme-provider';
-import Header from './components/Header';
-import { Footer } from './components/Footer';
-import ClientWrapper from '@/components/ClientWrapper';
-import { Toaster } from '@/components/ui/sonner';
+import "./globals.css";
+import ThemeProvider from "@/components/theme-provider";
+import Header from "./components/Header";
+import { Footer } from "./components/Footer";
+import ClientWrapper from "@/components/ClientWrapper";
+import { Toaster } from "@/components/ui/sonner";
 
 export const metadata = {
-  title: 'whatMLmodel',
-  description: 'App to find the machine learning model that best fits your data through AI',
+  title: "whatMLmodel",
+  description: "App to find the machine learning model that best fits your data through AI",
   icons: {
-    icon: '/wMLm-favicon.svg',
+    icon: "/wMLm-favicon.svg",
   },
   openGraph: {
-    images: ['/wMLm-favicon.svg'],
-    title: 'whatMLmodel',
-    description: 'App to find the machine learning model that best fits your data through AI',
+    images: ["/wMLm-favicon.svg"],
+    title: "whatMLmodel",
+    description: "App to find the machine learning model that best fits your data through AI",
   },
   robots: {
-    google: 'notranslate',
+    google: "notranslate",
   },
-  metadataBase: new URL('https://whatmlmodel.vercel.app'),
+  metadataBase: new URL("https://whatmlmodel.vercel.app"),
 };
 
 export const viewport = {
-  width: 'device-width',
+  width: "device-width",
   initialScale: 1,
 };
 
@@ -39,7 +39,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             {children}
           </main>
           <Footer />
-          <Toaster position='bottom-center' className='max-w-[80vw]' />
+          <Toaster position="bottom-center" className="max-w-[80vw]" />
         </ThemeProvider>
       </body>
     </html>
