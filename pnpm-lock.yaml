@@ -93,7 +93,7 @@ importers:
         specifier: ^0.3.0
         version: 0.3.0(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
       react:
-        specifier: ^19.1.1
+        specifier: ^19.2.1
         version: 19.2.3
       react-dom:
         specifier: ^19.2.0
