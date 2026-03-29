@@ -1,4 +1,4 @@
-'use client';
+/* 'use client';
 import { DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle } from '@/components/ui/dialog';
 import ApiKeyForm from '@/components/Forms/ApiKey.form';
 import { useGlobalStore } from '@/store/global.store';
@@ -89,3 +89,4 @@ const ApiKeyDialogContent: React.FC = () => {
 };
 
 export default ApiKeyDialogContent;
+ */

@@ -10,7 +10,6 @@ import AuthDialogContent from '@/components/DialogContents/Auth.dialogContent';
 import ConfirmLogoutDialogContent from '../DialogContents/ConfirmLogout.dialogContent';
 import AccountSettingsDialogContent from '../DialogContents/AccountSettings.dialogContent';
 import ResetPasswordDialogContent from '../DialogContents/ResetPassword.dialogContent';
-import ApiKeyDialogContent from '../DialogContents/ApiKey.dialogContent';
 import ChangePasswordDialogContent from '../DialogContents/ChangePassword.dialogContent';
 import { Button } from '@/components/ui/button';
 import { CirclePlus } from 'lucide-react';
@@ -20,7 +19,7 @@ import { useGlobalStore } from '@/store/global.store';
 
 const ActionButtons: React.FC = () => {
   const pathname = usePathname();
-  const isMobile  = useGlobalStore((state) => state.isMobile);
+  const isMobile = useGlobalStore((state) => state.isMobile);
   const isUserLoggedIn = useGlobalStore((state) => state.isUserLoggedIn);
   const showAccountSettingsDialog = useGlobalStore((state) => state.showAccountSettingsDialog);
   const showApiKeyDialog = useGlobalStore((state) => state.showApiKeyDialog);
@@ -71,20 +70,19 @@ const ActionButtons: React.FC = () => {
     <Dialog open={showResetPasswordDialog} onOpenChange={setShowResetPasswordDialog}>
       <Dialog open={showApiKeyDialog} onOpenChange={setShowApiKeyDialog}>
         <Dialog open={showChangePasswordDialog} onOpenChange={setShowChangePasswordDialog}>
-          {!isUserLoggedIn ? (
-            <Dialog open={showAuthDialog} onOpenChange={setShowAuthDialog}>
-              {OptionButtons}
-              <AuthDialogContent />
-            </Dialog>
-          ) : (
+          {isUserLoggedIn ? (
             <Dialog open={showAccountSettingsDialog} onOpenChange={setShowAccountSettingsDialog}>
               {OptionButtons}
               <AccountSettingsDialogContent />
             </Dialog>
+          ) : (
+            <Dialog open={showAuthDialog} onOpenChange={setShowAuthDialog}>
+              {OptionButtons}
+              <AuthDialogContent />
+            </Dialog>
           )}
           <ChangePasswordDialogContent />
         </Dialog>
-        <ApiKeyDialogContent />
       </Dialog>
       <ResetPasswordDialogContent />
     </Dialog>

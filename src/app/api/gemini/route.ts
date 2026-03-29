@@ -1,57 +1,77 @@
 import { NextRequest, NextResponse } from "next/server";
-import { GoogleGenAI, Schema } from "@google/genai"; // ✅ Importación de GoogleGenAI y Schema
+import { GoogleGenAI, Schema } from "@google/genai";
 import { recommendationsPrompt, recommendationsSchema } from "@/prompts/recommendations.prompt";
 import { infoPrompt, infoSchema } from "@/prompts/info.prompt";
 
 const MODELS = ["gemini-2.5-flash-lite", "gemini-2.5-flash", "gemini-1.5-flash", "gemini-1.5-pro"];
 
-async function tryWithFallback(apiKey: string, prompt: string, schema: Schema | null = null) {
-  const genAI = new GoogleGenAI({ apiKey });
+function getAllApiKeysInOrder(startIndex: number): Array<{ key: string; index: number }> {
+  const apiKeys = [
+    process.env.GEMINI_API_KEY_ONE,
+    process.env.GEMINI_API_KEY_TWO,
+    process.env.GEMINI_API_KEY_THREE,
+    process.env.GEMINI_API_KEY_FOUR,
+    process.env.GEMINI_API_KEY_FIVE,
+  ];
+  
+  // startIndex is 1-based (1-5), convert to 0-based array index
+  const start = (startIndex - 1) % apiKeys.length;
+  const orderedKeys: Array<{ key: string; index: number }> = [];
+  
+  for (let i = 0; i < apiKeys.length; i++) {
+    const currentIndex = (start + i) % apiKeys.length;
+    const key = apiKeys[currentIndex];
+    
+    if (key) {
+      orderedKeys.push({ key, index: currentIndex + 1 });
+    }
+  }
+  
+  if (orderedKeys.length === 0) {
+    throw new Error('No API keys available - please configure GEMINI_API_KEY_ONE, TWO, THREE, FOUR, or FIVE');
+  }
+  
+  return orderedKeys;
+}
+
+async function tryWithFallback(apiKeyIndex: number, prompt: string, schema: Schema | null = null) {
   const config = {
     responseMimeType: schema ? "application/json" : "text/plain",
     ...(schema && { responseSchema: schema }),
   };
-  let lastError;
+  
+  const apiKeysToTry = getAllApiKeysInOrder(apiKeyIndex);
+  let lastError: Error | unknown;
 
-  for (const modelName of MODELS) {
-    try {
-      const result = await genAI.models.generateContent({
-        model: modelName,
-        contents: prompt,
-        config: config,
-      });
+  for (const { key: apiKey } of apiKeysToTry) {
+    const genAI = new GoogleGenAI({ apiKey });
+    
+    for (const modelName of MODELS) {
+      try {
+        const result = await genAI.models.generateContent({
+          model: modelName,
+          contents: prompt,
+          config: config,
+        });
 
-      return result.text;
-    } catch (err) {
-      console.warn(`Error with ${modelName}:`, err);
-      lastError = err;
+        return result.text;
+      } catch (err) {
+        lastError = err;
+      }
     }
   }
-  throw lastError;
+  
+  throw new Error(lastError instanceof Error ? lastError.message : 'All API keys and models failed');
 }
 
 export async function POST(req: NextRequest) {
   try {
     const body = await req.json();
-    const userApiKey = body.userGeminiApiKey;
-    const apiKey = userApiKey || process.env.GEMINI_API_KEY;
-
-    if (body.type === "apiKeyCheck" && body.userGeminiApiKey) {
-      try {
-        const responseText = await tryWithFallback(body.userGeminiApiKey, "Say 'hello'");
-        if (responseText?.toLowerCase().includes("hello")) {
-          return NextResponse.json({ valid: true }, { status: 200 });
-        }
-
-        return NextResponse.json({ valid: false }, { status: 403 });
-      } catch (err) {
-        return NextResponse.json({ valid: false, error: "Invalid API key" }, { status: 403 });
-      }
-    }
+    const apiKeyIndex = body.apiKeyIndex ?? 1;
 
     if (body.type === "info" && body.datasetDescription) {
       const finalPrompt = infoPrompt + body.datasetDescription.toString();
-      const rawText = await tryWithFallback(apiKey, finalPrompt, infoSchema);
+      const rawText = await tryWithFallback(apiKeyIndex, finalPrompt, infoSchema);
       const finalResult = JSON.parse(rawText || "{}");
 
       return NextResponse.json(finalResult, { status: 200 });
@@ -59,7 +79,7 @@ export async function POST(req: NextRequest) {
 
     if (body.type === "recommendations" && body.datasetInfo) {
       const formattedPrompt = recommendationsPrompt + JSON.stringify(body.datasetInfo, null, 2);
-      const rawText = await tryWithFallback(apiKey, formattedPrompt, recommendationsSchema);
+      const rawText = await tryWithFallback(apiKeyIndex, formattedPrompt, recommendationsSchema);
       const finalResult = JSON.parse(rawText || "{}");
 
       return NextResponse.json(finalResult, { status: 200 });

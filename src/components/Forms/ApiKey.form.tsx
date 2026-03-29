@@ -1,4 +1,4 @@
-'use client';
+/* 'use client';
 
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
@@ -97,3 +97,4 @@ const ApiKeyForm: React.FC = () => {
 };
 
 export default ApiKeyForm;
+ */

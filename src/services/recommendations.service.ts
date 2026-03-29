@@ -1,11 +1,15 @@
-export const recommendationsService = async (datasetInfo: any, apiKey?: string) => {
+import { useGlobalStore } from '@/store/global.store';
+
+export const recommendationsService = async (datasetInfo: any) => {
+  const { apiKeyIndex, moveApiKeyIndex } = useGlobalStore.getState();
+  
   const response = await fetch('/api/gemini', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
       type: 'recommendations',
       datasetInfo,
-      userGeminiApiKey: apiKey,
+      apiKeyIndex,
     }),
   });
 
@@ -13,5 +17,8 @@ export const recommendationsService = async (datasetInfo: any, apiKey?: string) 
     throw new Error('API error');
   }
 
-  return response.json();
+  const result = await response.json();
+  moveApiKeyIndex();
+  
+  return result;
 };

@@ -28,10 +28,7 @@ const StepOne: React.FC = () => {
   const router = useRouter();
   const [isAiGeneratingInfo, setIsAiGeneratingInfo] = useState(false);
   const setCurrentAnalysis = useCurrentAnalysisStore((state) => state.setCurrentAnalysis);
-  const userGeminiApiKey = useGlobalStore((state) => state.userGeminiApiKey);
   const setGeminiErrorOccurred = useGlobalStore((state) => state.setGeminiErrorOccurred);
-  const setShowApiKeyDialog = useGlobalStore((state) => state.setShowApiKeyDialog);
-  const availableFreeAnalyses = useGlobalStore((state) => state.availableFreeAnalyses);
 
   const form = useForm<z.infer<typeof stepOneSchema>>({
     resolver: zodResolver(stepOneSchema),
@@ -48,14 +45,9 @@ const StepOne: React.FC = () => {
   }, [form]);
 
   const onSubmit = async (values: z.infer<typeof stepOneSchema>) => {
-    if (availableFreeAnalyses <= 0 && !userGeminiApiKey) {
-      setShowApiKeyDialog(true);
-      return;
-    }
-
     try {
       setIsAiGeneratingInfo(true);
-      const data = await infoService(values.datasetDescription, userGeminiApiKey);
+      const data = await infoService(values.datasetDescription);
   
       const newAnalysis = {
         id: generateRandomUUID(),
@@ -79,7 +71,6 @@ const StepOne: React.FC = () => {
       router.push('/analysis');
     } catch (error) {
       setGeminiErrorOccurred(true);
-      setShowApiKeyDialog(true);
       console.error('Error generating analysis info:', error);
     } finally {
       setIsAiGeneratingInfo(false);

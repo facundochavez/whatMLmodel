@@ -5,15 +5,15 @@ import { Pipeline } from '@/types/pipeline.types';
 export interface GlobalStore {
   // Importants
   availableFreeAnalyses: number;
-  userGeminiApiKey: string;
   isUserLoggedIn: boolean;
   userEmail: string;
   geminiErrorOccurred: boolean;
+  apiKeyIndex: number;
   decrementAvailableFreeAnalyses: () => void;
-  setUserGeminiApiKey: (apiKey: string) => void;
   setIsUserLoggedIn: (value: boolean) => void;
   setUserEmail: (email: string) => void;
   setGeminiErrorOccurred: (value: boolean) => void;
+  moveApiKeyIndex: () => void;
 
   // Basics
   isMobile: boolean;
@@ -27,7 +27,7 @@ export interface GlobalStore {
   setIsAiThinking: (value: boolean) => void;
   onOpenChangePipelineDialog: () => void;
 
-  //Minors
+  // Minors
   isUserRegistering: boolean;
   showAuthDialog: boolean;
   showAccountSettingsDialog: boolean;
@@ -47,20 +47,23 @@ export const useGlobalStore = create<GlobalStore>()(
     (set, get) => ({
       // Importants
       availableFreeAnalyses: 6,
-      userGeminiApiKey: '',
       isUserLoggedIn: true,
       userEmail: '',
       geminiErrorOccurred: false,
+      apiKeyIndex: Math.floor(Math.random() * 5) + 1,
       decrementAvailableFreeAnalyses: () => {
         const current = get().availableFreeAnalyses;
         if (current > 0) {
           set({ availableFreeAnalyses: current - 1 });
         }
       },
-      setUserGeminiApiKey: (apiKey: string) => set({ userGeminiApiKey: apiKey }),
       setIsUserLoggedIn: (value: boolean) => set({ isUserLoggedIn: value }),
       setUserEmail: (email: string) => set({ userEmail: email }),
       setGeminiErrorOccurred: (value: boolean) => set({ geminiErrorOccurred: value }),
+      moveApiKeyIndex: () => {
+        const current = get().apiKeyIndex;
+        set({ apiKeyIndex: current >= 5 ? 1 : current + 1 });
+      },
 
       // Basics
       isMobile: false,
@@ -96,9 +99,9 @@ export const useGlobalStore = create<GlobalStore>()(
       partialize: (state) => ({
         // Only save the important values
         availableFreeAnalyses: state.availableFreeAnalyses,
-        userGeminiApiKey: state.userGeminiApiKey,
         isUserLoggedIn: state.isUserLoggedIn,
         userEmail: state.userEmail,
+        apiKeyIndex: state.apiKeyIndex,
       }),
     }
   )
