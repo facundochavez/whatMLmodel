@@ -18,7 +18,7 @@ const ConfirmDeleteDialogContent: React.FC = () => {
       <AlertDialogHeader>
         <AlertDialogTitle>Are you sure you want to delete this analysis?</AlertDialogTitle>
         <AlertDialogDescription>
-          This action cannot be undone. Are you sure you want to permanently delete this file from our servers?
+          This action cannot be undone.
         </AlertDialogDescription>
       </AlertDialogHeader>
       <AlertDialogFooter>
