@@ -118,16 +118,19 @@ const UserDropdown: React.FC = () => {
                   })}
                 </DropdownMenuGroup>
               </ScrollArea>
-              <DropdownMenuSeparator />
             </>
           )}
           <ConfirmDeleteDialogContent />
         </AlertDialog>
 
-        <DropdownMenuItem className="font-semibold" onClick={() => setShowApiKeyDialog(true)}>
+        {favoritesView.length === 0 && recentsView.length === 0 && (
+          <p className="text-muted-foreground text-sm pl-2">No analyses yet</p>
+        )}
+
+        {/* <DropdownMenuItem className="font-semibold" onClick={() => setShowApiKeyDialog(true)}>
           <Settings className="mr-2 h-4 w-4 stroke-[2.3]" />
           <span>Gemini API Key</span>
-        </DropdownMenuItem>
+        </DropdownMenuItem> */}
 
         {/* <DropdownMenuItem className="font-semibold" onClick={() => setShowAccountSettingsDialog(true)}>
           <UserRound className="mr-2 h-4 w-4 stroke-[2.3]" />

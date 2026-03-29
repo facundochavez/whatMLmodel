@@ -68,6 +68,10 @@ const UserSheetContent = () => {
 
           {favoritesView.length !== 0 && recentsView.length !== 0 && <Separator className="mt-2 mb-3" />}
 
+          {favoritesView.length === 0 && recentsView.length === 0 && (
+            <p className="text-muted-foreground text-sm">No analyses yet</p>
+          )}
+
           {recentsView.length !== 0 && (
             <>
               <Label className="flex items-center">
@@ -101,14 +105,14 @@ const UserSheetContent = () => {
         <ConfirmDeleteDialogContent />
       </AlertDialog>
 
-      <footer className="flex flex-col gap-2">
+      {/* <footer className="flex flex-col gap-2">
         <SheetClose asChild>
           <Button variant="outline" className="w-full" onClick={() => setShowApiKeyDialog(true)}>
             <Settings className="mr-2 h-4 w-4 stroke-[2.3]" />
             <span>Gemini API Key</span>
           </Button>
         </SheetClose>
-        {/* <AlertDialogTrigger
+        <AlertDialogTrigger
           asChild
           onClick={(e) => {
             e.stopPropagation();
@@ -120,8 +124,8 @@ const UserSheetContent = () => {
               <span>Log out</span>
             </Button>
           </SheetClose>
-        </AlertDialogTrigger> */}
-      </footer>
+        </AlertDialogTrigger>
+      </footer> */}
     </div>
   );
 };
