@@ -2,10 +2,10 @@ import { Schema, Type } from "@google/genai";
 
 export const infoPrompt = `Based on the inputDescription describing a dataset and its target variable, generate the next Output in JSON format. Important: keep english for the keys but recognize the language of the InputDescription and use it for the values:
 {
-  "title": String of at least 2 words: very generic title without mentioning the type of problem (do not say if it’s classification, regression, or other). It should be something like "Titanic Survivors", "Iris Species", "House Prices", etc.,
+  "language": String: language detected from the InputDescription. Must be its standard ISO 639-1 code: "en", "es", "fr", etc.,
+  "title": String of at least 2 words: very generic title without mentioning the type of problem (do not say if it’s classification, regression, or other). It should be something like "Titanic Survivors", "Iris Species", "House Prices", etc. Use connectors if the language needed: "Sobrevivientes del Titanic", "Especies de Iris", "Precios de Casas", etc.,
   "alias": String: same title in kebab-case,
   "userDatasetDescription": String: same description from the InputDescription but in a formal way with a corrected grammar and spelling,
-  "language": String: language detected from the InputDescription. Must be its standard ISO 639-1 code: "en", "es", "fr", etc.,
   "info": {
     "problemDescription": String of up to 40 words: description of the problem (without mentioning features and problem type. Don’t be too specific if it is a classification, regression, or clustering problem), and the goal in a clear, concise and inpersonal way. It should clearly reflect the InputDescription, and if it was too short, this will be a description with more details and context. Avoid start by saying something like "This dataset contains...", be more original than that,
     "mainFeatures": String: up to 5 features from the dataset that make logical sense, separated by separated by commas and spaces, and written in PascalCase,
@@ -19,10 +19,10 @@ export const infoPrompt = `Based on the inputDescription describing a dataset an
 EXAMPLE:
 InputDescription: "There’s some high res pics of tumor tissues from a cancer study. I gotta classify ’em into stuff like benign, malignant or like, not sure."
 Output: {
+  language: "en",
   title: "Tumor Tissues",
   alias: "tumor-tissues",
   userDatasetDescription: "High resolution images of tumor tissues are available in a cancer study. I need to classify the images into categories such as benign, malignant, or uncertain.",
-  language: "en",
   info: {
     problemDescription: "High resolution images of tumor tissues are available in a cancer study. The dataset is very large and has high dimensionality due to the resolution of the images. The goal is to classify the images into categories such as benign, malignant, or uncertain.",
     mainFeatures: "ImagePixels, TumorCategory",
@@ -41,10 +41,10 @@ Now, the input to generate output is as follows:
 export const infoSchema: Schema = {
   type: Type.OBJECT,
   properties: {
+    language: { type: Type.STRING },
     title: { type: Type.STRING },
     alias: { type: Type.STRING },
     userDatasetDescription: { type: Type.STRING },
-    language: { type: Type.STRING },
     info: {
       type: Type.OBJECT,
       properties: {

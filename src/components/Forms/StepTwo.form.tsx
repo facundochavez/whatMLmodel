@@ -76,7 +76,7 @@ const StepTwoForm: React.FC<StepTwoFormProps> = ({ formState, children }) => {
 
     try {
       setIsAiGettingRecommendations(true);
-      const data = await recommendationsService(datasetInfo);
+      const data = await recommendationsService({ language: currentAnalysis?.language, ...datasetInfo });
 
       if (!isRecommendationsResponse(data)) {
         throw new Error('Invalid response format');

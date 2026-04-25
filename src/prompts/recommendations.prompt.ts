@@ -1,13 +1,13 @@
 import { Schema, Type } from "@google/genai";
 import { pipelinesList } from "@/data/pipelines-list";
 
-export const recommendationsPrompt = `Based on an input called datasetDescription, I need to generate a series of paragraphs and tables that provide machine learning model recommendations for it. Return a JSON output with the following structure. Important: keep english for the keys but recognize the language of the InputDescription and use it for the values:
+export const recommendationsPrompt = `Based on an input called datasetInfo, I need to generate a series of paragraphs and tables that provide machine learning model recommendations for it. Return a JSON output with the following structure. Important: keep english for the keys but recognize the datasetInfo.language and use it for the values:
 
 {
-  "recommendationsTitle": String: General title that will say "Recommended Models for..." and the rest will be based on the datasetDescription and the main problem type, e.g., "Recommended Models for Iris Species Segmentation",
+  "recommendationsTitle": String: General title that will say "Recommended Models for..." and the rest will be based on the datasetInfo and the main problem type, e.g., "Recommended Models for Iris Species Segmentation" or "Modelos Recomendados para la Segmentación de Especies de Iris",
   "recommendations": [
     {
-      // DIMENSIONALITY REDUCTION OBJECT: This object will exist only if the datasetDescription specifies that needsDimensionalityReduction is true; otherwise, skip this object:
+      // DIMENSIONALITY REDUCTION OBJECT: This object will exist only if datasetInfo.needsDimensionalityReduction is true; otherwise, skip this object:
       "type": String: it will literally be "dimensionalityReduction" written in camelCase,
       "paragraph": String between 60 and 80 words: a detailed analysis of why dimensionality reduction is needed and which are the top 3 "dimensionalityReduction" models from the MODELS-ALIAS-LIST (mentioning them in Title Case) that could be applied, providing deep and tailored justification for why these models are recommended over others,
       "tables": {
@@ -18,7 +18,7 @@ export const recommendationsPrompt = `Based on an input called datasetDescriptio
     {
       // MAIN TYPE OBJECT: This object will always exist:
       "type": String: lowercase alias describing the main type of the problem — can be "regression", "classification", or "clustering",
-      "paragraph": String between 60 and 80 words: if the DIMENSIONALITY REDUCTION OBJECT does not exist, this will be the opening paragraph. If it does exist, this will be the second paragraph and a continuation of it. This paragraph will provide a detailed explanation of what type of problem is being addressed and why, highly personalized based on the datasetDescription. Then, it will recommend the best models from the MODELS-ALIAS-LIST (mentioning them in Title Case) for that type, including deep, contextualized justification for why these models are recommended over others,
+      "paragraph": String between 60 and 80 words: This paragraph will provide a detailed explanation of what type of problem is being addressed and why, highly personalized based on the datasetInfo. Then, it will recommend the best models from the MODELS-ALIAS-LIST (mentioning them in Title Case) for that type, including deep, contextualized justification for why these models are recommended over others. If datasetInfo.needsDimensionalityReduction is false, this will be the opening paragraph so make an introduction at the beginning,
       "tables": {
         "modelsAlias": [Array of Strings: aliases in kebab-case of the top 6 recommended models of this type from the MODELS-ALIAS-LIST],
         "similarPipelinesAlias": [Array of Strings: aliases of the 3 most similar datasets from the SIMILAR-PIPELINES-LIST matching the main type]
@@ -56,7 +56,7 @@ MODELS-ALIAS-LIST: [
 
 SIMILAR-PIPELINES-LIST: ${JSON.stringify(pipelinesList, null, 2)}
 
-Now, the datasetDescription to generate the JSON output is as follows:
+Now, the datasetInfo to generate the JSON output is as follows:
 `;
 
 export const recommendationsSchema: Schema = {

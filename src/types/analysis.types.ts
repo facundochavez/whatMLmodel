@@ -6,10 +6,10 @@ export interface Analysis {
   createdAt: Date;
   updatedAt: Date;
   isFavorite: boolean;
+  language?: string;
   title?: string;
   alias?: string;
   userDatasetDescription?: string;
-  language?: string;
   info?: AnalysisInfo;
   recommendationsTitle?: string;
   recommendations?: AnalysisRecommendation[];
@@ -39,9 +39,9 @@ export interface RecommendationsResponse {
 }
 
 export interface InfoResponse {
+  language: string;
   title: string;
   alias: string;
   userDatasetDescription: string;
-  language: string;
   info: AnalysisInfo;
 }
