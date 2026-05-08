@@ -8,7 +8,7 @@ export const Footer = () => {
       <nav className="w-full max-w-[70rem] flex items-center justify-between gap-2 pt-8 pb-6 sm:pt-6 flex-col sm:flex-row ">
         <p className="text-sm text-muted-foreground text-center">
           Copyright © by{' '}
-          <a href="https://www.facundochavez.com" target="_blank" className="underline hover:text-foreground">
+          <a href="https://www.facundochavez.dev" target="_blank" className="underline hover:text-foreground">
             Facundo Chavez
           </a>{' '}
           under MIT License.

@@ -8,7 +8,7 @@ export const collaborators: Collaborator[] = [
   {
     "name": "Facundo Chavez",
     "nick": "facundochavez",
-    "url": "https://facundochavez.com"
+    "url": "https://facundochavez.dev"
   },
   {
     "name": "Francisco Brito",

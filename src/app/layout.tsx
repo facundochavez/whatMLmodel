@@ -19,7 +19,7 @@ export const metadata = {
   robots: {
     google: "notranslate",
   },
-  metadataBase: new URL("https://whatmlmodel.vercel.app"),
+  metadataBase: new URL("https://whatmlmodel.app"),
 };
 
 export const viewport = {

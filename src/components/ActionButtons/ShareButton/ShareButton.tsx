@@ -7,7 +7,7 @@ const ShareButton: React.FC<ButtonProps> = ({ ...props }) => {
   function shareApp() {
     navigator.share({
       title: 'whatMLmodel application',
-      url: 'https://whatmlmodel.vercel.app/',
+      url: 'https://whatmlmodel.app/',
     });
   }
 
