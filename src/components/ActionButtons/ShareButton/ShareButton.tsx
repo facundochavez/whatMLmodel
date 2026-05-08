@@ -3,6 +3,7 @@ import { Button } from '@/components/ui/button';
 import { Share2 } from 'lucide-react';
 import { ButtonProps } from '@/components/ui/button';
 
+
 const ShareButton: React.FC<ButtonProps> = ({ ...props }) => {
   function shareApp() {
     navigator.share({
