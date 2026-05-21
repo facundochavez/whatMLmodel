@@ -11,7 +11,7 @@ const TablesGroup: React.FC<TablesGroupProps> = ({ type, tables }) => {
   const onOpenChangePipelineDialog = useGlobalStore((state) => state.onOpenChangePipelineDialog);
 
   return (
-    <Dialog onOpenChange={onOpenChangePipelineDialog}>
+    <Dialog onOpenChange={(open) => !open && onOpenChangePipelineDialog()}>
       <TablesGroupProvider type={type} tables={tables}>
         {isMobile ? (
           <ModelsAccordion />

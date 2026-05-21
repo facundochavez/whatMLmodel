@@ -3,7 +3,7 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@
 import { useTablesGroupContext } from '../tablesGroup.context';
 
 const SimilarPipelineTable = <TData, TValue>() => {
-  const { columnsPerformanceMetrics, performanceMetrics } = useTablesGroupContext();
+  const { columnsPerformanceMetrics, performanceMetrics, hoveredRowIndex, setHoveredRowIndex, lockedRowIndex } = useTablesGroupContext();
 
   const table = useReactTable({
     data: performanceMetrics as TData[],
@@ -29,9 +29,15 @@ const SimilarPipelineTable = <TData, TValue>() => {
         </TableHeader>
         <TableBody>
           {table.getRowModel().rows?.length ? (
-            table.getRowModel().rows.map((row) => (
-              <TableRow key={row.id} data-state={row.getIsSelected() && 'selected'}>
-                {row.getVisibleCells().map((cell) => (
+              table.getRowModel().rows.map((row) => (
+                <TableRow
+                  key={row.id}
+                  data-state={row.getIsSelected() && 'selected'}
+                  className={hoveredRowIndex === Number(row.id) ? 'bg-muted/30' : ''}
+                  onMouseEnter={() => { if (lockedRowIndex === null) setHoveredRowIndex(Number(row.id)); }}
+                  onMouseLeave={() => { if (lockedRowIndex === null) setHoveredRowIndex(null); }}
+                >
+                  {row.getVisibleCells().map((cell) => (
                   <TableCell key={cell.id} className="text-center py-0 h-16">
                     {flexRender(cell.column.columnDef.cell, cell.getContext())}
                   </TableCell>

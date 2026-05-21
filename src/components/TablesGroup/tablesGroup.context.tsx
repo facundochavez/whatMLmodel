@@ -31,6 +31,10 @@ interface TablesGroupContextProps {
   setSelectedSimilarPipelineIndex: React.Dispatch<React.SetStateAction<string>>;
   dialogType: null | 'similarDataset' | 'generate';
   setDialogType: React.Dispatch<React.SetStateAction<null | 'similarDataset' | 'generate'>>;
+  hoveredRowIndex: number | null;
+  setHoveredRowIndex: React.Dispatch<React.SetStateAction<number | null>>;
+  lockedRowIndex: number | null;
+  setLockedRowIndex: React.Dispatch<React.SetStateAction<number | null>>;
 }
 
 const TablesGroupContext = createContext<TablesGroupContextProps | undefined>(undefined);
@@ -43,6 +47,8 @@ export function TablesGroupProvider({ children, type, tables }: TablesGroupProvi
   const [selectedSimilarPipelineIndex, setSelectedSimilarPipelineIndex] = useState<string>('0');
   const [similarPipelines, setSimilarPipelines] = useState<Pipeline[]>([]);
   const [dialogType, setDialogType] = useState<null | 'similarDataset' | 'generate'>(null);
+  const [hoveredRowIndex, setHoveredRowIndex] = useState<number | null>(null);
+  const [lockedRowIndex, setLockedRowIndex] = useState<number | null>(null);
 
   const models: Model[] = getModelsByAlias({
     type: type,
@@ -85,6 +91,10 @@ export function TablesGroupProvider({ children, type, tables }: TablesGroupProvi
         setSelectedSimilarPipelineIndex,
         dialogType,
         setDialogType,
+        hoveredRowIndex,
+        setHoveredRowIndex,
+        lockedRowIndex,
+        setLockedRowIndex,
       }}
     >
       {children}

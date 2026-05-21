@@ -11,6 +11,7 @@ import camelToTitleCase from '@/utils/camelToTitleCase';
 import getModelIcon from '@/utils/getModelIcon';
 import { AiStarsIcon } from '@/icons/AiStarsIcon';
 import { useTablesGroupContext } from '../tablesGroup.context';
+import { useGlobalStore } from '@/store/global.store';
 
 const ModelCell: React.FC<{ row: any }> = ({ row }) => {
   const [showTooltip, setShowTooltip] = useState(false);
@@ -55,10 +56,32 @@ const ModelCell: React.FC<{ row: any }> = ({ row }) => {
 };
 
 const ActionsCell: React.FC<{ row: any }> = ({ row }) => {
-  const { setDialogType } = useTablesGroupContext();
+  const { type, setDialogType, setLockedRowIndex, setHoveredRowIndex, similarPipelines, selectedSimilarPipelineIndex } = useTablesGroupContext();
+  const setSelectedPipelineModelIndex = useGlobalStore((state) => state.setSelectedPipelineModelIndex);
+
+  const handleOpenChange = (open: boolean) => {
+    if (open) {
+      setLockedRowIndex(row.index);
+      setHoveredRowIndex(row.index);
+    } else {
+      setLockedRowIndex(null);
+      setHoveredRowIndex(null);
+    }
+  };
+
+  const handleDialogOpen = (dialogType: 'similarDataset' | 'generate') => {
+    setDialogType(dialogType);
+    const pipeline = similarPipelines[Number(selectedSimilarPipelineIndex)];
+    const modelAlias: string = row.original.alias;
+    const trainingArray = type === 'dimensionalityReduction'
+      ? (pipeline?.notebook?.dRTraining ?? [])
+      : (pipeline?.notebook?.training ?? []);
+    const trainingIndex = trainingArray.findIndex((t) => t.modelAlias === modelAlias);
+    setSelectedPipelineModelIndex(trainingIndex >= 0 ? `${trainingIndex}` : '0');
+  };
 
   return (
-    <DropdownMenu>
+    <DropdownMenu onOpenChange={handleOpenChange}>
       <DropdownMenuTrigger asChild className="mr-4">
         <Button variant="ghost" className="h-8 w-8 p-0">
           <span className="sr-only">Open menu</span>
@@ -67,14 +90,14 @@ const ActionsCell: React.FC<{ row: any }> = ({ row }) => {
       </DropdownMenuTrigger>
 
       <DropdownMenuContent align="center" className="text-base">
-        <DialogTrigger asChild onClick={() => setDialogType('similarDataset')}>
+        <DialogTrigger asChild onClick={() => handleDialogOpen('similarDataset')}>
           <DropdownMenuItem>
             <CodeXml className="mr-2 h-[18px] w-[18px]" />
             <span className="text-base pr-1">Similar dataset code</span>
           </DropdownMenuItem>
         </DialogTrigger>
 
-        <DialogTrigger asChild onClick={() => setDialogType('generate')}>
+        <DialogTrigger asChild onClick={() => handleDialogOpen('generate')}>
           <DropdownMenuItem>
             <AiStarsIcon className="ml-0.5 mr-2 h-[16px] w-[16px]" />
             <span className="text-base">Generate code</span>

@@ -6,13 +6,14 @@ import { Dialog } from '@/components/ui/dialog';
 import PipelineDialogContent from '@/components/DialogContents/Pipeline.dialogContent';
 import GenerateCodeDialogContent from '@/components/DialogContents/GenerateCode.dialogContent';
 import { useGlobalStore } from '@/store/global.store';
+import { useMemo } from 'react';
 
 const ModelsTable = <TData, TValue>() => {
-  const { type, models, similarPipelines, selectedSimilarPipelineIndex, dialogType } = useTablesGroupContext();
+  const { type, models, similarPipelines, selectedSimilarPipelineIndex, dialogType, hoveredRowIndex, setHoveredRowIndex, lockedRowIndex } = useTablesGroupContext();
   const setSelectedPipeline = useGlobalStore((state) => state.setSelectedPipeline);
   const onOpenChangePipelineDialog = useGlobalStore((state) => state.onOpenChangePipelineDialog);
 
-  const columnsModels = allColumnsModels(type);
+  const columnsModels = useMemo(() => allColumnsModels(type), [type]);
 
   const table = useReactTable({
     data: models as TData[],
@@ -22,7 +23,7 @@ const ModelsTable = <TData, TValue>() => {
 
   return (
     <div className="rounded-md border bg-background" onMouseEnter={() => setSelectedPipeline(similarPipelines[Number(selectedSimilarPipelineIndex)])}>
-      <Dialog onOpenChange={onOpenChangePipelineDialog}>
+      <Dialog onOpenChange={(open) => !open && onOpenChangePipelineDialog()}>
         <Table>
           <TableHeader className="">
             {table.getHeaderGroups().map((headerGroup) => (
@@ -40,7 +41,13 @@ const ModelsTable = <TData, TValue>() => {
           <TableBody>
             {table.getRowModel().rows?.length ? (
               table.getRowModel().rows.map((row) => (
-                <TableRow key={row.id} data-state={row.getIsSelected() && 'selected'}>
+                <TableRow
+                  key={row.id}
+                  data-state={row.getIsSelected() && 'selected'}
+                  className={hoveredRowIndex === Number(row.id) ? 'bg-muted/30' : ''}
+                  onMouseEnter={() => { if (lockedRowIndex === null) setHoveredRowIndex(Number(row.id)); }}
+                  onMouseLeave={() => { if (lockedRowIndex === null) setHoveredRowIndex(null); }}
+                >
                   {row.getVisibleCells().map((cell) => (
                     <TableCell key={cell.id} className="text-center py-0 px-0 h-16">
                       {flexRender(cell.column.columnDef.cell, cell.getContext())}

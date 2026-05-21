@@ -25,9 +25,9 @@ const PipelineDialogContent: React.FC = () => {
 
       <div className="w-full pr-4 flex flex-col max-h-[75vh] overflow-auto">
         <DialogHeader>
-          <p className="text-sm !-mb-2">
+          <div className="text-sm !-mb-2">
             Problem type: <Badge className="ml-1 pointer-events-none">{camelToTitleCase(selectedPipeline?.problemType || '')}</Badge>
-          </p>
+          </div>
           <p className="text-sm">
             Dataset on {selectedPipeline?.link.platform}:{' '}
             <a
