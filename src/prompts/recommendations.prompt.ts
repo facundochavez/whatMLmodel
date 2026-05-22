@@ -8,8 +8,8 @@ export const recommendationsPrompt = `Based on an input called datasetInfo, I ne
   "recommendations": [
     {
       // DIMENSIONALITY REDUCTION OBJECT: This object will exist only if datasetInfo.needsDimensionalityReduction is true; otherwise, skip this object:
-      "type": String: it will literally be "dimensionalityReduction" written in camelCase,
-      "paragraph": String between 60 and 80 words: a detailed analysis of why dimensionality reduction is needed and which are the top 3 "dimensionalityReduction" models from the MODELS-ALIAS-LIST (mentioning them in Title Case) that could be applied, providing deep and tailored justification for why these models are recommended over others,
+      "type": String: it will literally be "dimensionalityReduction" written in camelCase.
+      "paragraph": String between 60 and 80 words: a detailed analysis of why dimensionality reduction is needed and which are the top 3 "dimensionalityReduction" models from the MODELS-ALIAS-LIST (mentioning them in Title Case) that could be applied, providing deep and tailored justification for why these models are recommended over others.
       "tables": {
         "modelsAlias": [Array of Strings: aliases in kebab-case of the top 3 recommended models from the MODELS-ALIAS-LIST],
         "similarPipelinesAlias": [Array of Strings: aliases in kebab-case of the 2 most similar datasets listed in SIMILAR-PIPELINES-LIST that also have needsDimensionalityReduction as true]
@@ -17,8 +17,8 @@ export const recommendationsPrompt = `Based on an input called datasetInfo, I ne
     },
     {
       // MAIN TYPE OBJECT: This object will always exist:
-      "type": String: lowercase alias describing the main type of the problem — can be "regression", "classification", or "clustering",
-      "paragraph": String between 60 and 80 words: This paragraph will provide a detailed explanation of what type of problem is being addressed and why, highly personalized based on the datasetInfo. Then, it will recommend the best models from the MODELS-ALIAS-LIST (mentioning them in Title Case) for that type, including deep, contextualized justification for why these models are recommended over others. If datasetInfo.needsDimensionalityReduction is false, this will be the opening paragraph so make an introduction at the beginning,
+      "type": String: lowercase alias describing the main type of the problem — can be "regression", "classification", or "clustering".
+      "paragraph": String between 60 and 80 words: This paragraph will provide a detailed explanation of what type of problem is being addressed and why, highly personalized based on the datasetInfo. Then, it will recommend the best models from the MODELS-ALIAS-LIST (mentioning them in Title Case) for that type, including deep, contextualized justification for why these models are recommended over others. If datasetInfo.needsDimensionalityReduction is false, this will be the opening paragraph so make an introduction at the beginning. If not, make a continuation of the previous paragraph.
       "tables": {
         "modelsAlias": [Array of Strings: aliases in kebab-case of the top 6 recommended models of this type from the MODELS-ALIAS-LIST],
         "similarPipelinesAlias": [Array of Strings: aliases of the 3 most similar datasets from the SIMILAR-PIPELINES-LIST matching the main type]
@@ -26,8 +26,8 @@ export const recommendationsPrompt = `Based on an input called datasetInfo, I ne
     },
     {
       // SECONDARY TYPE OBJECT: This object will only exist if it’s possible to reframe the problem as a different type. Otherwise, skip it. Do your best to reinterpret the problem, for example: a dataset about Titanic victims is a typical classification problem (predicting survival), but it could be reframed as a regression problem (predicting probability of survival). Many classification problems can also be transformed into clustering problems and vice versa by slightly changing the training objective:
-      "type": String: lowercase alias describing the secondary type the problem can be adapted into — must be different from the main type and can be "regression", "classification", or "clustering"],
-      "paragraph": [String between 60 and 80 words: This paragraph should analyze why and how the problem could be reframed into a different type (e.g., transforming a feature). Then, it should recommend the best models from the MODELS-ALIAS-LIST (mentioning them in Title Case) for this new type, along with a deeply contextualized justification of why these specific models are more suitable than others,
+      "type": String: lowercase alias describing the secondary type the problem can be adapted into — must be different from the main type and can be "regression", "classification", or "clustering".
+      "paragraph": String between 60 and 80 words: This paragraph should analyze why and how the problem could be reframed into a different type (e.g., transforming a feature). Then, it should recommend the best models from the MODELS-ALIAS-LIST (mentioning them in Title Case) for this new type, along with a deeply contextualized justification of why these specific models are more suitable than others. This paragraph should be a continuation of the previous paragraph.
       "tables": {
         "modelsAlias": [Array of Strings: aliases in kebab-case of the top 3 recommended models for this type from the MODELS-ALIAS-LIST],
         "similarPipelinesAlias": [Array of Strings: aliases in kebab-case of the 3 most similar datasets from the SIMILAR-PIPELINES-LIST matching the secondary type]
@@ -35,8 +35,8 @@ export const recommendationsPrompt = `Based on an input called datasetInfo, I ne
     },
      {
       // TERTIARY TYPE OBJECT: This object will only exist if it’s possible to reframe the problem as third different type:
-      "type": String: idem as above, but for a third type, which must be different from the main and secondary types,
-      "paragraph": String between 60 and 80 words: idem as above, but for the third type,
+      "type": String: idem as above, but for a third type, which must be different from the main and secondary types.
+      "paragraph": String between 60 and 80 words: idem as above, but for the third type. This paragraph should be a continuation of the previous paragraph.
       "tables": {
         "modelsAlias": [Array of Strings: idem as above, but for the third type],
         "similarPipelinesAlias": [Array of Strings: idem as above, but for the third type]
@@ -56,6 +56,7 @@ MODELS-ALIAS-LIST: [
 
 SIMILAR-PIPELINES-LIST: ${JSON.stringify(pipelinesList, null, 2)}
 
+Note: Talk in an impersonal way: do not say "we recommend these models" but "these models are recommended" or "these models are suggested".
 Now, the datasetInfo to generate the JSON output is as follows:
 `;
 
