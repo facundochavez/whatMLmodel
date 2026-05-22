@@ -17,6 +17,16 @@ const ModelsAccordion: React.FC = () => {
   const { models, type, performanceMetrics, columnsPerformanceMetrics, similarPipelines, selectedSimilarPipelineIndex } = useTablesGroupContext();
   const setSelectedPipeline = useGlobalStore((state) => state.setSelectedPipeline);
   const onOpenChangePipelineDialog = useGlobalStore((state) => state.onOpenChangePipelineDialog);
+  const setSelectedPipelineModelIndex = useGlobalStore((state) => state.setSelectedPipelineModelIndex);
+
+  const resolveModelIndex = (modelAlias: string) => {
+    const pipeline = similarPipelines[Number(selectedSimilarPipelineIndex)];
+    const trainingArray = type === 'dimensionalityReduction'
+      ? (pipeline?.notebook?.dRTraining ?? [])
+      : (pipeline?.notebook?.training ?? []);
+    const idx = trainingArray.findIndex((t) => t.modelAlias === modelAlias);
+    setSelectedPipelineModelIndex(idx >= 0 ? `${idx}` : '0');
+  };
 
   return (
     <Card>
@@ -82,12 +92,15 @@ const ModelsAccordion: React.FC = () => {
                   </ul>
                 </div>
                 <footer className="flex flex-col gap-2 mt-0.5">
-                  <Dialog onOpenChange={onOpenChangePipelineDialog}>
+                  <Dialog onOpenChange={(open) => !open && onOpenChangePipelineDialog()}>
                     <DialogTrigger asChild>
                       <Button
                         variant="secondary"
                         className="border"
-                        onClick={() => setSelectedPipeline(similarPipelines[Number(selectedSimilarPipelineIndex)])}
+                        onClick={() => {
+                          setSelectedPipeline(similarPipelines[Number(selectedSimilarPipelineIndex)]);
+                          resolveModelIndex(model.alias);
+                        }}
                       >
                         <CodeXml className="mr-2 h-[18px] w-[18px]" />
                         <span>Similar dataset code</span>
@@ -95,9 +108,14 @@ const ModelsAccordion: React.FC = () => {
                     </DialogTrigger>
                     <PipelineDialogContent />
                   </Dialog>
-                  <Dialog>
+                  <Dialog onOpenChange={(open) => !open && onOpenChangePipelineDialog()}>
                     <DialogTrigger asChild>
-                      <Button>
+                      <Button
+                        onClick={() => {
+                          setSelectedPipeline(similarPipelines[Number(selectedSimilarPipelineIndex)]);
+                          resolveModelIndex(model.alias);
+                        }}
+                      >
                         <AiStarsIcon className="mr-1.5 h-[18px] w-[18px]" />
                         <span>Generate code</span>
                       </Button>
