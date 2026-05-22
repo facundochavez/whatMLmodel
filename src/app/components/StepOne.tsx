@@ -29,6 +29,8 @@ const StepOne: React.FC = () => {
   const [isAiGeneratingInfo, setIsAiGeneratingInfo] = useState(false);
   const setCurrentAnalysis = useCurrentAnalysisStore((state) => state.setCurrentAnalysis);
   const setGeminiErrorOccurred = useGlobalStore((state) => state.setGeminiErrorOccurred);
+  const focusStepOne = useGlobalStore((state) => state.focusStepOne);
+  const setFocusStepOne = useGlobalStore((state) => state.setFocusStepOne);
 
   const form = useForm<z.infer<typeof stepOneSchema>>({
     resolver: zodResolver(stepOneSchema),
@@ -36,6 +38,16 @@ const StepOne: React.FC = () => {
       datasetDescription: '',
     },
   });
+
+  useEffect(() => {
+    if (focusStepOne) {
+      const timeout = setTimeout(() => {
+        form.setFocus('datasetDescription');
+        setFocusStepOne(false);
+      }, 300);
+      return () => clearTimeout(timeout);
+    }
+  }, []);
 
   useEffect(() => {
     const subscription = sampleDescriptionsService.getSubject().subscribe((data) => {

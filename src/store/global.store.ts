@@ -28,6 +28,8 @@ export interface GlobalStore {
   onOpenChangePipelineDialog: () => void;
 
   // Minors
+  focusStepOne: boolean;
+  setFocusStepOne: (value: boolean) => void;
   isUserRegistering: boolean;
   showAuthDialog: boolean;
   showAccountSettingsDialog: boolean;
@@ -81,6 +83,8 @@ export const useGlobalStore = create<GlobalStore>()(
       },
 
       // Minors
+      focusStepOne: false,
+      setFocusStepOne: (value: boolean) => set({ focusStepOne: value }),
       isUserRegistering: false,
       showAuthDialog: false,
       showAccountSettingsDialog: false,

@@ -17,6 +17,7 @@ import { useAnalysesView } from '@/hooks/useAnalysesView';
 const UserSheetContent = () => {
   const pathname = usePathname();
   const setShowApiKeyDialog = useGlobalStore((state) => state.setShowApiKeyDialog);
+  const setFocusStepOne = useGlobalStore((state) => state.setFocusStepOne);
   const { recentsView, favoritesView, handleSelectAnalysis } = useAnalysesView();
 
   return (
@@ -25,7 +26,7 @@ const UserSheetContent = () => {
         <header className="flex flex-col gap-2 w-full -mb-2">
           <TransitionLink href="/">
             <SheetClose asChild className="w-full">
-              <Button variant="secondary">
+              <Button variant="secondary" onClick={() => setFocusStepOne(true)}>
                 <CirclePlus className="mr-2 h-4 w-4" />
                 <span>New analysis</span>
               </Button>

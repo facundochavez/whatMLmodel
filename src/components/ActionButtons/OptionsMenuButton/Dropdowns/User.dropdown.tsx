@@ -23,6 +23,7 @@ import { useAnalysesView } from '@/hooks/useAnalysesView';
 const UserDropdown: React.FC = () => {
   const pathname = usePathname();
   const setShowApiKeyDialog = useGlobalStore((state) => state.setShowApiKeyDialog);
+  const setFocusStepOne = useGlobalStore((state) => state.setFocusStepOne);
   const { analysesView, recentsView, favoritesView, handleSelectAnalysis } = useAnalysesView();
 
   return (
@@ -38,7 +39,7 @@ const UserDropdown: React.FC = () => {
         {pathname === '/analysis' && (
           <>
             <TransitionLink href="/">
-              <DropdownMenuItem className="font-semibold md:hidden">
+              <DropdownMenuItem className="font-semibold md:hidden" onClick={() => setFocusStepOne(true)}>
                 <CirclePlus className="mr-2 h-4 w-4" />
                 <span>New analysis</span>
               </DropdownMenuItem>

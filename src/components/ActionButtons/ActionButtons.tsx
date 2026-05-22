@@ -20,6 +20,7 @@ import { useGlobalStore } from '@/store/global.store';
 const ActionButtons: React.FC = () => {
   const pathname = usePathname();
   const isMobile = useGlobalStore((state) => state.isMobile);
+  const setFocusStepOne = useGlobalStore((state) => state.setFocusStepOne);
   const isUserLoggedIn = useGlobalStore((state) => state.isUserLoggedIn);
   const showAccountSettingsDialog = useGlobalStore((state) => state.showAccountSettingsDialog);
   const showApiKeyDialog = useGlobalStore((state) => state.showApiKeyDialog);
@@ -53,7 +54,7 @@ const ActionButtons: React.FC = () => {
             className={`-ml-2 w-0 overflow-hidden duration-200 cubic-bezier(0,.78,.58,1.02) ${pathname === '/analysis' && 'md:w-[138px] md:ml-0'}`}
           >
             <TransitionLink href="/">
-              <Button className="hidden md:flex" variant="secondary">
+              <Button className="hidden md:flex" variant="secondary" onClick={() => setFocusStepOne(true)}>
                 <CirclePlus className="mr-2 h-4 w-4" />
                 <span>New analysis</span>
               </Button>
