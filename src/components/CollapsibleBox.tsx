@@ -36,16 +36,15 @@ export const CollapsibleBox = ({
   }, [externalIsCollapsed]);
 
   useEffect(() => {
-    const handleMaskHeight = () => {
-      if (!isCollapsed) {
-        setTimeout(() => {
-          setMaskHeight(0);
-        }, 300);
-      } else {
-        setMaskHeight(150);
-      }
+    let timeoutId: ReturnType<typeof setTimeout> | null = null;
+    if (!isCollapsed) {
+      timeoutId = setTimeout(() => setMaskHeight(0), 300);
+    } else {
+      setMaskHeight(150);
+    }
+    return () => {
+      if (timeoutId !== null) clearTimeout(timeoutId);
     };
-    handleMaskHeight();
   }, [isCollapsed]);
 
   useEffect(() => {

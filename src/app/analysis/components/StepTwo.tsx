@@ -12,12 +12,15 @@ import { useCurrentAnalysisStore } from '@/store/currentAnalysis.store';
 const StepTwo = () => {
   const currentAnalysis = useCurrentAnalysisStore((state) => state.currentAnalysis);
   const handleToggleFavorite = useAnalysesStore((state) => state.toggleFavorite);
+  const [analysisHasRecommendations, setAnalysisHasRecommendations] = useState<boolean>(!!currentAnalysis?.recommendations);
   const [isUserEditingInfo, setIsUserEditingInfo] = useState<boolean>(false);
   const [isFormCollapsed, setIsFormCollapsed] = useState(true);
   const [isFormBlocked, setIsFormBlocked] = useState(false);
   const [isAiGettingRecommendations, setIsAiGettingRecommendations] = useState<boolean>(false);
 
   const formState = {
+    analysisHasRecommendations,
+    setAnalysisHasRecommendations,
     isUserEditingInfo,
     setIsUserEditingInfo,
     isFormCollapsed,
@@ -30,10 +33,12 @@ const StepTwo = () => {
 
   useEffect(() => {
     if (!currentAnalysis?.recommendations) {
+      setAnalysisHasRecommendations(false);
       setIsUserEditingInfo(true);
       setIsFormCollapsed(false);
       setIsFormBlocked(true);
     } else {
+      setAnalysisHasRecommendations(true);
       setIsUserEditingInfo(false);
       setIsFormCollapsed(true);
       setIsFormBlocked(false);

@@ -46,15 +46,17 @@ const StepTwoForm: React.FC<StepTwoFormProps> = ({ formState, children }) => {
   const setGeminiErrorOccurred = useGlobalStore((state) => state.setGeminiErrorOccurred);
   const decrementAvailableFreeAnalyses = useGlobalStore((state) => state.decrementAvailableFreeAnalyses);
 
-  const { isUserEditingInfo, setIsUserEditingInfo, isFormCollapsed, setIsFormCollapsed, isFormBlocked, setIsAiGettingRecommendations } = formState;
+  const { analysisHasRecommendations, isUserEditingInfo, setIsUserEditingInfo, isFormCollapsed, setIsFormCollapsed, isFormBlocked, setIsAiGettingRecommendations } = formState;
 
   useEffect(() => {
-    if (isUserEditingInfo) {
+    if (!analysisHasRecommendations) {
+      setLabel('Check the information and correct it before moving forward:');
+    } else if (isUserEditingInfo) {
       setLabel('Edit the information to get new recommendations:');
     } else {
-      setLabel('Check the information and correct it before moving forward:');
+      setLabel('');
     }
-  }, [isUserEditingInfo]);
+  }, [analysisHasRecommendations, isUserEditingInfo]);
 
   const form = useForm<z.infer<typeof stepTwoSchema>>({
     resolver: zodResolver(stepTwoSchema),

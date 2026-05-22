@@ -14,7 +14,7 @@ const OptionsSheet: React.FC = () => {
 
   return (
     <Sheet>
-      <SheetTrigger>
+      <SheetTrigger asChild>
         <Button variant="outline" size="icon" className="bg-transparent">
           <Menu className="h-5 w-5" />
           <span className="sr-only">Open menu</span>
