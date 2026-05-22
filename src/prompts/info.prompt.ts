@@ -42,9 +42,9 @@ export const infoSchema: Schema = {
   type: Type.OBJECT,
   properties: {
     language: { type: Type.STRING },
+    userDatasetDescription: { type: Type.STRING },
     title: { type: Type.STRING },
     alias: { type: Type.STRING },
-    userDatasetDescription: { type: Type.STRING },
     info: {
       type: Type.OBJECT,
       properties: {
@@ -65,5 +65,5 @@ export const infoSchema: Schema = {
       ],
     },
   },
-  required: ["title", "alias", "userDatasetDescription", "language", "info"],
+  required: ["language", "userDatasetDescription", "title", "alias", "info"],
 };
