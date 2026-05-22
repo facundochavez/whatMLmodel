@@ -30,6 +30,8 @@ export interface GlobalStore {
   // Minors
   focusStepOne: boolean;
   setFocusStepOne: (value: boolean) => void;
+  restoreStepOneText: boolean;
+  setRestoreStepOneText: (value: boolean) => void;
   isUserRegistering: boolean;
   showAuthDialog: boolean;
   showAccountSettingsDialog: boolean;
@@ -85,6 +87,8 @@ export const useGlobalStore = create<GlobalStore>()(
       // Minors
       focusStepOne: false,
       setFocusStepOne: (value: boolean) => set({ focusStepOne: value }),
+      restoreStepOneText: false,
+      setRestoreStepOneText: (value: boolean) => set({ restoreStepOneText: value }),
       isUserRegistering: false,
       showAuthDialog: false,
       showAccountSettingsDialog: false,

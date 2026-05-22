@@ -28,9 +28,12 @@ const StepOne: React.FC = () => {
   const router = useRouter();
   const [isAiGeneratingInfo, setIsAiGeneratingInfo] = useState(false);
   const setCurrentAnalysis = useCurrentAnalysisStore((state) => state.setCurrentAnalysis);
+  const currentAnalysis = useCurrentAnalysisStore((state) => state.currentAnalysis);
   const setGeminiErrorOccurred = useGlobalStore((state) => state.setGeminiErrorOccurred);
   const focusStepOne = useGlobalStore((state) => state.focusStepOne);
   const setFocusStepOne = useGlobalStore((state) => state.setFocusStepOne);
+  const restoreStepOneText = useGlobalStore((state) => state.restoreStepOneText);
+  const setRestoreStepOneText = useGlobalStore((state) => state.setRestoreStepOneText);
 
   const form = useForm<z.infer<typeof stepOneSchema>>({
     resolver: zodResolver(stepOneSchema),
@@ -40,6 +43,11 @@ const StepOne: React.FC = () => {
   });
 
   useEffect(() => {
+    if (restoreStepOneText && currentAnalysis?.userDatasetDescription) {
+      form.setValue('datasetDescription', currentAnalysis.userDatasetDescription);
+      setRestoreStepOneText(false);
+    }
+
     if (focusStepOne) {
       const timeout = setTimeout(() => {
         form.setFocus('datasetDescription');

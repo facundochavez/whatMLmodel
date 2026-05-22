@@ -14,6 +14,7 @@ const StepTwo = () => {
   const currentAnalysis = useCurrentAnalysisStore((state) => state.currentAnalysis);
   const handleToggleFavorite = useAnalysesStore((state) => state.toggleFavorite);
   const setFocusStepOne = useGlobalStore((state) => state.setFocusStepOne);
+  const setRestoreStepOneText = useGlobalStore((state) => state.setRestoreStepOneText);
   const [analysisHasRecommendations, setAnalysisHasRecommendations] = useState<boolean>(!!currentAnalysis?.recommendations);
   const [isUserEditingInfo, setIsUserEditingInfo] = useState<boolean>(false);
   const [isFormCollapsed, setIsFormCollapsed] = useState(true);
@@ -81,7 +82,7 @@ const StepTwo = () => {
                 {!isAiGettingRecommendations ? (
                   <>
                     <TransitionLink href="/">
-                      <Button type="button" variant="outline" className="w-full" onClick={() => setFocusStepOne(true)}>
+                      <Button type="button" variant="outline" className="w-full" onClick={() => { setFocusStepOne(true); setRestoreStepOneText(true); }}>
                         <RefreshCcw className="w-4 h-4 mr-2" />
                         Cancel and retry
                       </Button>
