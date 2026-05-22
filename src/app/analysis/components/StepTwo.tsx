@@ -8,10 +8,12 @@ import StepTwoForm from '@/components/Forms/StepTwo.form';
 import { useEffect, useState } from 'react';
 import { useAnalysesStore } from '@/store/analyses.store';
 import { useCurrentAnalysisStore } from '@/store/currentAnalysis.store';
+import { useGlobalStore } from '@/store/global.store';
 
 const StepTwo = () => {
   const currentAnalysis = useCurrentAnalysisStore((state) => state.currentAnalysis);
   const handleToggleFavorite = useAnalysesStore((state) => state.toggleFavorite);
+  const setFocusStepOne = useGlobalStore((state) => state.setFocusStepOne);
   const [analysisHasRecommendations, setAnalysisHasRecommendations] = useState<boolean>(!!currentAnalysis?.recommendations);
   const [isUserEditingInfo, setIsUserEditingInfo] = useState<boolean>(false);
   const [isFormCollapsed, setIsFormCollapsed] = useState(true);
@@ -79,7 +81,7 @@ const StepTwo = () => {
                 {!isAiGettingRecommendations ? (
                   <>
                     <TransitionLink href="/">
-                      <Button type="button" variant="outline" className="w-full">
+                      <Button type="button" variant="outline" className="w-full" onClick={() => setFocusStepOne(true)}>
                         <RefreshCcw className="w-4 h-4 mr-2" />
                         Cancel and retry
                       </Button>
