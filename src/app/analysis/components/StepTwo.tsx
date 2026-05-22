@@ -104,6 +104,7 @@ const StepTwo = () => {
                       Cancel
                     </Button>
                     <Button type="submit" className="flex items-center">
+                      <AiStarsIcon className="mr-1.5 h-[18px] w-[18px]" />
                       Apply changes
                     </Button>
                   </>
