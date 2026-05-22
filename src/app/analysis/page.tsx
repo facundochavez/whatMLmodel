@@ -32,7 +32,7 @@ const AnalysisPage: React.FC = () => {
   return (
     <>
       <StepTwo />
-      {currentAnalysis?.recommendations && <StepThree />}
+      {currentAnalysis?.recommendations && <StepThree key={currentAnalysis.id} />}
     </>
   );
 };

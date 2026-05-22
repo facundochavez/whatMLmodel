@@ -24,7 +24,7 @@ const StepThree = () => {
         />
       )}
       {currentAnalysis?.recommendations?.map((recommendation, index) => (
-        <section key={generateRandomUUID()} className="flex flex-col gap-8 sm:gap-4">
+        <section key={index} className="flex flex-col gap-8 sm:gap-4">
           <TypingText
             key={generateRandomUUID()}
             text={recommendation?.paragraph}
