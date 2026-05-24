@@ -123,7 +123,7 @@ function parsePartialRecommendationObject(fragment: string): RecommendationsResp
     }
   }
 
-  return partial as RecommendationsResponse['recommendations'][number];
+  return partial as unknown as RecommendationsResponse['recommendations'][number];
 }
 
 function tryParseJson(value: string): RecommendationsResponse['recommendations'][number] | null {
