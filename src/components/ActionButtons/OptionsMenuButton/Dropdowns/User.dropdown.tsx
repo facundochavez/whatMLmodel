@@ -9,10 +9,8 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
 import { Star, LogOut, History, CirclePlus, Menu, UserRound, Settings } from 'lucide-react';
-import ConfirmDeleteDialogContent from '@/components/DialogContents/ConfirmDelete.dialogContent';
 
 import { Button } from '@/components/ui/button';
-import { AlertDialog, AlertDialogTrigger } from '@/components/ui/alert-dialog';
 import AnalysisActionsDropdown from '@/components/ActionButtons/AnalysisDropdown/AnalysisActions.dropdown';
 import { usePathname } from 'next/navigation';
 import { ScrollArea } from '@/components/ui/scroll-area';
@@ -24,10 +22,12 @@ const UserDropdown: React.FC = () => {
   const pathname = usePathname();
   const setShowApiKeyDialog = useGlobalStore((state) => state.setShowApiKeyDialog);
   const setFocusStepOne = useGlobalStore((state) => state.setFocusStepOne);
+  const userDropdownOpen = useGlobalStore((state) => state.userDropdownOpen);
+  const setUserDropdownOpen = useGlobalStore((state) => state.setUserDropdownOpen);
   const { analysesView, recentsView, favoritesView, handleSelectAnalysis } = useAnalysesView();
 
   return (
-    <DropdownMenu>
+    <DropdownMenu open={userDropdownOpen} onOpenChange={setUserDropdownOpen}>
       <DropdownMenuTrigger asChild>
         <Button variant="outline" size="icon">
           <Menu className="h-5 w-5" />
@@ -48,8 +48,7 @@ const UserDropdown: React.FC = () => {
           </>
         )}
 
-        <AlertDialog>
-          {favoritesView.length !== 0 && (
+        {favoritesView.length !== 0 && (
             <>
               <DropdownMenuLabel className="flex items-center text-muted-foreground">
                 <Star className="h-4 w-4 mr-2" />
@@ -121,8 +120,6 @@ const UserDropdown: React.FC = () => {
               </ScrollArea>
             </>
           )}
-          <ConfirmDeleteDialogContent />
-        </AlertDialog>
 
         {favoritesView.length === 0 && recentsView.length === 0 && (
           <p className="text-muted-foreground text-sm pl-2">No analyses yet</p>

@@ -1,9 +1,7 @@
 import { Star, History, CirclePlus, UserRound, Settings } from 'lucide-react';
-import ConfirmDeleteDialogContent from '@/components/DialogContents/ConfirmDelete.dialogContent';
 import { usePathname } from 'next/navigation';
 
 import { Button } from '@/components/ui/button';
-import { AlertDialog } from '@/components/ui/alert-dialog';
 
 import { Label } from '@/components/ui/label';
 import { Separator } from '@/components/ui/separator';
@@ -35,8 +33,7 @@ const UserSheetContent = () => {
         </header>
       )}
 
-      <AlertDialog>
-        <div className="flex flex-col h-full overflow-auto gap-2 [&>label]:text-muted-foreground mt-2">
+      <div className="flex flex-col h-full overflow-auto gap-2 [&>label]:text-muted-foreground mt-2">
           {favoritesView.length !== 0 && (
             <>
               <Label className="flex items-center">
@@ -103,8 +100,6 @@ const UserSheetContent = () => {
             </>
           )}
         </div>
-        <ConfirmDeleteDialogContent />
-      </AlertDialog>
 
       {/* <footer className="flex flex-col gap-2">
         <SheetClose asChild>

@@ -9,6 +9,7 @@ interface AnalysesStore {
 
   setMarkedAnalysisId: (id: string) => void;
   toggleFavorite: (id: string) => void;
+  touchAnalysis: (id: string) => void;
   deleteAnalysis: (id: string) => void;
   addAnalysis: (analysis: Analysis) => void;
   updateRecommendations: (analysis: Analysis) => void;
@@ -32,6 +33,21 @@ export const useAnalysesStore = create<AnalysesStore>()(
         const current = useCurrentAnalysisStore.getState().currentAnalysis;
         if (current?.id === id) {
           useCurrentAnalysisStore.getState().toggleCurrentFavorite();
+        }
+      },
+
+      touchAnalysis: (id: string) => {
+        const exists = get().analyses.some((a) => a.id === id);
+        if (!exists) return;
+
+        const now = new Date();
+        const updated = get().analyses.map((a) => (a.id === id ? { ...a, updatedAt: now } : a));
+
+        set({ analyses: updated });
+
+        const current = useCurrentAnalysisStore.getState().currentAnalysis;
+        if (current?.id === id) {
+          useCurrentAnalysisStore.getState().setCurrentAnalysis({ ...current, updatedAt: now });
         }
       },
 

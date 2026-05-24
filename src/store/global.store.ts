@@ -22,12 +22,19 @@ export interface GlobalStore {
   isAiThinking: boolean;
   isStreamingRecommendations: boolean;
   transitionToHomePage: boolean;
+  userDropdownOpen: boolean;
+  userSheetOpen: boolean;
+  showDeleteDialog: boolean;
   setIsMobile: (value: boolean) => void;
   setSelectedPipeline: (pipeline: Pipeline | null) => void;
   setSelectedPipelineModelIndex: (index: string) => void;
   setIsAiThinking: (value: boolean) => void;
   setIsStreamingRecommendations: (value: boolean) => void;
   onOpenChangePipelineDialog: () => void;
+  setUserDropdownOpen: (value: boolean) => void;
+  setUserSheetOpen: (value: boolean) => void;
+  setShowDeleteDialog: (value: boolean) => void;
+  closeUserMenus: () => void;
 
   // Minors
   focusStepOne: boolean;
@@ -78,6 +85,9 @@ export const useGlobalStore = create<GlobalStore>()(
       isAiThinking: false,
       isStreamingRecommendations: false,
       transitionToHomePage: false,
+      userDropdownOpen: false,
+      userSheetOpen: false,
+      showDeleteDialog: false,
       setIsMobile: (value: boolean) => set({ isMobile: value }),
       setSelectedPipeline: (pipeline: Pipeline | null) => set({ selectedPipeline: pipeline }),
       setSelectedPipelineModelIndex: (index: string) => set({ selectedPipelineModelIndex: index }),
@@ -87,6 +97,10 @@ export const useGlobalStore = create<GlobalStore>()(
         const { setSelectedPipelineModelIndex } = get();
         setTimeout(() => setSelectedPipelineModelIndex('0'), 500);
       },
+      setUserDropdownOpen: (value: boolean) => set({ userDropdownOpen: value }),
+      setUserSheetOpen: (value: boolean) => set({ userSheetOpen: value }),
+      setShowDeleteDialog: (value: boolean) => set({ showDeleteDialog: value }),
+      closeUserMenus: () => set({ userDropdownOpen: false, userSheetOpen: false }),
 
       // Minors
       focusStepOne: false,

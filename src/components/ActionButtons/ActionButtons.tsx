@@ -8,6 +8,7 @@ import { Dialog } from '@/components/ui/dialog';
 import { AlertDialog } from '@/components/ui/alert-dialog';
 import AuthDialogContent from '@/components/DialogContents/Auth.dialogContent';
 import ConfirmLogoutDialogContent from '../DialogContents/ConfirmLogout.dialogContent';
+import ConfirmDeleteDialogContent from '../DialogContents/ConfirmDelete.dialogContent';
 import AccountSettingsDialogContent from '../DialogContents/AccountSettings.dialogContent';
 import ResetPasswordDialogContent from '../DialogContents/ResetPassword.dialogContent';
 import ChangePasswordDialogContent from '../DialogContents/ChangePassword.dialogContent';
@@ -32,6 +33,8 @@ const ActionButtons: React.FC = () => {
   const setShowAuthDialog = useGlobalStore((state) => state.setShowAuthDialog);
   const setShowChangePasswordDialog = useGlobalStore((state) => state.setShowChangePasswordDialog);
   const setShowResetPasswordDialog = useGlobalStore((state) => state.setShowResetPasswordDialog);
+  const showDeleteDialog = useGlobalStore((state) => state.showDeleteDialog);
+  const setShowDeleteDialog = useGlobalStore((state) => state.setShowDeleteDialog);
 
   const [isMounted, setIsMounted] = useState(false);
 
@@ -68,6 +71,7 @@ const ActionButtons: React.FC = () => {
   );
 
   return (
+    <>
     <Dialog open={showResetPasswordDialog} onOpenChange={setShowResetPasswordDialog}>
       <Dialog open={showApiKeyDialog} onOpenChange={setShowApiKeyDialog}>
         <Dialog open={showChangePasswordDialog} onOpenChange={setShowChangePasswordDialog}>
@@ -87,6 +91,10 @@ const ActionButtons: React.FC = () => {
       </Dialog>
       <ResetPasswordDialogContent />
     </Dialog>
+    <AlertDialog open={showDeleteDialog} onOpenChange={setShowDeleteDialog}>
+      <ConfirmDeleteDialogContent />
+    </AlertDialog>
+    </>
   );
 };
 

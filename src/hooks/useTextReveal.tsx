@@ -1,45 +1,36 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 
 const useTextReveal = (text: string) => {
-  const words = text.split(' ');
-  let count = 0;
-  const [overflow, setOverflow] = useState('hidden');
-
-  useEffect(() => {
-    let timeoutId: NodeJS.Timeout | null = null;
-
-    timeoutId = setTimeout(() => {
-      setOverflow('visible');
-    }, words.length * 310);
-
-    return () => {
-      if (timeoutId) {
-        clearTimeout(timeoutId);
-      }
-    };
-  }, [text]);
-
+  const words = useMemo(() => (text ? text.split(' ') : []), [text]);
   const [uniqueKey, setUniqueKey] = useState(0);
+
   useEffect(() => {
     setUniqueKey((prevKey) => prevKey + 1);
-    setOverflow('hidden');
   }, [text]);
 
+  let count = 0;
+
   return (
-    <h2 key={uniqueKey} className={`flex flex-wrap text-3xl leading-7 md:text-4xl font-semibold text-center justify-center overflow-${overflow}`}>
+    <h2
+      key={uniqueKey}
+      className="flex flex-wrap text-3xl leading-7 md:text-4xl font-semibold text-center justify-center"
+    >
       {words.map((word, wordIndex) => (
-        <span key={`word-${wordIndex}`} className={`flex overflow-${overflow}`}>
+        <span key={`word-${wordIndex}`} className="flex">
           {word.split('').map((char) => {
             count++;
             return (
-              <span
-                className="animate-text-reveal [animation-fill-mode:backwards]"
-                key={`letter-${count}`}
-                style={{
-                  animationDelay: `${count * 0.02}s`,
-                }}
-              >
-                {char === ' ' ? '\u00A0' : char}
+              <span key={`letter-${count}`} className="inline-block overflow-visible align-bottom">
+                <span className="inline-block overflow-hidden h-[1.2em] align-bottom leading-none">
+                  <span
+                    className="inline-block animate-text-reveal [animation-fill-mode:backwards]"
+                    style={{
+                      animationDelay: `${count * 0.02}s`,
+                    }}
+                  >
+                    {char === ' ' ? '\u00A0' : char}
+                  </span>
+                </span>
               </span>
             );
           })}

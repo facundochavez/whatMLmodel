@@ -1,8 +1,8 @@
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
-import { AlertDialogTrigger } from '@/components/ui/alert-dialog';
 import { Button } from '@/components/ui/button';
 import { Trash, Ellipsis, Star, StarOff } from 'lucide-react';
 import { useAnalysesStore } from '@/store/analyses.store';
+import { useGlobalStore } from '@/store/global.store';
 
 type AnalysisActionsDropdownProps = {
   analysisId: string;
@@ -12,6 +12,7 @@ type AnalysisActionsDropdownProps = {
 const AnalysisActionsDropdown: React.FC<AnalysisActionsDropdownProps> = ({ analysisId, isFavorite = false }) => {
   const toggleFavorite = useAnalysesStore((state) => state.toggleFavorite);
   const setMarkedAnalysisId = useAnalysesStore((state) => state.setMarkedAnalysisId);
+  const setShowDeleteDialog = useGlobalStore((state) => state.setShowDeleteDialog);
 
   return (
     <DropdownMenu>
@@ -43,18 +44,16 @@ const AnalysisActionsDropdown: React.FC<AnalysisActionsDropdownProps> = ({ analy
           )}
         </DropdownMenuItem>
 
-        <AlertDialogTrigger
-          asChild
+        <DropdownMenuItem
           onClick={(e) => {
             e.stopPropagation();
             setMarkedAnalysisId(analysisId);
+            setShowDeleteDialog(true);
           }}
         >
-          <DropdownMenuItem>
-            <Trash className="mr-2.5 h-3.5 w-3.5" />
-            <span>Delete</span>
-          </DropdownMenuItem>
-        </AlertDialogTrigger>
+          <Trash className="mr-2.5 h-3.5 w-3.5" />
+          <span>Delete</span>
+        </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
   );

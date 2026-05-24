@@ -1,7 +1,18 @@
 import { usePathname, useRouter } from 'next/navigation';
 import { useMemo } from 'react';
+import { flushSync } from 'react-dom';
 import { useAnalysesStore } from '@/store/analyses.store';
 import { useCurrentAnalysisStore } from '@/store/currentAnalysis.store';
+
+let selectAnalysisTimeout: ReturnType<typeof setTimeout> | null = null;
+
+const revealMainContent = (main: HTMLElement) => {
+  requestAnimationFrame(() => {
+    requestAnimationFrame(() => {
+      main.classList.remove('page-transition');
+    });
+  });
+};
 
 export function useAnalysesView() {
   const pathname = usePathname();
@@ -27,15 +38,24 @@ export function useAnalysesView() {
     const main = document.querySelector('main');
     if (!found || !main || (pathname === '/analysis' && found.id === useCurrentAnalysisStore.getState().currentAnalysis?.id)) return;
 
-    main?.classList.add('page-transition');
+    if (selectAnalysisTimeout) {
+      clearTimeout(selectAnalysisTimeout);
+    }
 
-    setTimeout(() => {
-      if (pathname !== '/analysis') {
+    main.classList.add('page-transition');
+    void main.offsetHeight;
+
+    selectAnalysisTimeout = setTimeout(() => {
+      selectAnalysisTimeout = null;
+
+      flushSync(() => {
         setCurrentAnalysis(found);
+      });
+
+      if (pathname !== '/analysis') {
         router.push('/analysis');
       } else {
-        setCurrentAnalysis(found);
-        main?.classList.remove('page-transition');
+        revealMainContent(main);
       }
     }, 250);
   };

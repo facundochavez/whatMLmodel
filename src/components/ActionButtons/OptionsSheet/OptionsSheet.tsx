@@ -11,9 +11,11 @@ import { useGlobalStore } from '@/store/global.store';
 
 const OptionsSheet: React.FC = () => {
   const isUserLoggedIn = useGlobalStore((state) => state.isUserLoggedIn);
+  const userSheetOpen = useGlobalStore((state) => state.userSheetOpen);
+  const setUserSheetOpen = useGlobalStore((state) => state.setUserSheetOpen);
 
   return (
-    <Sheet>
+    <Sheet open={userSheetOpen} onOpenChange={setUserSheetOpen}>
       <SheetTrigger asChild>
         <Button variant="outline" size="icon" className="bg-transparent">
           <Menu className="h-5 w-5" />
