@@ -34,8 +34,14 @@ const StepTwo = () => {
     setIsAiGettingRecommendations,
   };
 
+  const isStreamingRecommendations = useGlobalStore((state) => state.isStreamingRecommendations);
+
   useEffect(() => {
-    if (!currentAnalysis?.recommendations) {
+    if (isStreamingRecommendations || isAiGettingRecommendations) return;
+
+    const hasRecommendations = !!currentAnalysis?.recommendations?.length;
+
+    if (!hasRecommendations) {
       setAnalysisHasRecommendations(false);
       setIsUserEditingInfo(true);
       setIsFormCollapsed(false);
@@ -46,8 +52,7 @@ const StepTwo = () => {
       setIsFormCollapsed(true);
       setIsFormBlocked(false);
     }
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  }, [currentAnalysis?.recommendations]);
+  }, [currentAnalysis?.recommendations?.length, isStreamingRecommendations, isAiGettingRecommendations]);
 
   const handleEditInfo = () => {
     setIsUserEditingInfo(true);
@@ -77,7 +82,7 @@ const StepTwo = () => {
       <StepTwoForm formState={formState} key={currentAnalysis?.id}>
         <footer className="mt-4 md:mt-0 flex flex-col-reverse gap-2 sm:flex-row sm:justify-end">
           {isUserEditingInfo ? (
-            !currentAnalysis?.recommendations ? (
+            !currentAnalysis?.recommendations?.length ? (
               <>
                 {!isAiGettingRecommendations ? (
                   <>

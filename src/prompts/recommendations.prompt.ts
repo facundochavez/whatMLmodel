@@ -5,6 +5,7 @@ export const recommendationsPrompt = `Based on an input called datasetInfo, I ne
 
 {
   "recommendationsTitle": String: General title that will say "Recommended Models for..." and the rest will be based on the datasetInfo and the main problem type, e.g., "Recommended Models for Iris Species Segmentation" or "Modelos Recomendados para la Segmentación de Especies de Iris",
+  "modelsIntroText": String: One short sentence in datasetInfo.language that introduces the model tables in the recommendations array. It must convey the meaning of "Here you are a list of the best models you can apply and their performance metrics for datasets similar to yours:" or in spanish "Aquí tienes una lista de los mejores modelos que puedes aplicar y sus métricas de rendimiento para datasets similares al tuyo:".
   "recommendations": [
     {
       // DIMENSIONALITY REDUCTION OBJECT: This object will exist only if datasetInfo.needsDimensionalityReduction is true; otherwise, skip this object:
@@ -64,6 +65,7 @@ export const recommendationsSchema: Schema = {
   type: Type.OBJECT,
   properties: {
     recommendationsTitle: { type: Type.STRING },
+    modelsIntroText: { type: Type.STRING },
     recommendations: {
       type: Type.ARRAY,
       items: {
@@ -90,7 +92,7 @@ export const recommendationsSchema: Schema = {
       }
     }
   },
-  required: ["recommendationsTitle", "recommendations"]
+  required: ["recommendationsTitle", "modelsIntroText", "recommendations"]
 };
 
 

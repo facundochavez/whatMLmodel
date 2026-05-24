@@ -1,9 +1,18 @@
 import { useGlobalStore } from '@/store/global.store';
+import { RecommendationsResponse } from '@/types/analysis.types';
+import { isRecommendationsResponse, parsePartialRecommendations } from '@/utils/parsePartialRecommendations';
 
-export const recommendationsService = async (datasetInfo: any) => {
+interface RecommendationsStreamCallbacks {
+  onPartial: (partial: Partial<RecommendationsResponse>) => void;
+}
+
+export const recommendationsStreamService = async (
+  datasetInfo: Record<string, unknown>,
+  callbacks: RecommendationsStreamCallbacks
+): Promise<RecommendationsResponse> => {
   const { apiKeyIndex, moveApiKeyIndex } = useGlobalStore.getState();
-  
-  const response = await fetch('/api/gemini', {
+
+  const response = await fetch('/api/gemini/stream', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
@@ -17,8 +26,29 @@ export const recommendationsService = async (datasetInfo: any) => {
     throw new Error('API error');
   }
 
-  const result = await response.json();
+  if (!response.body) {
+    throw new Error('No response body');
+  }
+
+  const reader = response.body.getReader();
+  const decoder = new TextDecoder();
+  let buffer = '';
+
+  while (true) {
+    const { done, value } = await reader.read();
+    if (done) break;
+
+    buffer += decoder.decode(value, { stream: true });
+    callbacks.onPartial(parsePartialRecommendations(buffer));
+  }
+
+  const finalResult = parsePartialRecommendations(buffer);
+
+  if (!isRecommendationsResponse(finalResult)) {
+    throw new Error('Invalid response format');
+  }
+
   moveApiKeyIndex();
-  
-  return result;
+
+  return finalResult;
 };

@@ -20,11 +20,13 @@ export interface GlobalStore {
   selectedPipeline: Pipeline | null;
   selectedPipelineModelIndex: string;
   isAiThinking: boolean;
+  isStreamingRecommendations: boolean;
   transitionToHomePage: boolean;
   setIsMobile: (value: boolean) => void;
   setSelectedPipeline: (pipeline: Pipeline | null) => void;
   setSelectedPipelineModelIndex: (index: string) => void;
   setIsAiThinking: (value: boolean) => void;
+  setIsStreamingRecommendations: (value: boolean) => void;
   onOpenChangePipelineDialog: () => void;
 
   // Minors
@@ -74,11 +76,13 @@ export const useGlobalStore = create<GlobalStore>()(
       selectedPipeline: null,
       selectedPipelineModelIndex: '0',
       isAiThinking: false,
+      isStreamingRecommendations: false,
       transitionToHomePage: false,
       setIsMobile: (value: boolean) => set({ isMobile: value }),
       setSelectedPipeline: (pipeline: Pipeline | null) => set({ selectedPipeline: pipeline }),
       setSelectedPipelineModelIndex: (index: string) => set({ selectedPipelineModelIndex: index }),
       setIsAiThinking: (value: boolean) => set({ isAiThinking: value }),
+      setIsStreamingRecommendations: (value: boolean) => set({ isStreamingRecommendations: value }),
       onOpenChangePipelineDialog: () => {
         const { setSelectedPipelineModelIndex } = get();
         setTimeout(() => setSelectedPipelineModelIndex('0'), 500);

@@ -56,6 +56,7 @@ export const useAnalysesStore = create<AnalysesStore>()(
               ...a,
               info: analysis.info,
               recommendationsTitle: analysis.recommendationsTitle,
+              modelsIntroText: analysis.modelsIntroText,
               recommendations: analysis.recommendations,
               updatedAt: new Date(),
             }

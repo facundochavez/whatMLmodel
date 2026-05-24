@@ -2,7 +2,13 @@
 import { useEffect, useState, useRef } from 'react';
 import sleep from '@/utils/sleep';
 
-const useTypingEffect = (text: string = '', wordsInterval: number = 10, delay: number = 0, disabled: boolean = false) => {
+const useTypingEffect = (
+  text: string = '',
+  wordsInterval: number = 10,
+  delay: number = 0,
+  disabled: boolean = false,
+  stepMs: number = 100
+) => {
   const [currentPosition, setCurrentPosition] = useState(0);
   const words = text.split(' ');
   const items: string[] = [];
@@ -15,7 +21,7 @@ const useTypingEffect = (text: string = '', wordsInterval: number = 10, delay: n
     const startAnimation = async () => {
       currentPosition === 0 && (await sleep(delay));
       for (let i = currentPosition; i < items.length; i++) {
-        await sleep(100);
+        await sleep(stepMs);
         setCurrentPosition((prevPosition) => prevPosition + 1);
       }
     };
@@ -23,16 +29,16 @@ const useTypingEffect = (text: string = '', wordsInterval: number = 10, delay: n
     return () => {
       setCurrentPosition(0);
     };
-  }, [text, delay]);
+  }, [text, delay, stepMs]);
 
   useEffect(() => {
     const timeoutId = setTimeout(() => {
       if (text?.length) {
         setCurrentPosition(Infinity);
       }
-    }, delay + 600);
+    }, delay + items.length * stepMs + 200);
     return () => clearTimeout(timeoutId);
-  }, [delay, text]);
+  }, [delay, text, stepMs, items.length]);
 
   if (disabled) return text;
   return items.slice(0, currentPosition).join(' ');

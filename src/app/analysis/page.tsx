@@ -1,5 +1,5 @@
 'use client';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import StepThree from '@/app/analysis/components/StepThree';
 import StepTwo from '@/app/analysis/components/StepTwo';
@@ -32,7 +32,11 @@ const AnalysisPage: React.FC = () => {
   return (
     <>
       <StepTwo />
-      {currentAnalysis?.recommendations && <StepThree key={currentAnalysis.id} />}
+      {(!!currentAnalysis?.recommendationsTitle ||
+        !!currentAnalysis?.modelsIntroText ||
+        !!currentAnalysis?.recommendations?.length) && (
+        <StepThree key={currentAnalysis?.id} />
+      )}
     </>
   );
 };

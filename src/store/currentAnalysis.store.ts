@@ -1,10 +1,11 @@
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
-import { Analysis } from '@/types/analysis.types';
+import { Analysis, RecommendationsResponse } from '@/types/analysis.types';
 
 interface CurrentAnalysisStore {
   currentAnalysis: Analysis | null;
   setCurrentAnalysis: (analysis: Analysis | null) => void;
+  updateStreamingRecommendations: (partial: Partial<RecommendationsResponse>) => void;
   toggleCurrentFavorite: () => void;
   clearCurrentAnalysis: () => void;
 }
@@ -14,6 +15,20 @@ export const useCurrentAnalysisStore = create<CurrentAnalysisStore>()(
     (set, get) => ({
       currentAnalysis: null,
       setCurrentAnalysis: (analysis) => set({ currentAnalysis: analysis }),
+
+      updateStreamingRecommendations: (partial) => {
+        const current = get().currentAnalysis;
+        if (!current) return;
+
+        set({
+          currentAnalysis: {
+            ...current,
+            recommendationsTitle: partial.recommendationsTitle ?? current.recommendationsTitle,
+            modelsIntroText: partial.modelsIntroText ?? current.modelsIntroText,
+            recommendations: partial.recommendations ?? current.recommendations,
+          },
+        });
+      },
 
       toggleCurrentFavorite: () => {
         const current = get().currentAnalysis;

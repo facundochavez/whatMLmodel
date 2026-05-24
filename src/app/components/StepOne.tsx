@@ -59,10 +59,11 @@ const StepOne: React.FC = () => {
 
   useEffect(() => {
     const subscription = sampleDescriptionsService.getSubject().subscribe((data) => {
+      if (isAiGeneratingInfo) return;
       form.setValue('datasetDescription', data);
     });
     return () => subscription.unsubscribe();
-  }, [form]);
+  }, [form, isAiGeneratingInfo]);
 
   const onSubmit = async (values: z.infer<typeof stepOneSchema>) => {
     try {
@@ -101,6 +102,10 @@ const StepOne: React.FC = () => {
     <section className="w-full max-w-[700px]">
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="w-full">
+          <fieldset
+            disabled={isAiGeneratingInfo}
+            className="border-0 p-0 m-0 min-w-0 disabled:cursor-default [&_*]:disabled:cursor-default [&_label]:cursor-default"
+          >
           <FormField
             control={form.control}
             name="datasetDescription"
@@ -115,12 +120,36 @@ const StepOne: React.FC = () => {
                     maxLength={600}
                     currentLength={form.watch('datasetDescription').length || 0}
                     {...field}
+                    onKeyDown={(e) => {
+                      if (e.key !== 'Enter') return;
+
+                      if (e.ctrlKey || e.metaKey) {
+                        e.preventDefault();
+                        const textarea = e.currentTarget;
+                        const start = textarea.selectionStart;
+                        const end = textarea.selectionEnd;
+                        const newValue = `${textarea.value.slice(0, start)}\n${textarea.value.slice(end)}`;
+                        field.onChange(newValue);
+                        requestAnimationFrame(() => {
+                          textarea.selectionStart = textarea.selectionEnd = start + 1;
+                        });
+                        return;
+                      }
+
+                      if (e.shiftKey) return;
+
+                      e.preventDefault();
+                      if (!isAiGeneratingInfo) {
+                        void form.handleSubmit(onSubmit)();
+                      }
+                    }}
                   />
                 </FormControl>
                 <FormMessage />
               </FormItem>
             )}
           />
+          </fieldset>
           <DialogFooter className="mt-4">
             <Button type="submit" disabled={isAiGeneratingInfo}>
               {isAiGeneratingInfo ? (

@@ -12,6 +12,7 @@ export interface Analysis {
   userDatasetDescription?: string;
   info?: AnalysisInfo;
   recommendationsTitle?: string;
+  modelsIntroText?: string;
   recommendations?: AnalysisRecommendation[];
 }
 
@@ -35,6 +36,7 @@ export interface AnalysisRecommendation {
 
 export interface RecommendationsResponse {
   recommendationsTitle: string;
+  modelsIntroText?: string;
   recommendations: AnalysisRecommendation[];
 }
 

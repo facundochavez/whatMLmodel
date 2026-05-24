@@ -15,7 +15,7 @@ import { useCurrentAnalysisStore } from '@/store/currentAnalysis.store';
 import { Analysis, RecommendationsResponse } from '@/types/analysis.types';
 import { useGlobalStore } from '@/store/global.store';
 import { useAnalysesStore } from '@/store/analyses.store';
-import { recommendationsService } from '@/services/recommendations.service';
+import { recommendationsStreamService } from '@/services/recommendations.service';
 
 const stepTwoSchema = z.object({
   problemDescription: z.string().min(50, 'Description must be at least 50 characters long'),
@@ -26,8 +26,17 @@ const stepTwoSchema = z.object({
   needsDimensionalityReduction: z.enum(['Yes', 'No']),
 });
 
-function isRecommendationsResponse(data: any): data is RecommendationsResponse {
-  return typeof data === 'object' && typeof data.recommendationsTitle === 'string' && Array.isArray(data.recommendations);
+function isRecommendationsResponse(data: unknown): data is RecommendationsResponse {
+  return (
+    typeof data === 'object' &&
+    data !== null &&
+    typeof (data as RecommendationsResponse).recommendationsTitle === 'string' &&
+    Array.isArray((data as RecommendationsResponse).recommendations)
+  );
+}
+
+function hasStreamingContent(partial: Partial<RecommendationsResponse>): boolean {
+  return !!(partial.recommendationsTitle?.length || partial.modelsIntroText?.length || partial.recommendations?.length);
 }
 
 interface StepTwoFormProps extends React.PropsWithChildren {
@@ -40,13 +49,25 @@ const StepTwoForm: React.FC<StepTwoFormProps> = ({ formState, children }) => {
   const [formLabel, setLabel] = useState('');
 
   const currentAnalysis = useCurrentAnalysisStore((state) => state.currentAnalysis);
-  const setIsAiThinking = useGlobalStore((state) => state.setIsAiThinking);
+  const setIsStreamingRecommendations = useGlobalStore((state) => state.setIsStreamingRecommendations);
   const setCurrentAnalysis = useCurrentAnalysisStore((state) => state.setCurrentAnalysis);
+  const updateStreamingRecommendations = useCurrentAnalysisStore((state) => state.updateStreamingRecommendations);
   const analysesStore = useAnalysesStore.getState();
   const setGeminiErrorOccurred = useGlobalStore((state) => state.setGeminiErrorOccurred);
   const decrementAvailableFreeAnalyses = useGlobalStore((state) => state.decrementAvailableFreeAnalyses);
 
-  const { analysisHasRecommendations, isUserEditingInfo, setIsUserEditingInfo, isFormCollapsed, setIsFormCollapsed, isFormBlocked, setIsAiGettingRecommendations } = formState;
+  const {
+    analysisHasRecommendations,
+    setAnalysisHasRecommendations,
+    isUserEditingInfo,
+    setIsUserEditingInfo,
+    isFormCollapsed,
+    setIsFormCollapsed,
+    isFormBlocked,
+    setIsFormBlocked,
+    isAiGettingRecommendations,
+    setIsAiGettingRecommendations,
+  } = formState;
 
   useEffect(() => {
     if (!analysisHasRecommendations) {
@@ -75,23 +96,17 @@ const StepTwoForm: React.FC<StepTwoFormProps> = ({ formState, children }) => {
 
     if (!isValid) return;
     const datasetInfo = form.getValues();
+    const previousAnalysis = currentAnalysis;
 
     try {
       setIsAiGettingRecommendations(true);
-      const data = await recommendationsService({ language: currentAnalysis?.language, ...datasetInfo });
-
-      if (!isRecommendationsResponse(data)) {
-        throw new Error('Invalid response format');
-      }
+      setIsStreamingRecommendations(true);
 
       if (!currentAnalysis?.id || !currentAnalysis?.createdAt || currentAnalysis.isFavorite === undefined) {
         throw new Error('currentAnalysis is missing required fields');
       }
 
-      setIsAiThinking(true);
-      setIsFormCollapsed(true);
-
-      const newAnalysis: Analysis = {
+      setCurrentAnalysis({
         ...currentAnalysis,
         updatedAt: new Date(),
         info: {
@@ -102,7 +117,49 @@ const StepTwoForm: React.FC<StepTwoFormProps> = ({ formState, children }) => {
           rows: datasetInfo.rows,
           needsDimensionalityReduction: datasetInfo.needsDimensionalityReduction === 'Yes',
         },
+      });
+
+      let hasReceivedFirstChunk = false;
+
+      const data = await recommendationsStreamService(
+        { language: currentAnalysis?.language, ...datasetInfo },
+        {
+          onPartial: (partial) => {
+            if (!hasStreamingContent(partial)) return;
+
+            if (!hasReceivedFirstChunk) {
+              hasReceivedFirstChunk = true;
+              setIsFormCollapsed(true);
+              setAnalysisHasRecommendations(true);
+              setIsUserEditingInfo(false);
+              setIsFormBlocked(false);
+              updateStreamingRecommendations({
+                recommendationsTitle: partial.recommendationsTitle,
+                modelsIntroText: partial.modelsIntroText,
+                recommendations: partial.recommendations ?? [],
+              });
+              return;
+            }
+
+            updateStreamingRecommendations(partial);
+          },
+        }
+      );
+
+      if (!isRecommendationsResponse(data)) {
+        throw new Error('Invalid response format');
+      }
+
+      const latestAnalysis = useCurrentAnalysisStore.getState().currentAnalysis;
+      if (!latestAnalysis) {
+        throw new Error('currentAnalysis is missing');
+      }
+
+      const newAnalysis: Analysis = {
+        ...latestAnalysis,
+        updatedAt: new Date(),
         recommendationsTitle: data.recommendationsTitle,
+        modelsIntroText: data.modelsIntroText ?? latestAnalysis.modelsIntroText,
         recommendations: data.recommendations,
       };
 
@@ -120,11 +177,17 @@ const StepTwoForm: React.FC<StepTwoFormProps> = ({ formState, children }) => {
     } catch (error) {
       setIsFormCollapsed(false);
       setGeminiErrorOccurred(true);
+      if (previousAnalysis) {
+        setCurrentAnalysis(previousAnalysis);
+      }
       console.error('Error generating recommendations:', error);
     } finally {
       setIsAiGettingRecommendations(false);
+      setIsStreamingRecommendations(false);
     }
   };
+
+  const isFormDisabled = !isUserEditingInfo || isAiGettingRecommendations;
 
   return (
     <Form {...form}>
@@ -132,14 +195,15 @@ const StepTwoForm: React.FC<StepTwoFormProps> = ({ formState, children }) => {
         <CollapsibleBox
           arrowButton
           isButtonHighlighted={currentAnalysis?.recommendations && isUserEditingInfo}
-          blocked={isFormBlocked}
+          blocked={isFormBlocked || isAiGettingRecommendations}
           externalIsCollapsed={isFormCollapsed}
           onCollapseChange={() => setIsFormCollapsed(!isFormCollapsed)}
         >
-          <div
-            className={`w-full flex flex-col gap-4 border rounded-md px-[5%] pt-6 pb-8 bg-muted/30 ${
+          <fieldset
+            disabled={isFormDisabled}
+            className={`w-full flex flex-col gap-4 border rounded-md px-[5%] pt-6 pb-8 bg-muted/30 m-0 min-w-0 disabled:cursor-default [&_*]:disabled:cursor-default [&_label]:cursor-default ${
               currentAnalysis?.recommendations && isUserEditingInfo && 'border-2 border-foreground group'
-            } ${!isUserEditingInfo && 'select-none pointer-events-none'}`}
+            } ${!isUserEditingInfo && 'select-none'}`}
           >
             {formLabel && <FormLabel className="block text-lg text-center self-center mb-2">{formLabel}</FormLabel>}
 
@@ -283,7 +347,7 @@ const StepTwoForm: React.FC<StepTwoFormProps> = ({ formState, children }) => {
                 )}
               />
             </div>
-          </div>
+          </fieldset>
         </CollapsibleBox>
         {children}
       </form>
