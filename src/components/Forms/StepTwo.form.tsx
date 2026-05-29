@@ -54,6 +54,7 @@ const StepTwoForm: React.FC<StepTwoFormProps> = ({ formState, children }) => {
   const updateStreamingRecommendations = useCurrentAnalysisStore((state) => state.updateStreamingRecommendations);
   const analysesStore = useAnalysesStore.getState();
   const setGeminiErrorOccurred = useGlobalStore((state) => state.setGeminiErrorOccurred);
+  const setShowApiKeyDialog = useGlobalStore((state) => state.setShowApiKeyDialog);
   const decrementAvailableFreeAnalyses = useGlobalStore((state) => state.decrementAvailableFreeAnalyses);
 
   const {
@@ -97,6 +98,13 @@ const StepTwoForm: React.FC<StepTwoFormProps> = ({ formState, children }) => {
     if (!isValid) return;
     const datasetInfo = form.getValues();
     const previousAnalysis = currentAnalysis;
+    const isReapplyingChanges = !!(previousAnalysis?.recommendations?.length);
+    const { userGeminiApiKey, availableFreeAnalyses } = useGlobalStore.getState();
+
+    if (isReapplyingChanges && availableFreeAnalyses <= 0 && !userGeminiApiKey.trim()) {
+      setShowApiKeyDialog(true);
+      return;
+    }
 
     try {
       setIsAiGettingRecommendations(true);
@@ -165,7 +173,10 @@ const StepTwoForm: React.FC<StepTwoFormProps> = ({ formState, children }) => {
 
       setCurrentAnalysis(newAnalysis);
       setIsUserEditingInfo(false);
-      decrementAvailableFreeAnalyses();
+
+      if (isReapplyingChanges && !userGeminiApiKey.trim()) {
+        decrementAvailableFreeAnalyses();
+      }
 
       const existsInStore = analysesStore.analyses.some((a) => a.id === newAnalysis.id);
 
@@ -177,6 +188,7 @@ const StepTwoForm: React.FC<StepTwoFormProps> = ({ formState, children }) => {
     } catch (error) {
       setIsFormCollapsed(false);
       setGeminiErrorOccurred(true);
+      setShowApiKeyDialog(true);
       if (previousAnalysis) {
         setCurrentAnalysis(previousAnalysis);
       }

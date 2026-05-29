@@ -1,4 +1,4 @@
-/* 'use client';
+'use client';
 
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
@@ -20,12 +20,17 @@ const apiKeySchema = z.object({
   }),
 });
 
-const ApiKeyForm: React.FC = () => {
+interface ApiKeyFormProps {
+  isCheckingApiKey: boolean;
+  onCheckingChange: (checking: boolean) => void;
+}
+
+const ApiKeyForm: React.FC<ApiKeyFormProps> = ({ isCheckingApiKey, onCheckingChange }) => {
   const [showAPIkey, setShowAPIkey] = useState(false);
-  const [isCheckingApiKey, setIsCheckingApiKey] = useState(false);
   const userGeminiApiKey = useGlobalStore((state) => state.userGeminiApiKey);
   const setUserGeminiApiKey = useGlobalStore((state) => state.setUserGeminiApiKey);
   const setShowApiKeyDialog = useGlobalStore((state) => state.setShowApiKeyDialog);
+  const setGeminiErrorOccurred = useGlobalStore((state) => state.setGeminiErrorOccurred);
 
   const form = useForm<z.infer<typeof apiKeySchema>>({
     resolver: zodResolver(apiKeySchema),
@@ -34,23 +39,31 @@ const ApiKeyForm: React.FC = () => {
     },
   });
 
+  const watchedApiKey = form.watch('apiKey');
+  const storedApiKey = userGeminiApiKey.trim();
+  const currentApiKey = watchedApiKey.trim();
+  const isUnchangedFromStorage = storedApiKey !== '' && currentApiKey === storedApiKey;
+  const isCancelDisabled = isCheckingApiKey || isUnchangedFromStorage;
+  const isSaveDisabled = isCheckingApiKey || isUnchangedFromStorage || currentApiKey === '';
+
   const onSubmit = async (values: z.infer<typeof apiKeySchema>) => {
     try {
-      setIsCheckingApiKey(true);
+      onCheckingChange(true);
       const isValid = await apiKeyCheckService(values.apiKey);
 
       if (isValid) {
         setUserGeminiApiKey(values.apiKey);
+        setGeminiErrorOccurred(false);
         setShowApiKeyDialog(false);
-        toast(<span className='text-center text-base'>API key saved successfully!</span>);
+        toast(<span className="text-center text-base">API key saved successfully!</span>);
       } else {
-        console.log('Invalid API key');
+        toast(<span className="text-center text-base">Invalid API key</span>);
       }
     } catch (error) {
       console.log('API key validation error:', error);
-      toast(<span className='text-center text-base'>Invalid API key</span>);
+      toast(<span className="text-center text-base">Invalid API key</span>);
     } finally {
-      setIsCheckingApiKey(false);
+      onCheckingChange(false);
     }
   };
 
@@ -64,31 +77,50 @@ const ApiKeyForm: React.FC = () => {
             <FormItem className="relative">
               <FormLabel>API Key</FormLabel>
               <FormControl>
-                <>
-                  <Input type={showAPIkey ? 'text' : 'password'} placeholder="•••••" className="pr-10" {...field} />
-                  <Button variant="link" className="absolute right-0 top-6" size="icon" type="button" onClick={() => setShowAPIkey(!showAPIkey)}>
-                    {showAPIkey ? <EyeOff className="h-5 w-5" strokeWidth={1.8} /> : <Eye className="h-5 w-5" strokeWidth={1.8} />}
-                  </Button>
-                </>
+                <Input
+                  type={showAPIkey ? 'text' : 'password'}
+                  placeholder="•••••"
+                  className="pr-10"
+                  disabled={isCheckingApiKey}
+                  {...field}
+                />
               </FormControl>
+              <Button
+                variant="link"
+                className="absolute right-0 top-6"
+                size="icon"
+                type="button"
+                disabled={isCheckingApiKey}
+                onClick={() => setShowAPIkey(!showAPIkey)}
+              >
+                {showAPIkey ? <Eye className="h-5 w-5" strokeWidth={1.8} /> : <EyeOff className="h-5 w-5" strokeWidth={1.8} />}
+              </Button>
               <FormMessage />
             </FormItem>
           )}
         />
 
         <DialogFooter className="pt-2">
-          <DialogClose asChild>
-            <Button variant="outline" type="button">
+          {isCancelDisabled ? (
+            <Button variant="outline" type="button" disabled>
               Cancel
             </Button>
-          </DialogClose>
+          ) : (
+            <DialogClose asChild>
+              <Button variant="outline" type="button">
+                Cancel
+              </Button>
+            </DialogClose>
+          )}
           {isCheckingApiKey ? (
             <Button type="button" disabled className="flex items-center">
               <LoaderCircle className="h-4 w-4 mr-2 animate-spin" />
               Checking
             </Button>
           ) : (
-            <Button type="submit">Save</Button>
+            <Button type="submit" disabled={isSaveDisabled}>
+              Save
+            </Button>
           )}
         </DialogFooter>
       </form>
@@ -97,4 +129,3 @@ const ApiKeyForm: React.FC = () => {
 };
 
 export default ApiKeyForm;
- */

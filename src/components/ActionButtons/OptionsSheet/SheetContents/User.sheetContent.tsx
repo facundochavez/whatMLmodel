@@ -101,14 +101,14 @@ const UserSheetContent = () => {
           )}
         </div>
 
-      {/* <footer className="flex flex-col gap-2">
+      <footer className="flex flex-col gap-2">
         <SheetClose asChild>
           <Button variant="outline" className="w-full" onClick={() => setShowApiKeyDialog(true)}>
             <Settings className="mr-2 h-4 w-4 stroke-[2.3]" />
             <span>Gemini API Key</span>
           </Button>
         </SheetClose>
-        <AlertDialogTrigger
+       {/*  <AlertDialogTrigger
           asChild
           onClick={(e) => {
             e.stopPropagation();
@@ -120,8 +120,8 @@ const UserSheetContent = () => {
               <span>Log out</span>
             </Button>
           </SheetClose>
-        </AlertDialogTrigger>
-      </footer> */}
+        </AlertDialogTrigger> */}
+      </footer>
     </div>
   );
 };

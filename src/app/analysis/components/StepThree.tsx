@@ -45,7 +45,13 @@ const StepThree = () => {
   const isParagraphStreaming = (index: number) => {
     if (!isStreamingRecommendations || index !== recommendations.length - 1) return false;
     const recommendation = recommendations[index];
-    return !!recommendation?.paragraph && !recommendation?.tables;
+    return !!recommendation?.paragraphs?.length && !recommendation?.tables;
+  };
+
+  const isSectionTitleStreaming = (index: number) => {
+    if (!isStreamingRecommendations || index !== recommendations.length - 1) return false;
+    const recommendation = recommendations[index];
+    return !!recommendation?.sectionTitle && !recommendation?.paragraphs?.length;
   };
 
   const isTitleStreaming = isStreamingRecommendations && !recommendations.length;
@@ -63,12 +69,20 @@ const StepThree = () => {
 
       {recommendations.map((recommendation, index) => (
         <section key={index} className="flex flex-col gap-8 sm:gap-4">
-          {recommendation?.paragraph && (
-            <p className="text-muted-foreground">
-              {recommendation.paragraph}
-              {isParagraphStreaming(index) && <StreamingCursor />}
-            </p>
+          {recommendation?.sectionTitle && (
+            <h3 className="text-xl font-semibold">
+              {recommendation.sectionTitle}
+              {isSectionTitleStreaming(index) && <StreamingCursor />}
+            </h3>
           )}
+
+          {recommendation?.paragraphs?.map((paragraph, paragraphIndex) => (
+            <p key={paragraphIndex} className="text-muted-foreground">
+              {paragraph}
+              {isParagraphStreaming(index) &&
+                paragraphIndex === recommendation.paragraphs.length - 1 && <StreamingCursor />}
+            </p>
+          ))}
 
           {index === 0 && showIntro && modelsIntroText && (
             <TypingText
@@ -76,7 +90,7 @@ const StepThree = () => {
               text={modelsIntroText}
               wordsInterval={4}
               stepMs={40}
-              delay={0}
+              delay={500}
               disabled={!isStreamingRecommendations}
               className="text-muted-foreground"
             />

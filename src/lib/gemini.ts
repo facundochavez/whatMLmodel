@@ -90,3 +90,45 @@ export async function generateContentStreamWithFallback(
 
   throw new Error(lastError instanceof Error ? lastError.message : 'All API keys and models failed');
 }
+
+export async function generateContentWithApiKey(apiKey: string, prompt: string, schema: Schema | null = null) {
+  const config = buildGenerationConfig(schema);
+  const genAI = new GoogleGenAI({ apiKey });
+  let lastError: Error | unknown;
+
+  for (const modelName of GEMINI_MODELS) {
+    try {
+      const result = await genAI.models.generateContent({
+        model: modelName,
+        contents: prompt,
+        config,
+      });
+
+      return result.text;
+    } catch (err) {
+      lastError = err;
+    }
+  }
+
+  throw new Error(lastError instanceof Error ? lastError.message : 'All API keys and models failed');
+}
+
+export async function generateContentStreamWithApiKey(apiKey: string, prompt: string, schema: Schema | null = null) {
+  const config = buildGenerationConfig(schema);
+  const genAI = new GoogleGenAI({ apiKey });
+  let lastError: Error | unknown;
+
+  for (const modelName of GEMINI_MODELS) {
+    try {
+      return await genAI.models.generateContentStream({
+        model: modelName,
+        contents: prompt,
+        config,
+      });
+    } catch (err) {
+      lastError = err;
+    }
+  }
+
+  throw new Error(lastError instanceof Error ? lastError.message : 'All API keys and models failed');
+}

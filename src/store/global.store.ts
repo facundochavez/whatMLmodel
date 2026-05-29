@@ -5,11 +5,13 @@ import { Pipeline } from '@/types/pipeline.types';
 export interface GlobalStore {
   // Importants
   availableFreeAnalyses: number;
+  userGeminiApiKey: string;
   isUserLoggedIn: boolean;
   userEmail: string;
   geminiErrorOccurred: boolean;
   apiKeyIndex: number;
   decrementAvailableFreeAnalyses: () => void;
+  setUserGeminiApiKey: (apiKey: string) => void;
   setIsUserLoggedIn: (value: boolean) => void;
   setUserEmail: (email: string) => void;
   setGeminiErrorOccurred: (value: boolean) => void;
@@ -59,7 +61,8 @@ export const useGlobalStore = create<GlobalStore>()(
   persist(
     (set, get) => ({
       // Importants
-      availableFreeAnalyses: 6,
+      availableFreeAnalyses: 3,
+      userGeminiApiKey: '',
       isUserLoggedIn: true,
       userEmail: '',
       geminiErrorOccurred: false,
@@ -70,6 +73,7 @@ export const useGlobalStore = create<GlobalStore>()(
           set({ availableFreeAnalyses: current - 1 });
         }
       },
+      setUserGeminiApiKey: (apiKey: string) => set({ userGeminiApiKey: apiKey }),
       setIsUserLoggedIn: (value: boolean) => set({ isUserLoggedIn: value }),
       setUserEmail: (email: string) => set({ userEmail: email }),
       setGeminiErrorOccurred: (value: boolean) => set({ geminiErrorOccurred: value }),
@@ -125,6 +129,7 @@ export const useGlobalStore = create<GlobalStore>()(
       partialize: (state) => ({
         // Only save the important values
         availableFreeAnalyses: state.availableFreeAnalyses,
+        userGeminiApiKey: state.userGeminiApiKey,
         isUserLoggedIn: state.isUserLoggedIn,
         userEmail: state.userEmail,
         apiKeyIndex: state.apiKeyIndex,

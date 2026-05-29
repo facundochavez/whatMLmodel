@@ -29,7 +29,11 @@ const StepOne: React.FC = () => {
   const [isAiGeneratingInfo, setIsAiGeneratingInfo] = useState(false);
   const setCurrentAnalysis = useCurrentAnalysisStore((state) => state.setCurrentAnalysis);
   const currentAnalysis = useCurrentAnalysisStore((state) => state.currentAnalysis);
+  const userGeminiApiKey = useGlobalStore((state) => state.userGeminiApiKey);
   const setGeminiErrorOccurred = useGlobalStore((state) => state.setGeminiErrorOccurred);
+  const setShowApiKeyDialog = useGlobalStore((state) => state.setShowApiKeyDialog);
+  const availableFreeAnalyses = useGlobalStore((state) => state.availableFreeAnalyses);
+  const decrementAvailableFreeAnalyses = useGlobalStore((state) => state.decrementAvailableFreeAnalyses);
   const focusStepOne = useGlobalStore((state) => state.focusStepOne);
   const setFocusStepOne = useGlobalStore((state) => state.setFocusStepOne);
   const restoreStepOneText = useGlobalStore((state) => state.restoreStepOneText);
@@ -66,6 +70,11 @@ const StepOne: React.FC = () => {
   }, [form, isAiGeneratingInfo]);
 
   const onSubmit = async (values: z.infer<typeof stepOneSchema>) => {
+    if (availableFreeAnalyses <= 0 && !userGeminiApiKey.trim()) {
+      setShowApiKeyDialog(true);
+      return;
+    }
+
     try {
       setIsAiGeneratingInfo(true);
       const data = await infoService(values.datasetDescription);
@@ -83,6 +92,10 @@ const StepOne: React.FC = () => {
       };
   
       setCurrentAnalysis(newAnalysis);
+
+      if (!userGeminiApiKey.trim()) {
+        decrementAvailableFreeAnalyses();
+      }
   
       const main = document.querySelector('main');
       if (!main) return;
@@ -92,6 +105,7 @@ const StepOne: React.FC = () => {
       router.push('/analysis');
     } catch (error) {
       setGeminiErrorOccurred(true);
+      setShowApiKeyDialog(true);
       console.error('Error generating analysis info:', error);
     } finally {
       setIsAiGeneratingInfo(false);

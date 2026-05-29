@@ -27,7 +27,8 @@ export interface AnalysisInfo {
 
 export interface AnalysisRecommendation {
   type: ProblemType;
-  paragraph: string;
+  sectionTitle?: string;
+  paragraphs: string[];
   tables: {
     modelsAlias: RegressionModelAlias[] | ClassificationModelAlias[] | ClusteringModelAlias[] | DimensionalityReductionModelAlias[];
     similarPipelinesAlias: string[];

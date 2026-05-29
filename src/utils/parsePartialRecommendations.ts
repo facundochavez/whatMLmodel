@@ -102,14 +102,16 @@ function parsePartialRecommendationObject(fragment: string): RecommendationsResp
   if (completeObject) return completeObject;
 
   const typeMatch = fragment.match(/"type"\s*:\s*"((?:\\.|[^"\\])*)"/);
-  const paragraphMatch = fragment.match(/"paragraph"\s*:\s*"((?:\\.|[^"\\])*)(?:"|$)/);
+  const sectionTitleMatch = fragment.match(/"sectionTitle"\s*:\s*"((?:\\.|[^"\\])*)(?:"|$)/);
+  const paragraphs = parsePartialParagraphs(fragment);
   const modelsIntroTextMatch = fragment.match(/"modelsIntroText"\s*:\s*"((?:\\.|[^"\\])*)(?:"|$)/);
 
-  if (!typeMatch && !paragraphMatch && !modelsIntroTextMatch) return null;
+  if (!typeMatch && !sectionTitleMatch && paragraphs.length === 0 && !modelsIntroTextMatch) return null;
 
   const partial: Record<string, unknown> = {};
   if (typeMatch) partial.type = unescapeJsonString(typeMatch[1]);
-  if (paragraphMatch) partial.paragraph = unescapeJsonString(paragraphMatch[1]);
+  if (sectionTitleMatch) partial.sectionTitle = unescapeJsonString(sectionTitleMatch[1]);
+  if (paragraphs.length > 0) partial.paragraphs = paragraphs;
   if (modelsIntroTextMatch) partial.modelsIntroText = unescapeJsonString(modelsIntroTextMatch[1]);
 
   const tablesStart = fragment.indexOf('"tables"');
@@ -124,6 +126,34 @@ function parsePartialRecommendationObject(fragment: string): RecommendationsResp
   }
 
   return partial as unknown as RecommendationsResponse['recommendations'][number];
+}
+
+function parsePartialParagraphs(fragment: string): string[] {
+  const paragraphsKey = fragment.indexOf('"paragraphs"');
+  if (paragraphsKey === -1) return [];
+
+  const arrayStart = fragment.indexOf('[', paragraphsKey);
+  if (arrayStart === -1) return [];
+
+  const paragraphs: string[] = [];
+  let index = arrayStart + 1;
+
+  while (index < fragment.length) {
+    while (index < fragment.length && /[\s,]/.test(fragment[index])) {
+      index += 1;
+    }
+
+    if (index >= fragment.length || fragment[index] === ']') break;
+    if (fragment[index] !== '"') break;
+
+    const stringMatch = fragment.slice(index).match(/^"((?:\\.|[^"\\])*)(?:"|$)/);
+    if (!stringMatch) break;
+
+    paragraphs.push(unescapeJsonString(stringMatch[1]));
+    index += stringMatch[0].length;
+  }
+
+  return paragraphs;
 }
 
 function tryParseJson(value: string): RecommendationsResponse['recommendations'][number] | null {

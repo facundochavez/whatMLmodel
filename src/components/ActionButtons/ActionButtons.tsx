@@ -12,6 +12,7 @@ import ConfirmDeleteDialogContent from '../DialogContents/ConfirmDelete.dialogCo
 import AccountSettingsDialogContent from '../DialogContents/AccountSettings.dialogContent';
 import ResetPasswordDialogContent from '../DialogContents/ResetPassword.dialogContent';
 import ChangePasswordDialogContent from '../DialogContents/ChangePassword.dialogContent';
+import ApiKeyDialog from '../DialogContents/ApiKey.dialogContent';
 import { Button } from '@/components/ui/button';
 import { CirclePlus } from 'lucide-react';
 import { usePathname } from 'next/navigation';
@@ -24,12 +25,10 @@ const ActionButtons: React.FC = () => {
   const setFocusStepOne = useGlobalStore((state) => state.setFocusStepOne);
   const isUserLoggedIn = useGlobalStore((state) => state.isUserLoggedIn);
   const showAccountSettingsDialog = useGlobalStore((state) => state.showAccountSettingsDialog);
-  const showApiKeyDialog = useGlobalStore((state) => state.showApiKeyDialog);
   const showAuthDialog = useGlobalStore((state) => state.showAuthDialog);
   const showChangePasswordDialog = useGlobalStore((state) => state.showChangePasswordDialog);
   const showResetPasswordDialog = useGlobalStore((state) => state.showResetPasswordDialog);
   const setShowAccountSettingsDialog = useGlobalStore((state) => state.setShowAccountSettingsDialog);
-  const setShowApiKeyDialog = useGlobalStore((state) => state.setShowApiKeyDialog);
   const setShowAuthDialog = useGlobalStore((state) => state.setShowAuthDialog);
   const setShowChangePasswordDialog = useGlobalStore((state) => state.setShowChangePasswordDialog);
   const setShowResetPasswordDialog = useGlobalStore((state) => state.setShowResetPasswordDialog);
@@ -73,8 +72,8 @@ const ActionButtons: React.FC = () => {
   return (
     <>
     <Dialog open={showResetPasswordDialog} onOpenChange={setShowResetPasswordDialog}>
-      <Dialog open={showApiKeyDialog} onOpenChange={setShowApiKeyDialog}>
-        <Dialog open={showChangePasswordDialog} onOpenChange={setShowChangePasswordDialog}>
+      <ApiKeyDialog />
+      <Dialog open={showChangePasswordDialog} onOpenChange={setShowChangePasswordDialog}>
           {isUserLoggedIn ? (
             <Dialog open={showAccountSettingsDialog} onOpenChange={setShowAccountSettingsDialog}>
               {OptionButtons}
@@ -88,7 +87,6 @@ const ActionButtons: React.FC = () => {
           )}
           <ChangePasswordDialogContent />
         </Dialog>
-      </Dialog>
       <ResetPasswordDialogContent />
     </Dialog>
     <AlertDialog open={showDeleteDialog} onOpenChange={setShowDeleteDialog}>

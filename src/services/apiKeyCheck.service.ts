@@ -4,7 +4,7 @@ export const apiKeyCheckService = async (apiKey: string): Promise<boolean> => {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
       type: 'apiKeyCheck',
-      userGeminiApiKey: apiKey,
+      userApiKey: apiKey,
     }),
   });
 

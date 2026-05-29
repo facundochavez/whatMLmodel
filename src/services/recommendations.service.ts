@@ -10,7 +10,8 @@ export const recommendationsStreamService = async (
   datasetInfo: Record<string, unknown>,
   callbacks: RecommendationsStreamCallbacks
 ): Promise<RecommendationsResponse> => {
-  const { apiKeyIndex, moveApiKeyIndex } = useGlobalStore.getState();
+  const { apiKeyIndex, moveApiKeyIndex, userGeminiApiKey } = useGlobalStore.getState();
+  const userApiKey = userGeminiApiKey.trim();
 
   const response = await fetch('/api/gemini/stream', {
     method: 'POST',
@@ -19,6 +20,7 @@ export const recommendationsStreamService = async (
       type: 'recommendations',
       datasetInfo,
       apiKeyIndex,
+      ...(userApiKey && { userApiKey }),
     }),
   });
 
@@ -48,7 +50,9 @@ export const recommendationsStreamService = async (
     throw new Error('Invalid response format');
   }
 
-  moveApiKeyIndex();
+  if (!userApiKey) {
+    moveApiKeyIndex();
+  }
 
   return finalResult;
 };

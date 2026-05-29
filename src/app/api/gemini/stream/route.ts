@@ -1,11 +1,18 @@
 import { NextRequest } from 'next/server';
 import { recommendationsPrompt, recommendationsSchema } from '@/prompts/recommendations.prompt';
-import { generateContentStreamWithFallback } from '@/lib/gemini';
+import { generateContentStreamWithApiKey, generateContentStreamWithFallback } from '@/lib/gemini';
+
+function resolveUserApiKey(body: Record<string, unknown>): string {
+  const fromUserApiKey = typeof body.userApiKey === 'string' ? body.userApiKey.trim() : '';
+  const fromLegacyField = typeof body.userGeminiApiKey === 'string' ? body.userGeminiApiKey.trim() : '';
+  return fromUserApiKey || fromLegacyField;
+}
 
 export async function POST(req: NextRequest) {
   try {
     const body = await req.json();
     const apiKeyIndex = body.apiKeyIndex ?? 1;
+    const userApiKey = resolveUserApiKey(body);
 
     if (body.type !== 'recommendations' || !body.datasetInfo) {
       return new Response(JSON.stringify({ error: 'Invalid request' }), {
@@ -15,7 +22,9 @@ export async function POST(req: NextRequest) {
     }
 
     const formattedPrompt = recommendationsPrompt + JSON.stringify(body.datasetInfo, null, 2);
-    const stream = await generateContentStreamWithFallback(apiKeyIndex, formattedPrompt, recommendationsSchema);
+    const stream = userApiKey
+      ? await generateContentStreamWithApiKey(userApiKey, formattedPrompt, recommendationsSchema)
+      : await generateContentStreamWithFallback(apiKeyIndex, formattedPrompt, recommendationsSchema);
 
     const encoder = new TextEncoder();
 
