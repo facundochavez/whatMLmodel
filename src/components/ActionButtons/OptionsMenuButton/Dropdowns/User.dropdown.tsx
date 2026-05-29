@@ -126,6 +126,7 @@ const UserDropdown: React.FC = () => {
           <span>Gemini API Key</span>
         </DropdownMenuItem>
 
+
         {/* <DropdownMenuItem className="font-semibold" onClick={() => setShowAccountSettingsDialog(true)}>
           <UserRound className="mr-2 h-4 w-4 stroke-[2.3]" />
           <span>Account settings</span>
