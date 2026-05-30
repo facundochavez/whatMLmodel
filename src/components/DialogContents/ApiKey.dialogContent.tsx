@@ -77,10 +77,12 @@ const ApiKeyDialog: React.FC = () => {
   const getDescription = (): string => {
     if (geminiErrorOccurred) {
       if (userGeminiApiKey.trim() !== '') {
-        return 'Gemini servers are currently experiencing high demand. Please try again later, or use a Pro account API key to continue using whatMLmodel without interruptions.';
-      } else {
+        return 'Your saved Gemini API key could not be used—it may have been revoked, expired, or hit its quota. Update it below with a new key from Google AI Studio to continue using whatMLmodel.';
+      }
+      if (availableFreeAnalyses > 0) {
         return 'Gemini servers are currently under heavy load. You can wait and try again later, or enter your own Gemini API key to continue right away. Don’t worry—it’s free to get one. Your key will be stored locally and never shared.';
       }
+      return 'Your free analyses have run out, but you can keep using whatMLmodel by entering your Gemini API key. Don’t worry—it’s free to get one. Your key will be stored locally and never shared.';
     } else {
       if (userGeminiApiKey.trim() !== '') {
         return 'You’ve successfully entered your Gemini API key, and it’s working correctly. It’s stored locally in your browser and is never shared externally.';
