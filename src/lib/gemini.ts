@@ -1,6 +1,7 @@
 import { GoogleGenAI, Schema } from '@google/genai';
 
-export const GEMINI_MODELS = ['gemini-3.5-flash-lite', 'gemini-2.5-flash-lite', 'gemini-3.1-flash', 'gemini-2.5-flash'];
+export const GEMINI_LITE_MODELS = ['gemini-3.5-flash-lite', 'gemini-2.5-flash-lite', 'gemini-3.1-flash-lite'];
+export const GEMINI_FLASH_MODELS = ['gemini-3.5-flash', 'gemini-3.1-flash', 'gemini-2.5-flash'];
 
 const GEMINI_API_KEY_PREFIX = 'GEMINI_API_KEY_';
 
@@ -47,7 +48,12 @@ function buildGenerationConfig(schema: Schema | null) {
   };
 }
 
-export async function generateContentWithFallback(apiKeyIndex: number, prompt: string, schema: Schema | null = null) {
+export async function generateContentWithFallback(
+  apiKeyIndex: number,
+  prompt: string,
+  schema: Schema | null = null,
+  models: readonly string[] = GEMINI_LITE_MODELS
+) {
   const config = buildGenerationConfig(schema);
   const apiKeysToTry = getAllApiKeysInOrder(apiKeyIndex);
   let lastError: Error | unknown;
@@ -55,7 +61,7 @@ export async function generateContentWithFallback(apiKeyIndex: number, prompt: s
   for (const { key: apiKey } of apiKeysToTry) {
     const genAI = new GoogleGenAI({ apiKey });
 
-    for (const modelName of GEMINI_MODELS) {
+    for (const modelName of models) {
       try {
         const result = await genAI.models.generateContent({
           model: modelName,
@@ -76,7 +82,8 @@ export async function generateContentWithFallback(apiKeyIndex: number, prompt: s
 export async function generateContentStreamWithFallback(
   apiKeyIndex: number,
   prompt: string,
-  schema: Schema | null = null
+  schema: Schema | null = null,
+  models: readonly string[] = GEMINI_FLASH_MODELS
 ) {
   const config = buildGenerationConfig(schema);
   const apiKeysToTry = getAllApiKeysInOrder(apiKeyIndex);
@@ -85,7 +92,7 @@ export async function generateContentStreamWithFallback(
   for (const { key: apiKey } of apiKeysToTry) {
     const genAI = new GoogleGenAI({ apiKey });
 
-    for (const modelName of GEMINI_MODELS) {
+    for (const modelName of models) {
       try {
         return await genAI.models.generateContentStream({
           model: modelName,
@@ -101,12 +108,17 @@ export async function generateContentStreamWithFallback(
   throw new Error(lastError instanceof Error ? lastError.message : 'All API keys and models failed');
 }
 
-export async function generateContentWithApiKey(apiKey: string, prompt: string, schema: Schema | null = null) {
+export async function generateContentWithApiKey(
+  apiKey: string,
+  prompt: string,
+  schema: Schema | null = null,
+  models: readonly string[] = GEMINI_LITE_MODELS
+) {
   const config = buildGenerationConfig(schema);
   const genAI = new GoogleGenAI({ apiKey });
   let lastError: Error | unknown;
 
-  for (const modelName of GEMINI_MODELS) {
+  for (const modelName of models) {
     try {
       const result = await genAI.models.generateContent({
         model: modelName,
@@ -123,12 +135,17 @@ export async function generateContentWithApiKey(apiKey: string, prompt: string, 
   throw new Error(lastError instanceof Error ? lastError.message : 'All API keys and models failed');
 }
 
-export async function generateContentStreamWithApiKey(apiKey: string, prompt: string, schema: Schema | null = null) {
+export async function generateContentStreamWithApiKey(
+  apiKey: string,
+  prompt: string,
+  schema: Schema | null = null,
+  models: readonly string[] = GEMINI_FLASH_MODELS
+) {
   const config = buildGenerationConfig(schema);
   const genAI = new GoogleGenAI({ apiKey });
   let lastError: Error | unknown;
 
-  for (const modelName of GEMINI_MODELS) {
+  for (const modelName of models) {
     try {
       return await genAI.models.generateContentStream({
         model: modelName,

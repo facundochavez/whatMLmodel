@@ -1,6 +1,10 @@
 import { NextRequest } from 'next/server';
 import { recommendationsPrompt, recommendationsSchema } from '@/prompts/recommendations.prompt';
-import { generateContentStreamWithApiKey, generateContentStreamWithFallback } from '@/lib/gemini';
+import {
+  GEMINI_FLASH_MODELS,
+  generateContentStreamWithApiKey,
+  generateContentStreamWithFallback,
+} from '@/lib/gemini';
 
 function resolveUserApiKey(body: Record<string, unknown>): string {
   const fromUserApiKey = typeof body.userApiKey === 'string' ? body.userApiKey.trim() : '';
@@ -23,8 +27,8 @@ export async function POST(req: NextRequest) {
 
     const formattedPrompt = recommendationsPrompt + JSON.stringify(body.datasetInfo, null, 2);
     const stream = userApiKey
-      ? await generateContentStreamWithApiKey(userApiKey, formattedPrompt, recommendationsSchema)
-      : await generateContentStreamWithFallback(apiKeyIndex, formattedPrompt, recommendationsSchema);
+      ? await generateContentStreamWithApiKey(userApiKey, formattedPrompt, recommendationsSchema, GEMINI_FLASH_MODELS)
+      : await generateContentStreamWithFallback(apiKeyIndex, formattedPrompt, recommendationsSchema, GEMINI_FLASH_MODELS);
 
     const encoder = new TextEncoder();
 

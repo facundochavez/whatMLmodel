@@ -1,7 +1,12 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { recommendationsPrompt, recommendationsSchema } from '@/prompts/recommendations.prompt';
 import { infoPrompt, infoSchema } from '@/prompts/info.prompt';
-import { generateContentWithApiKey, generateContentWithFallback } from '@/lib/gemini';
+import {
+  GEMINI_FLASH_MODELS,
+  GEMINI_LITE_MODELS,
+  generateContentWithApiKey,
+  generateContentWithFallback,
+} from '@/lib/gemini';
 
 function resolveUserApiKey(body: Record<string, unknown>): string {
   const fromUserApiKey = typeof body.userApiKey === 'string' ? body.userApiKey.trim() : '';
@@ -17,7 +22,7 @@ export async function POST(req: NextRequest) {
 
     if (body.type === 'apiKeyCheck' && userApiKey) {
       try {
-        const responseText = await generateContentWithApiKey(userApiKey, "Say 'hello'");
+        const responseText = await generateContentWithApiKey(userApiKey, "Say 'hello'", null, GEMINI_LITE_MODELS);
         if (responseText?.toLowerCase().includes('hello')) {
           return NextResponse.json({ valid: true }, { status: 200 });
         }
@@ -31,8 +36,8 @@ export async function POST(req: NextRequest) {
     if (body.type === 'info' && body.datasetDescription) {
       const finalPrompt = infoPrompt + body.datasetDescription.toString();
       const rawText = userApiKey
-        ? await generateContentWithApiKey(userApiKey, finalPrompt, infoSchema)
-        : await generateContentWithFallback(apiKeyIndex, finalPrompt, infoSchema);
+        ? await generateContentWithApiKey(userApiKey, finalPrompt, infoSchema, GEMINI_LITE_MODELS)
+        : await generateContentWithFallback(apiKeyIndex, finalPrompt, infoSchema, GEMINI_LITE_MODELS);
       const finalResult = JSON.parse(rawText || '{}');
 
       return NextResponse.json(finalResult, { status: 200 });
@@ -41,8 +46,8 @@ export async function POST(req: NextRequest) {
     if (body.type === 'recommendations' && body.datasetInfo) {
       const formattedPrompt = recommendationsPrompt + JSON.stringify(body.datasetInfo, null, 2);
       const rawText = userApiKey
-        ? await generateContentWithApiKey(userApiKey, formattedPrompt, recommendationsSchema)
-        : await generateContentWithFallback(apiKeyIndex, formattedPrompt, recommendationsSchema);
+        ? await generateContentWithApiKey(userApiKey, formattedPrompt, recommendationsSchema, GEMINI_FLASH_MODELS)
+        : await generateContentWithFallback(apiKeyIndex, formattedPrompt, recommendationsSchema, GEMINI_FLASH_MODELS);
       const finalResult = JSON.parse(rawText || '{}');
 
       return NextResponse.json(finalResult, { status: 200 });
