@@ -28,14 +28,18 @@ We welcome contributions to *whatMLmodel*! To contribute, please follow these st
 
     ```bash
     cd whatMLmodel
-    npm install
+    pnpm install
     ```
 
-4. *Create a .env File*: Create a .env file in the root directory and add the following information:
+4. *Create a .env File*: Create a `.env.local` file in the root directory and add your Gemini API keys. Any variable whose name starts with `GEMINI_API_KEY_` is picked up automatically; only variables with a value count:
 
-    GOOGLE_API_KEY=Your_Google_API_Key
+    ```env
+    GEMINI_API_KEY_ONE=your_first_api_key
+    GEMINI_API_KEY_TWO=your_second_api_key
+    ```
 
-    You can obtain this API key from [Gemini](https://aistudio.google.com).
+    You can add, remove, or skip keys freely. Order follows alphabetical variable name. Keys are obtained from [Google AI Studio](https://aistudio.google.com).
+    
 5. *Code Standards*: Follow the coding standards inherited from ShadCn. Ensure your code adheres to these guidelines.
 6. *Commit Messages*: Use clear and descriptive commit messages. Follow the conventional commit style where applicable.
 7. *Pull Requests*: When submitting a pull request, ensure that your code is well-tested and follows the project's contribution guidelines. Describe your changes in detail in the PR description.
@@ -59,17 +63,22 @@ To run *whatMLmodel* locally, follow these steps:
 3. *Install Dependencies*:
 
     ```bash
-    npm install
+    pnpm install
     ```
 
-4. *Create a .env File*: Add your Google API key in a .env file in the root directory:
+4. *Create a .env File*: Add your Gemini API keys in a `.env.local` file in the root directory:
 
-    GOOGLE_API_KEY=Your_Google_API_Key
+    ```env
+    GEMINI_API_KEY_ONE=your_first_api_key
+    GEMINI_API_KEY_TWO=your_second_api_key
+    ```
+
+    The server auto-discovers all `GEMINI_API_KEY_*` variables. Free-tier requests rotate across them starting from a random key; users with their own API key bypass server rotation.
 
 5. *Run the Application*:
 
     ```bash
-    npm run dev
+    pnpm run dev
     ```
 
     Visit <http://localhost:3000/> in your browser to see the application running.

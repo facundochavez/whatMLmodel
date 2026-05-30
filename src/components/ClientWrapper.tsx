@@ -3,6 +3,7 @@
 import { useEffect } from 'react';
 import { usePathname, useRouter } from 'next/navigation';
 import { useGlobalStore } from '@/store/global.store';
+import { initializeApiKeyRotation } from '@/services/geminiApiKeyConfig.service';
 
 const ClientWrapper = () => {
   const setIsMobile = useGlobalStore((state) => state.setIsMobile);
@@ -14,6 +15,12 @@ const ClientWrapper = () => {
   const router = useRouter();
 
   useEffect(() => {
+    initializeApiKeyRotation().catch((error) => {
+      console.error('Failed to initialize Gemini API key rotation:', error);
+    });
+  }, []);
+
+  useEffect(() => {
     const handleResize = () => {
       setIsMobile(window.innerWidth < 640);
     };
@@ -21,7 +28,7 @@ const ClientWrapper = () => {
     handleResize();
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
-  }, []);
+  }, [setIsMobile]);
 
   useEffect(() => {
     if (isAiThinking) {

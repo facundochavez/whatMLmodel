@@ -10,12 +10,13 @@ export interface GlobalStore {
   userEmail: string;
   geminiErrorOccurred: boolean;
   apiKeyIndex: number;
+  geminiApiKeyCount: number | null;
+  apiKeyRotationInitialized: boolean;
   decrementAvailableFreeAnalyses: () => void;
   setUserGeminiApiKey: (apiKey: string) => void;
   setIsUserLoggedIn: (value: boolean) => void;
   setUserEmail: (email: string) => void;
   setGeminiErrorOccurred: (value: boolean) => void;
-  moveApiKeyIndex: () => void;
 
   // Basics
   isMobile: boolean;
@@ -66,7 +67,9 @@ export const useGlobalStore = create<GlobalStore>()(
       isUserLoggedIn: true,
       userEmail: '',
       geminiErrorOccurred: false,
-      apiKeyIndex: Math.floor(Math.random() * 5) + 1,
+      apiKeyIndex: 1,
+      geminiApiKeyCount: null,
+      apiKeyRotationInitialized: false,
       decrementAvailableFreeAnalyses: () => {
         const current = get().availableFreeAnalyses;
         if (current > 0) {
@@ -77,10 +80,6 @@ export const useGlobalStore = create<GlobalStore>()(
       setIsUserLoggedIn: (value: boolean) => set({ isUserLoggedIn: value }),
       setUserEmail: (email: string) => set({ userEmail: email }),
       setGeminiErrorOccurred: (value: boolean) => set({ geminiErrorOccurred: value }),
-      moveApiKeyIndex: () => {
-        const current = get().apiKeyIndex;
-        set({ apiKeyIndex: current >= 5 ? 1 : current + 1 });
-      },
 
       // Basics
       isMobile: false,
@@ -133,6 +132,7 @@ export const useGlobalStore = create<GlobalStore>()(
         isUserLoggedIn: state.isUserLoggedIn,
         userEmail: state.userEmail,
         apiKeyIndex: state.apiKeyIndex,
+        apiKeyRotationInitialized: state.apiKeyRotationInitialized,
       }),
     }
   )

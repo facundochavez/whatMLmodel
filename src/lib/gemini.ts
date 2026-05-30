@@ -1,30 +1,40 @@
 import { GoogleGenAI, Schema } from '@google/genai';
 
-export const GEMINI_MODELS = ['gemini-3.5-flash', 'gemini-2.5-flash', 'gemini-3.1-flash-lite', 'gemini-2.5-flash-lite'];
+export const GEMINI_MODELS = ['gemini-3.5-flash-lite', 'gemini-2.5-flash-lite', 'gemini-3.1-flash', 'gemini-2.5-flash'];
+
+const GEMINI_API_KEY_PREFIX = 'GEMINI_API_KEY_';
+
+function getConfiguredApiKeyEnvNames(): string[] {
+  return Object.keys(process.env)
+    .filter((name) => name.startsWith(GEMINI_API_KEY_PREFIX))
+    .sort();
+}
+
+export function getConfiguredApiKeys(): string[] {
+  return getConfiguredApiKeyEnvNames()
+    .map((name) => process.env[name])
+    .filter((key): key is string => Boolean(key));
+}
+
+export function getConfiguredApiKeyCount(): number {
+  return getConfiguredApiKeys().length;
+}
 
 export function getAllApiKeysInOrder(startIndex: number): Array<{ key: string; index: number }> {
-  const apiKeys = [
-    process.env.GEMINI_API_KEY_ONE,
-    process.env.GEMINI_API_KEY_TWO,
-    process.env.GEMINI_API_KEY_THREE,
-    process.env.GEMINI_API_KEY_FOUR,
-    process.env.GEMINI_API_KEY_FIVE,
-  ];
+  const apiKeys = getConfiguredApiKeys();
+
+  if (apiKeys.length === 0) {
+    throw new Error(
+      'No API keys available - please configure one or more GEMINI_API_KEY_* environment variables'
+    );
+  }
 
   const start = (startIndex - 1) % apiKeys.length;
   const orderedKeys: Array<{ key: string; index: number }> = [];
 
   for (let i = 0; i < apiKeys.length; i++) {
     const currentIndex = (start + i) % apiKeys.length;
-    const key = apiKeys[currentIndex];
-
-    if (key) {
-      orderedKeys.push({ key, index: currentIndex + 1 });
-    }
-  }
-
-  if (orderedKeys.length === 0) {
-    throw new Error('No API keys available - please configure GEMINI_API_KEY_ONE, TWO, THREE, FOUR, or FIVE');
+    orderedKeys.push({ key: apiKeys[currentIndex], index: currentIndex + 1 });
   }
 
   return orderedKeys;

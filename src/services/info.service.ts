@@ -1,8 +1,10 @@
 import { useGlobalStore } from '@/store/global.store';
+import { ensureApiKeyIndexReady, moveApiKeyIndexAfterSuccess } from '@/services/geminiApiKeyConfig.service';
 
 export const infoService = async (datasetDescription: string) => {
-  const { apiKeyIndex, moveApiKeyIndex, userGeminiApiKey } = useGlobalStore.getState();
+  const { userGeminiApiKey } = useGlobalStore.getState();
   const userApiKey = userGeminiApiKey.trim();
+  const apiKeyIndex = userApiKey ? undefined : await ensureApiKeyIndexReady();
 
   const response = await fetch('/api/gemini', {
     method: 'POST',
@@ -10,7 +12,7 @@ export const infoService = async (datasetDescription: string) => {
     body: JSON.stringify({
       type: 'info',
       datasetDescription,
-      apiKeyIndex,
+      ...(apiKeyIndex !== undefined && { apiKeyIndex }),
       ...(userApiKey && { userApiKey }),
     }),
   });
@@ -22,7 +24,7 @@ export const infoService = async (datasetDescription: string) => {
   const result = await response.json();
 
   if (!userApiKey) {
-    moveApiKeyIndex();
+    moveApiKeyIndexAfterSuccess();
   }
 
   return result;

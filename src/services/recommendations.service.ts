@@ -1,6 +1,7 @@
 import { useGlobalStore } from '@/store/global.store';
 import { RecommendationsResponse } from '@/types/analysis.types';
 import { isRecommendationsResponse, parsePartialRecommendations } from '@/utils/parsePartialRecommendations';
+import { ensureApiKeyIndexReady, moveApiKeyIndexAfterSuccess } from '@/services/geminiApiKeyConfig.service';
 
 interface RecommendationsStreamCallbacks {
   onPartial: (partial: Partial<RecommendationsResponse>) => void;
@@ -10,8 +11,9 @@ export const recommendationsStreamService = async (
   datasetInfo: Record<string, unknown>,
   callbacks: RecommendationsStreamCallbacks
 ): Promise<RecommendationsResponse> => {
-  const { apiKeyIndex, moveApiKeyIndex, userGeminiApiKey } = useGlobalStore.getState();
+  const { userGeminiApiKey } = useGlobalStore.getState();
   const userApiKey = userGeminiApiKey.trim();
+  const apiKeyIndex = userApiKey ? undefined : await ensureApiKeyIndexReady();
 
   const response = await fetch('/api/gemini/stream', {
     method: 'POST',
@@ -19,7 +21,7 @@ export const recommendationsStreamService = async (
     body: JSON.stringify({
       type: 'recommendations',
       datasetInfo,
-      apiKeyIndex,
+      ...(apiKeyIndex !== undefined && { apiKeyIndex }),
       ...(userApiKey && { userApiKey }),
     }),
   });
@@ -51,7 +53,7 @@ export const recommendationsStreamService = async (
   }
 
   if (!userApiKey) {
-    moveApiKeyIndex();
+    moveApiKeyIndexAfterSuccess();
   }
 
   return finalResult;
