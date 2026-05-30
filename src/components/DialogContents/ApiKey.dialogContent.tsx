@@ -130,7 +130,7 @@ const ApiKeyDialog: React.FC = () => {
             {(userGeminiApiKey.trim() === '' || geminiErrorOccurred) && (
               <>
                 <h2 className="mb-2">How to get one:</h2>
-                <ul className="flex flex-col gap-1 text-muted-foreground text-sm -mt-4">
+                <ul className="flex flex-col gap-1 text-muted-foreground text-sm -mt-4 mb-2">
                   <li>
                     1. Sign in or create an account on{' '}
                     <a
