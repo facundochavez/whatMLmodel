@@ -1,7 +1,7 @@
 import { GoogleGenAI, Schema } from '@google/genai';
 
-export const GEMINI_LITE_MODELS = ['gemini-3.5-flash-lite', 'gemini-2.5-flash-lite', 'gemini-3.1-flash-lite'];
-export const GEMINI_FLASH_MODELS = ['gemini-3.5-flash', 'gemini-3.1-flash', 'gemini-2.5-flash'];
+export const GEMINI_LITE_MODELS = ['gemini-2.5-flash-lite', 'gemini-3.1-flash-lite', 'gemini-3.5-flash-lite'];
+export const GEMINI_FLASH_MODELS = ['gemini-2.5-flash', 'gemini-3.1-flash', 'gemini-3.5-flash'];
 
 const GEMINI_API_KEY_PREFIX = 'GEMINI_API_KEY_';
 
